@@ -13389,9 +13389,8 @@
     "category": "dark",
     "name": "Dark Dragonite",
     "types": [
-      "Fire",
+      "water",
       "Flying",
-      "Dark"
     ],
     "generation": 1,
     "stats": {
@@ -13401,8 +13400,6 @@
       "spatk": 130,
       "spdef": 105,
       "spd": 120
-    },
-    "souls": {
     },
     "locations": [
       {
