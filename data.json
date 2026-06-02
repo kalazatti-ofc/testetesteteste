@@ -13361,7 +13361,7 @@
     "name": "Dark Charizard",
     "types": [
       "Fire",
-      "Flying",
+      "Flying"
     ],
     "generation": 1,
     "stats": {
@@ -13384,30 +13384,30 @@
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
   },
-  {
-    "id": "dark-7",
+{
+    "id": "dark-25",
     "category": "dark",
-    "name": "Dark Dragonite",
+    "name": "Dark Pikachu",
     "types": [
-      "water",
-      "Flying",
+      "Electric"
     ],
     "generation": 1,
     "stats": {
-      "hp": 95,
-      "atk": 110,
-      "def": 90,
-      "spatk": 130,
-      "spdef": 105,
+      "hp": 60,
+      "atk": 80,
+      "def": 60,
+      "spatk": 80,
+      "spdef": 60,
       "spd": 120
     },
+    "exclusive": "Somente na Quest de Natal 2022", 
     "locations": [
       {
-        "local": "NPC Jhon Soul (Trainer Center)",
-        "nota": "📌 Quest Diaria de Souls."
+        "local": "Laboratório Secreto (X 999 / Y 999 / Z 7)",
+        "nota": "Apenas quem tem o item 'Dark Stone'."
       }
     ],
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
   },
   {
     "id": "boss-mewtwo",
