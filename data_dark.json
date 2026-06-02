@@ -38,16 +38,16 @@
     ],
     "generation": 1,
     "stats": {
-      "hp": 95,
-      "atk": 110,
-      "def": 90,
-      "spatk": 130,
-      "spdef": 105,
-      "spd": 120
+      "hp": 68,
+      "atk": 65,
+      "def": 65,
+      "spatk": 125,
+      "spdef": 115,
+      "spd": 80
     },
     "souls": {
-      "normal": "130",
-      "eternizado": "390"
+      "normal": "110",
+      "eternizado": "330"
     },
     "locations": [
       {
@@ -55,7 +55,7 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
+    "image": "Sprites/dark-gardevoir.png"
   },
   {
     "id": "Dark-Raichu-Fly",
@@ -66,12 +66,12 @@
     ],
     "generation": 1,
     "stats": {
-      "hp": 60,
-      "atk": 80,
-      "def": 60,
-      "spatk": 80,
-      "spdef": 60,
-      "spd": 120
+      "hp": 90,
+      "atk": 135,
+      "def": 82,
+      "spatk": 135,
+      "spdef": 120,
+      "spd": 165
     },
     "exclusive": "Somente na Quest de Natal 2021", 
     "image": "Sprites/dark-raichufly.png"
