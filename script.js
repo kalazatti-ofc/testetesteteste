@@ -305,7 +305,7 @@ window.openModal = (id) => {
             </div>
         `;
     } else if (pCategory === 'dark') {
-        // LAYOUT EXCLUSIVO DARK (Sem evolução, com Souls)
+        // LAYOUT EXCLUSIVO DARK
         const statsHTML = Object.entries(p.stats || {}).map(([name, val]) => `
             <div class="stat-row">
                 <label>${name.toUpperCase()}</label>
@@ -314,8 +314,35 @@ window.openModal = (id) => {
             </div>
         `).join('');
 
-        const soulsNormal = p.souls && p.souls.normal ? p.souls.normal : '???';
-        const soulsEternizado = p.souls && p.souls.eternizado ? p.souls.eternizado : '???';
+        // LÓGICA INTELIGENTE: Tem souls ou é de evento?
+        let soulsHTML = '';
+        if (p.souls) {
+            const soulsNormal = p.souls.normal ? p.souls.normal : '???';
+            const soulsEternizado = p.souls.eternizado ? p.souls.eternizado : '???';
+            soulsHTML = `
+                <div class="souls-module">
+                    <h4 class="label-tech">CUSTO DE CONVERSÃO (SOULS)</h4>
+                    <div class="souls-container">
+                        <div class="soul-box">
+                            <span class="soul-label">NORMAL</span>
+                            <span class="soul-value">${soulsNormal}</span>
+                        </div>
+                        <div class="soul-box eternizado">
+                            <span class="soul-label">ETERNIZADO</span>
+                            <span class="soul-value">${soulsEternizado}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            // Se não tiver a chave "souls" no JSON, mostra isso:
+            soulsHTML = `
+                <div class="souls-module">
+                    <h4 class="label-tech">MÉTODO DE OBTENÇÃO</h4>
+                    <span class="exclusive-badge">CAPTURA EXCLUSIVA / EVENTO</span>
+                </div>
+            `;
+        }
 
         rightWingHTML = `
             <div class="radar-module">
@@ -330,19 +357,7 @@ window.openModal = (id) => {
                 <div class="stats-list">${statsHTML}</div>
             </div>
 
-            <div class="souls-module">
-                <h4 class="label-tech">CUSTO DE CONVERSÃO (SOULS)</h4>
-                <div class="souls-container">
-                    <div class="soul-box">
-                        <span class="soul-label">NORMAL</span>
-                        <span class="soul-value">${soulsNormal}</span>
-                    </div>
-                    <div class="soul-box eternizado">
-                        <span class="soul-label">ETERNIZADO</span>
-                        <span class="soul-value">${soulsEternizado}</span>
-                    </div>
-                </div>
-            </div>
+            ${soulsHTML}
 
             <div class="eff-module">
                 <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
