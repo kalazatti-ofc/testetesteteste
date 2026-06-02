@@ -314,7 +314,6 @@ window.openModal = (id) => {
             </div>
         `).join('');
 
-        // LÓGICA INTELIGENTE: Tem souls ou é de evento?
         let soulsHTML = '';
         if (p.souls) {
             const soulsNormal = p.souls.normal ? p.souls.normal : '???';
@@ -335,9 +334,7 @@ window.openModal = (id) => {
                 </div>
             `;
         } else {
-            // Checa se o JSON tem um texto personalizado, se não, usa o padrão:
             const textoExclusivo = p.exclusive ? p.exclusive : 'CAPTURA EXCLUSIVA / EVENTO';
-            
             soulsHTML = `
                 <div class="souls-module">
                     <h4 class="label-tech">MÉTODO DE OBTENÇÃO</h4>
@@ -417,19 +414,31 @@ window.openModal = (id) => {
         `;
     }
 
+    // GERAÇÃO INTELIGENTE DO VISOR VERDE (NORMAL EM LINHA / EXCLUSIVOS EM TORRE VERTICAL)
     document.getElementById('modal-body').innerHTML = `
         <div class="modal-pokedex-view">
             <div class="modal-left-wing">
                 <div class="screen-border">
-                    <div class="main-screen">
-                        <img src="${p.image}" class="poke-img-large">
-                        <div class="screen-info">
-                            <h2>${p.name}</h2>
-                            <div class="modal-gen-bar">${pCategory === 'boss' ? 'ALERTA DE BOSS' : (pCategory === 'dark' ? 'CLASSE DARK' : 'GERAÇÃO ' + p.generation)}</div>
-                            <div class="type-tags">
-                                ${p.types.map(t => `<span class="tag" style="background:var(--type-${t.toLowerCase()})">${t}</span>`).join('')}
+                    <div class="main-screen ${pCategory !== 'normal' ? 'main-screen-stacked' : ''}">
+                        ${pCategory !== 'normal' ? `
+                            <div class="stacked-container">
+                                <img src="${p.image}" class="poke-img-stacked">
+                                <h2 class="poke-name-stacked">${p.name}</h2>
+                                <div class="modal-gen-bar stacked-gen-bar">${pCategory === 'boss' ? 'ALERTA DE BOSS' : 'CLASSE DARK'}</div>
+                                <div class="type-tags stacked-type-tags">
+                                    ${p.types.map(t => `<span class="tag" style="background:var(--type-${t.toLowerCase()})">${t}</span>`).join('')}
+                                </div>
                             </div>
-                        </div>
+                        ` : `
+                            <img src="${p.image}" class="poke-img-large">
+                            <div class="screen-info">
+                                <h2>${p.name}</h2>
+                                <div class="modal-gen-bar">GERAÇÃO ${p.generation}</div>
+                                <div class="type-tags">
+                                    ${p.types.map(t => `<span class="tag" style="background:var(--type-${t.toLowerCase()})">${t}</span>`).join('')}
+                                </div>
+                            </div>
+                        `}
                     </div>
                 </div>
                 
@@ -452,7 +461,6 @@ window.openModal = (id) => {
         if(firstLoc) firstLoc.click();
     }, 100);
 
-    // Carrega evolução apenas se for NORMAL
     if (pCategory === 'normal') {
         loadEvolutions(p.name);
     }
