@@ -2,7 +2,7 @@ let pokemonData = [];
 let activeTypeFilter = 'all';
 let activeGenFilter = 'all';
 let activeCatchFilter = 'all';
-let activeCategory = 'normal'; // A nova "fita do jogo"
+let activeCategory = 'normal'; // Controla a aba atual
 
 let caughtPokemon = JSON.parse(localStorage.getItem('pokedex-caught')) || [];
 
@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // LÓGICA DOS BOTÕES DE CATEGORIA (Boss, Normal, Dark)
     document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -189,7 +188,6 @@ window.toggleAccordion = (arrowEl, event) => {
     arrowEl.innerText = container.classList.contains('hidden-steps') ? '▼' : '▲';
 };
 
-// Cópia pura de coordenada
 window.copyLoc = (text, el, event) => {
     if(event) event.stopPropagation(); 
     const msg = text;
@@ -275,6 +273,7 @@ window.openModal = (id) => {
     let rightWingHTML = '';
 
     if (pCategory === 'boss') {
+        // LAYOUT EXCLUSIVO DO BOSS
         rightWingHTML = `
             <div class="radar-module">
                 <div class="radar-display" id="radar-screen">
@@ -288,20 +287,77 @@ window.openModal = (id) => {
                 <p class="boss-guide-text">${p.guide || 'Nenhuma informação avançada detectada sobre este Boss.'}</p>
             </div>
 
+            <div class="boss-loot-module">
+                <h4 class="label-tech">RECOMPENSA DIÁRIA</h4>
+                <div class="loot-box">${p.loot || '???'}</div>
+            </div>
+
             <div class="eff-module">
                 <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
                 <div class="eff-group">
                     <label>FRAQUEZAS (Leva 2x Dano)</label>
                     <div class="eff-icons">${matchups.weak.length > 0 ? matchups.weak.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
                 </div>
+                <div class="eff-group">
+                    <label>RESISTÊNCIAS (Leva 0.5x Dano)</label>
+                    <div class="eff-icons">${matchups.resist.length > 0 ? matchups.resist.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
+                </div>
+            </div>
+        `;
+    } else if (pCategory === 'dark') {
+        // LAYOUT EXCLUSIVO DARK (Sem evolução, com Souls)
+        const statsHTML = Object.entries(p.stats || {}).map(([name, val]) => `
+            <div class="stat-row">
+                <label>${name.toUpperCase()}</label>
+                <div class="bar-container"><div class="bar-fill" style="width:${(val/255)*100}%"></div></div>
+                <span class="stat-num">${val}</span>
+            </div>
+        `).join('');
+
+        const soulsNormal = p.souls && p.souls.normal ? p.souls.normal : '???';
+        const soulsEternizado = p.souls && p.souls.eternizado ? p.souls.eternizado : '???';
+
+        rightWingHTML = `
+            <div class="radar-module">
+                <div class="radar-display" id="radar-screen">
+                    <div class="radar-grid"></div><div class="radar-beam"></div>
+                    <p id="radar-label">RASTREANDO...</p>
+                </div>
             </div>
 
-            <div class="boss-loot-module">
-                <h4 class="label-tech">RECOMPENSA PRINCIPAL</h4>
-                <div class="loot-box">${p.loot || '???'}</div>
+            <div class="data-module">
+                <h4 class="label-tech">STATUS BASE</h4>
+                <div class="stats-list">${statsHTML}</div>
+            </div>
+
+            <div class="souls-module">
+                <h4 class="label-tech">CUSTO DE CONVERSÃO (SOULS)</h4>
+                <div class="souls-container">
+                    <div class="soul-box">
+                        <span class="soul-label">NORMAL</span>
+                        <span class="soul-value">${soulsNormal}</span>
+                    </div>
+                    <div class="soul-box eternizado">
+                        <span class="soul-label">ETERNIZADO</span>
+                        <span class="soul-value">${soulsEternizado}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="eff-module">
+                <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
+                <div class="eff-group">
+                    <label>FRAQUEZAS (Leva 2x Dano)</label>
+                    <div class="eff-icons">${matchups.weak.length > 0 ? matchups.weak.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
+                </div>
+                <div class="eff-group">
+                    <label>RESISTÊNCIAS (Leva 0.5x Dano)</label>
+                    <div class="eff-icons">${matchups.resist.length > 0 ? matchups.resist.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
+                </div>
             </div>
         `;
     } else {
+        // LAYOUT POKÉMON NORMAL
         const statsHTML = Object.entries(p.stats || {}).map(([name, val]) => `
             <div class="stat-row">
                 <label>${name.toUpperCase()}</label>
@@ -379,7 +435,8 @@ window.openModal = (id) => {
         if(firstLoc) firstLoc.click();
     }, 100);
 
-    if (pCategory !== 'boss') {
+    // Carrega evolução apenas se for NORMAL
+    if (pCategory === 'normal') {
         loadEvolutions(p.name);
     }
 };
