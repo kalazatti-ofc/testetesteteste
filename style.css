@@ -25,6 +25,9 @@ body {
     transition: background-color 0.3s ease;
 }
 
+/* =========================================
+   CARCAÇA PRINCIPAL
+========================================= */
 .pokedex-body {
     display: flex; flex-direction: column; width: 100%; max-width: 1200px;
     background: var(--dex-red); border-radius: 20px;
@@ -79,6 +82,9 @@ body {
 .pokedex-title span { color: #ffcb05; display: block; font-size: 1.5rem; transition: 0.3s; }
 .pokedex-title:hover { transform: scale(1.08) rotate(-2deg); text-shadow: 5px 5px 0 var(--dex-border), 0 0 20px rgba(255,203,5,0.6); color: #ffcb05; }
 
+/* =========================================
+   CONTROLES, BUSCA E ABAS (CATEGORIAS)
+========================================= */
 .pokedex-controls { flex: 1; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; }
 .search-module { width: 100%; margin-bottom: 20px; }
 .tech-label { font-family: monospace; font-size: 0.8rem; color: #ffcb05; font-weight: bold; text-shadow: 1px 1px 0 #000; margin-bottom: 5px; display: block; }
@@ -88,7 +94,6 @@ body {
 .cursor-blink { color: var(--dex-red); font-family: monospace; font-size: 1.2rem; font-weight: bold; animation: blink 1s step-end infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* BOTÃO LUPA AGORA VERMELHO */
 .search-btn {
     border: 3px solid var(--dex-border); border-radius: 8px; width: 35px; height: 35px;
     margin-left: 10px; display: flex; align-items: center; justify-content: center;
@@ -98,7 +103,6 @@ body {
 .search-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 transparent; }
 .search-btn.red-btn { background: var(--dex-red); color: #fff; }
 
-/* BOTÕES DE CATEGORIAS (FITAS) */
 .category-module { display: flex; gap: 8px; margin-bottom: 20px; }
 .cat-btn {
     flex: 1; padding: 10px 5px; border-radius: 8px; font-family: monospace; font-size: 0.8rem;
@@ -112,9 +116,8 @@ body {
 .cat-btn[data-cat="boss"].active { background: #ffcb05; color: var(--dex-border); }
 .cat-btn[data-cat="dark"].active { background: #8a2be2; color: #fff; }
 
+/* FILTROS SECUNDÁRIOS EM GRAFITE ELEGANTE */
 .pokedex-filters { margin-bottom: 20px; }
-
-/* FILTROS AGORA EM GRAFITE */
 .filter-toggle { 
     width: 100%; background: #444444; color: #ffffff; border: 3px solid var(--dex-border); 
     padding: 10px 15px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; 
@@ -135,10 +138,15 @@ body {
 .footer-msg { font-size: 0.7rem; color: #fff; line-height: 1.4; text-shadow: 1px 1px 0 #000;}
 .footer-msg strong { color: #ffcb05; font-weight: 800; }
 
+/* =========================================
+   PAINEL DIREITO E CARDS INICIAIS
+========================================= */
 .pokedex-right-panel { padding: 20px; display: flex; flex-direction: column; flex: 1; transition: background 0.3s ease; }
 .pokedex-main-display {
     background: var(--screen-bg); border-radius: 15px; border: 6px solid var(--dex-border);
-    box-shadow: inset 0 10px 20px rgba(0,0,0,0.1); padding: 15px; height: 500px; overflow-y: auto; position: relative; flex: 1; transition: background 0.3s ease;
+    box-shadow: inset 0 10px 20px rgba(0,0,0,0.1); padding: 15px;
+    height: 500px; overflow-y: auto; position: relative; flex: 1;
+    transition: background 0.3s ease;
 }
 .pokedex-main-display::-webkit-scrollbar { width: 14px; }
 .pokedex-main-display::-webkit-scrollbar-track { background: #d0d0d0; border-left: 3px solid var(--dex-border); border-radius: 0 10px 10px 0;}
@@ -152,7 +160,17 @@ body {
 }
 .pk-card:active { transform: translate(3px, 3px); box-shadow: 0 0 0 rgba(0,0,0,0); }
 .pk-id { position: absolute; top: 6px; left: 6px; font-family: monospace; font-size: 0.65rem; font-weight: bold; color: #888; z-index: 2; transition: color 0.3s ease;}
-.pk-card img { width: 70px; height: 70px; filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.2)); z-index: 2; position: relative;}
+
+/* AJUSTE DE PROPORÇÃO DE IMAGEM (CORREÇÃO DE DISTORÇÃO) */
+.pk-card img { 
+    width: 70px; 
+    height: 70px; 
+    object-fit: contain; 
+    filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.2)); 
+    z-index: 2; 
+    position: relative;
+}
+
 .pk-name { font-size: 0.8rem; font-weight: 800; color: var(--dex-border); text-transform: uppercase; z-index: 2; position: relative; margin: 4px 0; transition: color 0.3s ease;}
 .pk-types-mini { display: flex; justify-content: center; gap: 4px; z-index: 2; position: relative;}
 .type-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--dex-border); }
@@ -170,6 +188,7 @@ body {
     padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; display: inline-block;
 }
 
+/* BOTÃO DE CAPTURA (POKÉBOLA) */
 .catch-btn {
     position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; border-radius: 50%;
     border: 2px solid var(--dex-border); background: linear-gradient(to bottom, #ccc 45%, var(--dex-border) 45%, var(--dex-border) 55%, #f0f0f0 55%);
@@ -184,7 +203,9 @@ body {
 .catch-btn.caught { background: linear-gradient(to bottom, #ff3333 45%, var(--dex-border) 45%, var(--dex-border) 55%, #fff 55%); opacity: 1; box-shadow: 2px 2px 0 rgba(0,0,0,0.3); animation: catchBounce 0.4s ease; }
 @keyframes catchBounce { 0% { transform: scale(1); } 50% { transform: scale(1.3) rotate(-15deg); } 100% { transform: scale(1) rotate(0deg); } }
 
-/* MODAL */
+/* =========================================
+   ESTRUTURA GERAL DO MODAL
+========================================= */
 .modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 15px;}
 .modal.hidden { display: none; }
 .modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
@@ -197,6 +218,8 @@ body {
 .modal-pokedex-view { display: flex; flex-direction: column; background: var(--dex-red); border: 6px solid var(--dex-border); border-radius: 20px; box-shadow: inset -5px -5px 0 rgba(0,0,0,0.2), 0 20px 50px rgba(0,0,0,0.8); overflow: hidden; max-height: 90vh; transition: background 0.3s ease; }
 .modal-left-wing { padding: 25px; background: #c22e28; border-bottom: 6px solid var(--dex-border); display: flex; flex-direction: column; transition: background 0.3s ease;}
 .screen-border { background: #e0e0e0; padding: 15px; border-radius: 15px 15px 15px 40px; border: 4px solid var(--dex-border); box-shadow: 4px 4px 0 rgba(0,0,0,0.3); margin-bottom: 20px; transition: background 0.3s ease; }
+
+/* VISOR NORMAL */
 .main-screen { background: #8eedd1; border-radius: 10px; border: 4px solid var(--dex-border); padding: 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: inset 0 0 15px rgba(0,0,0,0.2); position: relative; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px); }
 .poke-img-large { width: 110px; height: 110px; filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.3)); z-index: 2; }
 .screen-info { text-align: right; z-index: 2;}
@@ -204,6 +227,30 @@ body {
 .type-tags { display: flex; gap: 5px; justify-content: flex-end;}
 .tag { padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; color: #fff; font-weight: 800; border: 2px solid var(--dex-border); box-shadow: 2px 2px 0 var(--dex-border); text-transform: uppercase;}
 
+/* ==============================================================
+   VISOR VERTICAL EM TORRE (EXCLUSIVO PARA BOSSES E DARK'S)
+============================================================== */
+.main-screen.main-screen-stacked {
+    flex-direction: column; justify-content: center; align-items: center;
+    padding: 20px 15px; min-height: 285px; text-align: center;
+}
+.stacked-container { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 10px; }
+.poke-img-stacked {
+    width: 145px; height: 145px; object-fit: contain;
+    filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.3)); margin-bottom: 5px;
+    animation: floatAnimation 3s ease-in-out infinite;
+}
+@keyframes floatAnimation {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+.poke-name-stacked { color: var(--dex-border); font-size: 1.55rem; font-weight: 900; text-transform: uppercase; margin: 0; line-height: 1.1; }
+.modal-gen-bar.stacked-gen-bar { margin-bottom: 2px; font-size: 0.65rem; padding: 2px 10px; }
+.stacked-type-tags { justify-content: center !important; width: 100%; }
+
+/* =========================================
+   MÓDULO DE LOCALIZAÇÕES
+========================================= */
 .location-module { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 .label-tech { font-family: monospace; font-size: 0.8rem; color: #ffcb05; text-shadow: 1px 1px 0 #000; margin-bottom: 8px; border-bottom: 2px dashed rgba(255,215,0,0.4); padding-bottom: 4px;}
 .loc-list-scroll { flex: 1; overflow-y: auto; padding-right: 5px; display: flex; flex-direction: column; gap: 8px; }
@@ -220,22 +267,14 @@ body {
 .copy-icon:hover { transform: scale(1.2); filter: drop-shadow(0 0 5px #ffcb05); opacity: 1; }
 .loc-actions { display: flex; align-items: center; gap: 12px; }
 
+/* BALÃOZINHOS DE OBSERVAÇÃO (TOOLTIP) */
 .info-tooltip { position: relative; cursor: help; }
 .info-tooltip:hover { opacity: 1; filter: drop-shadow(0 0 5px #ffcb05); }
-.info-tooltip::after {
-    content: attr(data-tooltip); position: absolute; right: 150%; top: 50%; transform: translateY(-50%);
-    background: #111; color: #ffcb05; border: 2px solid var(--dex-border); padding: 8px 12px; border-radius: 6px;
-    font-size: 0.7rem; font-family: monospace; white-space: normal; max-width: 220px; width: max-content;  
-    text-align: left; line-height: 1.4; opacity: 0; visibility: hidden; transition: 0.2s; z-index: 100;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5); pointer-events: none;
-}
-.info-tooltip::before {
-    content: ''; position: absolute; right: 100%; top: 50%; transform: translateY(-50%);
-    border-width: 5px; border-style: solid; border-color: transparent transparent transparent #111;
-    opacity: 0; visibility: hidden; transition: 0.2s; pointer-events: none;
-}
+.info-tooltip::after { content: attr(data-tooltip); position: absolute; right: 150%; top: 50%; transform: translateY(-50%); background: #111; color: #ffcb05; border: 2px solid var(--dex-border); padding: 8px 12px; border-radius: 6px; font-size: 0.7rem; font-family: monospace; white-space: normal; max-width: 220px; width: max-content; text-align: left; line-height: 1.4; opacity: 0; visibility: hidden; transition: 0.2s; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.5); pointer-events: none; }
+.info-tooltip::before { content: ''; position: absolute; right: 100%; top: 50%; transform: translateY(-50%); border-width: 5px; border-style: solid; border-color: transparent transparent transparent #111; opacity: 0; visibility: hidden; transition: 0.2s; pointer-events: none; }
 .info-tooltip:hover::after, .info-tooltip:hover::before { opacity: 1; visibility: visible; }
 
+/* ACORDEÃO DE ROTAS */
 .loc-accordion { display: flex; flex-direction: column; gap: 5px; margin-bottom: 5px; }
 .accordion-toggle { background: var(--terminal-bg); border-color: var(--dex-border); }
 .expand-arrow { color: #ffcb05; font-size: 1.1rem; padding: 5px 5px; cursor: pointer; }
@@ -248,6 +287,9 @@ body {
 .loc-step.active { border-color: var(--radar-green); background: #0a1f10; box-shadow: 2px 2px 0 var(--radar-green); }
 .loc-step.active .loc-icon { filter: drop-shadow(0 0 5px var(--radar-green)); opacity: 1; color: var(--radar-green); }
 
+/* =========================================
+   TELA DIREITA DO MODAL (RADAR E MÓDULOS)
+========================================= */
 .modal-right-wing { padding: 25px; background: var(--dex-red); display: flex; flex-direction: column; gap: 15px; overflow-y: auto; transition: background 0.3s ease;}
 .radar-module { background: #222; padding: 12px; border-radius: 12px; border: 4px solid var(--dex-border); box-shadow: inset 0 0 10px #000; }
 .radar-display { width: 100%; height: 110px; background: #111; border: 4px solid var(--dex-border); border-radius: 8px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 15px rgba(0,0,0,0.8); }
@@ -263,6 +305,7 @@ body {
 .sat-hud-line { background: rgba(0, 0, 0, 0.65); color: #8eedd1; font-family: monospace; font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(142, 237, 209, 0.3); width: max-content; text-shadow: 0 0 3px rgba(142, 237, 209, 0.8); letter-spacing: 0.5px; font-weight: bold; }
 .sat-hud-line.rec { color: #ff4b2b; border-color: rgba(255, 75, 43, 0.3); text-shadow: 0 0 3px rgba(255, 75, 43, 0.8); animation: blinker 1.5s infinite; }
 
+/* REGRAS DE STATUS, FRAQUEZAS E EVOLUÇÃO */
 .data-module { background: #e0e0e0; padding: 15px; border-radius: 12px; border: 4px solid var(--dex-border); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); transition: background 0.3s ease; }
 .data-module .label-tech { color: var(--dex-border); text-shadow: none; border-bottom: 2px dashed #999;}
 .stats-list { display: flex; flex-direction: column; gap: 6px; }
@@ -287,16 +330,50 @@ body {
 .evo-sprite { width: 45px; height: 45px; cursor: pointer; transition: 0.2s; filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.3)); border: 2px solid transparent; border-radius: 50%; }
 .evo-sprite:hover { transform: scale(1.15); background: rgba(0,0,0,0.1); border-color: var(--dex-border); }
 .evo-sprite.missing { filter: grayscale(1) opacity(0.5); cursor: not-allowed; }
+.evo-arrow { color: #888; font-size: 1.2rem; font-weight: bold; }
 
-/* MODULOS EXCLUSIVOS BOSS */
-.boss-guide-module { background: #e0e0e0; padding: 15px; border-radius: 12px; border: 4px solid var(--dex-border); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); transition: background 0.3s ease;}
+/* ==============================================================
+   MÓDULOS EXCLUSIVOS: BOSSES 24H
+============================================================== */
+.boss-guide-module { background: #e0e0e0; padding: 15px; border-radius: 12px; border: 4px solid var(--dex-border); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); transition: background 0.3s ease; margin-bottom: 10px;}
 .boss-guide-module .label-tech { color: var(--dex-border); border-bottom: 2px dashed #999; }
-.boss-guide-text { font-size: 0.75rem; font-weight: 700; color: #444; line-height: 1.5; text-align: justify;}
+.boss-guide-text { font-size: 0.75rem; font-weight: 700; color: #444; line-height: 1.5; text-align: justify; margin-top: 8px;}
 
-.boss-loot-module { background: #ffcb05; padding: 15px; border-radius: 12px; border: 4px solid var(--dex-border); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); text-align: center; margin-top: 5px;}
+.boss-loot-module { background: #ffcb05; padding: 15px; border-radius: 12px; border: 4px solid var(--dex-border); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); text-align: center; margin-bottom: 10px;}
 .boss-loot-module .label-tech { color: var(--dex-border); border-bottom: 2px dashed rgba(0,0,0,0.2); text-shadow: none;}
 .loot-box { font-size: 1.1rem; font-weight: 900; color: var(--dex-red); text-transform: uppercase; margin-top: 10px; background: #fff; padding: 10px; border-radius: 8px; border: 3px solid var(--dex-border);}
 
+/* ==============================================================
+   MÓDULO EXCLUSIVO: CUSTO DE SOULS (DARK'S) - COMPACTO E ALINHADO
+============================================================== */
+.souls-module { 
+    background: #e0e0e0; padding: 10px 15px; border-radius: 12px; 
+    border: 4px solid var(--dex-border); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); 
+    transition: background 0.3s ease; margin-bottom: 10px; 
+}
+.souls-module .label-tech { 
+    color: var(--dex-border); border-bottom: 2px dashed #999; 
+    text-shadow: none; margin-bottom: 4px;
+}
+.souls-container { display: flex; gap: 8px; margin-top: 6px; }
+.soul-box { 
+    flex: 1; background: #fff; border: 2px solid var(--dex-border); 
+    border-radius: 6px; padding: 4px 8px; text-align: center; 
+    display: flex; justify-content: space-between; align-items: center; 
+}
+.soul-box.eternizado { background: #e6e6fa; border-color: #8a2be2; }
+.soul-label { font-size: 0.6rem; font-weight: 900; color: #666; }
+.soul-box.eternizado .soul-label { color: #8a2be2; }
+.soul-value { font-size: 0.9rem; font-weight: 900; color: var(--dex-border); }
+.exclusive-badge {
+    display: block; text-align: center; font-size: 0.8rem; font-weight: 900;
+    color: var(--dex-red); background: #fff; border: 2px solid var(--dex-border);
+    border-radius: 6px; padding: 6px; margin-top: 6px;
+}
+
+/* =========================================
+   RESPONSIVIDADE E ADAPTAÇÃO DE TELAS
+========================================= */
 @media (min-width: 850px) {
     .pokedex-body { flex-direction: row; height: 90vh; }
     .pokedex-left-panel { width: 380px; border-bottom: none; border-right: 6px solid var(--dex-border); display: flex; flex-direction: column;}
@@ -305,9 +382,7 @@ body {
     .modal-pokedex-view { flex-direction: row; height: 85vh; max-width: 900px; }
     .modal-left-wing { width: 50%; border-bottom: none; border-right: 6px solid var(--dex-border); }
     .modal-right-wing { width: 50%; }
-    .modal-pokedex-view::after {
-        content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 16px; background: linear-gradient(90deg, #8b0000, #ff4b2b, #8b0000); border-left: 4px solid var(--dex-border); border-right: 4px solid var(--dex-border); z-index: 10; transform: translateX(-50%);
-    }
+    .modal-pokedex-view::after { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 16px; background: linear-gradient(90deg, #8b0000, #ff4b2b, #8b0000); border-left: 4px solid var(--dex-border); border-right: 4px solid var(--dex-border); z-index: 10; transform: translateX(-50%); }
 }
 
 @media (max-width: 768px) {
@@ -321,7 +396,9 @@ body {
     .poke-img-large { width: 80px; height: 80px; } 
 }
 
-/* OAK MODAL */
+/* =========================================
+   POP-UP DO PROFESSOR OAK
+========================================= */
 .oak-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); background: radial-gradient(circle, rgba(20,20,20,0.9) 0%, rgba(10,10,10,0.95) 100%); }
 .oak-overlay.hidden { display: none !important; }
 .oak-container { width: 90%; max-width: 500px; position: relative; animation: slideDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: transparent; padding: 0; box-shadow: 0 0 0 15px white, 0 20px 40px rgba(0,0,0,0.6); }
@@ -334,7 +411,9 @@ body {
 .oak-dialog-box { width: 100%; min-height: 100px; margin-top: 10px; background: #fff; border-radius: 8px; cursor: pointer; position: relative; padding: 15px 20px; border: 4px solid #111; box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 6px #111; z-index: 5; }
 .oak-dialog-box p { font-family: 'Press Start 2P', monospace; font-size: 0.8rem; color: #111; line-height: 1.8; text-transform: uppercase; margin: 0; padding-right: 15px; }
 
-/* DARK MODE */
+/* ==============================================================
+   SISTEMA DE MODO ESCURO (DARK MODE)
+============================================================== */
 body.dark-mode { background-color: #080a0f; }
 body.dark-mode .pokedex-main-display { background: #0f141e; box-shadow: inset 0 10px 30px rgba(0,0,0,0.5); }
 body.dark-mode .pk-card { background: #2a2a2c; border-color: #111; box-shadow: 3px 3px 0 rgba(0,0,0,0.6); }
@@ -361,129 +440,6 @@ body.dark-mode .boss-guide-module { background: #2a2a2c; border-color: #111; }
 body.dark-mode .boss-guide-text { color: #ccc; }
 body.dark-mode .boss-loot-module { background: #e6b800; border-color: #111; }
 body.dark-mode .loot-box { background: #111; border-color: #111; color: #ffcb05; }
-
-/* ==============================================================
-   MÓDULO EXCLUSIVO: CUSTO DE SOULS (DARK'S)
-============================================================== */
-.souls-module { 
-    background: #e0e0e0; 
-    padding: 15px; 
-    border-radius: 12px; 
-    border: 4px solid var(--dex-border); 
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.2); 
-    transition: background 0.3s ease; 
-    margin-bottom: 10px; 
-}
-
-.souls-module .label-tech { 
-    color: var(--dex-border); 
-    border-bottom: 2px dashed #999; 
-    text-shadow: none;
-}
-
-.souls-container { 
-    display: flex; 
-    gap: 10px; 
-    margin-top: 10px; 
-}
-
-.soul-box { 
-    flex: 1; 
-    background: #fff; 
-    border: 3px solid var(--dex-border); 
-    border-radius: 8px; 
-    padding: 8px; 
-    text-align: center; 
-    display: flex; 
-    flex-direction: column; 
-    gap: 5px; 
-}
-
-/* Destaque para a caixa do Eternizado */
-.soul-box.eternizado { 
-    background: #e6e6fa; 
-    border-color: #8a2be2; 
-}
-
-.soul-label { 
-    font-size: 0.65rem; 
-    font-weight: 900; 
-    color: #666; 
-}
-
-.soul-box.eternizado .soul-label { 
-    color: #8a2be2; 
-}
-
-.soul-value { 
-    font-size: 1.1rem; 
-    font-weight: 900; 
-    color: var(--dex-border); 
-}
-
-/* ==============================================================
-   MÓDULO EXCLUSIVO: CUSTO DE SOULS (DARK'S) - COMPACTO
-============================================================== */
-.souls-module { 
-    background: #e0e0e0; 
-    padding: 10px 15px; /* Mais fino */
-    border-radius: 12px; 
-    border: 4px solid var(--dex-border); 
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.2); 
-    transition: background 0.3s ease; 
-    margin-bottom: 10px; 
-}
-.souls-module .label-tech { 
-    color: var(--dex-border); 
-    border-bottom: 2px dashed #999; 
-    text-shadow: none;
-    margin-bottom: 4px;
-}
-.souls-container { 
-    display: flex; 
-    gap: 8px; 
-    margin-top: 6px; 
-}
-.soul-box { 
-    flex: 1; 
-    background: #fff; 
-    border: 2px solid var(--dex-border); /* Borda mais fina */
-    border-radius: 6px; 
-    padding: 4px 8px; /* Menos preenchimento */
-    text-align: center; 
-    display: flex; 
-    justify-content: space-between; /* Coloca o nome de um lado e o valor do outro */
-    align-items: center; 
-}
-.soul-box.eternizado { 
-    background: #e6e6fa; 
-    border-color: #8a2be2; 
-}
-.soul-label { 
-    font-size: 0.6rem; 
-    font-weight: 900; 
-    color: #666; 
-}
-.soul-box.eternizado .soul-label { color: #8a2be2; }
-.soul-value { 
-    font-size: 0.9rem; /* Número um pouco menor */
-    font-weight: 900; 
-    color: var(--dex-border); 
-}
-.exclusive-badge {
-    display: block;
-    text-align: center;
-    font-size: 0.8rem;
-    font-weight: 900;
-    color: var(--dex-red);
-    background: #fff;
-    border: 2px solid var(--dex-border);
-    border-radius: 6px;
-    padding: 6px;
-    margin-top: 6px;
-}
-
-/* Adaptação Dark Mode (Souls Compacto) */
 body.dark-mode .souls-module { background: #2a2a2c; border-color: #111; }
 body.dark-mode .souls-module .label-tech { color: #aaa; border-bottom-color: #555; }
 body.dark-mode .soul-box { background: #111; border-color: #111; }
@@ -492,57 +448,3 @@ body.dark-mode .soul-label { color: #888; }
 body.dark-mode .soul-box.eternizado .soul-label { color: #b388ff; }
 body.dark-mode .soul-value { color: #fff; }
 body.dark-mode .exclusive-badge { background: #111; color: #ff4b2b; }
-
-/* ==============================================================
-   VISOR VERTICAL EM TORRE (EXCLUSIVO PARA BOSSES E DARK'S)
-============================================================== */
-.main-screen.main-screen-stacked {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 15px;
-    min-height: 285px; /* Aumenta a altura para dar espaço à imagem gigante */
-    text-align: center;
-}
-
-.stacked-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 10px;
-}
-
-.poke-img-stacked {
-    width: 145px; /* Imagem ampliada e em destaque */
-    height: 145px;
-    object-fit: contain;
-    filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.3));
-    margin-bottom: 5px;
-    animation: floatAnimation 3s ease-in-out infinite; /* Efeito flutuante clássico de RPG */
-}
-
-@keyframes floatAnimation {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-}
-
-.poke-name-stacked {
-    color: var(--dex-border);
-    font-size: 1.55rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    margin: 0;
-    line-height: 1.1;
-}
-
-.modal-gen-bar.stacked-gen-bar {
-    margin-bottom: 2px;
-    font-size: 0.65rem;
-    padding: 2px 10px;
-}
-
-.stacked-type-tags {
-    justify-content: center !important;
-    width: 100%;
-}
