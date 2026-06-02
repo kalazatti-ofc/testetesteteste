@@ -335,11 +335,13 @@ window.openModal = (id) => {
                 </div>
             `;
         } else {
-            // Se não tiver a chave "souls" no JSON, mostra isso:
+            // Checa se o JSON tem um texto personalizado, se não, usa o padrão:
+            const textoExclusivo = p.exclusive ? p.exclusive : 'CAPTURA EXCLUSIVA / EVENTO';
+            
             soulsHTML = `
                 <div class="souls-module">
                     <h4 class="label-tech">MÉTODO DE OBTENÇÃO</h4>
-                    <span class="exclusive-badge">CAPTURA EXCLUSIVA / EVENTO</span>
+                    <span class="exclusive-badge">${textoExclusivo.toUpperCase()}</span>
                 </div>
             `;
         }
