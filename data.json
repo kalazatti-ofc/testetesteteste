@@ -13373,6 +13373,10 @@
       "spdef": 105,
       "spd": 120
     },
+    "souls": {
+      "normal": "130",
+      "eternizado": "390"
+    },
     "locations": [
       {
         "local": "Vulcão Sombrio (X 150 / Y 250 / Z 7)",
