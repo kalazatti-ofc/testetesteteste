@@ -71,11 +71,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchData() {
     try {
-        const response = await fetch('data.json?v=' + new Date().getTime());
-        pokemonData = await response.json();
+        // Puxa os três arquivos JSON ao mesmo tempo para não perder velocidade
+        const [normalRes, darkRes, bossRes] = await Promise.all([
+            fetch('data_normal.json?v=' + new Date().getTime()),
+            fetch('data_dark.json?v=' + new Date().getTime()),
+            fetch('data_boss.json?v=' + new Date().getTime())
+        ]);
+
+        // Converte as respostas para JSON
+        const normalData = await normalRes.json();
+        const darkData = await darkRes.json();
+        const bossData = await bossRes.json();
+
+        // Une todos os dados em uma única lista para a Pokédex
+        pokemonData = [...normalData, ...darkData, ...bossData];
         renderPokemon(pokemonData);
     } catch (e) { 
-        console.error("Erro ao carregar banco de dados:", e); 
+        console.error("Erro ao carregar os bancos de dados. Verifique se os nomes dos 3 arquivos JSON estão corretos.", e); 
     }
 }
 
@@ -273,7 +285,6 @@ window.openModal = (id) => {
     let rightWingHTML = '';
 
     if (pCategory === 'boss') {
-        // LAYOUT EXCLUSIVO DO BOSS
         rightWingHTML = `
             <div class="radar-module">
                 <div class="radar-display" id="radar-screen">
@@ -305,7 +316,6 @@ window.openModal = (id) => {
             </div>
         `;
     } else if (pCategory === 'dark') {
-        // LAYOUT EXCLUSIVO DARK
         const statsHTML = Object.entries(p.stats || {}).map(([name, val]) => `
             <div class="stat-row">
                 <label>${name.toUpperCase()}</label>
@@ -371,7 +381,6 @@ window.openModal = (id) => {
             </div>
         `;
     } else {
-        // LAYOUT POKÉMON NORMAL
         const statsHTML = Object.entries(p.stats || {}).map(([name, val]) => `
             <div class="stat-row">
                 <label>${name.toUpperCase()}</label>
@@ -414,7 +423,6 @@ window.openModal = (id) => {
         `;
     }
 
-    // GERAÇÃO INTELIGENTE DO VISOR VERDE (NORMAL EM LINHA / EXCLUSIVOS EM TORRE VERTICAL)
     document.getElementById('modal-body').innerHTML = `
         <div class="modal-pokedex-view">
             <div class="modal-left-wing">
