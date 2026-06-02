@@ -9,12 +9,12 @@
     ],
     "generation": 1,
     "stats": {
-      "hp": 95,
-      "atk": 110,
-      "def": 90,
-      "spatk": 130,
-      "spdef": 105,
-      "spd": 120
+      "hp": 91,
+      "atk": 134,
+      "def": 95,
+      "spatk": 100,
+      "spdef": 100,
+      "spd": 80
     },
     "souls": {
       "normal": "130",
