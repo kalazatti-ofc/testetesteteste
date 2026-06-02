@@ -13416,7 +13416,7 @@
 {
     "id": "dark-25",
     "category": "dark",
-    "name": "Dark Pikachu",
+    "name": "Dark Raichu Fly",
     "types": [
       "Electric"
     ],
@@ -13429,36 +13429,31 @@
       "spdef": 60,
       "spd": 120
     },
-    "exclusive": "Somente na Quest de Natal 2022", 
+    "exclusive": "Somente na Quest de Natal 2021", 
     "locations": [
       {
         "local": "Laboratório Secreto (X 999 / Y 999 / Z 7)",
         "nota": "Apenas quem tem o item 'Dark Stone'."
       }
     ],
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+    "image": "Sprites/dark-raichufly.png"
   },
   {
-    "id": "boss-mewtwo",
+    "id": "BOSS 24H - Slaking",
     "category": "boss",
-    "name": "Mewtwo Enfurecido",
+    "name": "Slaking",
     "types": [
-      "Psychic"
+      "Normal"
     ],
     "generation": 1,
-    "guide": "É recomendado que seja acessado apenas após o level 450, pois após esse level o BOSS tem 50% menos vida. Prepare poções de cura máxima e evite usar Pokémon do tipo Lutador, pois eles recebem dano fatal.",
-    "loot": "🧬 Mewtwo DNA / 💎 10x Diamonds",
+    "guide": "É recomendado que seja acessado apenas após o level 450, pois após esse level o BOSS tem 50% menos vida.",
+    "loot": "5 Dias de VIP.",
     "locations": [
       {
-        "rota": "Cerulean Cave - Fundo (X 800 / Y 300 / Z 5)",
-        "passos": [
-          "1. Cerulean Cave (X 800 / Y 300 / Z 5)",
-          "2. Desça o buraco na água (X 780 / Y 310 / Z 6)",
-          "3. Entre no portal do Covil!"
-        ],
-        "nota": "📌 Necessário VIP e quest de acesso concluída."
+        "local": "Trainer Center (X 150 / Y 250 / Z 7)",
+        "nota": "📌 Somente no Trainer Center."
       }
     ],
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png"
+    "image": "Sprites/boss-slaking.png"
   }
 ]
