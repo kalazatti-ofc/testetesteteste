@@ -13362,7 +13362,6 @@
     "types": [
       "Fire",
       "Flying",
-      "Dark"
     ],
     "generation": 1,
     "stats": {
@@ -13381,6 +13380,34 @@
       {
         "local": "Vulcão Sombrio (X 150 / Y 250 / Z 7)",
         "nota": "📌 Aparece apenas durante a noite no servidor."
+      }
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
+  },
+  {
+    "id": "dark-7",
+    "category": "dark",
+    "name": "Dark Dragonite",
+    "types": [
+      "Fire",
+      "Flying",
+      "Dark"
+    ],
+    "generation": 1,
+    "stats": {
+      "hp": 95,
+      "atk": 110,
+      "def": 90,
+      "spatk": 130,
+      "spdef": 105,
+      "spd": 120
+    },
+    "souls": {
+    },
+    "locations": [
+      {
+        "local": "NPC Jhon Soul (Trainer Center)",
+        "nota": "📌 Quest Diaria de Souls."
       }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
