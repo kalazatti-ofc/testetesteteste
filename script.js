@@ -31,10 +31,13 @@ const typeModifiers = {
 // CONFIGURAÇÃO DO MAPA MÚNDI E PAN/ZOOM
 // ==========================================
 const cityMaps = {
-    "saffron": { name: "Saffron City", minZ: 4, maxZ: 9, defaultZ: 7 },
-    "cerulean": { name: "Cerulean City", minZ: 5, maxZ: 8, defaultZ: 7 },
-    "pewter": { name: "Pewter City", minZ: 6, maxZ: 8, defaultZ: 7 },
-    "vermilion": { name: "Vermilion City", minZ: 4, maxZ: 8, defaultZ: 7 }
+    "kanto": { name: "Kanto", minZ: 0, maxZ: 9, defaultZ: 7 },
+    "johto": { name: "Johto", minZ: 5, maxZ: 8, defaultZ: 7 },
+    "novocontinente": { name: "Novo Continente", minZ: 6, maxZ: 8, defaultZ: 7 },
+    "sinnoh": { name: "Sinnoh", minZ: 0, maxZ: 9, defaultZ: 7 },
+    "seviiisland": { name: "Sevii Islands", minZ: 0, maxZ: 9, defaultZ: 7 },
+    "vip": { name: "VIP", minZ: 0, maxZ: 9, defaultZ: 7 },
+    "trainercenter": { name: "Trainer Center", minZ: 0, maxZ: 9, defaultZ: 7 },
 };
 let currentCity = "saffron"; 
 let currentZ = cityMaps[currentCity].defaultZ;
