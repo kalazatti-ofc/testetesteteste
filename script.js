@@ -37,7 +37,7 @@ const cityMaps = {
     "sinnoh": { name: "Sinnoh", minZ: 0, maxZ: 9, defaultZ: 7 },
     "seviiisland": { name: "Sevii Islands", minZ: 0, maxZ: 9, defaultZ: 7 },
     "vip": { name: "VIP", minZ: 0, maxZ: 9, defaultZ: 7 },
-    "trainercenter": { name: "Trainer Center", minZ: 0, maxZ: 9, defaultZ: 7 },
+    "trainercenter": { name: "Trainer Center", minZ: 0, maxZ: 9, defaultZ: 7 }
 };
 let currentCity = "saffron"; 
 let currentZ = cityMaps[currentCity].defaultZ;
