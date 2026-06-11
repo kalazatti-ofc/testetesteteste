@@ -39,7 +39,7 @@ const cityMaps = {
     "vip": { name: "VIP", minZ: 0, maxZ: 9, defaultZ: 7 },
     "trainercenter": { name: "Trainer Center", minZ: 0, maxZ: 9, defaultZ: 7 }
 };
-let currentCity = "saffron"; 
+let currentCity = "kanto"; 
 let currentZ = cityMaps[currentCity].defaultZ;
 
 let mapTransform = { scale: 1, x: 0, y: 0 };
