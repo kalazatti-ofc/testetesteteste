@@ -1,4 +1,10 @@
+// ==========================================
+// VARIÁVEIS GLOBAIS DE ESTADO
+// ==========================================
 let pokemonData = [];
+let currentVisibleList = []; // Guarda a lista que está sendo exibida na tela (respeitando filtros)
+let currentModalIndex = 0;   // Guarda a posição do Pokémon aberto no modal
+
 let activeTypeFilter = 'all';
 let activeGenFilter = 'all';
 let activeCatchFilter = 'all';
@@ -21,12 +27,29 @@ const typeModifiers = {
     Fairy: { Fighting: 0.5, Poison: 2, Bug: 0.5, Dragon: 0, Dark: 0.5, Steel: 2 }
 };
 
+// ==========================================
+// CONFIGURAÇÃO DO MAPA MÚNDI (GPS SETORIAL)
+// ==========================================
+const cityMaps = {
+    "saffron": { name: "Saffron City", minZ: 4, maxZ: 9, defaultZ: 7 },
+    "cerulean": { name: "Cerulean City", minZ: 5, maxZ: 8, defaultZ: 7 },
+    "pewter": { name: "Pewter City", minZ: 6, maxZ: 8, defaultZ: 7 },
+    "vermilion": { name: "Vermilion City", minZ: 4, maxZ: 8, defaultZ: 7 }
+    // Você pode expandir esse objeto com as outras cidades futuramente
+};
+let currentCity = "saffron"; 
+let currentZ = cityMaps[currentCity].defaultZ;
+
+// ==========================================
+// INICIALIZAÇÃO
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
     renderTypeButtons();
     setupToggles();
     initOakModal();
     
+    // Configuração do Tema Escuro
     const themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) {
         if (localStorage.getItem('pokedex-dark-mode') === 'true') {
@@ -38,9 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // Modais e cliques fora
     document.querySelector('.close-btn').onclick = () => document.getElementById('pokemon-modal').classList.add('hidden');
     window.onclick = e => { if(e.target.classList.contains('modal-overlay')) document.getElementById('pokemon-modal').classList.add('hidden'); };
     
+    // Sistema de Busca
     document.getElementById('search-input').addEventListener('input', applyFilters);
     document.getElementById('search-input').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') this.blur(); 
@@ -50,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('search-input').blur(); 
     });
 
+    // Filtros de Captura
     document.querySelectorAll('#catch-filters .filter-pill').forEach(pill => {
         pill.addEventListener('click', () => {
             document.querySelectorAll('#catch-filters .filter-pill').forEach(p => p.classList.remove('active'));
@@ -59,33 +85,61 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Alternância de Abas (Normal, Boss, Dark, Mapas)
     document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.addEventListener('click', () => {
+            // Remove active de todos e adiciona no clicado
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             activeCategory = btn.dataset.cat;
-            applyFilters();
+            
+            // Lógica de alternância de tela do Painel Direito / Esquerdo
+            const gridContainer = document.getElementById('pokedex-grid');
+            const searchModule = document.getElementById('search-module-container');
+            const filtersModule = document.getElementById('filters-container');
+            const mapContainer = document.getElementById('map-viewer-container');
+            
+            if (activeCategory === 'mapas') {
+                gridContainer.style.display = 'none';
+                searchModule.style.display = 'none';
+                filtersModule.style.display = 'none';
+                mapContainer.style.display = 'flex';
+                initMapViewer(); // Inicializa o seletor e a imagem
+            } else {
+                gridContainer.style.display = 'grid';
+                searchModule.style.display = 'block';
+                filtersModule.style.display = 'block';
+                mapContainer.style.display = 'none';
+                applyFilters();
+            }
         });
+    });
+
+    // Listeners do GPS Setorial (Mapa)
+    document.getElementById('btn-z-up').addEventListener('click', () => changeZ('up'));
+    document.getElementById('btn-z-down').addEventListener('click', () => changeZ('down'));
+    document.getElementById('city-selector').addEventListener('change', (e) => {
+        currentCity = e.target.value;
+        currentZ = cityMaps[currentCity].defaultZ;
+        updateMapDisplay();
     });
 });
 
 async function fetchData() {
     try {
-        // Puxa os três arquivos JSON ao mesmo tempo para não perder velocidade
         const [normalRes, darkRes, bossRes] = await Promise.all([
             fetch('data_normal.json?v=' + new Date().getTime()),
             fetch('data_dark.json?v=' + new Date().getTime()),
             fetch('data_boss.json?v=' + new Date().getTime())
         ]);
 
-        // Converte as respostas para JSON
         const normalData = await normalRes.json();
         const darkData = await darkRes.json();
         const bossData = await bossRes.json();
 
-        // Une todos os dados em uma única lista para a Pokédex
         pokemonData = [...normalData, ...darkData, ...bossData];
-        renderPokemon(pokemonData);
+        currentVisibleList = [...pokemonData]; 
+        applyFilters(); // Garante que a primeira carga respeite a aba ativa
     } catch (e) { 
         console.error("Erro ao carregar os bancos de dados. Verifique se os nomes dos 3 arquivos JSON estão corretos.", e); 
     }
@@ -124,7 +178,7 @@ function setupToggles() {
     document.getElementById('toggle-catch').onclick = function() {
         const group = document.getElementById('group-catch');
         group.classList.toggle('hidden-filter');
-        this.innerText = group.classList.contains('hidden-filter') ? '▼ STATUS DE CAPTURA' : '▲ ESCONDER STATUS';
+        this.innerText = group.classList.contains('hidden-filter') ? '▼ STATUS DA POKEDEX' : '▲ ESCONDER STATUS';
     };
 }
 
@@ -146,6 +200,8 @@ function applyFilters() {
 
         return mName && mGen && mType && mCatch;
     });
+    
+    currentVisibleList = filtered;
     renderPokemon(filtered);
 }
 
@@ -193,6 +249,80 @@ function renderPokemon(list) {
     }).join('');
 }
 
+// ==========================================
+// LÓGICA DO GPS SETORIAL (MAPA MÚNDI)
+// ==========================================
+
+function initMapViewer() {
+    const selector = document.getElementById('city-selector');
+    
+    // Evita duplicar as opções se o usuário clicar na aba várias vezes
+    if (selector.options.length === 0) {
+        Object.keys(cityMaps).forEach(key => {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = cityMaps[key].name;
+            selector.appendChild(option);
+        });
+    }
+    
+    // Atualiza o display com base na cidade padrão (Saffron) e seu respectivo Z
+    updateMapDisplay();
+}
+
+function changeZ(direction) {
+    const cityConfig = cityMaps[currentCity];
+    let newZ = currentZ;
+
+    if (direction === 'up') {
+        newZ = currentZ - 1; 
+    } else if (direction === 'down') {
+        newZ = currentZ + 1; 
+    }
+
+    // Valida se o andar não estourou o limite máximo/mínimo
+    if (newZ >= cityConfig.minZ && newZ <= cityConfig.maxZ) {
+        currentZ = newZ;
+        updateMapDisplay();
+    }
+}
+
+function updateMapDisplay() {
+    const cityConfig = cityMaps[currentCity];
+    const mapImage = document.getElementById('map-image');
+    const zDisplay = document.getElementById('z-display');
+    const statusText = document.getElementById('map-status-text');
+    
+    const btnUp = document.getElementById('btn-z-up');
+    const btnDown = document.getElementById('btn-z-down');
+
+    // Troca o src. (Certifique-se de que a pasta 'mapas' exista e tenha as imagens 'saffron-z7.jpg', etc.)
+    mapImage.src = `mapas/${currentCity}-z${currentZ}.jpg`;
+    mapImage.alt = `Mapa de ${cityConfig.name} - Z:${currentZ}`;
+    zDisplay.textContent = `Z: ${currentZ}`;
+    statusText.textContent = `SINAL ESTABELECIDO: ${cityConfig.name.toUpperCase()} (Z:${currentZ})`;
+
+    // Prevenção de erro: Se o arquivo do mapa não existir
+    mapImage.onerror = () => {
+        mapImage.src = ''; 
+        mapImage.alt = 'SINAL PERDIDO';
+        statusText.textContent = `⚠ ERRO DE SINAL EM Z:${currentZ} (IMAGEM NÃO ENCONTRADA)`;
+    };
+
+    // Lógica para desabilitar o botão de subir/descer se chegou no limite
+    btnUp.disabled = (currentZ <= cityConfig.minZ);
+    btnDown.disabled = (currentZ >= cityConfig.maxZ);
+    
+    // Efeito visual no botão desabilitado
+    btnUp.style.opacity = btnUp.disabled ? '0.5' : '1';
+    btnDown.style.opacity = btnDown.disabled ? '0.5' : '1';
+}
+
+
+// ==========================================
+// UTILITÁRIOS DE LOCALIZAÇÃO (TOOLTIPS E ACORDEÃO)
+// ==========================================
+
 window.toggleAccordion = (arrowEl, event) => {
     if(event) event.stopPropagation();
     const container = arrowEl.closest('.loc-accordion').querySelector('.loc-steps-container');
@@ -218,10 +348,34 @@ window.copyLoc = (text, el, event) => {
     }).catch(err => console.error('Erro ao copiar: ', err));
 };
 
+
+// ==========================================
+// LÓGICA DO MODAL (CARD DE POKÉMON E RADAR)
+// ==========================================
+
+window.navigatePokemon = (direction, event) => {
+    if(event) event.stopPropagation(); 
+    
+    if (currentVisibleList.length === 0) return;
+
+    currentModalIndex += direction;
+
+    if (currentModalIndex < 0) {
+        currentModalIndex = currentVisibleList.length - 1; 
+    } else if (currentModalIndex >= currentVisibleList.length) {
+        currentModalIndex = 0; 
+    }
+
+    const targetPokemon = currentVisibleList[currentModalIndex];
+    openModal(targetPokemon.id); 
+};
+
 window.openModal = (id) => {
     const p = pokemonData.find(x => x.id.toString() === id.toString());
     if(!p) return;
     
+    currentModalIndex = currentVisibleList.findIndex(x => x.id.toString() === id.toString());
+
     const matchups = calculateMatchups(p.types);
     const pCategory = p.category || 'normal';
     
@@ -347,7 +501,7 @@ window.openModal = (id) => {
             const textoExclusivo = p.exclusive ? p.exclusive : 'CAPTURA EXCLUSIVA / EVENTO';
             soulsHTML = `
                 <div class="souls-module">
-                    <h4 class="label-tech">MÉTODO DE OBTENÇÃO</h4>
+                    <h4 class="label-tech">MÉÉTODO DE OBTENÇÃO</h4>
                     <span class="exclusive-badge">${textoExclusivo.toUpperCase()}</span>
                 </div>
             `;
@@ -426,7 +580,12 @@ window.openModal = (id) => {
     document.getElementById('modal-body').innerHTML = `
         <div class="modal-pokedex-view">
             <div class="modal-left-wing">
-                <div class="screen-border">
+                
+                <div class="screen-border" style="position: relative;">
+                    
+                    <button class="nav-arrow prev-arrow" title="Anterior" onclick="navigatePokemon(-1, event)">&#10094;</button>
+                    <button class="nav-arrow next-arrow" title="Próximo" onclick="navigatePokemon(1, event)">&#10095;</button>
+
                     <div class="main-screen ${pCategory !== 'normal' ? 'main-screen-stacked' : ''}">
                         ${pCategory !== 'normal' ? `
                             <div class="stacked-container">
@@ -581,11 +740,14 @@ window.showRadarFallback = (name) => {
     `;
 };
 
+// ==========================================
+// MENSAGENS INICIAIS DO PROFESSOR OAK
+// ==========================================
 const oakDialogues = [
     "Olá! Bem-vindo ao mundo de PokemonR - PBR!",
     "Esta Pokedex e uma pagina criada de fãs para fãs e NAO é um produto oficial do Servidor",
     "Um agradecimento super especial a comunidade pelo apoio continuo!",
-    "Apoiadores: Upzin, Marlin, Paleguazv, Leander Hastings",
+    "Apoiadores: Jarubinha, Ricardobtj, Upzin, Paleguazv, Marlin, Leander Hastings",
     "Desenvolvida por: Kalazatti.",
     "Use a barra de pesquisa ou os filtros para rastrear os POKeMON. Boa caca!"
 ];
