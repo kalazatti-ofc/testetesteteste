@@ -28,17 +28,21 @@ const typeModifiers = {
 };
 
 // ==========================================
-// CONFIGURAÇÃO DO MAPA MÚNDI (GPS SETORIAL)
+// CONFIGURAÇÃO DO MAPA MÚNDI E PAN/ZOOM
 // ==========================================
 const cityMaps = {
     "saffron": { name: "Saffron City", minZ: 4, maxZ: 9, defaultZ: 7 },
     "cerulean": { name: "Cerulean City", minZ: 5, maxZ: 8, defaultZ: 7 },
     "pewter": { name: "Pewter City", minZ: 6, maxZ: 8, defaultZ: 7 },
     "vermilion": { name: "Vermilion City", minZ: 4, maxZ: 8, defaultZ: 7 }
-    // Você pode expandir esse objeto com as outras cidades futuramente
 };
 let currentCity = "saffron"; 
 let currentZ = cityMaps[currentCity].defaultZ;
+
+let mapTransform = { scale: 1, x: 0, y: 0 };
+let isDragging = false;
+let startDragX = 0;
+let startDragY = 0;
 
 // ==========================================
 // INICIALIZAÇÃO
@@ -48,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTypeButtons();
     setupToggles();
     initOakModal();
+    initPanAndZoom(); // Chama o Pan & Zoom
     
-    // Configuração do Tema Escuro
     const themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) {
         if (localStorage.getItem('pokedex-dark-mode') === 'true') {
@@ -61,11 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Modais e cliques fora
     document.querySelector('.close-btn').onclick = () => document.getElementById('pokemon-modal').classList.add('hidden');
     window.onclick = e => { if(e.target.classList.contains('modal-overlay')) document.getElementById('pokemon-modal').classList.add('hidden'); };
     
-    // Sistema de Busca
     document.getElementById('search-input').addEventListener('input', applyFilters);
     document.getElementById('search-input').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') this.blur(); 
@@ -75,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('search-input').blur(); 
     });
 
-    // Filtros de Captura
     document.querySelectorAll('#catch-filters .filter-pill').forEach(pill => {
         pill.addEventListener('click', () => {
             document.querySelectorAll('#catch-filters .filter-pill').forEach(p => p.classList.remove('active'));
@@ -85,15 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Alternância de Abas (Normal, Boss, Dark, Mapas)
     document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active de todos e adiciona no clicado
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             activeCategory = btn.dataset.cat;
             
-            // Lógica de alternância de tela do Painel Direito / Esquerdo
             const gridContainer = document.getElementById('pokedex-grid');
             const searchModule = document.getElementById('search-module-container');
             const filtersModule = document.getElementById('filters-container');
@@ -104,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 searchModule.style.display = 'none';
                 filtersModule.style.display = 'none';
                 mapContainer.style.display = 'flex';
-                initMapViewer(); // Inicializa o seletor e a imagem
+                initMapViewer(); 
             } else {
                 gridContainer.style.display = 'grid';
                 searchModule.style.display = 'block';
@@ -115,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Listeners do GPS Setorial (Mapa)
     document.getElementById('btn-z-up').addEventListener('click', () => changeZ('up'));
     document.getElementById('btn-z-down').addEventListener('click', () => changeZ('down'));
     document.getElementById('city-selector').addEventListener('change', (e) => {
@@ -139,7 +136,7 @@ async function fetchData() {
 
         pokemonData = [...normalData, ...darkData, ...bossData];
         currentVisibleList = [...pokemonData]; 
-        applyFilters(); // Garante que a primeira carga respeite a aba ativa
+        applyFilters(); 
     } catch (e) { 
         console.error("Erro ao carregar os bancos de dados. Verifique se os nomes dos 3 arquivos JSON estão corretos.", e); 
     }
@@ -250,9 +247,70 @@ function renderPokemon(list) {
 }
 
 // ==========================================
+// SISTEMA DE PAN (ARRASTAR) & ZOOM DO MAPA
+// ==========================================
+function initPanAndZoom() {
+    const wrapper = document.getElementById('map-wrapper');
+    const img = document.getElementById('map-image');
+    
+    // Aplica as transformações visuais na imagem via CSS transform
+    const applyTransform = () => {
+        img.style.transform = `translate(${mapTransform.x}px, ${mapTransform.y}px) scale(${mapTransform.scale})`;
+    };
+
+    // Função para resetar a posição (útil ao trocar de mapa ou andar)
+    window.resetMapTransform = () => {
+        mapTransform = { scale: 1, x: 0, y: 0 };
+        applyTransform();
+    };
+
+    // ZOOM IN / OUT
+    window.zoomMap = (direction) => {
+        const zoomStep = 0.3; // Velocidade do zoom
+        const maxZoom = 4.0;  // Limite máximo de proximidade
+        const minZoom = 0.5;  // Limite mínimo de distanciamento
+
+        if (direction === 'in' && mapTransform.scale < maxZoom) mapTransform.scale += zoomStep;
+        if (direction === 'out' && mapTransform.scale > minZoom) mapTransform.scale -= zoomStep;
+        applyTransform();
+    };
+
+    // EVENTO 1: Scroll do mouse para aplicar Zoom
+    wrapper.addEventListener('wheel', (e) => {
+        e.preventDefault(); // Impede a tela de rolar para baixo
+        if (e.deltaY < 0) zoomMap('in');   // Rodou pra cima
+        else zoomMap('out');               // Rodou pra baixo
+    });
+
+    // EVENTOS DE ARRASTE (MOUSEDOWN, MOUSEMOVE, MOUSEUP)
+    wrapper.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        // Salva de onde o mouse partiu compensando onde a imagem já estava
+        startDragX = e.clientX - mapTransform.x;
+        startDragY = e.clientY - mapTransform.y;
+    });
+
+    wrapper.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        // Atualiza X e Y baseados no deslocamento do mouse
+        mapTransform.x = e.clientX - startDragX;
+        mapTransform.y = e.clientY - startDragY;
+        applyTransform();
+    });
+
+    wrapper.addEventListener('mouseup', () => isDragging = false);
+    wrapper.addEventListener('mouseleave', () => isDragging = false);
+
+    // Conecta os botões da interface com as funções
+    document.getElementById('btn-zoom-in').addEventListener('click', () => zoomMap('in'));
+    document.getElementById('btn-zoom-out').addEventListener('click', () => zoomMap('out'));
+    document.getElementById('btn-zoom-reset').addEventListener('click', window.resetMapTransform);
+}
+
+// ==========================================
 // LÓGICA DO GPS SETORIAL (MAPA MÚNDI)
 // ==========================================
-
 function initMapViewer() {
     const selector = document.getElementById('city-selector');
     
@@ -296,7 +354,7 @@ function updateMapDisplay() {
     const btnUp = document.getElementById('btn-z-up');
     const btnDown = document.getElementById('btn-z-down');
 
-    // Troca o src. (Certifique-se de que a pasta 'mapas' exista e tenha as imagens 'saffron-z7.jpg', etc.)
+    // Troca o src
     mapImage.src = `mapas/${currentCity}-z${currentZ}.jpg`;
     mapImage.alt = `Mapa de ${cityConfig.name} - Z:${currentZ}`;
     zDisplay.textContent = `Z: ${currentZ}`;
@@ -316,13 +374,14 @@ function updateMapDisplay() {
     // Efeito visual no botão desabilitado
     btnUp.style.opacity = btnUp.disabled ? '0.5' : '1';
     btnDown.style.opacity = btnDown.disabled ? '0.5' : '1';
-}
 
+    // Reseta o pan & zoom quando troca de mapa ou andar
+    if(window.resetMapTransform) window.resetMapTransform();
+}
 
 // ==========================================
 // UTILITÁRIOS DE LOCALIZAÇÃO (TOOLTIPS E ACORDEÃO)
 // ==========================================
-
 window.toggleAccordion = (arrowEl, event) => {
     if(event) event.stopPropagation();
     const container = arrowEl.closest('.loc-accordion').querySelector('.loc-steps-container');
@@ -348,11 +407,9 @@ window.copyLoc = (text, el, event) => {
     }).catch(err => console.error('Erro ao copiar: ', err));
 };
 
-
 // ==========================================
 // LÓGICA DO MODAL (CARD DE POKÉMON E RADAR)
 // ==========================================
-
 window.navigatePokemon = (direction, event) => {
     if(event) event.stopPropagation(); 
     
@@ -501,7 +558,7 @@ window.openModal = (id) => {
             const textoExclusivo = p.exclusive ? p.exclusive : 'CAPTURA EXCLUSIVA / EVENTO';
             soulsHTML = `
                 <div class="souls-module">
-                    <h4 class="label-tech">MÉÉTODO DE OBTENÇÃO</h4>
+                    <h4 class="label-tech">MÉTODO DE OBTENÇÃO</h4>
                     <span class="exclusive-badge">${textoExclusivo.toUpperCase()}</span>
                 </div>
             `;
