@@ -883,7 +883,8 @@ body.dark-mode .zoom-btn:hover { background: #2a2a2c; color: #ffcb05; }
 /* TOOLTIP DO PIN COM AS IMAGENS DOS POKÉMON */
 .pin-tooltip {
     position: absolute;
-    bottom: 150%;
+    bottom: 100%; /* Posicionado mais perto do pin */
+    margin-bottom: 12px; /* Dá espaço sem perder contato com o mouse */
     left: 50%;
     transform: translateX(-50%);
     background: #111;
@@ -899,7 +900,8 @@ body.dark-mode .zoom-btn:hover { background: #2a2a2c; color: #ffcb05; }
     visibility: hidden;
     transition: 0.2s;
     box-shadow: 0 5px 15px rgba(0,0,0,0.8);
-    pointer-events: none;
+    pointer-events: none; /* Inativo por padrão */
+    z-index: 100;
 }
 
 /* Setinha do balão apontando para baixo */
@@ -908,8 +910,20 @@ body.dark-mode .zoom-btn:hover { background: #2a2a2c; color: #ffcb05; }
     border-width: 6px; border-style: solid; border-color: #111 transparent transparent transparent;
 }
 
-.map-pin:hover .pin-tooltip { opacity: 1; visibility: visible; }
+/* Ponte invisível para o mouse não escapar ao tentar clicar nas imagens */
+.pin-tooltip::before {
+    content: ''; position: absolute; top: 100%; left: 0; width: 100%; height: 15px; background: transparent;
+}
 
+/* Quando hover no pin, o tooltip fica visível e permite cliques */
+.map-pin:hover .pin-tooltip,
+.pin-tooltip:hover { 
+    opacity: 1; 
+    visibility: visible; 
+    pointer-events: auto; /* PERMITE CLICAR AQUI! */
+}
+
+/* Estilo individual de cada fotinha do pokémon */
 .pin-poke-img {
     width: 40px;
     height: 40px;
@@ -917,4 +931,11 @@ body.dark-mode .zoom-btn:hover { background: #2a2a2c; color: #ffcb05; }
     background: rgba(255,255,255,0.1);
     border-radius: 6px;
     border: 1px solid #333;
+    cursor: pointer; /* Mãozinha para mostrar que é clicável */
+    transition: transform 0.1s, border-color 0.1s;
+}
+
+.pin-poke-img:hover {
+    transform: scale(1.15); /* Efeito de destaque no ícone */
+    border-color: #ffcb05;
 }
