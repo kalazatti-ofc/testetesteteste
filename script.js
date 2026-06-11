@@ -30,15 +30,39 @@ const typeModifiers = {
 // ==========================================
 // CONFIGURAÇÃO DO MAPA MÚNDI E PAN/ZOOM
 // ==========================================
+// ATENÇÃO: Edite os valores de "bounds" (minX, minY, maxX, maxY) para bater 
+// exatamente com as coordenadas extremas do recorte da sua imagem JPG!
 const cityMaps = {
-    "kanto": { name: "Kanto", minZ: 0, maxZ: 9, defaultZ: 7 },
-    "johto": { name: "Johto", minZ: 5, maxZ: 8, defaultZ: 7 },
-    "novocontinente": { name: "Novo Continente", minZ: 6, maxZ: 8, defaultZ: 7 },
-    "sinnoh": { name: "Sinnoh", minZ: 0, maxZ: 9, defaultZ: 7 },
-    "seviiisland": { name: "Sevii Islands", minZ: 0, maxZ: 9, defaultZ: 7 },
-    "vip": { name: "VIP", minZ: 0, maxZ: 9, defaultZ: 7 },
-    "trainercenter": { name: "Trainer Center", minZ: 0, maxZ: 9, defaultZ: 7 }
+    "kanto": { 
+        name: "Kanto", minZ: 0, maxZ: 9, defaultZ: 7,
+        bounds: { minX: 1000, minY: 1000, maxX: 2000, maxY: 2000 } 
+    },
+    "johto": { 
+        name: "Johto", minZ: 5, maxZ: 8, defaultZ: 7,
+        bounds: { minX: 500, minY: 500, maxX: 1500, maxY: 1500 } 
+    },
+    "novocontinente": { 
+        name: "Novo Continente", minZ: 6, maxZ: 8, defaultZ: 7,
+        bounds: { minX: 0, minY: 0, maxX: 3000, maxY: 3000 }
+    },
+    "sinnoh": { 
+        name: "Sinnoh", minZ: 0, maxZ: 9, defaultZ: 7,
+        bounds: { minX: 0, minY: 0, maxX: 4000, maxY: 4000 }
+    },
+    "seviiisland": { 
+        name: "Sevii Islands", minZ: 0, maxZ: 9, defaultZ: 7,
+        bounds: { minX: 0, minY: 0, maxX: 2000, maxY: 2000 }
+    },
+    "vip": { 
+        name: "VIP", minZ: 0, maxZ: 9, defaultZ: 7,
+        bounds: { minX: 0, minY: 0, maxX: 1000, maxY: 1000 }
+    },
+    "trainercenter": { 
+        name: "Trainer Center", minZ: 0, maxZ: 9, defaultZ: 7,
+        bounds: { minX: 0, minY: 0, maxX: 1000, maxY: 1000 }
+    }
 };
+
 let currentCity = "kanto"; 
 let currentZ = cityMaps[currentCity].defaultZ;
 
@@ -48,15 +72,16 @@ let startDragX = 0;
 let startDragY = 0;
 
 // ==========================================
-// INICIALIZAÇÃO
+// INICIALIZAÇÃO E LISTENERS GERAIS
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
     renderTypeButtons();
     setupToggles();
     initOakModal();
-    initPanAndZoom(); // Chama o Pan & Zoom
+    initPanAndZoom(); 
     
+    // Configuração do Tema Escuro
     const themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) {
         if (localStorage.getItem('pokedex-dark-mode') === 'true') {
@@ -68,9 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // Modais e cliques fora
     document.querySelector('.close-btn').onclick = () => document.getElementById('pokemon-modal').classList.add('hidden');
     window.onclick = e => { if(e.target.classList.contains('modal-overlay')) document.getElementById('pokemon-modal').classList.add('hidden'); };
     
+    // Sistema de Busca
     document.getElementById('search-input').addEventListener('input', applyFilters);
     document.getElementById('search-input').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') this.blur(); 
@@ -80,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('search-input').blur(); 
     });
 
+    // Filtros de Captura
     document.querySelectorAll('#catch-filters .filter-pill').forEach(pill => {
         pill.addEventListener('click', () => {
             document.querySelectorAll('#catch-filters .filter-pill').forEach(p => p.classList.remove('active'));
@@ -89,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Alternância de Abas (Normal, Boss, Dark, Mapas)
     document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -116,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Listeners do GPS Setorial (Mapa)
     document.getElementById('btn-z-up').addEventListener('click', () => changeZ('up'));
     document.getElementById('btn-z-down').addEventListener('click', () => changeZ('down'));
     document.getElementById('city-selector').addEventListener('change', (e) => {
@@ -254,11 +284,12 @@ function renderPokemon(list) {
 // ==========================================
 function initPanAndZoom() {
     const wrapper = document.getElementById('map-wrapper');
-    const img = document.getElementById('map-image');
+    // Agora aplicamos a transformação na div que segura a imagem e os PINS juntos!
+    const content = document.getElementById('map-content');
     
     // Aplica as transformações visuais na imagem via CSS transform
     const applyTransform = () => {
-        img.style.transform = `translate(${mapTransform.x}px, ${mapTransform.y}px) scale(${mapTransform.scale})`;
+        content.style.transform = `translate(${mapTransform.x}px, ${mapTransform.y}px) scale(${mapTransform.scale})`;
     };
 
     // Função para resetar a posição (útil ao trocar de mapa ou andar)
@@ -327,7 +358,7 @@ function initMapViewer() {
         });
     }
     
-    // Atualiza o display com base na cidade padrão (Saffron) e seu respectivo Z
+    // Atualiza o display
     updateMapDisplay();
 }
 
@@ -357,6 +388,7 @@ function updateMapDisplay() {
     const btnUp = document.getElementById('btn-z-up');
     const btnDown = document.getElementById('btn-z-down');
 
+    // Puxa as imagens da pasta "Continentes" como configuramos anteriormente!
     mapImage.src = `Continentes/${currentCity}-z${currentZ}.jpg`;
     mapImage.alt = `Mapa de ${cityConfig.name} - Z:${currentZ}`;
     zDisplay.textContent = `Z: ${currentZ}`;
@@ -373,12 +405,82 @@ function updateMapDisplay() {
     btnUp.disabled = (currentZ <= cityConfig.minZ);
     btnDown.disabled = (currentZ >= cityConfig.maxZ);
     
-    // Efeito visual no botão desabilitado
     btnUp.style.opacity = btnUp.disabled ? '0.5' : '1';
     btnDown.style.opacity = btnDown.disabled ? '0.5' : '1';
 
     // Reseta o pan & zoom quando troca de mapa ou andar
     if(window.resetMapTransform) window.resetMapTransform();
+
+    // Renderiza os Pins na tela!
+    renderMapPins();
+}
+
+// ==========================================
+// RENDERIZAÇÃO DE PINS DE POKÉMON NO MAPA
+// ==========================================
+function renderMapPins() {
+    const container = document.getElementById('map-pins-container');
+    if (!container) return; // Se a div não existir ainda, cancela
+    
+    container.innerHTML = ''; // Limpa os marcadores antigos
+    const cityConfig = cityMaps[currentCity];
+
+    // Se o mapa não tiver as coordenadas de limite configuradas, aborta
+    if (!cityConfig.bounds) return;
+
+    const { minX, maxX, minY, maxY } = cityConfig.bounds;
+    let pinsData = {}; // Objeto para agrupar Pokémon que estão na mesma coordenada
+
+    // 1. Vasculha todos os Pokémon da Pokédex
+    pokemonData.forEach(p => {
+        if (!p.locations) return;
+        
+        p.locations.forEach(loc => {
+            // Pega o texto da localização independente do formato
+            let locString = typeof loc === 'string' ? loc : (loc.local || loc.rota || "");
+            
+            // Regex para pescar X, Y e Z da string. (ex: X 1072 / Y 1056 / Z 7)
+            let match = locString.match(/X\s*(\d+)\s*\/\s*Y\s*(\d+)\s*\/\s*Z\s*(\d+)/i);
+            
+            if (match) {
+                let x = parseInt(match[1]);
+                let y = parseInt(match[2]);
+                let z = parseInt(match[3]);
+
+                // Verifica se é o andar atual e se está dentro dos limites da imagem
+                if (z === currentZ && x >= minX && x <= maxX && y >= minY && y <= maxY) {
+                    let key = `${x},${y}`; // Chave única para aquela coordenada
+                    
+                    if (!pinsData[key]) pinsData[key] = [];
+                    // Adiciona o Pokémon no agrupamento (evita mostrar o mesmo pokémon 2 vezes no mesmo lugar)
+                    if (!pinsData[key].find(poke => poke.id === p.id)) {
+                        pinsData[key].push(p);
+                    }
+                }
+            }
+        });
+    });
+
+    // 2. Criação visual dos Pins usando Regra de Três
+    for (let key in pinsData) {
+        let [x, y] = key.split(',').map(Number);
+        let pokemons = pinsData[key];
+
+        // Regra de três para descobrir a porcentagem de posicionamento
+        let percentX = ((x - minX) / (maxX - minX)) * 100;
+        let percentY = ((y - minY) / (maxY - minY)) * 100;
+
+        let pin = document.createElement('div');
+        pin.className = 'map-pin';
+        pin.style.left = `${percentX}%`;
+        pin.style.top = `${percentY}%`;
+
+        // Cria o balãozinho com as carinhas dos Pokémon daquele local
+        let tooltipHTML = pokemons.map(p => `<img src="${p.image}" class="pin-poke-img" title="${p.name}">`).join('');
+        pin.innerHTML = `<div class="pin-tooltip">${tooltipHTML}</div>`;
+
+        container.appendChild(pin);
+    }
 }
 
 // ==========================================
@@ -751,7 +853,7 @@ window.updateRadar = (name, el, event) => {
     
     const screen = document.getElementById('radar-screen');
     const nomeSeguro = name.replace(/\//g, '-');
-    const imagePath = `mapas/${nomeSeguro}.png`;
+    const imagePath = `Continentes/${nomeSeguro}.png`; // Ajustado caso no futuro queira imagens de radar
     
     let locName = name.toUpperCase();
     let coords = "SINAL GPS ESTABELECIDO";
