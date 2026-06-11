@@ -454,6 +454,7 @@ function renderMapPins() {
         });
     });
 
+    // 2. Criação visual dos Pins usando Regra de Três
     for (let key in pinsData) {
         let [x, y] = key.split(',').map(Number);
         let pokemons = pinsData[key];
@@ -476,20 +477,6 @@ function renderMapPins() {
         container.appendChild(pin);
     }
 }
-
-    // 2. Criação visual dos Pins usando Regra de Três
-    for (let key in pinsData) {
-        let [x, y] = key.split(',').map(Number);
-        let pokemons = pinsData[key];
-
-        // Regra de três para descobrir a porcentagem de posicionamento
-        let percentX = ((x - minX) / (maxX - minX)) * 100;
-        let percentY = ((y - minY) / (maxY - minY)) * 100;
-
-        let pin = document.createElement('div');
-        pin.className = 'map-pin';
-        pin.style.left = `${percentX}%`;
-        pin.style.top = `${percentY}%`;
 
         // Cria o balãozinho com as carinhas dos Pokémon daquele local
         let tooltipHTML = pokemons.map(p => `<img src="${p.image}" class="pin-poke-img" title="${p.name}">`).join('');
