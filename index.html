@@ -116,10 +116,17 @@
                     </div>
 
                     <div class="map-display-area">
-                        <div class="map-image-wrapper">
+                        <div class="map-image-wrapper" id="map-wrapper">
                             <img id="map-image" src="" alt="Mapa">
                             <div class="map-overlay"></div>
                         </div>
+
+                        <div class="zoom-controls">
+                            <button id="btn-zoom-in" class="zoom-btn" title="Aumentar Zoom">＋</button>
+                            <button id="btn-zoom-reset" class="zoom-btn" title="Resetar Visão">🎯</button>
+                            <button id="btn-zoom-out" class="zoom-btn" title="Diminuir Zoom">－</button>
+                        </div>
+
                         <div class="map-status-bar">
                             <span id="map-status-text">AGUARDANDO SINAL...</span>
                             <span class="blink">● REC</span>
