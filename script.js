@@ -388,8 +388,8 @@ function updateMapDisplay() {
     const btnUp = document.getElementById('btn-z-up');
     const btnDown = document.getElementById('btn-z-down');
 
-    // Puxa as imagens da pasta "Continentes" como configuramos anteriormente!
-    mapImage.src = `Continentes/${currentCity}-z${currentZ}.jpg`;
+    // Puxa as imagens da pasta "continentes" como configuramos anteriormente!
+    mapImage.src = `continentes/${currentCity}-z${currentZ}.jpg`;
     mapImage.alt = `Mapa de ${cityConfig.name} - Z:${currentZ}`;
     zDisplay.textContent = `Z: ${currentZ}`;
     statusText.textContent = `SINAL ESTABELECIDO: ${cityConfig.name.toUpperCase()} (Z:${currentZ})`;
@@ -853,7 +853,7 @@ window.updateRadar = (name, el, event) => {
     
     const screen = document.getElementById('radar-screen');
     const nomeSeguro = name.replace(/\//g, '-');
-    const imagePath = `Continentes/${nomeSeguro}.png`; // Ajustado caso no futuro queira imagens de radar
+    const imagePath = `continentes/${nomeSeguro}.png`; // Ajustado caso no futuro queira imagens de radar
     
     let locName = name.toUpperCase();
     let coords = "SINAL GPS ESTABELECIDO";
