@@ -420,26 +420,21 @@ function updateMapDisplay() {
 // ==========================================
 function renderMapPins() {
     const container = document.getElementById('map-pins-container');
-    if (!container) return; // Se a div não existir ainda, cancela
+    if (!container) return; 
     
-    container.innerHTML = ''; // Limpa os marcadores antigos
+    container.innerHTML = ''; 
     const cityConfig = cityMaps[currentCity];
 
-    // Se o mapa não tiver as coordenadas de limite configuradas, aborta
     if (!cityConfig.bounds) return;
 
     const { minX, maxX, minY, maxY } = cityConfig.bounds;
-    let pinsData = {}; // Objeto para agrupar Pokémon que estão na mesma coordenada
+    let pinsData = {}; 
 
-    // 1. Vasculha todos os Pokémon da Pokédex
     pokemonData.forEach(p => {
         if (!p.locations) return;
         
         p.locations.forEach(loc => {
-            // Pega o texto da localização independente do formato
             let locString = typeof loc === 'string' ? loc : (loc.local || loc.rota || "");
-            
-            // Regex para pescar X, Y e Z da string. (ex: X 1072 / Y 1056 / Z 7)
             let match = locString.match(/X\s*(\d+)\s*\/\s*Y\s*(\d+)\s*\/\s*Z\s*(\d+)/i);
             
             if (match) {
@@ -447,12 +442,10 @@ function renderMapPins() {
                 let y = parseInt(match[2]);
                 let z = parseInt(match[3]);
 
-                // Verifica se é o andar atual e se está dentro dos limites da imagem
                 if (z === currentZ && x >= minX && x <= maxX && y >= minY && y <= maxY) {
-                    let key = `${x},${y}`; // Chave única para aquela coordenada
+                    let key = `${x},${y}`; 
                     
                     if (!pinsData[key]) pinsData[key] = [];
-                    // Adiciona o Pokémon no agrupamento (evita mostrar o mesmo pokémon 2 vezes no mesmo lugar)
                     if (!pinsData[key].find(poke => poke.id === p.id)) {
                         pinsData[key].push(p);
                     }
@@ -460,6 +453,29 @@ function renderMapPins() {
             }
         });
     });
+
+    for (let key in pinsData) {
+        let [x, y] = key.split(',').map(Number);
+        let pokemons = pinsData[key];
+
+        let percentX = ((x - minX) / (maxX - minX)) * 100;
+        let percentY = ((y - minY) / (maxY - minY)) * 100;
+
+        let pin = document.createElement('div');
+        pin.className = 'map-pin';
+        pin.style.left = `${percentX}%`;
+        pin.style.top = `${percentY}%`;
+
+        // ADIÇÃO DO ONCLICK AQUI NAS IMAGENS
+        let tooltipHTML = pokemons.map(p => 
+            `<img src="${p.image}" class="pin-poke-img" title="${p.name}" onclick="openModal('${p.id}')">`
+        ).join('');
+        
+        pin.innerHTML = `<div class="pin-tooltip">${tooltipHTML}</div>`;
+
+        container.appendChild(pin);
+    }
+}
 
     // 2. Criação visual dos Pins usando Regra de Três
     for (let key in pinsData) {
