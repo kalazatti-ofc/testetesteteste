@@ -284,42 +284,35 @@ function renderPokemon(list) {
 // ==========================================
 function initPanAndZoom() {
     const wrapper = document.getElementById('map-wrapper');
-    // Agora aplicamos a transformação na div que segura a imagem e os PINS juntos!
     const content = document.getElementById('map-content');
     
-    // Aplica as transformações visuais na imagem via CSS transform
     const applyTransform = () => {
         content.style.transform = `translate(${mapTransform.x}px, ${mapTransform.y}px) scale(${mapTransform.scale})`;
     };
 
-    // Função para resetar a posição (útil ao trocar de mapa ou andar)
     window.resetMapTransform = () => {
         mapTransform = { scale: 1, x: 0, y: 0 };
         applyTransform();
     };
 
-    // ZOOM IN / OUT
     window.zoomMap = (direction) => {
-        const zoomStep = 0.3; // Velocidade do zoom
-        const maxZoom = 4.0;  // Limite máximo de proximidade
-        const minZoom = 0.5;  // Limite mínimo de distanciamento
+        const zoomStep = 0.3; 
+        const maxZoom = 4.0;  
+        const minZoom = 0.5;  
 
         if (direction === 'in' && mapTransform.scale < maxZoom) mapTransform.scale += zoomStep;
         if (direction === 'out' && mapTransform.scale > minZoom) mapTransform.scale -= zoomStep;
         applyTransform();
     };
 
-    // EVENTO 1: Scroll do mouse para aplicar Zoom
     wrapper.addEventListener('wheel', (e) => {
-        e.preventDefault(); // Impede a tela de rolar para baixo
-        if (e.deltaY < 0) zoomMap('in');   // Rodou pra cima
-        else zoomMap('out');               // Rodou pra baixo
+        e.preventDefault(); 
+        if (e.deltaY < 0) zoomMap('in');   
+        else zoomMap('out');               
     });
 
-    // EVENTOS DE ARRASTE (MOUSEDOWN, MOUSEMOVE, MOUSEUP)
     wrapper.addEventListener('mousedown', (e) => {
         isDragging = true;
-        // Salva de onde o mouse partiu compensando onde a imagem já estava
         startDragX = e.clientX - mapTransform.x;
         startDragY = e.clientY - mapTransform.y;
     });
@@ -327,7 +320,6 @@ function initPanAndZoom() {
     wrapper.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
         e.preventDefault();
-        // Atualiza X e Y baseados no deslocamento do mouse
         mapTransform.x = e.clientX - startDragX;
         mapTransform.y = e.clientY - startDragY;
         applyTransform();
@@ -336,7 +328,6 @@ function initPanAndZoom() {
     wrapper.addEventListener('mouseup', () => isDragging = false);
     wrapper.addEventListener('mouseleave', () => isDragging = false);
 
-    // Conecta os botões da interface com as funções
     document.getElementById('btn-zoom-in').addEventListener('click', () => zoomMap('in'));
     document.getElementById('btn-zoom-out').addEventListener('click', () => zoomMap('out'));
     document.getElementById('btn-zoom-reset').addEventListener('click', window.resetMapTransform);
@@ -348,7 +339,6 @@ function initPanAndZoom() {
 function initMapViewer() {
     const selector = document.getElementById('city-selector');
     
-    // Evita duplicar as opções se o usuário clicar na aba várias vezes
     if (selector.options.length === 0) {
         Object.keys(cityMaps).forEach(key => {
             const option = document.createElement('option');
@@ -358,7 +348,6 @@ function initMapViewer() {
         });
     }
     
-    // Atualiza o display
     updateMapDisplay();
 }
 
@@ -372,7 +361,6 @@ function changeZ(direction) {
         newZ = currentZ + 1; 
     }
 
-    // Valida se o andar não estourou o limite máximo/mínimo
     if (newZ >= cityConfig.minZ && newZ <= cityConfig.maxZ) {
         currentZ = newZ;
         updateMapDisplay();
@@ -388,30 +376,26 @@ function updateMapDisplay() {
     const btnUp = document.getElementById('btn-z-up');
     const btnDown = document.getElementById('btn-z-down');
 
-    // Puxa as imagens da pasta "continentes" como configuramos anteriormente!
+    // Imagem do mapa puxada da pasta continentes
     mapImage.src = `continentes/${currentCity}-z${currentZ}.jpg`;
     mapImage.alt = `Mapa de ${cityConfig.name} - Z:${currentZ}`;
     zDisplay.textContent = `Z: ${currentZ}`;
     statusText.textContent = `SINAL ESTABELECIDO: ${cityConfig.name.toUpperCase()} (Z:${currentZ})`;
 
-    // Prevenção de erro: Se o arquivo do mapa não existir
     mapImage.onerror = () => {
         mapImage.src = ''; 
         mapImage.alt = 'SINAL PERDIDO';
         statusText.textContent = `⚠ ERRO DE SINAL EM Z:${currentZ} (IMAGEM NÃO ENCONTRADA)`;
     };
 
-    // Lógica para desabilitar o botão de subir/descer se chegou no limite
     btnUp.disabled = (currentZ <= cityConfig.minZ);
     btnDown.disabled = (currentZ >= cityConfig.maxZ);
     
     btnUp.style.opacity = btnUp.disabled ? '0.5' : '1';
     btnDown.style.opacity = btnDown.disabled ? '0.5' : '1';
 
-    // Reseta o pan & zoom quando troca de mapa ou andar
     if(window.resetMapTransform) window.resetMapTransform();
 
-    // Renderiza os Pins na tela!
     renderMapPins();
 }
 
@@ -454,7 +438,6 @@ function renderMapPins() {
         });
     });
 
-    // 2. Criação visual dos Pins usando Regra de Três
     for (let key in pinsData) {
         let [x, y] = key.split(',').map(Number);
         let pokemons = pinsData[key];
@@ -467,19 +450,11 @@ function renderMapPins() {
         pin.style.left = `${percentX}%`;
         pin.style.top = `${percentY}%`;
 
-        // ADIÇÃO DO ONCLICK AQUI NAS IMAGENS
+        // Tooltip com imagens clicáveis
         let tooltipHTML = pokemons.map(p => 
             `<img src="${p.image}" class="pin-poke-img" title="${p.name}" onclick="openModal('${p.id}')">`
         ).join('');
         
-        pin.innerHTML = `<div class="pin-tooltip">${tooltipHTML}</div>`;
-
-        container.appendChild(pin);
-    }
-}
-
-        // Cria o balãozinho com as carinhas dos Pokémon daquele local
-        let tooltipHTML = pokemons.map(p => `<img src="${p.image}" class="pin-poke-img" title="${p.name}">`).join('');
         pin.innerHTML = `<div class="pin-tooltip">${tooltipHTML}</div>`;
 
         container.appendChild(pin);
@@ -856,7 +831,7 @@ window.updateRadar = (name, el, event) => {
     
     const screen = document.getElementById('radar-screen');
     const nomeSeguro = name.replace(/\//g, '-');
-    const imagePath = `continentes/${nomeSeguro}.png`; // Ajustado caso no futuro queira imagens de radar
+    const imagePath = `continentes/${nomeSeguro}.png`; 
     
     let locName = name.toUpperCase();
     let coords = "SINAL GPS ESTABELECIDO";
