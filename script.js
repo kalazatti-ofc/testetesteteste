@@ -35,11 +35,11 @@ const typeModifiers = {
 const cityMaps = {
     "kanto": { 
         name: "Kanto", minZ: 0, maxZ: 9, defaultZ: 7,
-        bounds: { minX: 545, minY: 689, maxX: 1377, maxY: 1831 } 
+        bounds: { minX: 539, minY: 649, maxX: 1367, maxY: 1831 } 
     },
     "johto": { 
         name: "Johto", minZ: 5, maxZ: 8, defaultZ: 7,
-        bounds: { minX: 500, minY: 500, maxX: 1500, maxY: 1500 } 
+        bounds: { minX: 500, minY: 500, maxX: 1500, maxY: 1791 } 
     },
     "novocontinente": { 
         name: "Novo Continente", minZ: 6, maxZ: 8, defaultZ: 7,
