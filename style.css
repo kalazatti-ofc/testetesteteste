@@ -643,211 +643,6 @@ body.dark-mode .nav-arrow:active {
 }
 
 /* ==============================================================
-   SISTEMA: VISUALIZADOR DE MAPAS (GPS SETORIAL) E PAN & ZOOM
-============================================================== */
-#map-viewer-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.map-header {
-    background: #e0e0e0;
-    border: 4px solid var(--dex-border);
-    border-radius: 12px;
-    padding: 12px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.map-header-inner {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 200px;
-}
-
-.city-select {
-    width: 100%;
-    background: #ffffff;
-    border: 3px solid var(--dex-border);
-    border-radius: 8px;
-    padding: 8px;
-    font-family: monospace;
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--dex-border);
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
-    outline: none;
-    margin-top: 5px;
-}
-
-.z-axis-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.z-controls {
-    display: flex;
-    align-items: center;
-    background: #fff;
-    border: 3px solid var(--dex-border);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 5px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.z-display {
-    font-family: monospace;
-    font-size: 1rem;
-    font-weight: 900;
-    color: var(--dex-red);
-    padding: 0 15px;
-    min-width: 65px;
-    text-align: center;
-}
-
-.z-btn {
-    background: #333;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.1s;
-    outline: none;
-}
-.z-btn:hover { background: #444; color: #ffcb05; }
-.z-btn:active { background: #111; box-shadow: inset 0 3px 5px rgba(0,0,0,0.5); }
-.z-btn:disabled { background: #aaa; color: #666; cursor: not-allowed; }
-
-.map-display-area {
-    flex: 1;
-    background: var(--terminal-bg);
-    border: 4px solid var(--dex-border);
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
-}
-
-.map-image-wrapper {
-    flex: 1;
-    position: relative;
-    overflow: hidden !important; /* Modificado para o Pan & Zoom */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #111;
-    cursor: grab;
-}
-
-.map-image-wrapper:active {
-    cursor: grabbing;
-}
-
-#map-image {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    z-index: 2;
-    transition: opacity 0.2s;
-    transform-origin: center center;
-    will-change: transform;
-}
-
-.map-status-bar {
-    background: #1a1a1a;
-    border-top: 3px solid var(--dex-border);
-    padding: 5px 15px;
-    display: flex;
-    justify-content: space-between;
-    font-family: monospace;
-    font-size: 0.75rem;
-    color: var(--radar-green);
-    font-weight: bold;
-    z-index: 3;
-}
-
-.cat-btn[data-cat="mapas"].active {
-    background: #3498db;
-    color: #fff;
-}
-
-/* HUD DOS CONTROLES DE ZOOM */
-.zoom-controls {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    z-index: 10;
-    background: rgba(10, 20, 16, 0.8);
-    padding: 8px;
-    border: 3px solid var(--dex-border);
-    border-radius: 12px;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-}
-
-.zoom-btn {
-    width: 35px;
-    height: 35px;
-    border-radius: 8px;
-    border: 2px solid var(--dex-border);
-    background: #333;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), 2px 2px 0 rgba(0,0,0,0.5);
-    transition: 0.1s;
-    outline: none;
-}
-
-.zoom-btn:hover { background: #444; color: #ffcb05; }
-.zoom-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 transparent; }
-
-/* =========================================
-   MODO ESCURO PARA O MAPA E ZOOM
-========================================= */
-body.dark-mode .map-header { background: #2a2a2c; border-color: #111; }
-body.dark-mode .map-header .label-tech { color: #aaa; }
-body.dark-mode .city-select { background: #111; border-color: #111; color: #ddd; }
-body.dark-mode .z-controls { background: #111; border-color: #111; }
-body.dark-mode .z-display { color: #ffcb05; }
-body.dark-mode .cat-btn[data-cat="mapas"].active { background: #2980b9; }
-
-body.dark-mode .zoom-controls { background: rgba(10, 10, 10, 0.8); border-color: #111; }
-body.dark-mode .zoom-btn { background: #1a1a1a; border-color: #000; color: #aaa; }
-body.dark-mode .zoom-btn:hover { background: #2a2a2c; color: #ffcb05; }
-
-@media (max-width: 768px) {
-    .map-header { padding: 10px; gap: 10px; }
-    .city-select { font-size: 0.85rem; padding: 6px; }
-    .z-display { font-size: 0.85rem; padding: 0 10px; min-width: 55px;}
-    .z-btn { padding: 6px 10px; font-size: 0.85rem;}
-}
-
-/* ==============================================================
    SISTEMA DE PINS (MARCADORES NO MAPA)
 ============================================================== */
 #map-pins-container {
@@ -941,95 +736,218 @@ body.dark-mode .zoom-btn:hover { background: #2a2a2c; color: #ffcb05; }
 }
 
 /* ==========================================
-   MENU LATERAL DE MAPAS
+   ESTILIZAÇÃO DA LISTA DE MAPAS (LATERAL)
 ========================================== */
-.map-list {
+.map-sidebar {
+    width: 320px; 
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 15px;
-    max-height: 60vh;
+    gap: 10px;
+}
+
+.map-list-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 500px; /* Ativa a rolagem quando passar desse tamanho */
     overflow-y: auto;
     padding-right: 5px;
 }
 
-/* Custom Scrollbar para a lista de mapas */
-.map-list::-webkit-scrollbar { width: 4px; }
-.map-list::-webkit-scrollbar-thumb { background: var(--radar-green); border-radius: 4px; }
+/* Barra de rolagem estilizada tech */
+.map-list-scroll::-webkit-scrollbar { width: 6px; }
+.map-list-scroll::-webkit-scrollbar-track { background: var(--dex-border); border-radius: 4px; }
+.map-list-scroll::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+.map-list-scroll::-webkit-scrollbar-thumb:hover { background: var(--radar-green); }
 
+/* Design do Botão de Mapa (Estilo Terminal/Radar) */
 .map-select-card {
     display: flex;
     align-items: center;
-    background: #0a1410;
-    border: 2px solid #1a1a1a;
+    background: var(--terminal-bg);
+    border: 2px solid var(--dex-border);
     border-radius: 8px;
-    padding: 8px;
+    padding: 8px 12px;
     cursor: pointer;
     transition: all 0.2s ease;
-    position: relative;
-    overflow: hidden;
+    gap: 12px;
 }
 
 .map-select-card:hover {
-    border-color: var(--radar-green);
-    transform: translateX(5px);
+    border-color: #555;
+    transform: translateX(4px);
 }
 
 .map-select-card.active {
+    background: #111;
     border-color: var(--radar-green);
-    background: rgba(50, 205, 50, 0.1);
-    box-shadow: inset 0 0 15px rgba(50, 205, 50, 0.15);
+    box-shadow: inset 0 0 10px rgba(50, 205, 50, 0.1), 0 0 5px rgba(50, 205, 50, 0.3);
 }
 
-/* Barra verde lateral para o mapa ativo */
-.map-select-card.active::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 4px;
-    background: var(--radar-green);
-    box-shadow: 0 0 10px var(--radar-green);
-}
-
-/* Miniatura do mapa */
+/* Miniatura do Mapa (com filtro verde de radar desativado e ativado) */
 .map-card-thumb {
-    width: 55px;
-    height: 55px;
-    border-radius: 6px;
+    width: 38px;
+    height: 38px;
+    border-radius: 4px;
+    border: 1px solid var(--dex-border);
     object-fit: cover;
-    border: 1px solid #333;
-    margin-right: 12px;
-    filter: grayscale(60%) opacity(0.7);
+    opacity: 0.5;
+    filter: grayscale(100%) sepia(100%) hue-rotate(70deg) brightness(0.6);
     transition: 0.3s;
 }
 
-.map-select-card:hover .map-card-thumb,
 .map-select-card.active .map-card-thumb {
-    filter: grayscale(0%) opacity(1);
+    opacity: 1;
+    filter: none;
     border-color: var(--radar-green);
+    box-shadow: 0 0 8px rgba(50, 205, 50, 0.5);
 }
 
 .map-card-info {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .map-card-name {
-    color: #fff;
-    font-size: 0.65rem;
     font-family: 'Press Start 2P', monospace;
-    margin-bottom: 6px;
-    text-shadow: 1px 1px 0px #000;
+    font-size: 0.6rem;
+    color: #888;
+    transition: 0.2s;
+}
+
+.map-select-card.active .map-card-name {
+    color: var(--radar-green);
+    text-shadow: 0 0 5px rgba(50, 205, 50, 0.5);
 }
 
 .map-card-desc {
-    color: #32cd32;
-    font-size: 0.8rem;
-    font-weight: bold;
-    opacity: 0.8;
+    font-size: 0.7rem;
+    color: #666;
 }
 
-/* Esconde o seletor antigo se ele ainda estiver no HTML */
-#city-selector {
+/* ==========================================
+   CONTROLES FLUTUANTES DENTRO DO MAPA
+========================================== */
+.map-controls-vertical {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    background: rgba(10, 20, 16, 0.85); /* Fundo vidro escuro */
+    border: 2px solid var(--dex-border);
+    border-radius: 12px;
+    padding: 8px;
+    gap: 8px;
+    z-index: 100;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+
+.ctrl-divider {
+    width: 100%;
+    height: 2px;
+    background: var(--dex-border);
+    margin: 2px 0;
+}
+
+.z-display-box {
+    color: var(--radar-green);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    text-align: center;
+    padding: 4px 0;
+    text-shadow: 0 0 5px rgba(50, 205, 50, 0.5);
+}
+
+/* O novo HUDzinho no canto inferior esquerdo */
+.map-hud-floating {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(10, 20, 16, 0.85);
+    border: 2px solid var(--dex-border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 100;
+    backdrop-filter: blur(4px);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.55rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+
+/* Botões do Zoom / Andares */
+.zoom-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    border: 2px solid var(--dex-border);
+    background: #333;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 2px 2px 0 rgba(255,255,255,0.2), 2px 2px 0 rgba(0,0,0,0.5);
+    transition: 0.1s;
+    outline: none;
+}
+
+.zoom-btn:hover { background: #444; color: #ffcb05; }
+.zoom-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 transparent; }
+
+/* Esconder qualquer rastro da barra branca antiga caso tenha ficado solta */
+.map-controls, .map-status-bar, .map-header {
     display: none !important;
+}
+
+/* ==========================================
+   RESPONSIVIDADE (MOBILE & TELAS PEQUENAS)
+========================================== */
+@media (max-width: 900px) {
+    .map-sidebar {
+        width: 100%;
+    }
+    
+    /* No celular a lista vira um carrossel horizontal de botões! */
+    .map-list-scroll {
+        max-height: auto;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 5px;
+    }
+    
+    .map-list-scroll::-webkit-scrollbar { height: 4px; width: 0; }
+    
+    .map-select-card {
+        min-width: 220px; /* Impede os botões de esmagarem */
+    }
+    
+    .map-controls-vertical {
+        right: 10px;
+        padding: 6px;
+        gap: 6px;
+    }
+    
+    .zoom-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .map-hud-floating {
+        bottom: 10px;
+        left: 10px;
+        font-size: 0.45rem;
+        padding: 6px 10px;
+    }
 }
