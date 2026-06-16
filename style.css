@@ -751,18 +751,19 @@ body.dark-mode .nav-arrow:active {
     flex: 1; 
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    min-height: 0; /* Trava o tamanho para o scroll funcionar */
+    overflow: hidden; /* TRAVA 2: Segura a lista dentro do menu */
+    min-height: 0; 
 }
 
 .map-list-scroll {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 6px; /* Espaço menor entre os botões */
-    overflow-y: auto;
+    gap: 6px; 
+    overflow-y: auto; /* ATIVA A BARRA DE ROLAGEM VERTICAL */
     padding-right: 8px;
     min-height: 0;
+    height: 100%;
 }
 
 /* Barra de rolagem estilizada para a lista lateral */
