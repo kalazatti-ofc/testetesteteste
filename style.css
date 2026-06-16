@@ -748,27 +748,37 @@ body.dark-mode .nav-arrow:active {
    ESTILIZAÇÃO DA LISTA DE MAPAS (LATERAL)
 ========================================== */
 .map-sidebar {
-    margin-top: 10px;
-    flex: 1; 
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
-    min-height: 0; /* TRAVA 3: Segura a lista dentro do painel */
+    /* TRAVA ABSOLUTA: A lista nunca passará deste tamanho */
+    max-height: 280px; 
 }
 
 .map-list-scroll {
-    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 6px; 
-    overflow-y: auto; /* ATIVA A BARRA DE ROLAGEM AQUI */
+    /* ATIVA A ROLAGEM OBRIGATÓRIA QUANDO BATER NOS 280PX */
+    overflow-y: auto; 
+    overflow-x: hidden;
     padding-right: 8px;
-    padding-bottom: 15px; /* Margem extra no final para o último botão não raspar */
+    padding-bottom: 10px;
+    height: 100%;
 }
 
-/* Barra de rolagem estilizada para a lista lateral */
-.map-list-scroll::-webkit-scrollbar { width: 6px; }
-.map-list-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); border-radius: 4px; }
-.map-list-scroll::-webkit-scrollbar-thumb { background: var(--dex-border); border-radius: 4px; }
+/* Garante que a barra fique visível e estilizada */
+.map-list-scroll::-webkit-scrollbar { 
+    width: 8px; 
+}
+.map-list-scroll::-webkit-scrollbar-track { 
+    background: rgba(0,0,0,0.2); 
+    border-radius: 4px; 
+}
+.map-list-scroll::-webkit-scrollbar-thumb { 
+    background: var(--dex-border); 
+    border-radius: 4px; 
+}
 
 /* Design do Botão de Mapa (Mais compacto) */
 .map-select-card {
