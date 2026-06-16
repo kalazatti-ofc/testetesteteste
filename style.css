@@ -748,22 +748,23 @@ body.dark-mode .nav-arrow:active {
 ========================================== */
 .map-sidebar {
     margin-top: 10px;
-    flex: 1; 
+    margin-bottom: 15px; /* Descola do rodapé */
+    flex: 1 1 0; /* Força a caixa a respeitar o limite exato da tela */
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* TRAVA 2: Segura a lista dentro do menu */
+    overflow: hidden; 
     min-height: 0; 
 }
 
 .map-list-scroll {
-    flex: 1;
+    flex: 1 1 0;
     display: flex;
     flex-direction: column;
     gap: 6px; 
-    overflow-y: auto; /* ATIVA A BARRA DE ROLAGEM VERTICAL */
+    overflow-y: auto; 
     padding-right: 8px;
+    padding-bottom: 20px; /* Dá um espaço extra no fim da rolagem para o botão não ficar colado */
     min-height: 0;
-    height: 100%;
 }
 
 /* Barra de rolagem estilizada para a lista lateral */
