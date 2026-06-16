@@ -305,12 +305,16 @@ function initPanAndZoom() {
         applyTransform();
     };
 
+    // Zoom com o scroll do mouse
     wrapper.addEventListener('wheel', (e) => {
         e.preventDefault(); 
         if (e.deltaY < 0) zoomMap('in');   
         else zoomMap('out');               
-    });
+    }, { passive: false });
 
+    // =====================================
+    // EVENTOS DE MOUSE (COMPUTADOR)
+    // =====================================
     wrapper.addEventListener('mousedown', (e) => {
         isDragging = true;
         startDragX = e.clientX - mapTransform.x;
@@ -328,6 +332,31 @@ function initPanAndZoom() {
     wrapper.addEventListener('mouseup', () => isDragging = false);
     wrapper.addEventListener('mouseleave', () => isDragging = false);
 
+    // =====================================
+    // EVENTOS DE TOUCH (CELULAR E TABLET)
+    // =====================================
+    wrapper.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) { // Garante que só funciona com 1 dedo
+            isDragging = true;
+            startDragX = e.touches[0].clientX - mapTransform.x;
+            startDragY = e.touches[0].clientY - mapTransform.y;
+        }
+    });
+
+    wrapper.addEventListener('touchmove', (e) => {
+        if (!isDragging || e.touches.length !== 1) return;
+        e.preventDefault(); // Impede a tela do celular de rolar para baixo enquanto arrasta o mapa
+        mapTransform.x = e.touches[0].clientX - startDragX;
+        mapTransform.y = e.touches[0].clientY - startDragY;
+        applyTransform();
+    }, { passive: false });
+
+    wrapper.addEventListener('touchend', () => isDragging = false);
+    wrapper.addEventListener('touchcancel', () => isDragging = false);
+
+    // =====================================
+    // BOTÕES DE CONTROLE
+    // =====================================
     document.getElementById('btn-zoom-in').addEventListener('click', () => zoomMap('in'));
     document.getElementById('btn-zoom-out').addEventListener('click', () => zoomMap('out'));
     document.getElementById('btn-zoom-reset').addEventListener('click', window.resetMapTransform);
