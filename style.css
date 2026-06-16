@@ -747,20 +747,22 @@ body.dark-mode .nav-arrow:active {
    ESTILIZAÇÃO DA LISTA DE MAPAS (LATERAL)
 ========================================== */
 .map-sidebar {
-    margin-top: 15px;
+    margin-top: 10px;
     flex: 1; 
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    min-height: 0; /* Trava o tamanho para o scroll funcionar */
 }
 
 .map-list-scroll {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px; /* Espaço menor entre os botões */
     overflow-y: auto;
-    padding-right: 5px;
+    padding-right: 8px;
+    min-height: 0;
 }
 
 /* Barra de rolagem estilizada para a lista lateral */
@@ -768,20 +770,21 @@ body.dark-mode .nav-arrow:active {
 .map-list-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); border-radius: 4px; }
 .map-list-scroll::-webkit-scrollbar-thumb { background: var(--dex-border); border-radius: 4px; }
 
-/* Design do Botão de Mapa (Estilo dos Filtros) */
+/* Design do Botão de Mapa (Mais compacto) */
 .map-select-card {
     background: #444444; 
     color: #ffffff;
     border: 3px solid var(--dex-border);
     border-radius: 8px;
-    padding: 8px;
+    padding: 5px 8px; /* Padding reduzido para achatar o botão */
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     cursor: pointer;
     box-shadow: 3px 3px 0 var(--dex-border); 
     transition: 0.1s ease-in-out;
     outline: none;
+    flex-shrink: 0; /* Impede que o botão seja "esmagado" */
 }
 
 .map-select-card:hover {
@@ -799,10 +802,10 @@ body.dark-mode .nav-arrow:active {
     box-shadow: 3px 3px 0 var(--radar-green);
 }
 
-/* Miniatura do Mapa */
+/* Miniatura do Mapa - Mais compacta */
 .map-card-thumb {
-    width: 45px;
-    height: 45px;
+    width: 32px; /* Reduzido */
+    height: 32px; /* Reduzido */
     border-radius: 4px;
     border: 2px solid var(--dex-border);
     object-fit: cover;
@@ -818,13 +821,13 @@ body.dark-mode .nav-arrow:active {
 .map-card-info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px; /* Mais colado */
     flex: 1;
 }
 
 .map-card-name {
     font-family: monospace;
-    font-size: 0.8rem;
+    font-size: 0.75rem; /* Um pouco menor */
     font-weight: 900;
     color: #fff;
     text-transform: uppercase;
@@ -836,7 +839,7 @@ body.dark-mode .nav-arrow:active {
 }
 
 .map-card-desc {
-    font-size: 0.65rem;
+    font-size: 0.6rem; /* Fonte menor */
     color: #aaa;
     font-family: monospace;
     font-weight: bold;
