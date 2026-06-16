@@ -71,12 +71,6 @@
                     </div>
                 </div>
 
-                <div id="map-sidebar-menu" style="display: none;">
-                    <span class="tech-label">SISTEMA DE NAVEGAÇÃO</span>
-                    <div id="map-list-container" class="map-list">
-                        </div>
-                </div>
-
                 <div class="dex-footer">
                     <div class="social-links">
                         <a href="https://pokemonbr.com/" target="_blank" title="Site Oficial" class="social-btn website-icon">
@@ -103,38 +97,45 @@
                 <div class="pokemon-grid" id="pokedex-grid">
                 </div>
 
-                <div id="map-viewer-container" style="display: none;">
-                    <div class="map-header" style="justify-content: center;">
-                        <div class="z-axis-panel">
-                            <span class="label-tech" style="margin-bottom:0; border:none; text-shadow:none;">Z-AXIS (ANDAR)</span>
-                            <div class="z-controls">
-                                <button id="btn-z-up" class="z-btn" title="Subir Andar">▲</button>
-                                <div id="z-display" class="z-display">Z: 7</div>
-                                <button id="btn-z-down" class="z-btn" title="Descer Andar">▼</button>
-                            </div>
-                        </div>
+                <!-- NOVO MÓDULO DE MAPA -->
+                <div id="map-viewer-container" style="display: none; height: 100%; width: 100%; flex-wrap: wrap; gap: 15px; align-content: flex-start;">
+                    
+                    <!-- Menu Lateral -->
+                    <div class="map-sidebar" id="map-sidebar-menu">
+                        <h3 class="tech-label">SISTEMA GPS GLOBAL</h3>
+                        <div id="map-list-container" class="map-list-scroll"></div>
                     </div>
 
-                    <div class="map-display-area">
-                        <div class="map-image-wrapper" id="map-wrapper">
+                    <!-- Tela do Mapa -->
+                    <div class="map-screen" style="flex: 1; min-width: 250px; position: relative; border: 4px solid var(--dex-border); border-radius: 12px; background: #111; overflow: hidden; display: flex; flex-direction: column;">
+                        <div id="map-wrapper" class="map-wrapper" style="width: 100%; height: 100%; cursor: grab; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;">
                             <div id="map-content" style="position: relative; display: inline-block;">
-                                <img id="map-image" src="" alt="Mapa">
+                                <img id="map-image" src="" alt="Mapa" style="max-width: 100%; height: auto; object-fit: contain; z-index: 2; transition: opacity 0.2s; transform-origin: center center; will-change: transform;">
                                 <div id="map-pins-container"></div>
-                                <div class="map-overlay"></div>
+                                <div class="map-overlay" style="position: absolute; inset: 0; z-index: 4; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 2px, transparent 2px, transparent 4px); box-shadow: inset 0 0 15px rgba(0,0,0,0.6);"></div>
+                            </div>
+                            
+                            <!-- NOVOS CONTROLES: Agrupados na lateral direita -->
+                            <div class="map-controls-vertical">
+                                <button id="btn-zoom-in" class="zoom-btn" title="Aumentar Zoom">＋</button>
+                                <button id="btn-zoom-reset" class="zoom-btn" title="Resetar Visão">🎯</button>
+                                <button id="btn-zoom-out" class="zoom-btn" title="Diminuir Zoom">－</button>
+                                
+                                <div class="ctrl-divider"></div>
+                                
+                                <button id="btn-z-up" class="zoom-btn" title="Subir Andar">▲</button>
+                                <div id="z-display" class="z-display-box">Z:7</div>
+                                <button id="btn-z-down" class="zoom-btn" title="Descer Andar">▼</button>
+                            </div>
+
+                            <!-- NOVO HUD DE STATUS: Fundo escuro flutuante no canto -->
+                            <div class="map-hud-floating">
+                                <span class="blink" style="color:var(--dex-red);">● REC</span>
+                                <span id="map-status-text">AGUARDANDO SINAL...</span>
                             </div>
                         </div>
-
-                        <div class="zoom-controls">
-                            <button id="btn-zoom-in" class="zoom-btn" title="Aumentar Zoom">＋</button>
-                            <button id="btn-zoom-reset" class="zoom-btn" title="Resetar Visão">🎯</button>
-                            <button id="btn-zoom-out" class="zoom-btn" title="Diminuir Zoom">－</button>
-                        </div>
-
-                        <div class="map-status-bar">
-                            <span id="map-status-text">AGUARDANDO SINAL...</span>
-                            <span class="blink">● REC</span>
-                        </div>
                     </div>
+
                 </div>
 
             </div>
