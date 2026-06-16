@@ -594,11 +594,21 @@ body.dark-mode .soul-label { color: #888; }
 body.dark-mode .soul-box.eternizado .soul-label { color: #b388ff; }
 body.dark-mode .soul-value { color: #fff; }
 body.dark-mode .exclusive-badge { background: #111; color: #ff4b2b; }
-body.dark-mode .z-display-box {
-    background: #111;
-    color: #ffcb05; /* Amarelo no dark mode */
-    border-color: #000;
-    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.8);
+.z-display-box {
+    background: #f0f4f8; 
+    color: var(--dex-red); 
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem; /* Fonte um pouquinho maior já que é só o número */
+    border: 2px solid var(--dex-border);
+    border-radius: 8px; /* Mesma borda arredondada dos botões */
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2); 
+    
+    /* Tamanho EXATO dos botões */
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* =========================================
@@ -971,6 +981,12 @@ body.dark-mode .nav-arrow:active {
         width: 30px;
         height: 30px;
         font-size: 1rem;
+    }
+
+    .z-display-box {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
     }
     
     .map-hud-floating {
