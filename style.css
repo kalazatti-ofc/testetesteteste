@@ -939,3 +939,97 @@ body.dark-mode .zoom-btn:hover { background: #2a2a2c; color: #ffcb05; }
     transform: scale(1.15); /* Efeito de destaque no ícone */
     border-color: #ffcb05;
 }
+
+/* ==========================================
+   MENU LATERAL DE MAPAS
+========================================== */
+.map-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Custom Scrollbar para a lista de mapas */
+.map-list::-webkit-scrollbar { width: 4px; }
+.map-list::-webkit-scrollbar-thumb { background: var(--radar-green); border-radius: 4px; }
+
+.map-select-card {
+    display: flex;
+    align-items: center;
+    background: #0a1410;
+    border: 2px solid #1a1a1a;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.map-select-card:hover {
+    border-color: var(--radar-green);
+    transform: translateX(5px);
+}
+
+.map-select-card.active {
+    border-color: var(--radar-green);
+    background: rgba(50, 205, 50, 0.1);
+    box-shadow: inset 0 0 15px rgba(50, 205, 50, 0.15);
+}
+
+/* Barra verde lateral para o mapa ativo */
+.map-select-card.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--radar-green);
+    box-shadow: 0 0 10px var(--radar-green);
+}
+
+/* Miniatura do mapa */
+.map-card-thumb {
+    width: 55px;
+    height: 55px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid #333;
+    margin-right: 12px;
+    filter: grayscale(60%) opacity(0.7);
+    transition: 0.3s;
+}
+
+.map-select-card:hover .map-card-thumb,
+.map-select-card.active .map-card-thumb {
+    filter: grayscale(0%) opacity(1);
+    border-color: var(--radar-green);
+}
+
+.map-card-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.map-card-name {
+    color: #fff;
+    font-size: 0.65rem;
+    font-family: 'Press Start 2P', monospace;
+    margin-bottom: 6px;
+    text-shadow: 1px 1px 0px #000;
+}
+
+.map-card-desc {
+    color: #32cd32;
+    font-size: 0.8rem;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+/* Esconde o seletor antigo se ele ainda estiver no HTML */
+#city-selector {
+    display: none !important;
+}
