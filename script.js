@@ -128,17 +128,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const searchModule = document.getElementById('search-module-container');
             const filtersModule = document.getElementById('filters-container');
             const mapContainer = document.getElementById('map-viewer-container');
+            const mapSidebar = document.getElementById('map-sidebar-menu'); // O novo menu
             
             if (activeCategory === 'mapas') {
                 gridContainer.style.display = 'none';
                 searchModule.style.display = 'none';
                 filtersModule.style.display = 'none';
+                if(mapSidebar) mapSidebar.style.display = 'block'; // Mostra os cards dos mapas
                 mapContainer.style.display = 'flex';
                 initMapViewer(); 
             } else {
                 gridContainer.style.display = 'grid';
                 searchModule.style.display = 'block';
                 filtersModule.style.display = 'block';
+                if(mapSidebar) mapSidebar.style.display = 'none'; // Esconde os cards dos mapas
                 mapContainer.style.display = 'none';
                 applyFilters();
             }
@@ -148,11 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listeners do GPS Setorial (Mapa)
     document.getElementById('btn-z-up').addEventListener('click', () => changeZ('up'));
     document.getElementById('btn-z-down').addEventListener('click', () => changeZ('down'));
-    document.getElementById('city-selector').addEventListener('change', (e) => {
-        currentCity = e.target.value;
-        currentZ = cityMaps[currentCity].defaultZ;
-        updateMapDisplay();
-    });
+    
+    // Antigo seletor removido, a mudança de cidade agora ocorre nos novos cards do menu lateral.
 });
 
 async function fetchData() {
@@ -334,17 +334,45 @@ function initPanAndZoom() {
 }
 
 // ==========================================
-// LÓGICA DO GPS SETORIAL (MAPA MÚNDI)
+// LÓGICA DO GPS SETORIAL (MENU LATERAL)
 // ==========================================
 function initMapViewer() {
-    const selector = document.getElementById('city-selector');
+    const listContainer = document.getElementById('map-list-container');
     
-    if (selector.options.length === 0) {
+    // Só gera os cards se a lista estiver vazia para não duplicar
+    if (listContainer.innerHTML.trim() === '') {
         Object.keys(cityMaps).forEach(key => {
-            const option = document.createElement('option');
-            option.value = key;
-            option.textContent = cityMaps[key].name;
-            selector.appendChild(option);
+            const city = cityMaps[key];
+            const card = document.createElement('div');
+            card.className = `map-select-card ${currentCity === key ? 'active' : ''}`;
+            card.dataset.city = key;
+            
+            // Puxa a imagem Z padrão para usar de miniatura
+            const thumbSrc = `continentes/${key}-z${city.defaultZ}.jpg`;
+            
+            card.innerHTML = `
+                <img src="${thumbSrc}" class="map-card-thumb" onerror="this.src='https://via.placeholder.com/55x55/111/32cd32?text=MAP'">
+                <div class="map-card-info">
+                    <span class="map-card-name">${city.name.toUpperCase()}</span>
+                    <span class="map-card-desc">SINAL Z:${city.minZ}-${city.maxZ}</span>
+                </div>
+            `;
+            
+            card.addEventListener('click', () => {
+                // Remove a classe 'active' de todos os cards
+                document.querySelectorAll('.map-select-card').forEach(c => c.classList.remove('active'));
+                // Adiciona 'active' no card que foi clicado
+                card.classList.add('active');
+                
+                // Atualiza as variáveis globais
+                currentCity = key;
+                currentZ = cityMaps[currentCity].defaultZ;
+                
+                // Atualiza o mapa grandão na tela
+                updateMapDisplay();
+            });
+            
+            listContainer.appendChild(card);
         });
     }
     
@@ -376,7 +404,7 @@ function updateMapDisplay() {
     const btnUp = document.getElementById('btn-z-up');
     const btnDown = document.getElementById('btn-z-down');
 
-    // Imagem do mapa puxada da pasta continentes
+    // Imagem do mapa puxada da pasta continentes (TUDO MINÚSCULO)
     mapImage.src = `continentes/${currentCity}-z${currentZ}.jpg`;
     mapImage.alt = `Mapa de ${cityConfig.name} - Z:${currentZ}`;
     zDisplay.textContent = `Z: ${currentZ}`;
