@@ -43,8 +43,8 @@ body {
     background: linear-gradient(135deg, #ff4b2b, var(--dex-red));
     padding: 25px; border-bottom: 6px solid var(--dex-border);
     display: flex; flex-direction: column;
-    max-height: 100vh;
     transition: background 0.3s ease;
+    min-height: 0; /* TRAVA 1: Avisa que a tela tem limite */
 }
 
 .pokedex-header { display: flex; flex-direction: column; align-items: stretch; position: relative; }
@@ -92,7 +92,7 @@ body {
     flex-direction: column; 
     align-items: stretch; 
     justify-content: flex-start; 
-    min-height: 0; /* Isso é o segredo para a barra de rolagem não quebrar! */
+    min-height: 0; /* TRAVA 2: Passa o limite adiante */
 }
 .search-module { width: 100%; margin-bottom: 20px; }
 .tech-label { font-family: monospace; font-size: 0.8rem; color: #ffcb05; font-weight: bold; text-shadow: 1px 1px 0 #000; margin-bottom: 5px; display: block; }
@@ -146,8 +146,8 @@ body {
    RODAPÉ E REDES SOCIAIS
 ========================================= */
 .dex-footer { 
-    margin-top: auto; 
-    padding-top: 20px; 
+    margin-top: 15px; 
+    padding-top: 15px; 
     text-align: center; 
     opacity: 0.6; 
     transition: 0.3s; 
@@ -155,6 +155,7 @@ body {
     flex-direction: column; 
     align-items: center; 
     gap: 8px; 
+    flex-shrink: 0; /* PROTEÇÃO: Impede o rodapé de ser esmagado pelos mapas */
 }
 .dex-footer:hover { opacity: 1; }
 
@@ -748,23 +749,20 @@ body.dark-mode .nav-arrow:active {
 ========================================== */
 .map-sidebar {
     margin-top: 10px;
-    margin-bottom: 15px; /* Descola do rodapé */
-    flex: 1 1 0; /* Força a caixa a respeitar o limite exato da tela */
+    flex: 1; 
     display: flex;
     flex-direction: column;
-    overflow: hidden; 
-    min-height: 0; 
+    min-height: 0; /* TRAVA 3: Segura a lista dentro do painel */
 }
 
 .map-list-scroll {
-    flex: 1 1 0;
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 6px; 
-    overflow-y: auto; 
+    overflow-y: auto; /* ATIVA A BARRA DE ROLAGEM AQUI */
     padding-right: 8px;
-    padding-bottom: 20px; /* Dá um espaço extra no fim da rolagem para o botão não ficar colado */
-    min-height: 0;
+    padding-bottom: 15px; /* Margem extra no final para o último botão não raspar */
 }
 
 /* Barra de rolagem estilizada para a lista lateral */
