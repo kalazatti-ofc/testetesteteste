@@ -260,6 +260,7 @@ function initPanAndZoom() {
     
     const applyTransform = () => {
         content.style.transform = `translate(${mapTransform.x}px, ${mapTransform.y}px) scale(${mapTransform.scale})`;
+        wrapper.style.setProperty('--map-zoom', mapTransform.scale);
     };
 
     window.resetMapTransform = () => {
