@@ -871,8 +871,15 @@ body.dark-mode .nav-arrow:active {
     font-weight: bold;
 }
 
-.map-screen, #map-wrapper {
-    background: transparent !important;
+.map-screen {
+    /* Define a cor cinza escuro lisa e força a substituição das listras */
+    background: #2a2a2a !important; 
+    
+    /* Remove qualquer sombra interna (relevo) ou externa */
+    box-shadow: none !important; 
+    
+    /* Mantém uma borda simples e escura para delimitar a tela, se desejar */
+    border: 4px solid #111; 
 }
 
 /* ==========================================
