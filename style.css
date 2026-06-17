@@ -457,21 +457,54 @@ body {
    PINS NO MAPA
 ========================================= */
 #map-pins-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
-.map-pin { position: absolute; width: 18px; height: 18px; background: var(--dex-red); border: 3px solid #fff; border-radius: 50%; transform: translate(-50%, -50%); pointer-events: auto; cursor: help; box-shadow: 0 2px 5px rgba(0,0,0,0.8); transition: transform 0.2s; animation: pinPulse 2s infinite; }
-@keyframes pinPulse { 0% { box-shadow: 0 0 0 0 rgba(227, 53, 13, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(227, 53, 13, 0); } 100% { box-shadow: 0 0 0 0 rgba(227, 53, 13, 0); } }
-.map-pin:hover { transform: translate(-50%, -50%) scale(1.3); z-index: 20; }
+
+.map-pin { 
+    position: absolute; 
+    width: 14px;  /* Diminuído (era 18px) */
+    height: 14px; /* Diminuído (era 18px) */
+    background: var(--dex-red); 
+    border: 2px solid #fff; /* Borda um pouco mais fina para combinar com o novo tamanho */
+    border-radius: 50%; 
+    
+    /* MÁGICA DO CONTRA-ZOOM: Mantém o tamanho constante independente do zoom */
+    transform: translate(-50%, -50%) scale(calc(1 / var(--map-zoom, 1))); 
+    
+    pointer-events: auto; 
+    cursor: help; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.8); 
+    transition: transform 0.2s; 
+    animation: pinPulse 2s infinite; 
+}
+
+@keyframes pinPulse { 
+    0% { box-shadow: 0 0 0 0 rgba(227, 53, 13, 0.7); } 
+    70% { box-shadow: 0 0 0 8px rgba(227, 53, 13, 0); } /* Raio do pulso ajustado para o novo tamanho */
+    100% { box-shadow: 0 0 0 0 rgba(227, 53, 13, 0); } 
+}
+
+/* Hover com contra-zoom para não distorcer ao passar o mouse */
+.map-pin:hover { 
+    transform: translate(-50%, -50%) scale(calc(1.3 / var(--map-zoom, 1))); 
+    z-index: 20; 
+}
+
 .pin-tooltip { position: absolute; bottom: 100%; margin-bottom: 12px; left: 50%; transform: translateX(-50%); background: #111; border: 2px solid var(--dex-border); border-radius: 8px; padding: 6px; display: flex; flex-wrap: wrap; gap: 4px; width: max-content; max-width: 180px; opacity: 0; visibility: hidden; transition: 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.8); pointer-events: none; z-index: 100; }
 .pin-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border-width: 6px; border-style: solid; border-color: #111 transparent transparent transparent; }
 .pin-tooltip::before { content: ''; position: absolute; top: 100%; left: 0; width: 100%; height: 15px; background: transparent; }
 .map-pin:hover .pin-tooltip, .pin-tooltip:hover { opacity: 1; visibility: visible; pointer-events: auto; }
-.pin-poke-img { width: 40px; height: 40px; object-fit: contain; background: rgba(255,255,255,0.1); border-radius: 6px; border: 1px solid #333; cursor: pointer; transition: transform 0.1s, border-color 0.1s; }
-.pin-poke-img:hover { transform: scale(1.15); border-color: #ffcb05; }
 
-/* SETAS EMBUTIDAS NO MODAL */
-.nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: #333; color: #fff; border: 3px solid var(--dex-border); width: 26px; height: 55px; border-radius: 15px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.2rem; font-weight: 900; z-index: 10; box-shadow: inset 2px 2px 2px rgba(255,255,255,0.2), 2px 2px 0 rgba(0,0,0,0.15); transition: all 0.1s ease; outline: none; }
-.prev-arrow { left: 6px; } .next-arrow { right: 6px; }
-.nav-arrow:hover { color: #ffcb05; background: #444; }
-.nav-arrow:active { background: #111; box-shadow: inset 2px 2px 6px rgba(0,0,0,0.6); }
+/* Imagens dos Pokémons diminuídas */
+.pin-poke-img { 
+    width: 26px;  /* Diminuído (era 40px) */
+    height: 26px; /* Diminuído (era 40px) */
+    object-fit: contain; 
+    background: rgba(255,255,255,0.1); 
+    border-radius: 6px; 
+    border: 1px solid #333; 
+    cursor: pointer; 
+    transition: transform 0.1s, border-color 0.1s; 
+}
+.pin-poke-img:hover { transform: scale(1.15); border-color: #ffcb05; }
 
 /* RESPONSIVIDADE E ADAPTAÇÃO DE TELAS */
 @media (min-width: 850px) {
