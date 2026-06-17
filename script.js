@@ -30,8 +30,6 @@ const typeModifiers = {
 // ==========================================
 // CONFIGURAÇÃO DO MAPA MÚNDI E PAN/ZOOM
 // ==========================================
-// ATENÇÃO: Edite os valores de "bounds" (minX, minY, maxX, maxY) para bater 
-// exatamente com as coordenadas extremas do recorte da sua imagem JPG!
 const cityMaps = {
     "kanto": { 
         name: "Kanto", minZ: 0, maxZ: 9, defaultZ: 7,
@@ -128,20 +126,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const searchModule = document.getElementById('search-module-container');
             const filtersModule = document.getElementById('filters-container');
             const mapContainer = document.getElementById('map-viewer-container');
-            const mapSidebar = document.getElementById('map-sidebar-menu'); // O novo menu
+            const mapSidebar = document.getElementById('map-sidebar-menu');
             
             if (activeCategory === 'mapas') {
                 gridContainer.style.display = 'none';
                 searchModule.style.display = 'none';
                 filtersModule.style.display = 'none';
-                if(mapSidebar) mapSidebar.style.display = 'block'; // Mostra os cards dos mapas
+                if(mapSidebar) mapSidebar.style.display = 'block'; 
                 mapContainer.style.display = 'flex';
                 initMapViewer(); 
             } else {
                 gridContainer.style.display = 'grid';
                 searchModule.style.display = 'block';
                 filtersModule.style.display = 'block';
-                if(mapSidebar) mapSidebar.style.display = 'none'; // Esconde os cards dos mapas
+                if(mapSidebar) mapSidebar.style.display = 'none'; 
                 mapContainer.style.display = 'none';
                 applyFilters();
             }
@@ -151,8 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listeners do GPS Setorial (Mapa)
     document.getElementById('btn-z-up').addEventListener('click', () => changeZ('up'));
     document.getElementById('btn-z-down').addEventListener('click', () => changeZ('down'));
-    
-    // Antigo seletor removido, a mudança de cidade agora ocorre nos novos cards do menu lateral.
 });
 
 async function fetchData() {
@@ -171,7 +167,7 @@ async function fetchData() {
         currentVisibleList = [...pokemonData]; 
         applyFilters(); 
     } catch (e) { 
-        console.error("Erro ao carregar os bancos de dados. Verifique se os nomes dos 3 arquivos JSON estão corretos.", e); 
+        console.error("Erro ao carregar os bancos de dados.", e); 
     }
 }
 
@@ -305,16 +301,12 @@ function initPanAndZoom() {
         applyTransform();
     };
 
-    // Zoom com o scroll do mouse
     wrapper.addEventListener('wheel', (e) => {
         e.preventDefault(); 
         if (e.deltaY < 0) zoomMap('in');   
         else zoomMap('out');               
     }, { passive: false });
 
-    // =====================================
-    // EVENTOS DE MOUSE (COMPUTADOR)
-    // =====================================
     wrapper.addEventListener('mousedown', (e) => {
         isDragging = true;
         startDragX = e.clientX - mapTransform.x;
@@ -332,11 +324,8 @@ function initPanAndZoom() {
     wrapper.addEventListener('mouseup', () => isDragging = false);
     wrapper.addEventListener('mouseleave', () => isDragging = false);
 
-    // =====================================
-    // EVENTOS DE TOUCH (CELULAR E TABLET)
-    // =====================================
     wrapper.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) { // Garante que só funciona com 1 dedo
+        if (e.touches.length === 1) { 
             isDragging = true;
             startDragX = e.touches[0].clientX - mapTransform.x;
             startDragY = e.touches[0].clientY - mapTransform.y;
@@ -345,7 +334,7 @@ function initPanAndZoom() {
 
     wrapper.addEventListener('touchmove', (e) => {
         if (!isDragging || e.touches.length !== 1) return;
-        e.preventDefault(); // Impede a tela do celular de rolar para baixo enquanto arrasta o mapa
+        e.preventDefault(); 
         mapTransform.x = e.touches[0].clientX - startDragX;
         mapTransform.y = e.touches[0].clientY - startDragY;
         applyTransform();
@@ -354,9 +343,6 @@ function initPanAndZoom() {
     wrapper.addEventListener('touchend', () => isDragging = false);
     wrapper.addEventListener('touchcancel', () => isDragging = false);
 
-    // =====================================
-    // BOTÕES DE CONTROLE
-    // =====================================
     document.getElementById('btn-zoom-in').addEventListener('click', () => zoomMap('in'));
     document.getElementById('btn-zoom-out').addEventListener('click', () => zoomMap('out'));
     document.getElementById('btn-zoom-reset').addEventListener('click', window.resetMapTransform);
@@ -376,8 +362,8 @@ function initMapViewer() {
             card.className = `map-select-card ${currentCity === key ? 'active' : ''}`;
             card.dataset.city = key;
             
-            // Puxa a imagem Z padrão para usar de miniatura
-            const thumbSrc = `continentes/${key}-z${city.defaultZ}.jpg`;
+            // Puxa a imagem do ÍCONE padronizado (Ex: kanto-icone.png)
+            const thumbSrc = `continentes/${key}-icone.png`;
             
             card.innerHTML = `
                 <img src="${thumbSrc}" class="map-card-thumb" onerror="this.src='https://via.placeholder.com/55x55/111/32cd32?text=MAP'">
@@ -433,7 +419,7 @@ function updateMapDisplay() {
     const btnUp = document.getElementById('btn-z-up');
     const btnDown = document.getElementById('btn-z-down');
 
-    // Imagem do mapa puxada da pasta continentes (TUDO MINÚSCULO)
+    // Imagem do mapa principal em PNG transparente
     mapImage.src = `continentes/${currentCity}-z${currentZ}.png`;
     mapImage.alt = `Mapa de ${cityConfig.name} - Z:${currentZ}`;
     zDisplay.textContent = currentZ;
@@ -519,7 +505,7 @@ function renderMapPins() {
 }
 
 // ==========================================
-// UTILITÁRIOS DE LOCALIZAÇÃO (TOOLTIPS E ACORDEÃO)
+// UTILITÁRIOS DE LOCALIZAÇÃO E MODAL
 // ==========================================
 window.toggleAccordion = (arrowEl, event) => {
     if(event) event.stopPropagation();
@@ -546,16 +532,11 @@ window.copyLoc = (text, el, event) => {
     }).catch(err => console.error('Erro ao copiar: ', err));
 };
 
-// ==========================================
-// LÓGICA DO MODAL (CARD DE POKÉMON E RADAR)
-// ==========================================
 window.navigatePokemon = (direction, event) => {
     if(event) event.stopPropagation(); 
-    
     if (currentVisibleList.length === 0) return;
 
     currentModalIndex += direction;
-
     if (currentModalIndex < 0) {
         currentModalIndex = currentVisibleList.length - 1; 
     } else if (currentModalIndex >= currentVisibleList.length) {
@@ -642,17 +623,14 @@ window.openModal = (id) => {
                     <p id="radar-label">RASTREANDO...</p>
                 </div>
             </div>
-
             <div class="boss-guide-module">
                 <h4 class="label-tech">MANUAL DE COMBATE</h4>
                 <p class="boss-guide-text">${p.guide || 'Nenhuma informação avançada detectada sobre este Boss.'}</p>
             </div>
-
             <div class="boss-loot-module">
                 <h4 class="label-tech">RECOMPENSA DIÁRIA</h4>
                 <div class="loot-box">${p.loot || '???'}</div>
             </div>
-
             <div class="eff-module">
                 <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
                 <div class="eff-group">
@@ -710,14 +688,11 @@ window.openModal = (id) => {
                     <p id="radar-label">RASTREANDO...</p>
                 </div>
             </div>
-
             <div class="data-module">
                 <h4 class="label-tech">STATUS BASE</h4>
                 <div class="stats-list">${statsHTML}</div>
             </div>
-
             ${soulsHTML}
-
             <div class="eff-module">
                 <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
                 <div class="eff-group">
@@ -746,12 +721,10 @@ window.openModal = (id) => {
                     <p id="radar-label">RASTREANDO...</p>
                 </div>
             </div>
-
             <div class="data-module">
                 <h4 class="label-tech">STATUS BASE</h4>
                 <div class="stats-list">${statsHTML}</div>
             </div>
-
             <div class="eff-module">
                 <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
                 <div class="eff-group">
@@ -763,7 +736,6 @@ window.openModal = (id) => {
                     <div class="eff-icons">${matchups.resist.length > 0 ? matchups.resist.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
                 </div>
             </div>
-
             <div class="evo-module">
                 <h4 class="label-tech">CADEIA EVOLUTIVA</h4>
                 <div class="evo-icons" id="evo-container">
@@ -776,12 +748,9 @@ window.openModal = (id) => {
     document.getElementById('modal-body').innerHTML = `
         <div class="modal-pokedex-view">
             <div class="modal-left-wing">
-                
                 <div class="screen-border" style="position: relative;">
-                    
                     <button class="nav-arrow prev-arrow" title="Anterior" onclick="navigatePokemon(-1, event)">&#10094;</button>
                     <button class="nav-arrow next-arrow" title="Próximo" onclick="navigatePokemon(1, event)">&#10095;</button>
-
                     <div class="main-screen ${pCategory !== 'normal' ? 'main-screen-stacked' : ''}">
                         ${pCategory !== 'normal' ? `
                             <div class="stacked-container">
@@ -804,13 +773,11 @@ window.openModal = (id) => {
                         `}
                     </div>
                 </div>
-                
                 <div class="location-module">
                     <h4 class="label-tech">${pCategory === 'boss' ? 'COORDENADA DO COVIL' : 'LOCALIZAÇÕES DETECTADAS'}</h4>
                     <div class="loc-list-scroll">${locationsHTML || '<p style="color:#aaa; font-family:monospace;">Nenhum registro encontrado.</p>'}</div>
                 </div>
             </div>
-
             <div class="modal-right-wing">
                 ${rightWingHTML}
             </div>
