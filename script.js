@@ -1,8 +1,8 @@
 // ==========================================
-// VARIÁVEIS GLOBAIS DE ESTADO
+// VARIÁVEIS GLOBAIS DE ESTADO E MAPA
 // ==========================================
 let pokemonData = [];
-let currentVisibleList = []; // Guarda a lista que está sendo exibida na tela (respeitando filtros)
+let currentVisibleList = []; // Guarda a lista que está sendo exibida na tela
 let currentModalIndex = 0;   // Guarda a posição do Pokémon aberto no modal
 
 let activeTypeFilter = 'all';
@@ -27,26 +27,26 @@ const typeModifiers = {
     Fairy: { Fighting: 0.5, Poison: 2, Bug: 0.5, Dragon: 0, Dark: 0.5, Steel: 2 }
 };
 
-// ==========================================
-// CONFIGURAÇÃO DO MAPA MÚNDI E PAN/ZOOM
-// ==========================================
+// Configurações do Mapa
 const cityMaps = {
-    "kanto": { 
-        name: "Kanto", minZ: 0, maxZ: 9, defaultZ: 7,
-        bounds: { minX: 539, minY: 635, maxX: 1367, maxY: 1811 } 
-    }
+    "kanto": { name: "Kanto", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 539, minY: 635, maxX: 1367, maxY: 1811 } },
+    "johto": { name: "Johto", minZ: 5, maxZ: 8, defaultZ: 7, bounds: { minX: 500, minY: 500, maxX: 1500, maxY: 1791 } },
+    "novocontinente": { name: "Novo Continente", minZ: 6, maxZ: 8, defaultZ: 7, bounds: { minX: 0, minY: 0, maxX: 3000, maxY: 3000 } },
+    "sinnoh": { name: "Sinnoh", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 0, minY: 0, maxX: 4000, maxY: 4000 } },
+    "seviiisland": { name: "Sevii Islands", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 0, minY: 0, maxX: 2000, maxY: 2000 } },
+    "vip": { name: "VIP", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 0, minY: 0, maxX: 1000, maxY: 1000 } },
+    "trainercenter": { name: "Trainer Center", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 0, minY: 0, maxX: 1000, maxY: 1000 } }
 };
 
 let currentCity = "kanto"; 
 let currentZ = cityMaps[currentCity].defaultZ;
-
 let mapTransform = { scale: 1, x: 0, y: 0 };
 let isDragging = false;
 let startDragX = 0;
 let startDragY = 0;
 
 // ==========================================
-// INICIALIZAÇÃO E LISTENERS GERAIS
+// INICIALIZAÇÃO
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initOakModal();
     initPanAndZoom(); 
     
-    // Configuração do Tema Escuro
+    // Modo Escuro
     const themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) {
         if (localStorage.getItem('pokedex-dark-mode') === 'true') {
@@ -67,11 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Modais e cliques fora
     document.querySelector('.close-btn').onclick = () => document.getElementById('pokemon-modal').classList.add('hidden');
     window.onclick = e => { if(e.target.classList.contains('modal-overlay')) document.getElementById('pokemon-modal').classList.add('hidden'); };
     
-    // Sistema de Busca
     document.getElementById('search-input').addEventListener('input', applyFilters);
     document.getElementById('search-input').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') this.blur(); 
@@ -81,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('search-input').blur(); 
     });
 
-    // Filtros de Captura
     document.querySelectorAll('#catch-filters .filter-pill').forEach(pill => {
         pill.addEventListener('click', () => {
             document.querySelectorAll('#catch-filters .filter-pill').forEach(p => p.classList.remove('active'));
@@ -91,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Alternância de Abas (Normal, Boss, Dark, Mapas)
+    // Controle de Abas e Transição de Telas
     document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -122,11 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Listeners do GPS Setorial (Mapa)
+    // Listeners Mapa Andares
     document.getElementById('btn-z-up').addEventListener('click', () => changeZ('up'));
     document.getElementById('btn-z-down').addEventListener('click', () => changeZ('down'));
 });
 
+// ==========================================
+// FUNÇÕES DE DADOS E FILTROS
+// ==========================================
 async function fetchData() {
     try {
         const [normalRes, darkRes, bossRes] = await Promise.all([
@@ -134,14 +134,12 @@ async function fetchData() {
             fetch('data_dark.json?v=' + new Date().getTime()),
             fetch('data_boss.json?v=' + new Date().getTime())
         ]);
-
         const normalData = await normalRes.json();
         const darkData = await darkRes.json();
         const bossData = await bossRes.json();
-
         pokemonData = [...normalData, ...darkData, ...bossData];
         currentVisibleList = [...pokemonData]; 
-        applyFilters(); 
+        renderPokemon(pokemonData);
     } catch (e) { 
         console.error("Erro ao carregar os bancos de dados.", e); 
     }
@@ -210,7 +208,6 @@ function applyFilters() {
 window.toggleCatch = (event, id) => {
     event.stopPropagation();
     const idx = caughtPokemon.indexOf(id);
-    
     if(idx > -1) {
         caughtPokemon.splice(idx, 1);
         event.target.classList.remove('caught');
@@ -218,12 +215,8 @@ window.toggleCatch = (event, id) => {
         caughtPokemon.push(id);
         event.target.classList.add('caught');
     }
-    
     localStorage.setItem('pokedex-caught', JSON.stringify(caughtPokemon));
-
-    if (activeCatchFilter !== 'all') {
-        applyFilters();
-    }
+    if (activeCatchFilter !== 'all') { applyFilters(); }
 };
 
 function renderPokemon(list) {
@@ -231,7 +224,6 @@ function renderPokemon(list) {
     grid.innerHTML = list.map(p => {
         const isCaught = caughtPokemon.includes(p.id);
         const pCategory = p.category || 'normal';
-        
         return `
             <div class="pk-card" onclick="openModal('${p.id}')">
                 <div class="pk-card-inner">
@@ -239,9 +231,7 @@ function renderPokemon(list) {
                     <div class="catch-btn ${isCaught ? 'caught' : ''}" onclick="toggleCatch(event, '${p.id}')" title="Marcar como Capturado"></div>
                     <img src="${p.image}" loading="lazy">
                     <h3 class="pk-name">${p.name}</h3>
-                    
                     <div class="pk-gen-bar">${pCategory === 'boss' ? 'BOSS 24H' : (pCategory === 'dark' ? 'DARK' : 'GEN ' + p.generation)}</div>
-                    
                     <div class="pk-types-mini">
                         ${p.types.map(t => `<span class="type-dot" style="background:var(--type-${t.toLowerCase()})"></span>`).join('')}
                     </div>
@@ -252,7 +242,7 @@ function renderPokemon(list) {
 }
 
 // ==========================================
-// SISTEMA DE PAN (ARRASTAR) & ZOOM DO MAPA
+// PAN (ARRASTAR) & ZOOM DO MAPA (COM CONTRA-ZOOM)
 // ==========================================
 function initPanAndZoom() {
     const wrapper = document.getElementById('map-wrapper');
@@ -339,7 +329,7 @@ function initMapViewer() {
             card.className = `map-select-card ${currentCity === key ? 'active' : ''}`;
             card.dataset.city = key;
             
-            // Puxa a imagem do ÍCONE padronizado (Ex: kanto-icone.png)
+            // Puxa a miniatura personalizada
             const thumbSrc = `continentes/${key}-icone.png`;
             
             card.innerHTML = `
@@ -351,16 +341,11 @@ function initMapViewer() {
             `;
             
             card.addEventListener('click', () => {
-                // Remove a classe 'active' de todos os cards
                 document.querySelectorAll('.map-select-card').forEach(c => c.classList.remove('active'));
-                // Adiciona 'active' no card que foi clicado
                 card.classList.add('active');
                 
-                // Atualiza as variáveis globais
                 currentCity = key;
                 currentZ = cityMaps[currentCity].defaultZ;
-                
-                // Atualiza o mapa grandão na tela
                 updateMapDisplay();
             });
             
@@ -375,11 +360,8 @@ function changeZ(direction) {
     const cityConfig = cityMaps[currentCity];
     let newZ = currentZ;
 
-    if (direction === 'up') {
-        newZ = currentZ - 1; 
-    } else if (direction === 'down') {
-        newZ = currentZ + 1; 
-    }
+    if (direction === 'up') newZ = currentZ - 1; 
+    else if (direction === 'down') newZ = currentZ + 1; 
 
     if (newZ >= cityConfig.minZ && newZ <= cityConfig.maxZ) {
         currentZ = newZ;
@@ -396,7 +378,7 @@ function updateMapDisplay() {
     const btnUp = document.getElementById('btn-z-up');
     const btnDown = document.getElementById('btn-z-down');
 
-    // Imagem do mapa principal em PNG transparente
+    // Imagem do mapa principal
     mapImage.src = `continentes/${currentCity}-z${currentZ}.png`;
     mapImage.alt = `Mapa de ${cityConfig.name} - Z:${currentZ}`;
     zDisplay.textContent = currentZ;
@@ -470,7 +452,6 @@ function renderMapPins() {
         pin.style.left = `${percentX}%`;
         pin.style.top = `${percentY}%`;
 
-        // Tooltip com imagens clicáveis
         let tooltipHTML = pokemons.map(p => 
             `<img src="${p.image}" class="pin-poke-img" title="${p.name}" onclick="openModal('${p.id}')">`
         ).join('');
@@ -482,7 +463,7 @@ function renderMapPins() {
 }
 
 // ==========================================
-// UTILITÁRIOS DE LOCALIZAÇÃO E MODAL
+// UTILITÁRIOS E MODAL
 // ==========================================
 window.toggleAccordion = (arrowEl, event) => {
     if(event) event.stopPropagation();
@@ -514,11 +495,8 @@ window.navigatePokemon = (direction, event) => {
     if (currentVisibleList.length === 0) return;
 
     currentModalIndex += direction;
-    if (currentModalIndex < 0) {
-        currentModalIndex = currentVisibleList.length - 1; 
-    } else if (currentModalIndex >= currentVisibleList.length) {
-        currentModalIndex = 0; 
-    }
+    if (currentModalIndex < 0) currentModalIndex = currentVisibleList.length - 1; 
+    else if (currentModalIndex >= currentVisibleList.length) currentModalIndex = 0; 
 
     const targetPokemon = currentVisibleList[currentModalIndex];
     openModal(targetPokemon.id); 
@@ -591,6 +569,13 @@ window.openModal = (id) => {
     }).join('');
 
     let rightWingHTML = '';
+    const statsHTML = Object.entries(p.stats || {}).map(([name, val]) => `
+        <div class="stat-row">
+            <label>${name.toUpperCase()}</label>
+            <div class="bar-container"><div class="bar-fill" style="width:${(val/255)*100}%"></div></div>
+            <span class="stat-num">${val}</span>
+        </div>
+    `).join('');
 
     if (pCategory === 'boss') {
         rightWingHTML = `
@@ -621,14 +606,6 @@ window.openModal = (id) => {
             </div>
         `;
     } else if (pCategory === 'dark') {
-        const statsHTML = Object.entries(p.stats || {}).map(([name, val]) => `
-            <div class="stat-row">
-                <label>${name.toUpperCase()}</label>
-                <div class="bar-container"><div class="bar-fill" style="width:${(val/255)*100}%"></div></div>
-                <span class="stat-num">${val}</span>
-            </div>
-        `).join('');
-
         let soulsHTML = '';
         if (p.souls) {
             const soulsNormal = p.souls.normal ? p.souls.normal : '???';
@@ -637,25 +614,14 @@ window.openModal = (id) => {
                 <div class="souls-module">
                     <h4 class="label-tech">CUSTO DE CONVERSÃO (SOULS)</h4>
                     <div class="souls-container">
-                        <div class="soul-box">
-                            <span class="soul-label">NORMAL</span>
-                            <span class="soul-value">${soulsNormal}</span>
-                        </div>
-                        <div class="soul-box eternizado">
-                            <span class="soul-label">ETERNIZADO</span>
-                            <span class="soul-value">${soulsEternizado}</span>
-                        </div>
+                        <div class="soul-box"><span class="soul-label">NORMAL</span><span class="soul-value">${soulsNormal}</span></div>
+                        <div class="soul-box eternizado"><span class="soul-label">ETERNIZADO</span><span class="soul-value">${soulsEternizado}</span></div>
                     </div>
                 </div>
             `;
         } else {
             const textoExclusivo = p.exclusive ? p.exclusive : 'CAPTURA EXCLUSIVA / EVENTO';
-            soulsHTML = `
-                <div class="souls-module">
-                    <h4 class="label-tech">MÉTODO DE OBTENÇÃO</h4>
-                    <span class="exclusive-badge">${textoExclusivo.toUpperCase()}</span>
-                </div>
-            `;
+            soulsHTML = `<div class="souls-module"><h4 class="label-tech">MÉTODO DE OBTENÇÃO</h4><span class="exclusive-badge">${textoExclusivo.toUpperCase()}</span></div>`;
         }
 
         rightWingHTML = `
@@ -683,14 +649,6 @@ window.openModal = (id) => {
             </div>
         `;
     } else {
-        const statsHTML = Object.entries(p.stats || {}).map(([name, val]) => `
-            <div class="stat-row">
-                <label>${name.toUpperCase()}</label>
-                <div class="bar-container"><div class="bar-fill" style="width:${(val/255)*100}%"></div></div>
-                <span class="stat-num">${val}</span>
-            </div>
-        `).join('');
-
         rightWingHTML = `
             <div class="radar-module">
                 <div class="radar-display" id="radar-screen">
@@ -832,7 +790,7 @@ window.updateRadar = (name, el, event) => {
     
     const screen = document.getElementById('radar-screen');
     const nomeSeguro = name.replace(/\//g, '-');
-    const imagePath = `continentes/${nomeSeguro}.png`; 
+    const imagePath = `mapas/${nomeSeguro}.png`; 
     
     let locName = name.toUpperCase();
     let coords = "SINAL GPS ESTABELECIDO";
@@ -887,7 +845,7 @@ const oakDialogues = [
     "Olá! Bem-vindo ao mundo de PokemonR - PBR!",
     "Esta Pokedex e uma pagina criada de fãs para fãs e NAO é um produto oficial do Servidor",
     "Um agradecimento super especial a comunidade pelo apoio continuo!",
-    "Apoiadores: Jarubinha, Ricardobtj, Upzin, Paleguazv, Marlin, Leander Hastings",
+    "Apoiadores: Jarubinha, Ricardobtj, Upzin, Paleguazv, Marlin, Leander Hastings, Vincent",
     "Desenvolvida por: Kalazatti.",
     "Use a barra de pesquisa ou os filtros para rastrear os POKeMON. Boa caca!"
 ];
