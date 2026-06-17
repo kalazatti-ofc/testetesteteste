@@ -434,7 +434,7 @@ function updateMapDisplay() {
     const btnDown = document.getElementById('btn-z-down');
 
     // Imagem do mapa puxada da pasta continentes (TUDO MINÚSCULO)
-    mapImage.src = `continentes/${currentCity}-z${currentZ}.jpg`;
+    mapImage.src = `continentes/${currentCity}-z${currentZ}.png`;
     mapImage.alt = `Mapa de ${cityConfig.name} - Z:${currentZ}`;
     zDisplay.textContent = currentZ;
     statusText.textContent = `SINAL ESTABELECIDO: ${cityConfig.name.toUpperCase()} (Z:${currentZ})`;
