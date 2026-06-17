@@ -872,7 +872,7 @@ body.dark-mode .nav-arrow:active {
 }
 
 /* ========================================= */
-/* TELA DO MAPA - FUNDO LISO E SEM RELEVO  */
+/* TELA DO MAPA - FUNDO LISO E SEM RELEVO    */
 /* ========================================= */
 
 /* 1. Define o fundo liso na tela principal */
@@ -882,14 +882,11 @@ body.dark-mode .nav-arrow:active {
     border: 4px solid #111;         /* Borda escura para delimitar a tela */
 }
 
-/* 2. Remove qualquer sombra e fundo dos elementos internos */
-#map-wrapper, 
-#map-content, 
-#map-wrapper img {
-    background: transparent !important;
+/* Mantém as listras, mas arranca o relevo APENAS do mapa gigante */
+.map-screen .map-overlay,
+.pokedex-main-display .map-overlay,
+#map-wrapper .map-overlay {
     box-shadow: none !important;
-    filter: none !important; /* Remove drop-shadows caso existam */
-    border: none !important;
 }
 
 /* ==========================================
@@ -1017,3 +1014,4 @@ body.dark-mode .nav-arrow:active {
         padding: 6px 10px;
     }
 }
+
