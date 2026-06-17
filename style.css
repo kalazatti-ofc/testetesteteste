@@ -871,6 +871,10 @@ body.dark-mode .nav-arrow:active {
     font-weight: bold;
 }
 
+.map-screen, #map-wrapper {
+    background: transparent !important;
+}
+
 /* ==========================================
    CONTROLES FLUTUANTES DENTRO DO MAPA
 ========================================== */
