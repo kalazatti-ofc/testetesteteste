@@ -115,7 +115,11 @@ body {
 .cat-btn {
     flex: 1; padding: 10px 5px; border-radius: 8px; font-family: monospace; font-size: 0.8rem;
     font-weight: 900; text-align: center; border: 3px solid var(--dex-border);
-    background: #444; color: #aaa; cursor: pointer; transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: #444; color: #aaa; cursor: pointer; 
+    
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    will-change: transform, box-shadow; /* Joga para a GPU */
+    
     box-shadow: inset -2px -2px 5px rgba(0,0,0,0.5), inset 2px 2px 5px rgba(255,255,255,0.1), 3px 3px 0 var(--dex-border);
 }
 
@@ -163,7 +167,11 @@ body {
 .filter-pill { 
     background: #444; border: 2px solid var(--dex-border); border-radius: 8px; padding: 6px 10px; 
     color: #fff; font-weight: 800; font-size: 0.65rem; cursor: pointer; text-transform: uppercase; 
-    flex-grow: 1; text-align: center; transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    flex-grow: 1; text-align: center; 
+    
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    will-change: transform, box-shadow; /* Joga para a GPU */
+
     box-shadow: inset -2px -2px 3px rgba(0,0,0,0.5), inset 1px 1px 3px rgba(255,255,255,0.1), 2px 2px 0 var(--dex-border); 
 }
 
@@ -203,8 +211,11 @@ body {
 /* Botão de Mapa Padrão (Inativo - Afundado/Opaco) */
 .map-select-card {
     background: #444444; color: #ffffff; border: 3px solid var(--dex-border); border-radius: 8px; 
-    padding: 6px; display: flex; align-items: center; gap: 10px; cursor: pointer; 
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); outline: none; flex-shrink: 0;
+    padding: 6px; display: flex; align-items: center; gap: 10px; cursor: pointer; outline: none; flex-shrink: 0;
+    
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    will-change: transform, box-shadow; /* Joga para a GPU */
+
     box-shadow: inset -2px -2px 5px rgba(0,0,0,0.5), inset 2px 2px 5px rgba(255,255,255,0.1), 3px 3px 0 var(--dex-border);
 }
 
