@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <a href="LINK_DO_SEU_LIVEPIX" target="_blank" class="floating-support-btn" title="Apoiar o Projeto">
+    <a href="#" onclick="initSupportModal(event)" class="floating-support-btn" title="Apoiar o Projeto">
         <svg viewBox="0 0 24 24" width="20" height="20" class="coffee-svg"><path fill="currentColor" d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM2 21h18v-2H2v2z"/></svg>
         <span class="support-text">PAGAR UM CAFÉ</span>
     </a>
@@ -161,6 +161,26 @@
                 <div class="oak-dialog-box" id="oak-dialog-box">
                     <p id="oak-text"></p>
                     <span class="oak-arrow" id="oak-arrow">▼</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DO KALAZATTI (APOIADOR) -->
+    <div id="support-modal" class="oak-overlay hidden">
+        <div class="oak-container">
+            <button class="oak-close-btn" id="close-support">&times;</button>
+            <div class="oak-screen">
+                <div class="oak-sprite-area">
+                    <!-- Coloquei o sprite do 'Red' (Protagonista clássico) para te representar -->
+                    <img src="https://play.pokemonshowdown.com/sprites/trainers/red.png" class="oak-sprite" alt="Kalazatti">
+                </div>
+                <div class="oak-dialog-box" id="support-dialog-box">
+                    <p id="support-text"></p>
+                    <span class="oak-arrow" id="support-arrow">▼</span>
+                    
+                    <!-- Substitua o LINK_DO_SEU_LIVEPIX aqui -->
+                    <a href="LINK_DO_SEU_LIVEPIX" target="_blank" id="final-support-btn" class="final-support-btn hidden">🪙 APOIAR VIA LIVEPIX</a>
                 </div>
             </div>
         </div>
