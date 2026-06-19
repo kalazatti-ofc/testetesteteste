@@ -912,7 +912,8 @@ function startTyping() {
 // ==========================================
 const supportDialogues = [
     "E ai, Treinador! Beleza? Eu sou o Kalazatti.",
-    "Desenvolvi essa Pokedex com muito carinho para ajudar a nossa comunidade do Poketibia PBR.         Manter esse projeto no ar, sem propagandas chatas e com tudo atualizado, exige muito tempo e cafeina rsrs.",
+    "Desenvolvi essa Pokedex com muito carinho para ajudar a nossa comunidade do Poketibia PBR.",
+    "Manter esse projeto no ar, sem propagandas chatas e com tudo atualizado, exige muito tempo e cafeina rsrs.",
     "Se essa ferramenta tem ajudado na sua jornada e voce quiser me pagar um cafezinho para manter a pokedex atualizada...",
     "E so clicar no botao abaixo! Qualquer ajuda e super bem-vinda e me motiva a trazer mais novidades e manter o projeto vivo.",
     "Muito obrigado e boa caçada! Qualquer dúvida ou idéia para a pokedex, é só me chamar!"
@@ -984,12 +985,10 @@ function startSupportTyping() {
         textContainer.innerHTML += supportDialogues[currentSupportIndex].charAt(currentSupportCharIndex);
         currentSupportCharIndex++;
 
-        // Chegou no final da frase atual
         if (currentSupportCharIndex >= supportDialogues[currentSupportIndex].length) {
             clearInterval(supportTypeInterval);
             isSupportTyping = false;
             
-            // Se for a última frase geral, mostra o botão do LivePix
             if (currentSupportIndex === supportDialogues.length - 1) {
                 arrow.style.display = 'none';
                 finalBtn.classList.remove('hidden');
@@ -997,5 +996,5 @@ function startSupportTyping() {
                 arrow.style.display = 'block';
             }
         }
-    }, typingSpeed); // Usa a mesma velocidade (40ms) configurada lá no Oak
+    }, typingSpeed);
 }
