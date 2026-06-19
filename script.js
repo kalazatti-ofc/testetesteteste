@@ -29,13 +29,7 @@ const typeModifiers = {
 
 // Configurações do Mapa
 const cityMaps = {
-    "kanto": { name: "Kanto", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 529, minY: 635, maxX: 1367, maxY: 1801 } },
-    "johto": { name: "Johto", minZ: 5, maxZ: 8, defaultZ: 7, bounds: { minX: 500, minY: 500, maxX: 1500, maxY: 1791 } },
-    "novocontinente": { name: "Novo Continente", minZ: 6, maxZ: 8, defaultZ: 7, bounds: { minX: 0, minY: 0, maxX: 3000, maxY: 3000 } },
-    "sinnoh": { name: "Sinnoh", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 0, minY: 0, maxX: 4000, maxY: 4000 } },
-    "seviiisland": { name: "Sevii Islands", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 0, minY: 0, maxX: 2000, maxY: 2000 } },
-    "vip": { name: "VIP", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 0, minY: 0, maxX: 1000, maxY: 1000 } },
-    "trainercenter": { name: "Trainer Center", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 0, minY: 0, maxX: 1000, maxY: 1000 } }
+    "kanto": { name: "Kanto", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 529, minY: 635, maxX: 1367, maxY: 1801 } }
 };
 
 let currentCity = "kanto"; 
