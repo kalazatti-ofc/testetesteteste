@@ -853,7 +853,7 @@ const oakDialogues = [
 let currentDialogIndex = 0;
 let currentCharIndex = 0;
 let isTyping = false;
-let typingSpeed = 40;
+let typingSpeed = 30;
 let typeInterval;
 
 function initOakModal() {
@@ -905,4 +905,98 @@ function startTyping() {
             arrow.style.display = 'block';
         }
     }, typingSpeed);
+}
+
+// ==========================================
+// MENSAGENS DO CRIADOR (KALAZATTI)
+// ==========================================
+const supportDialogues = [
+    "E ai, Treinador! Beleza? Eu sou o Kalazatti.",
+    "Desenvolvi essa Pokedex com muito carinho para ajudar a nossa comunidade do Poketibia PBR.",
+    "Manter esse projeto no ar, sem propagandas chatas e com tudo atualizado, exige muito tempo e cafeina rsrs.",
+    "Se essa ferramenta tem ajudado na sua jornada e voce quiser me pagar um cafezinho para manter a pokedex atualizada...",
+    "E so clicar no botao abaixo! Qualquer ajuda e super bem-vinda e me motiva a trazer mais novidades e manter o projeto vivo.",
+    "Muito obrigado e boa caçada!"
+];
+
+let currentSupportIndex = 0;
+let currentSupportCharIndex = 0;
+let isSupportTyping = false;
+let supportTypeInterval;
+
+window.initSupportModal = (event) => {
+    if(event) event.preventDefault();
+    const modal = document.getElementById('support-modal');
+    const closeBtn = document.getElementById('close-support');
+    const dialogBox = document.getElementById('support-dialog-box');
+    const finalBtn = document.getElementById('final-support-btn');
+    
+    // Reseta os estados toda vez que abre
+    currentSupportIndex = 0;
+    finalBtn.classList.add('hidden');
+    modal.classList.remove('hidden');
+    
+    startSupportTyping();
+
+    closeBtn.onclick = () => { modal.classList.add('hidden'); };
+
+    dialogBox.onclick = (e) => {
+        // Impede que clicar no botão de doação avance o texto
+        if(e.target.id === 'final-support-btn') return;
+
+        const textContainer = document.getElementById('support-text');
+        const arrow = document.getElementById('support-arrow');
+
+        if (isSupportTyping) {
+            // Pula a animação se clicar enquanto digita
+            clearInterval(supportTypeInterval);
+            textContainer.innerHTML = supportDialogues[currentSupportIndex];
+            isSupportTyping = false;
+            
+            if (currentSupportIndex === supportDialogues.length - 1) {
+                arrow.style.display = 'none';
+                finalBtn.classList.remove('hidden');
+            } else {
+                arrow.style.display = 'block';
+            }
+        } else {
+            // Avança para a próxima frase
+            if (currentSupportIndex < supportDialogues.length - 1) {
+                currentSupportIndex++;
+                startSupportTyping();
+            }
+        }
+    };
+};
+
+function startSupportTyping() {
+    const textContainer = document.getElementById('support-text');
+    const arrow = document.getElementById('support-arrow');
+    const finalBtn = document.getElementById('final-support-btn');
+    
+    textContainer.innerHTML = '';
+    currentSupportCharIndex = 0;
+    isSupportTyping = true;
+    arrow.style.display = 'none';
+    finalBtn.classList.add('hidden');
+
+    clearInterval(supportTypeInterval);
+    supportTypeInterval = setInterval(() => {
+        textContainer.innerHTML += supportDialogues[currentSupportIndex].charAt(currentSupportCharIndex);
+        currentSupportCharIndex++;
+
+        // Chegou no final da frase atual
+        if (currentSupportCharIndex >= supportDialogues[currentSupportIndex].length) {
+            clearInterval(supportTypeInterval);
+            isSupportTyping = false;
+            
+            // Se for a última frase geral, mostra o botão do LivePix
+            if (currentSupportIndex === supportDialogues.length - 1) {
+                arrow.style.display = 'none';
+                finalBtn.classList.remove('hidden');
+            } else {
+                arrow.style.display = 'block';
+            }
+        }
+    }, typingSpeed); // Usa a mesma velocidade (40ms) configurada lá no Oak
 }
