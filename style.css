@@ -191,8 +191,6 @@ body {
 .discord-icon:hover { color: #5865F2; }
 .whatsapp-icon:hover { color: #25D366; } 
 .instagram-icon:hover { color: #E1306C; }
-.support-icon:hover { color: #ff4b2b; }
-.support-icon:hover svg { filter: drop-shadow(2px 2px 0 var(--dex-border)) drop-shadow(0 0 8px rgba(255, 75, 43, 0.8)); }
 
 /* =========================================
    PAINEL DIREITO E CARDS INICIAIS
@@ -529,3 +527,78 @@ body.dark-mode .nav-arrow {
 }
 body.dark-mode .nav-arrow:hover { color: #ffcb05; background: #2a2a2c; }
 body.dark-mode .nav-arrow:active { background: #000; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.8); }
+
+/* =========================================
+   BOTÃO FLUTUANTE GLOBAL (APOIAR / CAFÉ)
+========================================= */
+.floating-support-btn {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffcb05; /* Amarelo clássico Pokedex */
+    color: var(--dex-border);
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 3px solid var(--dex-border);
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 900;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.8);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, background-color 0.2s ease;
+    animation: floatBtn 3s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes floatBtn {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.floating-support-btn:hover {
+    background: #ffe066;
+    animation: none; /* Pausa a flutuação para o usuário clicar fácil */
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 203, 5, 0.6), 5px 6px 0 rgba(0,0,0,0.8);
+}
+
+.floating-support-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 transparent;
+}
+
+/* Modo Escuro */
+body.dark-mode .floating-support-btn {
+    background: #e6b800;
+    box-shadow: 4px 4px 0 #000;
+}
+body.dark-mode .floating-support-btn:hover {
+    box-shadow: 0 0 15px rgba(230, 184, 0, 0.6), 5px 6px 0 #000;
+}
+
+/* ADAPTAÇÃO PARA CELULAR (Vira uma moeda no canto inferior direito) */
+@media (max-width: 850px) {
+    .floating-support-btn {
+        top: auto;
+        bottom: 25px;
+        right: 25px;
+        left: auto;
+        padding: 14px;
+        border-radius: 50%;
+        border-width: 4px;
+        gap: 0;
+    }
+    
+    .support-text {
+        display: none; /* Esconde o texto para ficar apenas o ícone */
+    }
+    
+    .coffee-svg {
+        width: 24px;
+        height: 24px;
+    }
+}
