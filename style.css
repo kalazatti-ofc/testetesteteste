@@ -187,8 +187,12 @@ body {
 .social-btn { color: #e0e0e0; transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; justify-content: center; }
 .social-btn svg { filter: drop-shadow(2px 2px 0 var(--dex-border)); }
 .social-btn:hover { transform: scale(1.3) translateY(-2px); }
-.website-icon:hover { color: #3498db; } .discord-icon:hover { color: #5865F2; }
-.whatsapp-icon:hover { color: #25D366; } .instagram-icon:hover { color: #E1306C; }
+.website-icon:hover { color: #3498db; } 
+.discord-icon:hover { color: #5865F2; }
+.whatsapp-icon:hover { color: #25D366; } 
+.instagram-icon:hover { color: #E1306C; }
+.support-icon:hover { color: #ff4b2b; }
+.support-icon:hover svg { filter: drop-shadow(2px 2px 0 var(--dex-border)) drop-shadow(0 0 8px rgba(255, 75, 43, 0.8)); }
 
 /* =========================================
    PAINEL DIREITO E CARDS INICIAIS
