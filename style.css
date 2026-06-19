@@ -602,3 +602,44 @@ body.dark-mode .floating-support-btn:hover {
         height: 24px;
     }
 }
+
+/* =========================================
+   BOTÃO FINAL DO MODAL DE APOIO
+========================================= */
+.final-support-btn {
+    display: block;
+    margin-top: 15px;
+    background: #ffcb05; /* Amarelo Pokedex */
+    color: #111;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px;
+    border: 4px solid #111;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 #111;
+    transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s;
+    will-change: transform;
+}
+
+.final-support-btn:hover {
+    background: #ffe066;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #111;
+}
+
+.final-support-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 transparent;
+}
+
+.final-support-btn.hidden {
+    display: none !important;
+}
+
+/* Modo escuro para o botão */
+body.dark-mode .final-support-btn {
+    background: #e6b800;
+}
