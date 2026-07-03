@@ -195,7 +195,14 @@ body {
 /* =========================================
    PAINEL DIREITO E CARDS INICIAIS
 ========================================= */
-.pokedex-right-panel { padding: 20px; display: flex; flex-direction: column; flex: 1; transition: background 0.3s ease; }
+.pokedex-right-panel { 
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    flex: 1; 
+    min-width: 0; /* CRÍTICO: Impede que o letreiro estique o painel para fora */
+    transition: background 0.3s ease; 
+}
 .pokedex-main-display {
     background: var(--screen-bg); border-radius: 15px; border: 6px solid var(--dex-border);
     box-shadow: inset 0 10px 20px rgba(0,0,0,0.1); padding: 15px;
@@ -592,7 +599,15 @@ body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
 ========================================= */
 @media (min-width: 850px) {
     .pokedex-body { flex-direction: row; height: 90vh; }
-    .pokedex-left-panel { width: 380px; border-bottom: none; border-right: 6px solid var(--dex-border); display: flex; flex-direction: column;}
+    .pokedex-left-panel { 
+        width: 380px; 
+        min-width: 380px; /* Garante o tamanho exato */
+        flex-shrink: 0;   /* CRÍTICO: Impede que o painel direito o esmague */
+        border-bottom: none; 
+        border-right: 6px solid var(--dex-border); 
+        display: flex; 
+        flex-direction: column;
+    }
     .pokedex-right-panel { flex: 1; background: #c22e28; }
     .pokedex-main-display { display: flex; flex-direction: column; height: 0; min-height: 100%;}
     .modal-pokedex-view { flex-direction: row; height: 85vh; max-width: 900px; }
@@ -1136,20 +1151,28 @@ body.dark-mode .form-toggle-btn:hover {
    AJUSTES ESPECÍFICOS DO FILTRO MESTRE E REGIÕES
 ========================================== */
 .master-toggle {
-    background: var(--dex-red);
-    color: #fff;
+    background: #444; /* Fundo grafite igual às abas de cima */
+    color: #aaa;      /* Texto acinzentado */
     text-align: center;
     border-color: var(--dex-border);
     font-size: 0.85rem;
     padding: 12px 15px;
 }
+
 .master-toggle:hover {
-    background: var(--dex-dark-red);
-    color: #ffcb05;
+    background: #555; /* Clareia levemente ao passar o mouse */
+    color: #fff;      /* Texto fica branco para dar destaque */
 }
+
+/* Comportamento no Modo Escuro */
 body.dark-mode .master-toggle {
-    background: #111;
-    color: #ffcb05;
+    background: #2a2a2c; /* Cor padrão dos botões inativos no Dark Mode */
+    color: #aaa;
+}
+
+body.dark-mode .master-toggle:hover {
+    background: #333;
+    color: #fff;
 }
 
 #gen-filters .filter-pill[data-gen="alola"], 
@@ -1167,7 +1190,10 @@ body.dark-mode .master-toggle {
    VISOR DIGITAL VIP - VERSÃO MINIMALISTA (LCD)
 ========================================== */
 .vip-marquee-container {
-    background: rgba(0, 0, 0, 0.05); 
+    width: 100%; /* Trava na largura do painel */
+    box-sizing: border-box;
+    overflow: hidden; /* Corta qualquer coisa que tentar vazar */
+    background: rgba(0, 0, 0, 0.05);
     padding: 3px;
     border-radius: 10px;
     border: 2px solid rgba(0, 0, 0, 0.12);
