@@ -641,67 +641,68 @@ window.openModal = (id) => {
     }).join('');
 
     // ==========================================
-    // LÓGICA DE STATUS E NATURES
+    // LÓGICA DE STATUS E NATURES (COMPACTA)
     // ==========================================
     const statColors = {
         hp: '#32cd32', atk: '#e3350d', def: '#ff9800',
         spatk: '#3498db', spdef: '#9c27b0', spd: '#f1c40f'
     };
 
-    // 2. IA Avançada de Natures (+ Atributo / - Penalidade) Ordenada e Negritada
     const baseAtk = p.stats?.atk || 0;
     const baseSpAtk = p.stats?.spatk || 0;
     const baseDef = p.stats?.def || 0;
     const baseSpDef = p.stats?.spdef || 0;
-    const totalDef = baseDef + baseSpDef;
-    const totalStats = Object.values(p.stats || {}).reduce((a,b) => a+b, 0);
     
     let recommendedNatures = [];
 
     if (p.natures && Array.isArray(p.natures)) {
-        // Caso você insira manualmente no JSON futuramente
-        recommendedNatures = p.natures;
-    } else if (totalStats >= 600 || totalDef >= 200) {
-        // POKÉMON TANKER / LENDÁRIO DEFENSIVO
-        // Foca primeiro no maior atributo defensivo base dele
-        if (baseDef >= baseSpDef) {
-            recommendedNatures = [
-                "<b>Impish (+DEF / -SP.ATK)</b>", // Maior Defesa Física sem perder Atk
-                "Relaxed (+DEF / -SPD)", 
-                "Bold (+DEF / -ATK)"
-            ];
-        } else {
-            recommendedNatures = [
-                "<b>Careful (+SP.DEF / -SP.ATK)</b>", // Maior Defesa Especial sem perder Atk
-                "Sassy (+SP.DEF / -SPD)", 
-                "Calm (+SP.DEF / -ATK)"
-            ];
-        }
-    } else if (baseSpAtk >= baseAtk) {
-        // FOCADO EM DANO ESPECIAL (Ex: Alakazam, Venusaur)
+        // Suporte caso adicione manual no JSON
+        recommendedNatures = p.natures.map(n => ({ name: n, desc: 'Recomendada', bold: true }));
+    } else if (baseAtk > baseSpAtk) {
+        // FOCADO EM DANO FÍSICO
         recommendedNatures = [
-            "<b>Modest (+SP.ATK / -ATK)</b>", // Foco total no principal e maior dano base (Negrito)
-            "Quiet (+SP.ATK / -SPD)",          // Opção de Trick Room / Mixed
-            "Timid (+SPD / -ATK)"              // Opção de Velocidade máxima
+            { name: "ADAMANT", desc: "+ATK / -SP.ATK", bold: true }, // 1ª Foca no Dano (Melhor)
+            { name: "BRAVE", desc: "+ATK / -SPD", bold: false },     // 2ª Foca no Dano
+            { name: "JOLLY", desc: "+SPD / -SP.ATK", bold: false }   // 3ª Status Secundário (Velocidade)
+        ];
+    } else if (baseSpAtk > baseAtk) {
+        // FOCADO EM DANO ESPECIAL
+        recommendedNatures = [
+            { name: "MODEST", desc: "+SP.ATK / -ATK", bold: true }, // 1ª Foca no Dano (Melhor)
+            { name: "QUIET", desc: "+SP.ATK / -SPD", bold: false },  // 2ª Foca no Dano
+            { name: "TIMID", desc: "+SPD / -ATK", bold: false }      // 3ª Status Secundário (Velocidade)
         ];
     } else {
-        // FOCADO EM DANO FÍSICO (Ex: Charizard, Machamp)
+        // BALANCEADO (Attack == Sp.Atk)
         recommendedNatures = [
-            "<b>Adamant (+ATK / -SP.ATK)</b>", // Foco total no principal e maior dano base (Negrito)
-            "Brave (+ATK / -SPD)",              // Opção de Trick Room / Mixed
-            "Jolly (+SPD / -SP.ATK)"            // Opção de Velocidade máxima
+            { name: "LONELY", desc: "+ATK / -DEF", bold: true },
+            { name: "MILD", desc: "+SP.ATK / -DEF", bold: false },
+            { name: "HASTY", desc: "+SPD / -DEF", bold: false }
         ];
     }
 
-    // 3. Achar o maior status numérico para fazê-lo pulsar na tela
+    // Ajuste da 3ª Nature se o Pokémon for muito defensivo
+    const totalDef = baseDef + baseSpDef;
+    if (totalDef >= 180 && !p.natures) {
+        if (baseDef >= baseSpDef && baseAtk > baseSpAtk) {
+            recommendedNatures[2] = { name: "IMPISH", desc: "+DEF / -SP.ATK", bold: false };
+        } else if (baseSpDef >= baseDef && baseSpAtk > baseAtk) {
+            recommendedNatures[2] = { name: "CALM", desc: "+SP.DEF / -ATK", bold: false };
+        }
+    }
+
     const maxStatValue = Math.max(...Object.values(p.stats || {}));
 
-    // 4. Montar o HTML com as Natures Minimalistas e Barras
+    // HTML Gerado com classe 'info-tooltip' nativa para o balãozinho
     const statsHTML = `
         <div class="nature-container">
             <span class="nature-title">NATURES RECOMENDADAS</span>
             <div class="nature-pills">
-                ${recommendedNatures.map(n => `<span class="nature-pill">${n}</span>`).join('')}
+                ${recommendedNatures.map(n => 
+                    `<span class="nature-pill info-tooltip" data-tooltip="${n.desc}">
+                        ${n.bold ? `<b>${n.name}</b>` : n.name}
+                    </span>`
+                ).join('')}
             </div>
         </div>
         <div class="stats-list-animated">
