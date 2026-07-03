@@ -1016,9 +1016,8 @@ const oakDialogues = [
     "Olá! Bem-vindo ao mundo de PokemonR - PBR!",
     "Esta Pokedex e uma pagina criada de fãs para fãs e NAO é um produto oficial do Servidor",
     "Um agradecimento super especial a comunidade pelo apoio continuo!",
-    "Apoiadores: Jarubinha, Ricardobtj, Bonacina, Upzin, Paleguazv, Marlin, Leander Hastings, Vincent",
     "Desenvolvida por: Kalazatti.",
-    "Use a barra de pesquisa ou os filtros para rastrear os POKeMON. Boa caca!"
+    "Use a barra de pesquisa ou os filtros para rastrear os POKeMON. Boa caça!"
 ];
 
 let currentDialogIndex = 0;
@@ -1370,34 +1369,43 @@ window.drawRouteOnMap = (passos) => {
 // SISTEMA DE APOIADORES VIP (LETREIRO E MODAL)
 // ==========================================
 
-// LISTA DE APOIADORES (Para adicionar alguém, basta colocar o nick aqui com aspas e vírgula)
-const vipSupporters = [
-    "Jarubinha", 
-    "Ricardobtj", 
-    "Bonacina", 
-    "Upzin", 
-    "Paleguazv", 
-    "Marlin", 
-    "Leander Hastings", 
-    "Vincent"
-];
+// Dividimos a guilda em duas classes!
+const vipData = {
+    donators: ["Jarubinha", "TheDarkness", "Avil", "Jumpluf"],
+    contributors: ["Paleguazv", "Marlin", "Leander Hastings", "Vincent", "Ricardobtj", "Bonacina", "Upzin"]
+};
 
 function initVipSystem() {
-    // 1. Injeta os nomes no Letreiro Animado
     const marqueeText = document.getElementById('vip-marquee-text');
-    if (marqueeText && vipSupporters.length > 0) {
-        // Junta os nomes separados por uma bolinha (•)
-        marqueeText.innerHTML = `AGRADECIMENTO ESPECIAL AOS APOIADORES: &nbsp;&nbsp; ★ &nbsp; ${vipSupporters.join(' &nbsp; ★ &nbsp; ')} &nbsp; ★`;
+    const donatorsGrid = document.getElementById('vip-donators-grid');
+    const contributorsGrid = document.getElementById('vip-contributors-grid');
+
+    // 1. Letreiro Animado (Junta todo mundo no visor da Pokédex)
+    if (marqueeText) {
+        // Formata com o ícone correspondente
+        const donatorsString = vipData.donators.map(n => `☕ ${n}`).join(' &nbsp; ★ &nbsp; ');
+        const contributorsString = vipData.contributors.map(n => `🗺️ ${n}`).join(' &nbsp; ★ &nbsp; ');
+        
+        // Exibe no letreiro
+        marqueeText.innerHTML = `HALL DA FAMA: &nbsp;&nbsp; ★ &nbsp; ${donatorsString} &nbsp; ★ &nbsp; ${contributorsString} &nbsp; ★`;
     }
 
-    // 2. Injeta os botões de igualdade no Modal VIP
-    const vipGrid = document.getElementById('vip-names-grid');
-    if (vipGrid) {
-        vipGrid.innerHTML = vipSupporters.map(name => `<div class="vip-name-badge">${name}</div>`).join('');
+    // 2. Injeta os botões de Patronos (Doações)
+    if (donatorsGrid) {
+        donatorsGrid.innerHTML = vipData.donators.map(name => 
+            `<div class="vip-name-badge donator-badge">${name}</div>`
+        ).join('');
+    }
+
+    // 3. Injeta os botões de Pesquisadores (Dados/Bugs)
+    if (contributorsGrid) {
+        contributorsGrid.innerHTML = vipData.contributors.map(name => 
+            `<div class="vip-name-badge contributor-badge">${name}</div>`
+        ).join('');
     }
 }
 
-// Funções para abrir e fechar o Modal VIP pelo HTML
+// Funções para abrir e fechar o Modal VIP
 window.openVipModal = () => {
     document.getElementById('vip-modal').classList.remove('hidden');
 };
