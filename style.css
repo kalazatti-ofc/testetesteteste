@@ -1466,3 +1466,31 @@ body.dark-mode #download-app-modal .report-title {
     color: #ffcb05;
     border-color: #333;
 }
+
+/* ==============================================================
+   AJUSTE DE CORES DO MODAL DO APLICATIVO
+============================================================== */
+/* Cores para o modo Claro (Padrão) */
+.app-modal-text {
+    color: #333333;
+}
+.app-modal-text b {
+    color: #000000;
+}
+
+/* Adaptação inteligente para o Modo Escuro */
+body.dark-mode .app-modal-text {
+    color: #dddddd;
+}
+body.dark-mode .app-modal-text b {
+    color: #ffffff;
+}
+
+/* No modo escuro, mantemos o título e as bordas vermelhas */
+body.dark-mode #download-app-modal .report-screen {
+    border-color: #e3350d;
+}
+body.dark-mode #download-app-modal .report-title {
+    color: #e3350d;
+    border-color: #e3350d;
+}
