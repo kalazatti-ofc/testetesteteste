@@ -648,23 +648,49 @@ window.openModal = (id) => {
         spatk: '#3498db', spdef: '#9c27b0', spd: '#f1c40f'
     };
 
-    // 2. IA para recomendar Natures baseado nos Stats Base
+    // 2. IA Avançada de Natures (+ Atributo / - Penalidade) Ordenada e Negritada
     const baseAtk = p.stats?.atk || 0;
     const baseSpAtk = p.stats?.spatk || 0;
+    const baseDef = p.stats?.def || 0;
+    const baseSpDef = p.stats?.spdef || 0;
+    const totalDef = baseDef + baseSpDef;
+    const totalStats = Object.values(p.stats || {}).reduce((a,b) => a+b, 0);
+    
     let recommendedNatures = [];
 
     if (p.natures && Array.isArray(p.natures)) {
-        // Se você adicionar as Natures manualmente no JSON, o sistema prioriza elas!
+        // Caso você insira manualmente no JSON futuramente
         recommendedNatures = p.natures;
-    } else if (baseAtk > baseSpAtk + 10) {
-        // Focado em Dano Físico
-        recommendedNatures = ["Adamant (+ATK)", "Jolly (+SPD)", "Brave (+ATK)"];
-    } else if (baseSpAtk > baseAtk + 10) {
-        // Focado em Dano Especial
-        recommendedNatures = ["Modest (+SP.ATK)", "Timid (+SPD)", "Quiet (+SP.ATK)"];
+    } else if (totalStats >= 600 || totalDef >= 200) {
+        // POKÉMON TANKER / LENDÁRIO DEFENSIVO
+        // Foca primeiro no maior atributo defensivo base dele
+        if (baseDef >= baseSpDef) {
+            recommendedNatures = [
+                "<b>Impish (+DEF / -SP.ATK)</b>", // Maior Defesa Física sem perder Atk
+                "Relaxed (+DEF / -SPD)", 
+                "Bold (+DEF / -ATK)"
+            ];
+        } else {
+            recommendedNatures = [
+                "<b>Careful (+SP.DEF / -SP.ATK)</b>", // Maior Defesa Especial sem perder Atk
+                "Sassy (+SP.DEF / -SPD)", 
+                "Calm (+SP.DEF / -ATK)"
+            ];
+        }
+    } else if (baseSpAtk >= baseAtk) {
+        // FOCADO EM DANO ESPECIAL (Ex: Alakazam, Venusaur)
+        recommendedNatures = [
+            "<b>Modest (+SP.ATK / -ATK)</b>", // Foco total no principal e maior dano base (Negrito)
+            "Quiet (+SP.ATK / -SPD)",          // Opção de Trick Room / Mixed
+            "Timid (+SPD / -ATK)"              // Opção de Velocidade máxima
+        ];
     } else {
-        // Balanceados / Mixed Attackers
-        recommendedNatures = ["Lonely (+ATK)", "Mild (+SP.ATK)", "Hasty (+SPD)"];
+        // FOCADO EM DANO FÍSICO (Ex: Charizard, Machamp)
+        recommendedNatures = [
+            "<b>Adamant (+ATK / -SP.ATK)</b>", // Foco total no principal e maior dano base (Negrito)
+            "Brave (+ATK / -SPD)",              // Opção de Trick Room / Mixed
+            "Jolly (+SPD / -SP.ATK)"            // Opção de Velocidade máxima
+        ];
     }
 
     // 3. Achar o maior status numérico para fazê-lo pulsar na tela
