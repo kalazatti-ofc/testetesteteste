@@ -366,14 +366,12 @@ body {
 /* ==========================================
    NATURES RECOMENDADAS (MINIMALISTA)
 ========================================== */
-
-/* Container geral das Natures */
 .nature-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 12px;
+    margin-bottom: 8px; /* Reduzido o espaço abaixo */
+    padding-bottom: 8px; /* Reduzido o espaço interno */
     border-bottom: 2px dashed rgba(0,0,0,0.1);
 }
 
@@ -381,12 +379,11 @@ body.dark-mode .nature-container {
     border-bottom-color: rgba(255,255,255,0.1);
 }
 
-/* Título discreto */
 .nature-title {
     font-size: 0.6rem;
     font-weight: 900;
     color: #888;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     letter-spacing: 0.5px;
 }
 
@@ -394,26 +391,28 @@ body.dark-mode .nature-title {
     color: #999; 
 }
 
-/* Flexbox para alinhar as pílulas */
 .nature-pills {
     display: flex;
-    gap: 8px;
+    gap: 6px; /* Mais juntas */
     flex-wrap: wrap;
     justify-content: center;
 }
 
-/* Estética da Pílula Minimalista */
 .nature-pill {
     background: rgba(0, 0, 0, 0.04);
     border: 1px solid rgba(0, 0, 0, 0.15);
     color: var(--dex-border);
     font-family: monospace;
-    font-size: 0.65rem;
-    font-weight: bold;
-    padding: 4px 8px;
+    font-size: 0.7rem; /* Texto um pouquinho maior para leitura */
+    padding: 3px 10px; /* Mais achatado e largo */
     border-radius: 6px;
     transition: all 0.2s ease;
-    cursor: default;
+    cursor: help; /* Cursor de ajuda para indicar que tem balão */
+}
+
+/* Deixa a nature em negrito (A Principal) com mais destaque */
+.nature-pill b {
+    color: var(--dex-red);
 }
 
 .nature-pill:hover {
@@ -421,11 +420,14 @@ body.dark-mode .nature-title {
     transform: translateY(-1px);
 }
 
-/* Modo Escuro para as Natures */
 body.dark-mode .nature-pill {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.15);
     color: #ddd;
+}
+
+body.dark-mode .nature-pill b {
+    color: #ffcb05; /* Destaque amarelo no modo escuro */
 }
 
 body.dark-mode .nature-pill:hover {
