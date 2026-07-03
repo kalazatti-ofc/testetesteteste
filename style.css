@@ -114,7 +114,7 @@ body {
 }
 .cat-btn:active { transform: translate(3px, 3px); box-shadow: 0 0 0 transparent; }
 
-/* Cores das abas (MANTENDO SUA ESTÉTICA ORIGINAL) */
+/* Cores das abas */
 .cat-btn[data-cat="normal"].active { background: #fff; color: var(--dex-border); }
 .cat-btn[data-cat="boss"].active { background: #ffcb05; color: var(--dex-border); }
 .cat-btn[data-cat="dark"].active { background: #8a2be2; color: #fff; }
@@ -243,7 +243,7 @@ body {
    TELA DO MAPA GIGANTE E VISUALIZADOR
 ========================================= */
 .map-screen { background: #2a2a2a !important; box-shadow: none !important; border: 4px solid #111; }
-.map-screen .map-overlay { box-shadow: none !important; } /* Sem emboss no mapa gigante */
+.map-screen .map-overlay { box-shadow: none !important; }
 
 .map-controls-vertical { 
     position: absolute; right: 15px; top: 50%; transform: translateY(-50%); 
@@ -362,12 +362,91 @@ body {
 
 .data-module { background: #e0e0e0; padding: 15px; border-radius: 12px; border: 4px solid var(--dex-border); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); transition: background 0.3s ease; }
 .data-module .label-tech { color: var(--dex-border); text-shadow: none; border-bottom: 2px dashed #999;}
-.stats-list { display: flex; flex-direction: column; gap: 6px; }
-.stat-row { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; font-weight: 800;}
-.stat-row label { width: 55px; color: #555; transition: color 0.3s ease; }
-.bar-container { flex: 1; height: 10px; background: #bbb; border-radius: 5px; border: 2px solid var(--dex-border); overflow: hidden; }
-.bar-fill { height: 100%; background: #ff4b2b; }
-.stat-num { width: 30px; text-align: right; color: var(--dex-border); transition: color 0.3s ease;}
+
+
+/* ==========================================
+   BARRAS DE STATUS ANIMADAS E DINÂMICAS
+========================================== */
+
+/* Badge que avisa o papel do Pokémon (Tank, Sweeper, etc) */
+.role-badge {
+    text-align: center;
+    background: #111;
+    color: #ffcb05;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.55rem;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    border: 2px solid var(--dex-border);
+    box-shadow: 2px 2px 0 var(--dex-border);
+    letter-spacing: 1px;
+}
+
+body.dark-mode .role-badge {
+    background: #ffcb05;
+    color: #111;
+    border-color: #000;
+    box-shadow: 2px 2px 0 #000;
+}
+
+.stats-list-animated {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-row { 
+    display: flex; align-items: center; gap: 10px; 
+    font-size: 0.75rem; font-weight: 800;
+}
+
+.stat-row label { 
+    width: 55px; color: #555; font-family: monospace; font-size: 0.8rem;
+}
+body.dark-mode .stat-row label { color: #aaa; }
+
+/* O Fundo da Barra */
+.bar-container { 
+    flex: 1; height: 12px; background: rgba(0,0,0,0.1); 
+    border-radius: 6px; border: 2px solid var(--dex-border); 
+    overflow: hidden; 
+}
+body.dark-mode .bar-container { background: rgba(255,255,255,0.05); border-color: #111; }
+
+/* A Barra Colorida que vai encher animada */
+.bar-fill { 
+    height: 100%; 
+    width: 0%; /* Inicia zerado para poder animar */
+    border-radius: 4px;
+    animation: fillStatBar 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transform-origin: left;
+}
+
+@keyframes fillStatBar {
+    0% { width: 0%; }
+    100% { width: var(--target-width); } /* Pega o tamanho exato via JS */
+}
+
+.stat-num { 
+    width: 30px; text-align: right; color: var(--dex-border); 
+    font-family: monospace; font-size: 0.9rem; transition: 0.3s;
+}
+body.dark-mode .stat-num { color: #ddd; }
+
+/* Pulsação no Status Mais Alto */
+.stat-highest .stat-num {
+    color: var(--dex-red);
+    font-size: 1rem;
+    animation: pulseHighest 1.5s infinite;
+}
+body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
+
+@keyframes pulseHighest {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+}
+
 
 .eff-module { background: #e0e0e0; padding: 15px; border-radius: 12px; border: 4px solid var(--dex-border); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); margin-bottom: 5px; transition: background 0.3s ease; }
 .eff-module .label-tech { color: var(--dex-border); text-shadow: none; border-bottom: 2px dashed #999;}
@@ -467,8 +546,7 @@ body.dark-mode .pk-card { background: #2a2a2c; border-color: #111; box-shadow: 3
 body.dark-mode .pk-name { color: #f0f0f0; } 
 body.dark-mode .pk-id { color: #888; }
 body.dark-mode .data-module, body.dark-mode .eff-module, body.dark-mode .evo-module, body.dark-mode .screen-border { background: #2a2a2c; border-color: #111; }
-body.dark-mode .stat-row label, body.dark-mode .eff-group label { color: #aaa; }
-body.dark-mode .stat-num { color: #ddd; }
+body.dark-mode .eff-group label { color: #aaa; }
 body.dark-mode .joystick-theme-btn { opacity: 1; filter: grayscale(0); color: #ffcb05; text-shadow: 0 0 10px #ffcb05; background: #111; border-color: #050505;}
 body.dark-mode .search-btn.red-btn { background: #9e1a00; border-color: #111; box-shadow: 2px 2px 0 #111; }
 body.dark-mode .filter-toggle { background: #2a2a2c; border-color: #111; box-shadow: 3px 3px 0 #111; color: #aaa;}
@@ -500,16 +578,6 @@ body.dark-mode .soul-label { color: #888; }
 body.dark-mode .soul-box.eternizado .soul-label { color: #b388ff; }
 body.dark-mode .soul-value { color: #fff; }
 body.dark-mode .exclusive-badge { background: #111; color: #ff4b2b; }
-
-/* Modo Escuro */
-body.dark-mode .stat-hexa-pill {
-    background: #2a2a2a; /* Fundo cinza escuro */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-}
-
-body.dark-mode .stat-name {
-    color: #aaa; /* Texto de nome mais claro */
-}
 
 /* =========================================
    SISTEMA DE SETAS EMBUTIDAS
@@ -955,127 +1023,4 @@ body.dark-mode .form-toggle-btn:hover {
     background: rgba(255, 255, 255, 0.15); 
     color: #fff; 
     border-color: #fff;
-}
-
-/* --- Novo Painel de Stats Hexa-Tech --- */
-
-/* Variáveis de Cor por Atributo - Estilo Pokedex */
-:root {
-    --color-hp: #4caf50;    /* Verde Vida */
-    --color-atk: #f44336;   /* Vermelho Dano */
-    --color-def: #ff9800;   /* Laranja Escudo */
-    --color-spatk: #2196f3; /* Azul Especial */
-    --color-spdef: #9c27b0; /* Roxo Mágico */
-    --color-spd: #ffeb3b;   /* Amarelo Velocidade */
-}
-
-/* Container Principal - Grid 3x2 (Mobile First) */
-.hexa-stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas no desktop */
-    gap: 15px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.05); /* Fundo sutil para destacar os pills */
-    border-radius: 10px;
-    margin-top: 15px;
-}
-
-/* O "Pill" Hexagonal Independente */
-.stat-hexa-pill {
-    position: relative;
-    background: #fff;
-    padding: 15px 10px;
-    text-align: center;
-    border-radius: 8px; /* Base arredondada, os cantos hexagonais vêm depois */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid transparent; /* Reservando espaço para a borda colorida */
-}
-
-/* Efeito de Hover para engajamento */
-.stat-hexa-pill:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-/* Usando Pseudo-elementos para criar os cortes hexagonais nas pontas */
-.stat-hexa-pill::before,
-.stat-hexa-pill::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 100%;
-    background: inherit; /* Pega o fundo branco do pai */
-    top: 0;
-    z-index: -1; /* Fica atrás do texto */
-}
-
-.stat-hexa-pill::before {
-    left: -10px;
-    transform: skewX(-15deg); /* Corte inclinado na esquerda */
-    border-radius: 8px 0 0 8px;
-}
-
-.stat-hexa-pill::after {
-    right: -10px;
-    transform: skewX(15deg); /* Corte inclinado na direita */
-    border-radius: 0 8px 8px 0;
-}
-
-/* Estilização dos Textos Internos */
-.stat-name {
-    font-size: 10px;
-    font-weight: bold;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-    z-index: 1;
-}
-
-/* A Fonte Display para os Números Grandes (MUITO IMPORTANTE) */
-.stat-value.display-font {
-    font-size: 28px; /* Fonte gigante para leitura instantânea */
-    font-weight: 900;
-    font-family: 'Courier New', Courier, monospace; /* Fonte monospace estilo display */
-    line-height: 1;
-    z-index: 1;
-}
-
-/* --- Aplicação de Cores Dinâmicas nos Pills --- */
-.stat-hp { border-color: var(--color-hp); }
-.stat-hp .stat-value { color: var(--color-hp); }
-
-.stat-atk { border-color: var(--color-atk); }
-.stat-atk .stat-value { color: var(--color-atk); }
-
-.stat-def { border-color: var(--color-def); }
-.stat-def .stat-value { color: var(--color-def); }
-
-.stat-spatk { border-color: var(--color-spatk); }
-.stat-spatk .stat-value { color: var(--color-spatk); }
-
-.stat-spdef { border-color: var(--color-spdef); }
-.stat-spdef .stat-value { color: var(--color-spdef); }
-
-.stat-spd { border-color: var(--color-spd); }
-.stat-spd .stat-value { color: var(--color-spd); }
-
-
-/* --- Responsividade (Mobile First) --- */
-@media (max-width: 600px) {
-    /* No mobile, muda de 3 colunas para 2 colunas para dar mais espaço lateral */
-    .hexa-stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px; /* Aumenta o gap no mobile */
-        padding: 15px;
-    }
-
-    .stat-value.display-font {
-        font-size: 32px; /* Aumenta ainda mais a fonte no mobile! */
-    }
 }
