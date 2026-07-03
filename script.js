@@ -103,6 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const filtersModule = document.getElementById('filters-container');
             const mapContainer = document.getElementById('map-viewer-container');
             const mapSidebar = document.getElementById('map-sidebar-menu');
+            // Ativador de fechamento do Modal de Download do Aplicativo
+            const closeDownloadBtn = document.getElementById('close-download-app');
+            if (closeDownloadBtn) {
+                closeDownloadBtn.onclick = () => {
+                    document.getElementById('download-app-modal').classList.add('hidden');
+                };
+            }
             
             if (activeCategory === 'mapas') {
                 gridContainer.style.display = 'none';
@@ -1230,6 +1237,11 @@ window.initReportModal = (event) => {
     if(event) event.preventDefault();
     document.getElementById('report-modal').classList.remove('hidden');
     document.getElementById('report-status').innerText = '';
+};
+
+window.initDownloadAppModal = (event) => {
+    if(event) event.preventDefault();
+    document.getElementById('download-app-modal').classList.remove('hidden');
 };
 
 document.getElementById('close-report').onclick = () => {
