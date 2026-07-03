@@ -9,7 +9,7 @@ let activeTypeFilter = 'all';
 let activeGenFilter = 'all';
 let activeCatchFilter = 'all';
 let activeCategory = 'normal'; // Controla a aba atual
-let activeMetaFilter = 'all';
+let activeMetaFilter = 'all';  // Filtro Meta-Gaming
 
 let caughtPokemon = JSON.parse(localStorage.getItem('pokedex-caught')) || [];
 
@@ -183,8 +183,10 @@ function setupToggles() {
     };
     document.getElementById('toggle-meta').onclick = function() {
         const group = document.getElementById('group-meta');
-        group.classList.toggle('hidden-filter');
-        this.innerText = group.classList.contains('hidden-filter') ? '▼ FILTROS META-GAMING' : '▲ ESCONDER META-GAMING';
+        if (group) {
+            group.classList.toggle('hidden-filter');
+            this.innerText = group.classList.contains('hidden-filter') ? '▼ FILTROS META-GAMING' : '▲ ESCONDER META-GAMING';
+        }
     };
 }
 
@@ -207,7 +209,7 @@ function applyFilters() {
         let mMeta = true;
         if (activeMetaFilter !== 'all') {
             if (activeMetaFilter === 'tank') {
-                const defTotal = p.stats ? (p.stats.def + p.stats.spdef) : 0;
+                const defTotal = p.stats ? ((p.stats.def||0) + (p.stats.spdef||0)) : 0;
                 mMeta = defTotal >= 200;
             } else {
                 const locString = JSON.stringify(p.locations || []).toLowerCase();
@@ -242,11 +244,10 @@ function renderPokemon(list) {
         const isCaught = caughtPokemon.includes(p.id);
         const pCategory = p.category || 'normal';
         
-        // Tratamento inteligente da etiqueta da Geração / Forma Regional
         let genText = '';
         if (pCategory === 'boss') genText = 'BOSS 24H';
         else if (pCategory === 'dark') genText = 'DARK';
-        else if (isNaN(p.generation)) genText = p.generation.toUpperCase(); // Ex: "HISUI", "ALOLA"
+        else if (isNaN(p.generation)) genText = p.generation.toUpperCase(); 
         else genText = 'GEN ' + p.generation;
 
         return `
@@ -299,15 +300,13 @@ function initPanAndZoom() {
         else zoomMap('out');               
     }, { passive: false });
 
-    // Início do Arraste
     wrapper.addEventListener('mousedown', (e) => {
-        e.preventDefault(); // <-- CORREÇÃO 1: Bloqueia o navegador de tentar "salvar a imagem"
+        e.preventDefault(); 
         isDragging = true;
         startDragX = e.clientX - mapTransform.x;
         startDragY = e.clientY - mapTransform.y;
     });
 
-    // CORREÇÃO 2: Ouvir o movimento na tela inteira (window) e não só no mapa
     window.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
         e.preventDefault();
@@ -316,10 +315,8 @@ function initPanAndZoom() {
         applyTransform();
     });
 
-    // CORREÇÃO 3: Ouvir o soltar do clique na tela inteira
     window.addEventListener('mouseup', () => isDragging = false);
 
-    // O mesmo ajuste aplicado para o Touch (celular)
     wrapper.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) { 
             isDragging = true;
@@ -349,7 +346,6 @@ function initPanAndZoom() {
 function initMapViewer() {
     const listContainer = document.getElementById('map-list-container');
     
-    // Só gera os cards se a lista estiver vazia para não duplicar
     if (listContainer.innerHTML.trim() === '') {
         Object.keys(cityMaps).forEach(key => {
             const city = cityMaps[key];
@@ -357,7 +353,6 @@ function initMapViewer() {
             card.className = `map-select-card ${currentCity === key ? 'active' : ''}`;
             card.dataset.city = key;
             
-            // Puxa a miniatura personalizada
             const thumbSrc = `continentes/${key}-icone.png`;
             
             card.innerHTML = `
@@ -402,7 +397,6 @@ function updateMapDisplay() {
     const mapImage = document.getElementById('map-image');
     const statusText = document.getElementById('map-status-text');
 
-    // Imagem do mapa principal
     mapImage.src = `continentes/${currentCity}-z${currentZ}.png`;
     mapImage.alt = `Mapa de ${cityConfig.name}`;
     statusText.textContent = `SINAL ESTABELECIDO: ${cityConfig.name.toUpperCase()}`;
@@ -414,7 +408,6 @@ function updateMapDisplay() {
     };
 
     if(window.resetMapTransform) window.resetMapTransform();
-
     renderMapPins();
 }
 
@@ -438,7 +431,6 @@ function renderMapPins() {
         if (!p.locations) return;
         
         p.locations.forEach(loc => {
-            // 1. Cria uma lista com TODOS os textos possíveis para procurar coordenadas
             let stringsToCheck = [];
             
             if (typeof loc === 'string') {
@@ -446,28 +438,20 @@ function renderMapPins() {
             } else if (typeof loc === 'object') {
                 if (loc.local) stringsToCheck.push(loc.local);
                 if (loc.rota) stringsToCheck.push(loc.rota);
-                // Se tiver passos (rotas complexas), adiciona todos eles na busca!
                 if (loc.passos && Array.isArray(loc.passos)) {
                     stringsToCheck = stringsToCheck.concat(loc.passos);
                 }
             }
 
-            // 2. Analisa cada texto encontrado
             stringsToCheck.forEach(locString => {
-                // Regex flexível: Procura o número depois do X e o número depois do Y, ignorando o Z ou qualquer outra palavra no meio.
                 let match = locString.match(/X\s*[:]?\s*(\d+)[^\d]*Y\s*[:]?\s*(\d+)/i);
-                
                 if (match) {
                     let x = parseInt(match[1]);
                     let y = parseInt(match[2]);
 
-                    // Verifica se a coordenada está dentro dos "bounds" do mapa atual
                     if (x >= minX && x <= maxX && y >= minY && y <= maxY) {
                         let key = `${x},${y}`; 
-                        
                         if (!pinsData[key]) pinsData[key] = [];
-                        
-                        // Evita duplicar o mesmo Pokémon exatamente no mesmo milímetro
                         if (!pinsData[key].find(poke => poke.id === p.id)) {
                             pinsData[key].push(p);
                             totalPinsEncontrados++;
@@ -478,9 +462,6 @@ function renderMapPins() {
         });
     });
 
-    console.log(`[MAPA ${cityConfig.name.toUpperCase()}] Total de Pins válidos encontrados na área:`, totalPinsEncontrados);
-
-    // 3. Renderiza os pins na tela
     for (let key in pinsData) {
         let [x, y] = key.split(',').map(Number);
         let pokemons = pinsData[key];
@@ -498,7 +479,6 @@ function renderMapPins() {
         ).join('');
         
         pin.innerHTML = `<div class="pin-tooltip">${tooltipHTML}</div>`;
-
         container.appendChild(pin);
     }
 }
@@ -565,15 +545,13 @@ window.openModal = (id) => {
     // CAÇADOR DE FORMAS REGIONAIS
     // ==========================================
     let baseId = p.id.toString();
-    if (/^\d+-/.test(baseId)) baseId = baseId.split('-')[0]; // Pega apenas o número se tiver hífen
+    if (/^\d+-/.test(baseId)) baseId = baseId.split('-')[0]; 
 
-    // Procura no banco o original e as variantes
     const relatives = pokemonData.filter(x => {
         const xId = x.id.toString();
         return xId === baseId || xId.startsWith(baseId + '-');
     });
     
-    // Tira o que já está na tela para deixar só os botões das outras formas
     const otherForms = relatives.filter(x => x.id.toString() !== p.id.toString());
     
     let formButtonsHTML = '';
@@ -607,6 +585,7 @@ window.openModal = (id) => {
             const noteHTML = loc.nota ? `<span class="info-tooltip loc-icon" data-tooltip="${loc.nota}">💬</span>` : '';
 
             if (isRoute) {
+                const encodedPassos = encodeURIComponent(JSON.stringify(loc.passos));
                 const stepsHTML = loc.passos.map(passo => `
                     <div class="loc-step" onclick="updateRadar('${passo}', this, event)">
                         <span class="loc-text">${passo}</span>
@@ -619,12 +598,12 @@ window.openModal = (id) => {
 
                 return `
                     <div class="loc-accordion">
-                        <div class="loc-button accordion-toggle" onclick="updateRadar('${loc.passos[0]}', this, event)">
+                        <div class="loc-button accordion-toggle" onclick="toggleAccordion(this, event, '${encodedPassos}')">
                             <span class="loc-text">${locName}</span>
                             <div class="loc-actions">
                                 ${noteHTML}
                                 <span class="loc-icon copy-icon" title="Copiar Local" onclick="copyLoc('${locName}', this, event)">📋</span>
-                                <span class="loc-icon expand-arrow" title="Ver Rota no Mapa" onclick="toggleAccordion(this, event, '${encodeURIComponent(JSON.stringify(loc.passos))}')">▼</span>
+                                <span class="loc-icon expand-arrow" title="Ver Rota no Mapa">▼</span>
                             </div>
                         </div>
                         <div class="loc-steps-container hidden-steps">
@@ -646,24 +625,42 @@ window.openModal = (id) => {
         }
     }).join('');
 
-    // Procure por "const statsHTML" no seu script.js e substitua por este bloco:
-    const statsList = [
-        { name: 'HP', val: p.stats.hp, class: 'stat-hp' },
-        { name: 'ATK', val: p.stats.atk, class: 'stat-atk' },
-        { name: 'DEF', val: p.stats.def, class: 'stat-def' },
-        { name: 'SP. ATK', val: p.stats.spatk, class: 'stat-spatk' },
-        { name: 'SP. DEF', val: p.stats.spdef, class: 'stat-spdef' },
-        { name: 'SPD', val: p.stats.spd, class: 'stat-spd' }
-    ];
+    // ==========================================
+    // LÓGICA DE STATUS INTELIGENTE (BARRAS ANIMADAS)
+    // ==========================================
+    const statColors = {
+        hp: '#32cd32', atk: '#e3350d', def: '#ff9800',
+        spatk: '#3498db', spdef: '#9c27b0', spd: '#f1c40f'
+    };
+
+    let pokeRole = "⚖️ BALANCEADO";
+    const totalStats = Object.values(p.stats || {}).reduce((a,b) => a+b, 0);
+    const totalDef = (p.stats.def || 0) + (p.stats.spdef || 0);
+    const maxAtk = Math.max(p.stats.atk || 0, p.stats.spatk || 0);
+
+    if (totalStats >= 600) pokeRole = "👑 TITÃ / LENDÁRIO";
+    else if (totalDef >= 200) pokeRole = "🛡️ TANKER / DEFENSIVO";
+    else if (maxAtk >= 110 && (p.stats.spd || 0) >= 90) pokeRole = "⚔️ ATACANTE RÁPIDO";
+    else if (maxAtk >= 125) pokeRole = "💥 DEVASTADOR";
+
+    const maxStatValue = Math.max(...Object.values(p.stats || {}));
 
     const statsHTML = `
-        <div class="hexa-stats-grid">
-            ${statsList.map(stat => `
-                <div class="stat-hexa-pill ${stat.class}">
-                    <span class="stat-name">${stat.name}</span>
-                    <span class="stat-value display-font">${stat.val}</span>
+        <div class="role-badge">${pokeRole}</div>
+        <div class="stats-list-animated">
+            ${Object.entries(p.stats || {}).map(([name, val]) => {
+                const isHighest = val === maxStatValue;
+                const cor = statColors[name.toLowerCase()] || '#ff4b2b';
+                return `
+                <div class="stat-row ${isHighest ? 'stat-highest' : ''}">
+                    <label>${name.toUpperCase()}</label>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="--target-width:${(val/255)*100}%; background-color:${cor};"></div>
+                    </div>
+                    <span class="stat-num">${val}</span>
                 </div>
-            `).join('')}
+                `;
+            }).join('')}
         </div>
     `;
 
@@ -1033,7 +1030,6 @@ window.initSupportModal = (event) => {
     const dialogBox = document.getElementById('support-dialog-box');
     const finalBtn = document.getElementById('final-support-btn');
     
-    // Reseta os estados toda vez que abre
     currentSupportIndex = 0;
     finalBtn.classList.add('hidden');
     modal.classList.remove('hidden');
@@ -1043,14 +1039,12 @@ window.initSupportModal = (event) => {
     closeBtn.onclick = () => { modal.classList.add('hidden'); };
 
     dialogBox.onclick = (e) => {
-        // Impede que clicar no botão de doação avance o texto
         if(e.target.id === 'final-support-btn') return;
 
         const textContainer = document.getElementById('support-text');
         const arrow = document.getElementById('support-arrow');
 
         if (isSupportTyping) {
-            // Pula a animação se clicar enquanto digita
             clearInterval(supportTypeInterval);
             textContainer.innerHTML = supportDialogues[currentSupportIndex];
             isSupportTyping = false;
@@ -1062,7 +1056,6 @@ window.initSupportModal = (event) => {
                 arrow.style.display = 'block';
             }
         } else {
-            // Avança para a próxima frase
             if (currentSupportIndex < supportDialogues.length - 1) {
                 currentSupportIndex++;
                 startSupportTyping();
@@ -1102,7 +1095,7 @@ function startSupportTyping() {
 }
 
 // ==========================================
-// ALTERNAR IMAGEM SHINY NO MODAL DO BOSS (BUSCA POR NOME)
+// ALTERNAR IMAGEM SHINY NO MODAL DO BOSS
 // ==========================================
 window.toggleShinyModal = async (badge, pokeName, normalImg) => {
     const imgEl = document.querySelector('.poke-img-stacked');
@@ -1113,7 +1106,6 @@ window.toggleShinyModal = async (badge, pokeName, normalImg) => {
     const isShiny = badge.classList.contains('active-shiny');
     
     if (isShiny) {
-        // Volta ao estado normal instantaneamente
         imgEl.style.opacity = '0';
         setTimeout(() => {
             imgEl.src = normalImg;
@@ -1128,27 +1120,21 @@ window.toggleShinyModal = async (badge, pokeName, normalImg) => {
         return;
     }
 
-    // Se estiver carregando a versão Shiny
     badge.innerHTML = '⏳ BUSCANDO...';
-    imgEl.style.opacity = '0.5'; // Deixa a imagem meio apagada enquanto baixa
+    imgEl.style.opacity = '0.5'; 
 
     try {
-        // Formata o nome para o padrão da PokeAPI (ex: "Mr. Mime" vira "mr-mime")
         let apiName = pokeName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
         if(apiName === 'mrmime') apiName = 'mr-mime';
 
-        // Pede para a PokeAPI os dados exatos deste Pokémon
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${apiName}`);
         if (!response.ok) throw new Error("Pokémon não encontrado na API");
         
         const data = await response.json();
-        
-        // Pega a arte oficial Shiny. Se não tiver, pega o sprite de GameBoy como plano B
         const shinyUrl = data.sprites.other['official-artwork'].front_shiny || data.sprites.front_shiny;
         
         if (!shinyUrl) throw new Error("Imagem Shiny não existe");
 
-        // Aplica a imagem com transição
         imgEl.style.opacity = '0';
         setTimeout(() => {
             imgEl.src = shinyUrl;
@@ -1163,7 +1149,6 @@ window.toggleShinyModal = async (badge, pokeName, normalImg) => {
         }, 150);
 
     } catch (error) {
-        // Se der qualquer erro de nome ou a internet falhar, ele avisa bonitinho e não quebra a tela
         console.error("Erro ao buscar Shiny:", error);
         badge.innerHTML = '⚠ SHINY INDISPONÍVEL';
         imgEl.style.opacity = '1';
@@ -1192,7 +1177,6 @@ document.getElementById('report-form').addEventListener('submit', async (e) => {
     const type = document.getElementById('report-type').value;
     const msg = document.getElementById('report-msg').value.trim();
 
-    // Verificação de Cooldown (Trava de 10 minutos)
     const lastReport = localStorage.getItem('pokedex-last-report');
     if (lastReport) {
         const now = new Date().getTime();
@@ -1208,16 +1192,12 @@ document.getElementById('report-form').addEventListener('submit', async (e) => {
     btn.innerText = 'ENVIANDO...';
     btn.disabled = true;
 
-    // COLOQUE O LINK DO SEU WEBHOOK EXATAMENTE AQUI DENTRO DAS ASPAS
     const WEBHOOK_URL = 'https://discord.com/api/webhooks/1519072852513525831/grsC32dPzfIsb7g19z2lGykbyrejCLHL7yjaS4Sop5HsHnhwj3S6L1gZjloY4dhnpLW9';
 
-    // Construção do Card (Embed) para o Discord
     const payload = {
         username: "Pokedex PBR - Report",
         avatar_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png",
-        
         content: "<@743785451978227812> 🚨 Você tem um novo relatório de Bug!",
-        
         embeds: [{
             title: `🚨 NOVO RELATÓRIO: ${type}`,
             color: type === 'BUG' ? 16711680 : (type === 'LOCAL' ? 16766720 : 3447003),
@@ -1260,81 +1240,17 @@ document.getElementById('report-form').addEventListener('submit', async (e) => {
 // ==========================================
 window.switchForm = (newId) => {
     const modalContent = document.querySelector('.modal-pokedex-view');
-    // Efeito de "apagar" e diminuir levemente
     modalContent.style.opacity = '0';
     modalContent.style.transform = 'scale(0.95)';
     modalContent.style.transition = 'all 0.2s ease';
     
     setTimeout(() => {
-        openModal(newId); // Carrega os dados do novo Pokémon
+        openModal(newId); 
         const newContent = document.querySelector('.modal-pokedex-view');
-        // Efeito de "acender" novamente
         newContent.style.opacity = '1';
         newContent.style.transform = 'scale(1)';
     }, 200);
 };
-
-// ==========================================
-// GRÁFICO DE RADAR PARA STATUS
-// ==========================================
-function drawRadarChart(stats) {
-    const canvas = document.getElementById('radar-chart');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    
-    const statValues = [stats.hp, stats.atk, stats.def, stats.spd, stats.spdef, stats.spatk];
-    const statLabels = ['HP', 'ATK', 'DEF', 'SPD', 'SP.DEF', 'SP.ATK'];
-    const maxStat = 255; 
-    const centerX = 110;
-    const centerY = 110;
-    const radius = 80;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
-    ctx.lineWidth = 1;
-    for (let j = 1; j <= 4; j++) {
-        ctx.beginPath();
-        for (let i = 0; i < 6; i++) {
-            const angle = (Math.PI / 3) * i - (Math.PI / 2);
-            const x = centerX + radius * (j / 4) * Math.cos(angle);
-            const y = centerY + radius * (j / 4) * Math.sin(angle);
-            if (i === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-        }
-        ctx.closePath();
-        ctx.stroke();
-    }
-
-    ctx.beginPath();
-    for (let i = 0; i < 6; i++) {
-        const angle = (Math.PI / 3) * i - (Math.PI / 2);
-        const val = Math.min(statValues[i] || 0, maxStat); 
-        const x = centerX + radius * (val / maxStat) * Math.cos(angle);
-        const y = centerY + radius * (val / maxStat) * Math.sin(angle);
-        
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-    ctx.fillStyle = 'rgba(227, 53, 13, 0.5)';
-    ctx.fill();
-    ctx.strokeStyle = '#e3350d';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    ctx.fillStyle = document.body.classList.contains('dark-mode') ? '#aaa' : '#333';
-    ctx.font = 'bold 10px monospace';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-
-    for (let i = 0; i < 6; i++) {
-        const angle = (Math.PI / 3) * i - (Math.PI / 2);
-        const x = centerX + (radius + 15) * Math.cos(angle);
-        const y = centerY + (radius + 10) * Math.sin(angle);
-        ctx.fillText(`${statLabels[i]}: ${statValues[i] || 0}`, x, y);
-    }
-}
 
 // ==========================================
 // DESENHAR ROTAS (QUESTS) NO MAPA
@@ -1373,7 +1289,6 @@ window.drawRouteOnMap = (passos) => {
         />`;
         svgHTML += `<circle cx="${points[i+1].x}%" cy="${points[i+1].y}%" r="3" fill="#e3350d" stroke="#fff" stroke-width="1" />`;
     }
-    // Círculo inicial
     svgHTML += `<circle cx="${points[0].x}%" cy="${points[0].y}%" r="4" fill="#32cd32" stroke="#fff" stroke-width="2" />`;
     
     routeContainer.innerHTML = svgHTML;
