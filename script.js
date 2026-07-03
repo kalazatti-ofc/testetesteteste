@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupToggles();
     initOakModal();
     initPanAndZoom(); 
+    initVipSystem();
     
     // Modo Escuro
     const themeBtn = document.getElementById('theme-toggle');
@@ -1363,4 +1364,44 @@ window.drawRouteOnMap = (passos) => {
     svgHTML += `<circle cx="${points[0].x}%" cy="${points[0].y}%" r="4" fill="#32cd32" stroke="#fff" stroke-width="2" />`;
     
     routeContainer.innerHTML = svgHTML;
+};
+
+// ==========================================
+// SISTEMA DE APOIADORES VIP (LETREIRO E MODAL)
+// ==========================================
+
+// LISTA DE APOIADORES (Para adicionar alguém, basta colocar o nick aqui com aspas e vírgula)
+const vipSupporters = [
+    "Jarubinha", 
+    "Ricardobtj", 
+    "Bonacina", 
+    "Upzin", 
+    "Paleguazv", 
+    "Marlin", 
+    "Leander Hastings", 
+    "Vincent"
+];
+
+function initVipSystem() {
+    // 1. Injeta os nomes no Letreiro Animado
+    const marqueeText = document.getElementById('vip-marquee-text');
+    if (marqueeText && vipSupporters.length > 0) {
+        // Junta os nomes separados por uma bolinha (•)
+        marqueeText.innerHTML = `AGRADECIMENTO ESPECIAL AOS APOIADORES: &nbsp;&nbsp; ★ &nbsp; ${vipSupporters.join(' &nbsp; ★ &nbsp; ')} &nbsp; ★`;
+    }
+
+    // 2. Injeta os botões de igualdade no Modal VIP
+    const vipGrid = document.getElementById('vip-names-grid');
+    if (vipGrid) {
+        vipGrid.innerHTML = vipSupporters.map(name => `<div class="vip-name-badge">${name}</div>`).join('');
+    }
+}
+
+// Funções para abrir e fechar o Modal VIP pelo HTML
+window.openVipModal = () => {
+    document.getElementById('vip-modal').classList.remove('hidden');
+};
+
+window.closeVipModal = () => {
+    document.getElementById('vip-modal').classList.add('hidden');
 };
