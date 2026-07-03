@@ -501,6 +501,16 @@ body.dark-mode .soul-box.eternizado .soul-label { color: #b388ff; }
 body.dark-mode .soul-value { color: #fff; }
 body.dark-mode .exclusive-badge { background: #111; color: #ff4b2b; }
 
+/* Modo Escuro */
+body.dark-mode .stat-hexa-pill {
+    background: #2a2a2a; /* Fundo cinza escuro */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .stat-name {
+    color: #aaa; /* Texto de nome mais claro */
+}
+
 /* =========================================
    SISTEMA DE SETAS EMBUTIDAS
 ========================================= */
@@ -945,4 +955,127 @@ body.dark-mode .form-toggle-btn:hover {
     background: rgba(255, 255, 255, 0.15); 
     color: #fff; 
     border-color: #fff;
+}
+
+/* --- Novo Painel de Stats Hexa-Tech --- */
+
+/* Variáveis de Cor por Atributo - Estilo Pokedex */
+:root {
+    --color-hp: #4caf50;    /* Verde Vida */
+    --color-atk: #f44336;   /* Vermelho Dano */
+    --color-def: #ff9800;   /* Laranja Escudo */
+    --color-spatk: #2196f3; /* Azul Especial */
+    --color-spdef: #9c27b0; /* Roxo Mágico */
+    --color-spd: #ffeb3b;   /* Amarelo Velocidade */
+}
+
+/* Container Principal - Grid 3x2 (Mobile First) */
+.hexa-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas no desktop */
+    gap: 15px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.05); /* Fundo sutil para destacar os pills */
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+/* O "Pill" Hexagonal Independente */
+.stat-hexa-pill {
+    position: relative;
+    background: #fff;
+    padding: 15px 10px;
+    text-align: center;
+    border-radius: 8px; /* Base arredondada, os cantos hexagonais vêm depois */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid transparent; /* Reservando espaço para a borda colorida */
+}
+
+/* Efeito de Hover para engajamento */
+.stat-hexa-pill:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Usando Pseudo-elementos para criar os cortes hexagonais nas pontas */
+.stat-hexa-pill::before,
+.stat-hexa-pill::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 100%;
+    background: inherit; /* Pega o fundo branco do pai */
+    top: 0;
+    z-index: -1; /* Fica atrás do texto */
+}
+
+.stat-hexa-pill::before {
+    left: -10px;
+    transform: skewX(-15deg); /* Corte inclinado na esquerda */
+    border-radius: 8px 0 0 8px;
+}
+
+.stat-hexa-pill::after {
+    right: -10px;
+    transform: skewX(15deg); /* Corte inclinado na direita */
+    border-radius: 0 8px 8px 0;
+}
+
+/* Estilização dos Textos Internos */
+.stat-name {
+    font-size: 10px;
+    font-weight: bold;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    z-index: 1;
+}
+
+/* A Fonte Display para os Números Grandes (MUITO IMPORTANTE) */
+.stat-value.display-font {
+    font-size: 28px; /* Fonte gigante para leitura instantânea */
+    font-weight: 900;
+    font-family: 'Courier New', Courier, monospace; /* Fonte monospace estilo display */
+    line-height: 1;
+    z-index: 1;
+}
+
+/* --- Aplicação de Cores Dinâmicas nos Pills --- */
+.stat-hp { border-color: var(--color-hp); }
+.stat-hp .stat-value { color: var(--color-hp); }
+
+.stat-atk { border-color: var(--color-atk); }
+.stat-atk .stat-value { color: var(--color-atk); }
+
+.stat-def { border-color: var(--color-def); }
+.stat-def .stat-value { color: var(--color-def); }
+
+.stat-spatk { border-color: var(--color-spatk); }
+.stat-spatk .stat-value { color: var(--color-spatk); }
+
+.stat-spdef { border-color: var(--color-spdef); }
+.stat-spdef .stat-value { color: var(--color-spdef); }
+
+.stat-spd { border-color: var(--color-spd); }
+.stat-spd .stat-value { color: var(--color-spd); }
+
+
+/* --- Responsividade (Mobile First) --- */
+@media (max-width: 600px) {
+    /* No mobile, muda de 3 colunas para 2 colunas para dar mais espaço lateral */
+    .hexa-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px; /* Aumenta o gap no mobile */
+        padding: 15px;
+    }
+
+    .stat-value.display-font {
+        font-size: 32px; /* Aumenta ainda mais a fonte no mobile! */
+    }
 }
