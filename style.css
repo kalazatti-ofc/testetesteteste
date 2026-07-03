@@ -420,6 +420,73 @@ body.dark-mode .nature-title {
     transform: translateY(-1px);
 }
 
+/* ==========================================
+   BALÃO (TOOLTIP) ESPECÍFICO DAS NATURES
+========================================== */
+.nature-tooltip {
+    position: relative;
+}
+
+/* O Corpo do Balão */
+.nature-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px); /* Joga para baixo do botão */
+    left: 50%;
+    transform: translateX(-50%) translateY(5px); /* Centraliza e prepara animação */
+    background: #f0f4f8; /* Fundo claro combinando com o painel */
+    color: var(--dex-border); /* Texto escuro */
+    border: 2px solid var(--dex-border); /* Borda definida */
+    padding: 4px 8px; /* Mais compacto */
+    border-radius: 6px;
+    font-size: 0.6rem;
+    font-family: monospace;
+    font-weight: 900;
+    white-space: nowrap; /* Não quebra linha */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 100;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.15); /* Sombra mais sutil */
+    pointer-events: none;
+}
+
+/* A Setinha do Balão (apontando pra cima) */
+.nature-tooltip::before {
+    content: '';
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent var(--dex-border) transparent; /* Seta pra cima */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Efeito ao passar o mouse */
+.nature-tooltip:hover::after,
+.nature-tooltip:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); /* Desliza suavemente pra cima */
+}
+
+/* Modo Escuro (Neon) para o Balãozinho */
+body.dark-mode .nature-tooltip::after {
+    background: #2a2a2c;
+    color: #fff;
+    border-color: #111;
+    box-shadow: 2px 2px 0 #000;
+}
+body.dark-mode .nature-tooltip::before {
+    border-color: transparent transparent #111 transparent;
+}
+
 body.dark-mode .nature-pill {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.15);
