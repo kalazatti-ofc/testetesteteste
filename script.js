@@ -166,28 +166,43 @@ function renderTypeButtons() {
 }
 
 function setupToggles() {
-    document.getElementById('toggle-gen').onclick = function() {
-        const group = document.getElementById('group-gen');
-        group.classList.toggle('hidden-filter');
-        this.innerText = group.classList.contains('hidden-filter') ? '▼ FILTRAR POR REGIÃO' : '▲ ESCONDER REGIÕES';
-    };
-    document.getElementById('toggle-type').onclick = function() {
-        const group = document.getElementById('group-type');
-        group.classList.toggle('hidden-filter');
-        this.innerText = group.classList.contains('hidden-filter') ? '▼ FILTRAR POR TIPO' : '▲ ESCONDER TIPOS';
-    };
-    document.getElementById('toggle-catch').onclick = function() {
-        const group = document.getElementById('group-catch');
-        group.classList.toggle('hidden-filter');
-        this.innerText = group.classList.contains('hidden-filter') ? '▼ STATUS DA POKEDEX' : '▲ ESCONDER STATUS';
-    };
-    document.getElementById('toggle-meta').onclick = function() {
-        const group = document.getElementById('group-meta');
-        if (group) {
+    const toggleGen = document.getElementById('toggle-gen');
+    if (toggleGen) {
+        toggleGen.onclick = function() {
+            const group = document.getElementById('group-gen');
             group.classList.toggle('hidden-filter');
-            this.innerText = group.classList.contains('hidden-filter') ? '▼ FILTROS META-GAMING' : '▲ ESCONDER META-GAMING';
-        }
-    };
+            this.innerText = group.classList.contains('hidden-filter') ? '▼ FILTRAR POR REGIÃO' : '▲ ESCONDER REGIÕES';
+        };
+    }
+
+    const toggleType = document.getElementById('toggle-type');
+    if (toggleType) {
+        toggleType.onclick = function() {
+            const group = document.getElementById('group-type');
+            group.classList.toggle('hidden-filter');
+            this.innerText = group.classList.contains('hidden-filter') ? '▼ FILTRAR POR TIPO' : '▲ ESCONDER TIPOS';
+        };
+    }
+
+    const toggleCatch = document.getElementById('toggle-catch');
+    if (toggleCatch) {
+        toggleCatch.onclick = function() {
+            const group = document.getElementById('group-catch');
+            group.classList.toggle('hidden-filter');
+            this.innerText = group.classList.contains('hidden-filter') ? '▼ STATUS DA POKEDEX' : '▲ ESCONDER STATUS';
+        };
+    }
+
+    const toggleMeta = document.getElementById('toggle-meta');
+    if (toggleMeta) {
+        toggleMeta.onclick = function() {
+            const group = document.getElementById('group-meta');
+            if (group) {
+                group.classList.toggle('hidden-filter');
+                this.innerText = group.classList.contains('hidden-filter') ? '▼ FILTROS META-GAMING' : '▲ ESCONDER META-GAMING';
+            }
+        };
+    }
 }
 
 function applyFilters() {
