@@ -66,8 +66,15 @@
       "spd": 80
     },
     "locations": [
-      "TV Camêra (Orre)",
-      "Vermilion (X 1047 / Y 1341 / Z 4)"
+      "TV Camêra (Orre) (X 2559 / 1350 / Z7)",
+      "Vermilion (X 1047 / Y 1341 / Z 4)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"
   },
@@ -92,7 +99,14 @@
         "nota": "🔑 Quest First Stone"
       },
       "Cinnabar (X 769 / Y 1396 / Z 7)",
-      "Hunter Village (X 1704 / Y 1629 / Z 6)"
+      "Hunter Village (X 1704 / Y 1629 / Z 6)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
   },
@@ -137,10 +151,17 @@
       "spd": 100
     },
     "locations": [
-      "TV Camêra (Orre)",
+      "TV Camêra (Orre) (X 2559 / 1350 / Z7)",
       "Cinnabar (X 702 / Y 1368 / Z 4)",
       "Quest Ancient Stone",
-      "Vermilion (X 886 / Y 1566 / Z 4)"
+      "Vermilion (X 886 / Y 1566 / Z 4)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
   },
@@ -163,6 +184,13 @@
       {
         "local": "Saffron (X 1072 / Y 1056 / Z 7)",
         "nota": "🔑 Quest First Stone"
+      },
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
       }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
@@ -207,8 +235,15 @@
       "spd": 78
     },
     "locations": [
-      "TV Camêra (Orre)",
-      "Vermilion (X 1279 / Y 1272 / Z 7)"
+      "TV Camêra (Orre) (X 2559 / 1350 / Z7)",
+      "Vermilion (X 1279 / Y 1272 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png"
   },
@@ -269,7 +304,7 @@
       "spd": 70
     },
     "locations": [
-      "Trost (X 1398 / Y 1353 / Z 7)"
+      "Trost (X 1438 / Y 1317 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/12.png"
   },
@@ -400,6 +435,7 @@
     },
     "locations": [
       "Trost (X 1579 / Y 1205 / Z 5)",
+      "Trost (X 1438 / Y 1317 / Z 7)",
       "Vermilion (X 962 / Y 130 / Z 6)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/18.png"
@@ -420,7 +456,17 @@
       "spd": 72
     },
     "locations": [
-      "Saffron <Entre no Bueiro> (X 1028 / Y 1039 / Z 7)"
+      {
+        "local": "Saffron (X 1028 / Y 1039 / Z 7)",
+        "nota": "📌  Entre no Bueiro"
+      },
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/19.png"
   },
@@ -440,7 +486,10 @@
       "spd": 97
     },
     "locations": [
-      "Yorkshin <entre no buero> (X 2233 / Y 1033 / Z 7)"
+      {
+        "local": "Yorkshin (X 2233 / Y 1033 / Z 7)",
+        "nota": "📌  Entre no buero"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/20.png"
   },
@@ -483,7 +532,8 @@
       "spd": 100
     },
     "locations": [
-      "Saffron (X 1077 / Y 951 / Z 6)"
+      "Saffron (X 1077 / Y 951 / Z 6)",
+      "Trost (X 1438 / Y 1317 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/22.png"
   },
@@ -503,7 +553,9 @@
       "spd": 55
     },
     "locations": [
-      "Armia (X 1936 / Y 891 / Z 7)"
+      "Armia (X 1936 / Y 891 / Z 7)",
+      "Cerulean (X 944 / Y 941 / Z 7)",
+      "Singer (X 1621 / Y 922 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/23.png"
   },
@@ -523,7 +575,15 @@
       "spd": 80
     },
     "locations": [
-      "Armia (X 1936 / Y 891 / Z 7)"
+      "Armia (X 1936 / Y 891 / Z 7)",
+      "Singer (X 1621 / Y 922 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/24.png"
   },
@@ -890,6 +950,13 @@
       {
         "local": "Saffron (X 1028 / Y 1039 / Z 7)",
         "nota": "📌 Entre no Bueiro"
+      },
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
       }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png"
@@ -914,6 +981,13 @@
       {
         "local": "Cerulean (X 1027 / Y 840 / Z 7)",
         "nota": "📌 Entre na Caverna"
+      },
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
       }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/42.png"
@@ -935,7 +1009,14 @@
       "spd": 30
     },
     "locations": [
-      "Saffron (X 953 / Y 1039 / Z 7)"
+      "Saffron (X 953 / Y 1039 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/43.png"
   },
@@ -956,7 +1037,14 @@
       "spd": 40
     },
     "locations": [
-      "Saffron (X 1070 / Y 966 / Z 7)"
+      "Saffron (X 1070 / Y 966 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/44.png"
   },
@@ -1101,6 +1189,13 @@
       {
         "local": "Cerulean (X 1114 / Y 856 / Z 7)",
         "nota": "📌 Entre na Caveira"
+      },
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
       }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/50.png"
@@ -1121,7 +1216,10 @@
       "spd": 120
     },
     "locations": [
-      "Cerulean <Entre na caveira> (X 1114 / Y 856 / Z 7)"
+      {
+        "local": "Cerulean (X 1114 / Y 856 / Z 7)",
+        "nota": "📌  Entre na Caveira"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/51.png"
   },
@@ -1181,7 +1279,8 @@
       "spd": 55
     },
     "locations": [
-      "Vermilion (X 1031 / Y 1497 / Z 7)"
+      "Vermilion (X 1031 / Y 1497 / Z 7)",
+      "Pastoria (X 3917 / Y 2203 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png"
   },
@@ -1390,7 +1489,14 @@
       "spd": 105
     },
     "locations": [
-      "Vermilion (X 1031 / Y 1497 / Z 7)"
+      "Vermilion (X 1031 / Y 1497 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/64.png"
   },
@@ -1410,7 +1516,14 @@
       "spd": 120
     },
     "locations": [
-      "Vermilion (X 1031 / Y 1497 / Z 7)"
+      "Vermilion (X 1031 / Y 1497 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/65.png"
   },
@@ -1430,7 +1543,11 @@
       "spd": 35
     },
     "locations": [
-      "Singer <Entre no buraco> (X 1679 / Y 975 / Z 7)"
+      "Cerulean (X 861 / Y 845 / Z 6)",
+      {
+        "local": "Singer (X 1679 / Y 975 / Z 7)",
+        "nota": "📌  Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/66.png"
   },
@@ -1450,7 +1567,10 @@
       "spd": 45
     },
     "locations": [
-      "Singer <Entre no buraco> (X 1679 / Y 975 / Z 7)",
+      {
+        "local": "Singer (X 1679 / Y 975 / Z )",
+        "nota": "📌  Entre no Buraco"
+      },
       "Cherrygrove (X 1128 / Y 511 / Z 6)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/67.png"
@@ -1471,7 +1591,10 @@
       "spd": 55
     },
     "locations": [
-      "Singer <Entre no buraco> (X 1679 / Y 975 / Z 7)"
+      {
+        "local": "Singer (X 1679 / Y 975 / Z )",
+        "nota": "📌  Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/68.png"
   },
@@ -1534,7 +1657,7 @@
       "spd": 70
     },
     "locations": [
-      "Trost (X 1395 / Y 1352 / Z 7)"
+      "Trost (X 1438 / Y 1317 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/71.png"
   },
@@ -1576,7 +1699,7 @@
       "spd": 100
     },
     "locations": [
-      "TV Camêra (Orre)",
+      "TV Camêra (Orre) (X 2559 / 1350 / Z7)",
       "Vermilion (X 1279 / Y 1272 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/73.png"
@@ -1598,7 +1721,17 @@
       "spd": 20
     },
     "locations": [
-      "Battle Point <Entre na caverna> (X 1516 / Y 1040 / Z 7)"
+      {
+        "rota": "Cerulean (X 1214 / Y 819 / Z 7)",
+        "passos": [
+          "Quest Rock Stone (X 1198 / Y 836 / Z 8)"
+        ]
+      },
+      "Cerulean (X 861 / Y 845 / Z 6)",
+      {
+        "local": "Battle Point (X 1516 / Y 1040 / Z 7)",
+        "nota": "📌  Entre na Caverna"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png"
   },
@@ -1619,7 +1752,17 @@
       "spd": 35
     },
     "locations": [
-      "Battle Point <Entre no buraco> (X 1525 / Y 1106 / Z 7)"
+      {
+        "rota": "Quest Rock Stone -  lVL 88+",
+        "passos": [
+          "Cerulean (X 1214 / Y 819 / Z 7)",
+          "Quest Rock Stone (X 1198 / Y 836 / Z 8)"
+        ]
+      },
+      {
+        "local": "Battle Point (X 1525 / Y 1106 / Z 7)",
+        "nota": "📌  Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png"
   },
@@ -1640,8 +1783,21 @@
       "spd": 45
     },
     "locations": [
-      "Battle Point <Entre na caverna> (X 1516 / Y 1040 / Z 7)",
-      "Battle Point <Entre no buraco> (X 1607 / Y 1125 / Z 8)"
+      {
+        "rota": "Quest Rock Stone -  lVL 88+",
+        "passos": [
+          "Cerulean (X 1214 / Y 819 / Z 7)",
+          "Quest Rock Stone (X 1198 / Y 836 / Z 8)"
+        ]
+      },
+      {
+        "local": "Battle Point(X 1516 / Y 1040 / Z 7)",
+        "nota": "📌   Entre na Caverna"
+      },
+      {
+        "local": "Battle Point(X 1607 / Y 1125 / Z 8)",
+        "nota": "📌   Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/76.png"
   },
@@ -1745,7 +1901,10 @@
       "spd": 45
     },
     "locations": [
-      "Singer <Casa Eletrica) (X 1651 / Y 1015 / Z 7)",
+      {
+        "local": "Singer (X 1651 / Y 1015 / Z 7)",
+        "nota": "📌   Casa Elétrica"
+      },
       "Vermilion (X 965 / Y 1309 / Z 2)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/81.png"
@@ -1767,7 +1926,10 @@
       "spd": 70
     },
     "locations": [
-      "Singer <Casa Eletrica) (X 1651 / Y 1015 / Z 7)",
+      {
+        "local": "Singer (X 1651 / Y 1015 / Z 7)",
+        "nota": "📌   Casa Elétrica"
+      },
       "Vermilion (X 965 / Y 1309 / Z 2)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/82.png"
@@ -1892,8 +2054,14 @@
       "spd": 25
     },
     "locations": [
-      "Yorkshin (X 2233 / Y 1033 / Z 7)"
-    ],
+    {
+      "local": "Yorkshin (X 2233 / Y 1033 / Z 7)"
+    },
+    {
+      "local": "Viridian (X 691 / Y 1072 / Z8)",
+      "nota": "📌 Descer no bueiro"
+    }
+  ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/88.png"
   },
   {
@@ -1912,7 +2080,15 @@
       "spd": 50
     },
     "locations": [
-      "Yorkshin (X 2233 / Y 1033 / Z 7)"
+      "Yorkshin (X 2233 / Y 1033 / Z 7)",
+      "Singer (X 1621 / Y 922 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/89.png"
   },
@@ -2016,8 +2192,21 @@
       "spd": 110
     },
     "locations": [
-      "Singer (X 1778 / Y 1309 / Z 7)",
-      "Singer (X 1850 / Y 1330 / Z 7)"
+      "Singer (X 1800 / Y 1315 / Z 7)",
+      {
+        "rota": "Catacumbas",
+        "passos": [
+          "1. Fuchsia (X 1291 / Y 1664 / Z 4)",
+          "2. Desça a escada (X 1290 / Y 1583 / Z 8)"
+        ]
+      },
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png"
   },
@@ -2039,7 +2228,10 @@
     },
     "locations": [
       "Pewter (X 761 / Y 787 / Z 6)",
-      "Orre (X 2481 / Y 1363 / Z 7)"
+      {
+        "local": "Orre (X 2481 / Y 1363 / Z 7)",
+        "nota": "📌 Entre no Buraco. (TM Dig)"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/95.png"
   },
@@ -2139,7 +2331,10 @@
       "spd": 100
     },
     "locations": [
-      "Singer <Casa Eletrica) (X 1651 / Y 1015 / Z 7)",
+      {
+        "local": "Singer (X 1651 / Y 1015 / Z 7)",
+        "nota": "📌   Casa Elétrica"
+      },
       "Vermilion (X 965 / Y 1309 / Z 2)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/100.png"
@@ -2160,7 +2355,10 @@
       "spd": 150
     },
     "locations": [
-      "Singer <Casa Eletrica) (X 1651 / Y 1015 / Z 7)",
+      {
+        "local": "Singer (X 1651 / Y 1015 / Z 7)",
+        "nota": "📌   Casa Elétrica"
+      },
       "Vermilion (X 965 / Y 1309 / Z 2)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/101.png"
@@ -2223,7 +2421,10 @@
       "spd": 35
     },
     "locations": [
-      "Armia <Entre na caveira> (X 1940 / Y 881 / Z 7)"
+      {
+        "local": "Armia (X 1940 / Y 881 / Z 7)",
+        "nota": "📌   Entre na Caverna"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/104.png"
   },
@@ -2243,7 +2444,10 @@
       "spd": 45
     },
     "locations": [
-      "Armia <Entre na caveira> (X 1940 / Y 881 / Z 7)"
+      {
+        "local": "Armia (X 1940 / Y 881 / Z 7)",
+        "nota": "📌   Entre na Caverna"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/105.png"
   },
@@ -2263,7 +2467,10 @@
       "spd": 87
     },
     "locations": [
-      "Singer <Entre no buraco> (X 1679 / Y 975 / Z 7)"
+      {
+        "local": "Singer (X 1679 / Y 975 / Z 7)",
+        "nota": "📌   Entre no buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/106.png"
   },
@@ -2283,7 +2490,10 @@
       "spd": 76
     },
     "locations": [
-      "Singer <Entre no buraco> (X 1679 / Y 975 / Z 7)"
+      {
+        "local": "Singer (X 1679 / Y 975 / Z 7)",
+        "nota": "📌   Entre no buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/107.png"
   },
@@ -2323,7 +2533,8 @@
       "spd": 35
     },
     "locations": [
-      "Armia (X 1962 / Y 897 / Z 6)"
+      "Armia (X 1962 / Y 897 / Z 6)",
+      "Cerulean (X 944 / Y 941 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/109.png"
   },
@@ -2343,7 +2554,8 @@
       "spd": 60
     },
     "locations": [
-      "Armia (X 1962 / Y 897 / Z 6)"
+      "Armia (X 1962 / Y 897 / Z 6)",
+      "Singer (X 1621 / Y 922 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/110.png"
   },
@@ -2385,7 +2597,17 @@
       "spd": 40
     },
     "locations": [
-      "Orre (X 2481 / Y 1363 / Z 7)"
+      {
+        "rota": "Quest Rock Stone -  lVL 88+",
+        "passos": [
+          "Cerulean (X 1214 / Y 819 / Z 7)",
+          "Quest Rock Stone (X 1198 / Y 836 / Z 8)"
+        ]
+      },
+      {
+        "local": "Orre (X 2481 / Y 1363 / Z 7)",
+        "nota": "📌 Entre no Buraco. (TM Dig)"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/112.png"
   },
@@ -2610,7 +2832,7 @@
       "spd": 105
     },
     "locations": [
-      "TV Camêra (Orre)",
+      "TV Camêra (Orre) (X 2559 / 1350 / Z7)",
       "Singer (X 1664 / Y 1031 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/123.png"
@@ -2652,7 +2874,8 @@
       "spd": 105
     },
     "locations": [
-      "Armia (X 2157 / Y 887 / Z 7)"
+      "Armia (X 2157 / Y 887 / Z 7)",
+      "Pastoria (X 3930 / Y 2295 / Z 4)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/125.png"
   },
@@ -2674,7 +2897,14 @@
     "locations": [
       "Vermilion (X 886 / Y 1566 / Z 4)",
       "Yorkshin (X 2040 / Y 984 / Z 7)",
-      "Azalea (X 1400 / Y 558 / Z 7)"
+      "Azalea (X 1400 / Y 558 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/126.png"
   },
@@ -2758,6 +2988,13 @@
       {
         "local": "Pewter (X 807 / Y 725 / Z 7)",
         "nota": "📌 Buraco na frente da árvore amarela."
+      },
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
       }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png"
@@ -2790,6 +3027,13 @@
       {
         "local": "Pewter (X 807 / Y 725 / Z 7)",
         "nota": "📌 Quest Cristal Stone - Entre no buraco em frente a árvore amarela."
+      },
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
       }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/131.png"
@@ -2917,7 +3161,10 @@
       "spd": 40
     },
     "locations": [
-      "Phenac <entre no buraco a sua direita> (X 2594 / Y 1524 / Z 7)"
+      {
+        "local": "Phenac (X 2594 / Y 1524 / Z 7)",
+        "nota": "📌 Entre no buraco a sua direita"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/137.png"
   },
@@ -2982,7 +3229,10 @@
       "spd": 55
     },
     "locations": [
-      "Battle Point <desça a escada> (X 1492 / Y 954 / Z 5)"
+      {
+        "local": "Battle Point (X 1492 / Y 954 / Z 5)",
+        "nota": "📌   Desça a escada"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/140.png"
   },
@@ -3003,7 +3253,10 @@
       "spd": 80
     },
     "locations": [
-      "Battle Point <desça a escada> (X 1492 / Y 954 / Z 5)"
+      {
+        "local": "Battle Point (X 1492 / Y 954 / Z 5)",
+        "nota": "📌   Desça a escada"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/141.png"
   },
@@ -3025,7 +3278,10 @@
     },
     "locations": [
       "Battle Point (X 1492 / Y 954 / Z 5)",
-      "Pastoria <entre na montanha> (X 3904 / Y 2133 / Z 6)"
+      {
+        "local": "Pastoria (X 3904 / Y 2133 / Z 6)",
+        "nota": "📌   Entre na montanha"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/142.png"
   },
@@ -3046,8 +3302,15 @@
     },
     "locations": [
       "Hunter Village (X 1932 / Y 1763 / Z 7)",
-      "Trost (X 1395 / Y 1352 / Z 7)",
-      "Azalea (X 2141 / Y 664 / Z 7)"
+      "Trost (X 1438 / Y 1317 / Z 7)",
+      "Azalea (X 2141 / Y 664 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png"
   },
@@ -3117,7 +3380,7 @@
       "spd": 90
     },
     "locations": [
-      "TV Camêra (Orre)",
+      "TV Camêra (Orre) (X 2559 / 1350 / Z7)",
       "Quest Shiny Stone",
       "Blessed Boost Stone"
     ],
@@ -3283,7 +3546,15 @@
       "spd": 80
     },
     "locations": [
-      "Vermilion (X 1028 / Y 1338 / Z 6)"
+      "Vermilion (X 1028 / Y 1338 / Z 6)",
+      "TV Camêra (Orre) (X 2559 / 1350 / Z7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/154.png"
   },
@@ -3404,7 +3675,14 @@
       "spd": 78
     },
     "locations": [
-      "TV Camêra (Orre)"
+      "TV Camêra (Orre) (X 2559 / 1350 / Z7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/160.png"
   },
@@ -3592,8 +3870,13 @@
       "spd": 130
     },
     "locations": [
-      "Battle Point <Entre no buraco> (X 1525 / Y 1106 / Z 7)",
-      "Orre (X 2481 / Y 1363 / Z 7)"
+      {
+        "local": "Battle Point (X 1525 / Y 1106 / Z 7)",
+        "nota": "📌   Entre no buraco"
+      },
+      {
+        "local": "Orre (X 2481 / Y 1363 / Z 7)"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/169.png"
   },
@@ -3614,6 +3897,7 @@
       "spd": 67
     },
     "locations": [
+      "Violet (X 1769 / Y 230 / Z 7)",
       "Pesca"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/170.png"
@@ -3635,8 +3919,11 @@
       "spd": 67
     },
     "locations": [
-      "Pesca",
-      "Singer <passe pela cachoeira> (X 1743 / Y 1026 / Z 7)"
+      "Pescando",
+      {
+        "local": "Singer (X 1743 / Y 1026 / Z 7)",
+        "nota": "📌   Passe pela cachoeira"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/171.png"
   },
@@ -3676,7 +3963,7 @@
       "spd": 15
     },
     "locations": [
-      "Vermilion (X 880 / Y 1322 / Z 6)"
+      "Vermilion (X 881 / Y 1323 / Z 6)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/173.png"
   },
@@ -3697,7 +3984,10 @@
       "spd": 15
     },
     "locations": [
-      "Vermilion <Entre no buraco> (X 1044 / Y 1747 / Z 7)"
+      {
+        "local": "Vermilion (X 1044 / Y 1747 / Z 7)",
+        "nota": "📌   Entre no buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/174.png"
   },
@@ -3867,6 +4157,7 @@
       "spd": 50
     },
     "locations": [
+      "Sina (X 607 - Y 590 - Z 7",
       "Phenac (X 2497 / Y 1446 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/182.png"
@@ -3930,6 +4221,7 @@
     },
     "locations": [
       "Sina (X 1235 / Y 591 / Z 5)",
+      "Sina (X 985 / Y 621 / Z 3)",
       "Singer (X 1664 / Y 1031 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/185.png"
@@ -4014,7 +4306,8 @@
       "spd": 110
     },
     "locations": [
-      "Cianwood (X 625 / Y 267 / Z 7)"
+      "Cianwood (X 625 / Y 267 / Z 7)",
+      "Cianwood (X 730 / Y 460 / Z 6)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/189.png"
   },
@@ -4080,7 +4373,8 @@
           "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
         ],
         "nota": "📌 Necessário pagar HDs para poder farmar"
-      }
+      },
+      "Sina (X 679 / Y 593 / Z 4)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/192.png"
   },
@@ -4228,7 +4522,10 @@
       "spd": 30
     },
     "locations": [
-      "Canavale <entre no buraco> (X 3273 / Y 2040 / Z 7)"
+      {
+        "local": "Canavale (X 3273 / Y 2040 / Z 7)",
+        "nota": "📌   Entre no buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/199.png"
   },
@@ -4255,10 +4552,11 @@
   {
     "id": 201,
     "name": "Unown",
+    "generation": 2,
     "types": [
       "Psychic"
     ],
-    "generation": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/201.png",
     "stats": {
       "hp": 48,
       "atk": 72,
@@ -4268,17 +4566,27 @@
       "spd": 48
     },
     "locations": [
-      "Fim da quest psychic stone"
-    ],
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/201.png"
+      {
+        "rota": "Piramite dos Unowns",
+        "passos": [
+          "Cianwood (X 605 / Y 116 / Z 7)",
+          "SPOT 1 Siga ao sul (X 614 / Y 142 / Z 8)",
+          "Vá até a proxima sala (X 630 / Y 111 / Z 9)",
+          "SPOT 2 Siga ao norte (X 609 / Y 79 / Z 8)",
+          "Vá até a proxima sala (X 609 / Y 68 / Z 9)"
+        ]
+      },
+      "Quest Psychic Stone"
+    ]
   },
   {
     "id": 202,
     "name": "Wobbuffet",
+    "generation": 2,
     "types": [
       "Psychic"
     ],
-    "generation": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/202.png",
     "stats": {
       "hp": 190,
       "atk": 33,
@@ -4288,10 +4596,20 @@
       "spd": 33
     },
     "locations": [
-      "Hunter Village (X 1985 / Y 1375 / Z 4)",
-      "Singer <passe pela cachoeira> (X 1743 / Y 1026 / Z 7)"
-    ],
-    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/202.png"
+      {
+        "rota": "Piramite dos Unowns",
+        "passos": [
+          "Cianwood (X 605 / Y 116 / Z 7)",
+          "SPOT 1 Siga ao sul (X 614 / Y 142 / Z 8)",
+          "Vá até a proxima sala (X 630 / Y 111 / Z 9)"
+        ]
+      },
+      {
+        "local": "Singer (X 1743 / Y 1026 / Z 7)",
+        "nota": "📌 Entre na Cachoeira"
+      },
+      "Hunter Village (X 1985 / Y 1375 / Z 4)"
+    ]
   },
   {
     "id": 203,
@@ -4414,7 +4732,10 @@
     },
     "locations": [
       "Phenac (X 2514 / Y 1475 / Z 5)",
-      "Orre (X 2481 / Y 1363 / Z 7)"
+      {
+        "local": "Orre (X 2481 / Y 1363 / Z 7)",
+        "nota": "📌 Entre no Buraco. (TM Dig)"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/208.png"
   },
@@ -4496,7 +4817,7 @@
       "spd": 65
     },
     "locations": [
-      "TV Camêra (Orre)",
+      "TV Camêra (Orre) (X 2559 / 1350 / Z7)",
       "Pewter (X 610 / Y 919 / Z 5)",
       "Sandgem (X 3334 / Y 2306 / Z 7)"
     ],
@@ -4519,6 +4840,7 @@
       "spd": 5
     },
     "locations": [
+      "Banette Sandgem (X 3788 / Y 2330 / Z 7)",
       "Battle Point (X 1515 / Y 1042 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/213.png"
@@ -4708,7 +5030,10 @@
       "spd": 35
     },
     "locations": [
-      "Sunshine <desça a escada> (X 1463 / Y 1782 / Z 7)"
+      {
+        "local": "Sunshine (X 1463 / Y 1782 / Z 7)",
+        "nota": "📌  Desça as Escada"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/222.png"
   },
@@ -4729,7 +5054,10 @@
     },
     "locations": [
       "Sunshine (X 1509 / Y 1837 / Z 7)",
-      "Sunshine <desça a escada> (X 1463 / Y 1782 / Z 7)"
+      {
+        "local": "Sunshine (X 1463 / Y 1782 / Z 7)",
+        "nota": "📌 Desça as Escadas"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/223.png"
   },
@@ -4791,7 +5119,10 @@
       "spd": 70
     },
     "locations": [
-      "Sunshine <desça a escada> (X 1463 / Y 1782 / Z 7)"
+      {
+        "local": "Sunshine (X 1463 / Y 1782 / Z 7)",
+        "nota": "📌 Desça as Escadas"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/226.png"
   },
@@ -4917,7 +5248,15 @@
     },
     "locations": [
       "Sunshine (X 1588 / Y 1853 / Z 6)",
-      "Cianwood (X 1000 / Y 276 / Z 4)"
+      "Sina (X 985 / Y 621 / Z 3)",
+      "Cianwood (X 1000 / Y 276 / Z 4)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/232.png"
   },
@@ -4997,7 +5336,10 @@
       "spd": 35
     },
     "locations": [
-      "Singer <Entre no buraco> (X 1679 / Y 975 / Z 7)"
+      {
+        "local": "Singer (X 1679 / Y 975 / Z 7)",
+        "nota": "📌 Entre no buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/236.png"
   },
@@ -5017,7 +5359,10 @@
       "spd": 70
     },
     "locations": [
-      "Singer <Entre no buraco> (X 1679 / Y 975 / Z 7)"
+      {
+        "local": "Singer (X 1679 / Y 975 / Z 7)",
+        "nota": "📌 Entre no buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/237.png"
   },
@@ -5079,7 +5424,11 @@
       "spd": 83
     },
     "locations": [
-      "Yorkshin (X 2040 / Y 984 / Z 7)"
+      "Yorkshin (X 2040 / Y 984 / Z 7)",
+      {
+        "local": "Canavale (X 3336 / Y 1976 / Z 5)",
+        "nota": "📌 Necessario acesso a Sinnoh"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/240.png"
   },
@@ -5121,7 +5470,14 @@
     },
     "locations": [
       "Jublife (X 3449 / Y 1924 / Z 6)",
-      "Goldenrod (X 1560 / Y 161 / Z 6)"
+      "Goldenrod (X 1560 / Y 161 / Z 6)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/242.png"
   },
@@ -5202,6 +5558,13 @@
       "spd": 41
     },
     "locations": [
+      {
+        "rota": "Montanhas Blackthorn",
+        "passos": [
+          "Blackthorn Andar 1 (X 1894 / Y 143 / Z 6)"
+        ],
+        "nota": "📌 Larvitar  fica no primeiro andar."
+      },
       "Cianwood (X 1027 / Y 302 / Z 6)",
       "Hunter Village (X 1834 / Y 1413 / Z 6)"
     ],
@@ -5224,6 +5587,14 @@
       "spd": 51
     },
     "locations": [
+      {
+        "rota": "Montanhas Blackthorn",
+        "passos": [
+          "Blackthorn Andar 1 (X 1894 / Y 143 / Z 6)",
+          "Blackthorn Andar 2 (X 1894 / Y 33 / Z 5)"
+        ],
+        "nota": "📌 Pupitar fica no segundo andar."
+      },
       "Sina (X 1235 / Y 591 / Z 5)",
       "Hunter Village (X 1602 / Y 1600 / Z 5)"
     ],
@@ -5247,6 +5618,7 @@
     },
     "locations": [
       "Sina (X 1226 / Y 610 / Z 5)",
+      "Sina (X 985 / Y 621 / Z 3)",
       "Hunter Village (X 1834 / Y 1413 / Z 6)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/248.png"
@@ -5375,7 +5747,7 @@
       "spd": 120
     },
     "locations": [
-      "TV Camêra (Orre)"
+      "TV Camêra (Orre) (X 2559 / 1350 / Z7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/254.png"
   },
@@ -5437,8 +5809,15 @@
       "spd": 80
     },
     "locations": [
-      "TV Camêra (Orre)",
-      "Yorkshin (X 2142 / Y 1257 / Z 4)"
+      "TV Camêra (Orre) (X 2559 / 1350 / Z7)",
+      "Yorkshin (X 2142 / Y 1257 / Z 4)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/257.png"
   },
@@ -5502,7 +5881,14 @@
     "locations": [
       "Singer (X 1795 / Y 1251 / Z 5)",
       "Yorkshin (X 2178 / Y 1204 / Z 7)",
-      "Pastoria (X 4043 / Y 2105 / Z 7)"
+      "Pastoria (X 4039 / Y 2098 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/260.png"
   },
@@ -5750,6 +6136,7 @@
       "spd": 70
     },
     "locations": [
+      "Pastoria (X 3917 / Y 2203 / Z 7)",
       "Olivine (X 1406 / Y 378 / Z 6)",
       "Olivine (X 1192 / Y 303 / Z 6)"
     ],
@@ -5814,7 +6201,8 @@
       "spd": 80
     },
     "locations": [
-      "Sina (X 697 / Y 458 / Z 7)"
+      "Sina (X 697 / Y 458 / Z 7)",
+      "Cianwood (X 760 / Y 460 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/275.png"
   },
@@ -5964,7 +6352,14 @@
       "spd": 80
     },
     "locations": [
-      "Olivine (X 928 / Y 126 / Z 7)"
+      "Olivine (X 928 / Y 126 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/282.png"
   },
@@ -6107,7 +6502,14 @@
       "spd": 100
     },
     "locations": [
-      "Olivine (X 1188 / Y 57 / Z 4)"
+      "Olivine (X 1188 / Y 57 / Z 4)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/289.png"
   },
@@ -6230,7 +6632,14 @@
       "spd": 68
     },
     "locations": [
-      "Olivine (X 1158 / Y 58 / Z 4)"
+      "Olivine (X 1158 / Y 58 / Z 4)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/295.png"
   },
@@ -6311,7 +6720,10 @@
       "spd": 30
     },
     "locations": [
-      "Singer <entre no teleport> (X 1665 / Y 1030 / Z 7)"
+      {
+        "local": "Singer (X 1665 / Y 1030 / Z 7)",
+        "nota": "📌 Entre no teleport"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/299.png"
   },
@@ -6415,7 +6827,10 @@
       "spd": 30
     },
     "locations": [
-      "Phenac <entre na caverna> (X 2780 / Y 1447 / Z 5)"
+      {
+        "local": "Phenac (X 2780 / Y 1447 / Z 5)",
+        "nota": "📌 Entre na caverna"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/304.png"
   },
@@ -6436,7 +6851,16 @@
       "spd": 40
     },
     "locations": [
-      "Phenac (X 2780 / Y 1447 / Z 5)"
+      "Phenac (X 2780 / Y 1447 / Z 5)",
+      {
+        "rota": "Montanhas Blackthorn",
+        "passos": [
+          "Blackthorn Andar 1 (X 1894 / Y 143 / Z 6)",
+          "Blackthorn Andar 2 (X 1894 / Y 33 / Z 5)",
+          "Blackthorn Andar 3 (X 2074 / Y 118 / Z 4)"
+        ],
+        "nota": "📌 Lairon e Aggron ficam distribuidos entre os andares."
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/305.png"
   },
@@ -6457,7 +6881,23 @@
       "spd": 50
     },
     "locations": [
-      "Phenac (X 2780 / Y 1447 / Z 5)"
+      "Phenac (X 2780 / Y 1447 / Z 5)",
+      {
+        "rota": "Montanhas Blackthorn",
+        "passos": [
+          "Blackthorn Andar 1 (X 1894 / Y 143 / Z 6)",
+          "Blackthorn Andar 2 (X 1894 / Y 33 / Z 5)",
+          "Blackthorn Andar 3 (X 2074 / Y 118 / Z 4)"
+        ],
+        "nota": "📌 Lairon e Aggron ficam distribuidos entre os andares."
+      },
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/306.png"
   },
@@ -6500,7 +6940,8 @@
       "spd": 80
     },
     "locations": [
-      "Quest boost stone",
+      "Quest Boost Stone",
+      "Canavale (X 3263 / Y 2212 / Z 6)",
       "Cianwood (X 905 / Y 177 / Z 4)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/308.png"
@@ -6951,7 +7392,14 @@
       "spd": 100
     },
     "locations": [
-      "Pirita (X 2596 / Y 1746 / Z 7)"
+      "Pirita (X 2596 / Y 1746 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/330.png"
   },
@@ -7035,7 +7483,14 @@
       "spd": 80
     },
     "locations": [
-      "Phenac (X 2596 / Y 1469 / Z 7)"
+      "Phenac (X 2596 / Y 1469 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/334.png"
   },
@@ -7307,7 +7762,16 @@
       "spd": 75
     },
     "locations": [
-      "Cianwood (X 1000 / Y 276 / Z 4)"
+      "Cianwood (X 1000 / Y 276 / Z 4)",
+      {
+        "rota": "Montanhas Blackthorn",
+        "passos": [
+          "Blackthorn Andar 1 (X 1894 / Y 143 / Z 6)",
+          "Blackthorn Andar 2 (X 1894 / Y 33 / Z 5)",
+          "Blackthorn Andar 3 (X 2074 / Y 118 / Z 4)"
+        ],
+        "nota": "📌 Armaldo e Anorith ficam no ultimo andar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/347.png"
   },
@@ -7328,7 +7792,16 @@
       "spd": 45
     },
     "locations": [
-      "Cianwood (X 1000 / Y 276 / Z 4)"
+      "Cianwood (X 1000 / Y 276 / Z 4)",
+      {
+        "rota": "Montanhas Blackthorn",
+        "passos": [
+          "Blackthorn Andar 1 (X 1894 / Y 143 / Z 6)",
+          "Blackthorn Andar 2 (X 1894 / Y 33 / Z 5)",
+          "Blackthorn Andar 3 (X 2074 / Y 118 / Z 4)"
+        ],
+        "nota": "📌 Armaldo e Anorith ficam no ultimo andar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/348.png"
   },
@@ -7454,7 +7927,7 @@
     },
     "locations": [
       {
-        "rota": "Banete Sandgem (X 3788 / Y 2330 / Z 7)",
+        "rota": "Banette Sandgem (X 3788 / Y 2330 / Z 7)",
         "passos": [
           "1. Buraco entre as Árvores (X 3788 / Y 2330 / Z 7)",
           "2. Entre no Buraco (X 3752 / Y 2282 / Z 8)",
@@ -7483,9 +7956,9 @@
     },
     "locations": [
       {
-        "rota": "Vermilion (X 1291 / Y 1664 / Z 4)",
+        "rota": "Catacumbas",
         "passos": [
-          "1. Vermilion (X 1291 / Y 1664 / Z 4)",
+          "1. Fuchsia (X 1291 / Y 1664 / Z 4)",
           "2. Desça a escada (X 1290 / Y 1583 / Z 8)",
           "3. Passagem secreta na parede (X 1263 / Y 1607 / Z 9)",
           "4. Entre no Portal!"
@@ -7511,9 +7984,9 @@
     },
     "locations": [
       {
-        "rota": "Vermilion (X 1291 / Y 1664 / Z 4)",
+        "rota": "Catacumbas",
         "passos": [
-          "1. Vermilion (X 1291 / Y 1664 / Z 4)",
+          "1. Fuchsia (X 1291 / Y 1664 / Z 4)",
           "2. Desça a escada (X 1290 / Y 1583 / Z 8)",
           "3. Passagem secreta na parede (X 1263 / Y 1607 / Z 9)",
           "4. Entre no Portal!"
@@ -7577,7 +8050,10 @@
     },
     "locations": [
       "Pirita (X 2387 / Y 1471 / Z 7)",
-      "Sandgem <Buraco entre as árvores> (X 3788 / Y 2330 / Z 7)"
+      {
+        "local": "Banette Sandgem (X 3788 / Y 2330 / Z 7)",
+        "nota": "📌 Buraco entre as Árvores"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/359.png"
   },
@@ -7657,7 +8133,7 @@
       "spd": 25
     },
     "locations": [
-      "sina (X 546 / Y 524 / Z 7)"
+      "Sina (X 546 / Y 524 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png"
   },
@@ -7678,7 +8154,7 @@
       "spd": 45
     },
     "locations": [
-      "sina (X 546 / Y 524 / Z 7)"
+      "Sina (X 546 / Y 524 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/364.png"
   },
@@ -7699,7 +8175,7 @@
       "spd": 65
     },
     "locations": [
-      "sina (X 546 / Y 524 / Z 7)"
+      "Sina (X 546 / Y 524 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/365.png"
   },
@@ -7857,7 +8333,14 @@
       "spd": 100
     },
     "locations": [
-      "Pirita (X 2605 / Y 1741 / Z 7)"
+      "Pirita (X 2605 / Y 1741 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/373.png"
   },
@@ -7906,6 +8389,13 @@
       "spd": 50
     },
     "locations": [
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      },
       {
         "rota": "Cinnabar (X 802 / Y 1264 / Z 7)",
         "passos": [
@@ -8882,7 +9372,8 @@
     },
     "locations": [
       "Two Island (X 2755 / Y 938 / Z 6)",
-      "Pastoria (X 4043 / Y 2105 / Z 7)"
+      "Pastoria (X 4039 / Y 2098 / Z 7)",
+      "Pastoria (X 3917 / Y 2203 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/423.png"
   },
@@ -9170,7 +9661,10 @@
       "spd": 33
     },
     "locations": [
-      "One island <desça a escada> (X 2439 / Y 1041 / Z 6)"
+      {
+        "local": "One island (X 2439 / Y 1041 / Z 6)",
+        "nota": "📌 Desça as Escadas"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/437.png"
   },
@@ -9479,7 +9973,10 @@
       "spd": 95
     },
     "locations": [
-      "Sandgem <Buraco entre as árvores> (X 3788 / Y 2330 / Z 7)"
+      {
+        "local": "Sandgem (X 3788 / Y 2330 / Z 7)",
+        "nota": "📌 Buraco entre as Árvores"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/452.png"
   },
@@ -9600,7 +10097,10 @@
       "spd": 50
     },
     "locations": [
-      "Sunshine <desça a escada> (X 1441 / Y 1822 / Z 7)"
+      {
+        "local": "Sunshine (X 1441 / Y 1822 / Z 7)",
+        "nota": "📌 Desça a Escada"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/458.png"
   },
@@ -9766,7 +10266,8 @@
       "spd": 95
     },
     "locations": [
-      "Phenac (X 2497 / Y 1547 / Z 4)"
+      "Phenac (X 2497 / Y 1547 / Z 4)",
+      "Pastoria (X 3930 / Y 2295 / Z 4)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/466.png"
   },
@@ -9793,7 +10294,12 @@
         ],
         "nota": "📌 Necessário pagar HDs para poder farmar"
       },
+      {
+        "local": "Canavale (X 3336 / Y 1976 / Z 5)",
+        "nota": "📌 Necessario acesso a Sinnoh"
+      },
       "Yorkshin (X 2040 / Y 984 / Z 7)",
+      "One island (X 2513 / Y 1178 / Z 7)",
       "Azalea (X 1400 / Y 558 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/467.png"
@@ -9921,7 +10427,14 @@
       "spd": 80
     },
     "locations": [
-      "Pirita (X 2383 / Y 1815 / Z 7)"
+      "Pirita (X 2383 / Y 1815 / Z 7)",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/473.png"
   },
@@ -9962,7 +10475,14 @@
       "spd": 80
     },
     "locations": [
-      "Quest Boost Stone"
+      "Quest Boost Stone",
+      {
+        "rota": "Trainer Center",
+        "passos": [
+          "NPC Hunt no Trainer Center (X 868 / Y 2104 / Z 7)"
+        ],
+        "nota": "📌 Necessário pagar HDs para poder farmar"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/475.png"
   },
@@ -9983,7 +10503,10 @@
       "spd": 40
     },
     "locations": [
-      "Singer <entre no teleport> (X 1665 / Y 1030 / Z 7)"
+      {
+        "local": "Singer (X 1665 / Y 1030 / Z 7)",
+        "nota": "📌 Entre no teleport"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/476.png"
   },
@@ -10005,9 +10528,9 @@
     },
     "locations": [
       {
-        "rota": "Vermilion (X 1291 / Y 1664 / Z 4)",
+        "rota": "Catacumbas",
         "passos": [
-          "1. Vermilion (X 1291 / Y 1664 / Z 4)",
+          "1. Fuchsia (X 1291 / Y 1664 / Z 4)",
           "2. Desça a escada (X 1290 / Y 1583 / Z 8)",
           "3. Passagem secreta na parede (X 1263 / Y 1607 / Z 9)",
           "4. Entre no Portal!"
@@ -10344,7 +10867,11 @@
       "spd": 45
     },
     "locations": [
-      "Jublife (X 3294 / Y 1970 / Z 7)"
+      "Jublife (X 3294 / Y 1970 / Z 7)",
+      {
+        "local": "Canavale (X 3336 / Y 1976 / Z 5)",
+        "nota": "📌 Necessario acesso a Sinnoh"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/498.png"
   },
@@ -10365,7 +10892,11 @@
       "spd": 55
     },
     "locations": [
-      "Jublife (X 3338 / Y 1966 / Z 4)"
+      "Jublife (X 3338 / Y 1966 / Z 4)",
+      {
+        "local": "Canavale (X 3336 / Y 1976 / Z 5)",
+        "nota": "📌 Necessario acesso a Sinnoh"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/499.png"
   },
@@ -10386,7 +10917,11 @@
       "spd": 65
     },
     "locations": [
-      "Jublife (X 3338 / Y 1966 / Z 4)"
+      "Jublife (X 3338 / Y 1966 / Z 4)",
+      {
+        "local": "Canavale (X 3336 / Y 1976 / Z 5)",
+        "nota": "📌 Necessario acesso a Sinnoh"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/500.png"
   },
@@ -10406,7 +10941,8 @@
       "spd": 45
     },
     "locations": [
-      "Sandgem (X 3573 / Y 2256 / Z 7)"
+      "Sandgem (X 3573 / Y 2256 / Z 7)",
+      "Pastoria (X 4039 / Y 2098 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/501.png"
   },
@@ -10426,7 +10962,7 @@
       "spd": 60
     },
     "locations": [
-      "Pastoria (X 4009 / Y 2127 / Z 7)"
+      "Pastoria (X 4039 / Y 2098 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/502.png"
   },
@@ -10447,7 +10983,7 @@
     },
     "locations": [
       "Sandgem (X 3505 / Y 2309 / Z 6)",
-      "Pastoria (X 4009 / Y 2127 / Z 7)"
+      "Pastoria (X 4039 / Y 2098 / Z 7)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/503.png"
   },
@@ -10647,7 +11183,11 @@
       "spd": 64
     },
     "locations": [
-      "Jublife (X 3294 / Y 1970 / Z 7)"
+      "Jublife (X 3294 / Y 1970 / Z 7)",
+      {
+        "local": "Canavale (X 3336 / Y 1976 / Z 5)",
+        "nota": "📌 Necessario acesso a Sinnoh"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/513.png"
   },
@@ -10667,7 +11207,11 @@
       "spd": 101
     },
     "locations": [
-      "Jublife (X 3338 / Y 1966 / Z 4)"
+      "Jublife (X 3338 / Y 1966 / Z 4)",
+      {
+        "local": "Canavale (X 3336 / Y 1976 / Z 5)",
+        "nota": "📌 Necessario acesso a Sinnoh"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/514.png"
   },
@@ -10877,7 +11421,10 @@
       "spd": 15
     },
     "locations": [
-      "Canavale <use RockSmash na grade> (X 3283 / Y 2269 / Z 7)"
+      {
+        "local": "Canavale (X 3283 / Y 2269 / Z 7)",
+        "nota": "📌 Use RockSmash na Grade"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/524.png"
   },
@@ -10897,7 +11444,10 @@
       "spd": 20
     },
     "locations": [
-      "Canavale <use RockSmash na grade> (X 3283 / Y 2269 / Z 7)"
+      {
+        "local": "Canavale (X 3283 / Y 2269 / Z 7)",
+        "nota": "📌 Use RockSmash na Grade"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/525.png"
   },
@@ -10917,7 +11467,10 @@
       "spd": 25
     },
     "locations": [
-      "Canavale <use RockSmash na grade> (X 3283 / Y 2269 / Z 7)"
+      {
+        "local": "Canavale (X 3283 / Y 2269 / Z 7)",
+        "nota": "📌 Use RockSmash na Grade"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/526.png"
   },
@@ -10938,7 +11491,10 @@
       "spd": 72
     },
     "locations": [
-      "Canavale <use RockSmash na grade> (X 3283 / Y 2269 / Z 7)"
+      {
+        "local": "Canavale (X 3283 / Y 2269 / Z 7)",
+        "nota": "📌 Use RockSmash na Grade"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/527.png"
   },
@@ -10959,7 +11515,10 @@
       "spd": 114
     },
     "locations": [
-      "Canavale <use RockSmash na grade> (X 3283 / Y 2269 / Z 7)"
+      {
+        "local": "Canavale (X 3283 / Y 2269 / Z 7)",
+        "nota": "📌 Use RockSmash na Grade"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/528.png"
   },
@@ -11266,7 +11825,10 @@
       "spd": 57
     },
     "locations": [
-      "Veilstone <entre na cachoeira> (X 4286 / Y 2088 / Z 7)"
+      {
+        "local": "Veilstone (X 4286 / Y 2088 / Z 7)",
+        "nota": "📌 Entre na Cachoeira"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/543.png"
   },
@@ -11287,7 +11849,10 @@
       "spd": 47
     },
     "locations": [
-      "Veilstone <entre na cachoeira> (X 4286 / Y 2088 / Z 7)"
+      {
+        "local": "Veilstone (X 4286 / Y 2088 / Z 7)",
+        "nota": "📌 Entre na Cachoeira"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/544.png"
   },
@@ -11308,7 +11873,10 @@
       "spd": 112
     },
     "locations": [
-      "Veilstone <entre na cachoeira> (X 4286 / Y 2088 / Z 7)"
+      {
+        "local": "Veilstone (X 4286 / Y 2088 / Z 7)",
+        "nota": "📌 Entre na Cachoeira"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/545.png"
   },
@@ -11558,7 +12126,10 @@
       "spd": 55
     },
     "locations": [
-      "Canavale <entre na caverna> (X 3462 / Y 1961 / Z 7)"
+      {
+        "local": "Canavale (X 3462 / Y 1961 / Z 7)",
+        "nota": "📌 Entre na Caverna"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/557.png"
   },
@@ -11579,7 +12150,10 @@
       "spd": 45
     },
     "locations": [
-      "Canavale <entre na caverna> (X 3462 / Y 1961 / Z 7)"
+      {
+        "local": "Canavale (X 3462 / Y 1961 / Z 7)",
+        "nota": "📌 Entre na Caverna"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/558.png"
   },
@@ -11662,7 +12236,10 @@
       "spd": 30
     },
     "locations": [
-      "Sandgem <Buraco entre as árvores> (X 3788 / Y 2330 / Z 7)"
+      {
+        "local": "Banette Sandgem (X 3788 / Y 2330 / Z 7)",
+        "nota": "📌 Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/562.png"
   },
@@ -11682,7 +12259,10 @@
       "spd": 30
     },
     "locations": [
-      "Sandgem <Buraco entre as árvores> (X 3788 / Y 2330 / Z 7)"
+      {
+        "local": "Banette Sandgem (X 3788 / Y 2330 / Z 7)",
+        "nota": "📌 Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/563.png"
   },
@@ -11703,7 +12283,10 @@
       "spd": 22
     },
     "locations": [
-      "Pastoria <entre na montanha> (X 3904 / Y 2133 / Z 6)"
+      {
+        "local": "Pastoria (X 3904 / Y 2133 / Z 6)",
+        "nota": "📌 Entre na Montanha"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/564.png"
   },
@@ -11724,7 +12307,10 @@
       "spd": 32
     },
     "locations": [
-      "Pastoria <entre na montanha> (X 3904 / Y 2133 / Z 6)"
+      {
+        "local": "Pastoria (X 3904 / Y 2133 / Z 6)",
+        "nota": "📌 Entre na Montanha"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/565.png"
   },
@@ -11786,7 +12372,10 @@
       "spd": 65
     },
     "locations": [
-      "Veilstone <entre na cachoeira> (X 4286 / Y 2088 / Z 7)"
+      {
+        "local": "Veilstone (X 4286 / Y 2088 / Z 7)",
+        "nota": "📌 Entre na Cachoeira"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/568.png"
   },
@@ -11806,7 +12395,10 @@
       "spd": 75
     },
     "locations": [
-      "Veilstone <entre na cachoeira> (X 4286 / Y 2088 / Z 7)"
+      {
+        "local": "Veilstone (X 4286 / Y 2088 / Z 7)",
+        "nota": "📌 Entre na Cachoeira"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/569.png"
   },
@@ -11831,6 +12423,95 @@
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/570.png"
   },
   {
+    "id": 571,
+    "name": "Zoroark",
+    "types": [
+      "Dark"
+    ],
+    "generation": 5,
+    "stats": {
+      "hp": 60,
+      "atk": 105,
+      "def": 60,
+      "spatk": 120,
+      "spdef": 60,
+      "spd": 105
+    },
+    "locations": [
+      "Evoluindo Zorua"
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/571.png"
+  },
+  {
+    "id": 572,
+    "name": "Minccino",
+    "types": [
+      "Normal"
+    ],
+    "generation": 5,
+    "stats": {
+      "hp": 55,
+      "atk": 50,
+      "def": 40,
+      "spatk": 40,
+      "spdef": 40,
+      "spd": 75
+    },
+    "locations": [
+      {
+        "local": "Solaceon (X 3573 / Y 2118 / Z 7)",
+        "nota": "📌 Necessário acesso a Sinnoh"
+      }
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/572.png"
+  },
+  {
+    "id": 573,
+    "name": "Cinccino",
+    "types": [
+      "Normal"
+    ],
+    "generation": 5,
+    "stats": {
+      "hp": 75,
+      "atk": 95,
+      "def": 60,
+      "spatk": 65,
+      "spdef": 60,
+      "spd": 115
+    },
+    "locations": [
+      {
+        "local": "Solaceon (X 3573 / Y 2118 / Z 7)",
+        "nota": "📌 Necessário acesso a Sinnoh"
+      }
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/573.png"
+  },
+  {
+    "id": 574,
+    "name": "Gotita",
+    "types": [
+      "Psychic"
+    ],
+    "generation": 5,
+    "stats": {
+      "hp": 45,
+      "atk": 30,
+      "def": 50,
+      "spatk": 55,
+      "spdef": 65,
+      "spd": 45
+    },
+    "locations": [
+      {
+        "local": "Solaceon (X 3904 / Y 1864 / Z 7)",
+        "nota": "📌 Entre no Buraco"
+      }
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/574.png"
+  },
+  {
     "id": 575,
     "name": "Gothorita",
     "types": [
@@ -11846,7 +12527,10 @@
       "spd": 55
     },
     "locations": [
-      "Solaceon <entre no buraco> (X 3904 / Y 1864 / Z 7)"
+      {
+        "local": "Solaceon (X 3904 / Y 1864 / Z 7)",
+        "nota": "📌 Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/575.png"
   },
@@ -11866,7 +12550,10 @@
       "spd": 65
     },
     "locations": [
-      "Solaceon (X 3918 / Y 1902 / Z 7)"
+      {
+        "local": "Solaceon (X 3918 / Y 1902 / Z 7)",
+        "nota": "📌 Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/576.png"
   },
@@ -12111,7 +12798,10 @@
       "spd": 60
     },
     "locations": [
-      "Sandgem <Buraco entre as árvores> (X 3788 / Y 2330 / Z 7)"
+      {
+        "local": "Banette Sandgem (X 3788 / Y 2330 / Z 7)",
+        "nota": "📌 Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/588.png"
   },
@@ -12132,7 +12822,10 @@
       "spd": 20
     },
     "locations": [
-      "Sandgem <Buraco entre as árvores> (X 3788 / Y 2330 / Z 7)"
+      {
+        "local": "Banette Sandgem (X 3788 / Y 2330 / Z 7)",
+        "nota": "📌 Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/589.png"
   },
@@ -12153,7 +12846,10 @@
       "spd": 15
     },
     "locations": [
-      "Pastoria <buraco entre as arvores> (X 3966 / Y 2290 / Z 7)"
+      {
+        "local": "Pastoria (X 3966 / Y 2290 / Z 7)",
+        "nota": "📌 Entre no buraco entre as arvores."
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/590.png"
   },
@@ -12174,7 +12870,10 @@
       "spd": 30
     },
     "locations": [
-      "Pastoria <buraco entre as arvores> (X 3966 / Y 2290 / Z 7)"
+      {
+        "local": "Pastoria (X 3966 / Y 2290 / Z 7)",
+        "nota": "📌 Entre no buraco entre as arvores."
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/591.png"
   },
@@ -12230,7 +12929,10 @@
       "spd": 65
     },
     "locations": [
-      "Jublife <entre no redomoinho> (X 3739 / Y 2248 / Z 7)"
+      {
+        "local": "Jublife (X 3739 / Y 2248 / Z 7)",
+        "nota": "📌 Entre no Redomoinho"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/594.png"
   },
@@ -12454,7 +13156,10 @@
       "spd": 30
     },
     "locations": [
-      "Jublife <clique no globo> (X 3824 / Y 1807 / Z 7)"
+      {
+        "local": "Jublife (X 3824 / Y 1807 / Z 7)",
+        "nota": "📌 Clique no Globo"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/605.png"
   },
@@ -12474,7 +13179,10 @@
       "spd": 40
     },
     "locations": [
-      "Jublife <clique no globo> (X 3824 / Y 1807 / Z 7)"
+      {
+        "local": "Jublife (X 3824 / Y 1807 / Z 7)",
+        "nota": "📌 Clique no Globo"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/606.png"
   },
@@ -12495,7 +13203,10 @@
       "spd": 20
     },
     "locations": [
-      "Pastoria (X 3884 / Y 2146 / Z 7)"
+      {
+        "local": "Pastoria (X 3884 / Y 2146 / Z 7)",
+        "nota": "📌 Entre no buraco entre as arvores."
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/607.png"
   },
@@ -12516,7 +13227,10 @@
       "spd": 55
     },
     "locations": [
-      "Pastoria (X 3884 / Y 2146 / Z 7)"
+      {
+        "local": "Pastoria (X 3884 / Y 2146 / Z 7)",
+        "nota": "📌 Entre no buraco entre as arvores."
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/608.png"
   },
@@ -12537,7 +13251,10 @@
       "spd": 80
     },
     "locations": [
-      "Pastoria (X 3884 / Y 2146 / Z 7)"
+      {
+        "local": "Pastoria (X 3884 / Y 2146 / Z 7)",
+        "nota": "📌 Entre no buraco entre as arvores."
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/609.png"
   },
@@ -12677,7 +13394,10 @@
       "spd": 25
     },
     "locations": [
-      "Sandgem <tem um buraco entre as arvores> (X 3788 / Y 2330 / Z 7)"
+      {
+        "local": "Banette Sandgem (X 3788 / Y 2330 / Z 7)",
+        "nota": "📌 Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/616.png"
   },
@@ -12697,7 +13417,10 @@
       "spd": 145
     },
     "locations": [
-      "Sandgem <tem um buraco entre as arvores> (X 3788 / Y 2330 / Z 7)"
+      {
+        "local": "Banette Sandgem (X 3788 / Y 2330 / Z 7)",
+        "nota": "📌 Entre no Buraco"
+      }
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/617.png"
   },
@@ -12738,7 +13461,8 @@
       "spd": 65
     },
     "locations": [
-      "Veilstone (X 4136 / Y 1965 / Z 6)"
+      "Veilstone (X 4136 / Y 1965 / Z 6)",
+      "Canavale (X 3263 / Y 2212 / Z 6)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/619.png"
   },
@@ -12758,7 +13482,8 @@
       "spd": 105
     },
     "locations": [
-      "Veilstone (X 4136 / Y 1965 / Z 6)"
+      "Veilstone (X 4136 / Y 1965 / Z 6)",
+      "Canavale (X 3263 / Y 2212 / Z 6)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/620.png"
   },
@@ -12869,6 +13594,47 @@
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/625.png"
   },
   {
+    "id": 626,
+    "name": "Bouffalant",
+    "types": [
+      "Normal"
+    ],
+    "generation": 5,
+    "stats": {
+      "hp": 95,
+      "atk": 110,
+      "def": 95,
+      "spatk": 40,
+      "spdef": 95,
+      "spd": 55
+    },
+    "locations": [
+      "Pastoria (X 3970 / Y 2031 / Z 7)"
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/626.png"
+  },
+  {
+    "id": 627,
+    "name": "Rufflet",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "generation": 5,
+    "stats": {
+      "hp": 70,
+      "atk": 83,
+      "def": 50,
+      "spatk": 37,
+      "spdef": 50,
+      "spd": 60
+    },
+    "locations": [
+      "Hearthome (X 3791 / Y 2084 / Z 6)"
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/627.png"
+  },
+  {
     "id": 628,
     "name": "Braviary",
     "types": [
@@ -12947,7 +13713,7 @@
       "spd": 65
     },
     "locations": [
-      "Canavale - > FLY (X 3348 / Y 1955 / Z 0)"
+      "Canavale (X 3348 / Y 1955 / Z 0)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/631.png"
   },
@@ -12970,9 +13736,9 @@
     },
     "locations": [
       {
-        "rota": "Sandgem",
+        "rota": "Banette Sandgem",
         "passos": [
-          "1. Sandgem (X 3788 / Y 2330 / Z 7)",
+          "1. Banette Sandgem (X 3788 / Y 2330 / Z 7)",
           "2. Entre no buraco (X 3752 / Y 2282 / Z 8)",
           "3. Escreva “Onied” de frente para o totem (X 3774 / Y 2283 / Z 9)",
           "4. Entre no Portal (X 3797 / Y 2266 / Z 100)"
@@ -13001,7 +13767,7 @@
       {
         "rota": "Sandgem",
         "passos": [
-          "1. Sandgem (X 3788 / Y 2330 / Z 7)",
+          "1. Banette Sandgem (X 3788 / Y 2330 / Z 7)",
           "2. Entre no buraco (X 3752 / Y 2282 / Z 8)",
           "3. Escreva “Onied” de frente para o totem (X 3774 / Y 2283 / Z 9)",
           "4. Entre no Portal (X 3797 / Y 2266 / Z 100)"
@@ -13028,9 +13794,9 @@
     },
     "locations": [
       {
-        "rota": "Sandgem",
+        "rota": "Banette Sandgem",
         "passos": [
-          "1. Sandgem (X 3788 / Y 2330 / Z 7)",
+          "1. Banette Sandgem (X 3788 / Y 2330 / Z 7)",
           "2. Entre no buraco (X 3752 / Y 2282 / Z 8)",
           "3. Escreva “Onied” de frente para o totem (X 3774 / Y 2283 / Z 9)",
           "4. Entre no Portal (X 3797 / Y 2266 / Z 100)"
@@ -13335,6 +14101,69 @@
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/660.png"
   },
   {
+    "id": 722,
+    "name": "Rowlet",
+    "types": [
+      "Grass",
+      "Flying"
+    ],
+    "generation": 7,
+    "stats": {
+      "hp": 68,
+      "atk": 55,
+      "def": 55,
+      "spatk": 50,
+      "spdef": 50,
+      "spd": 42
+    },
+    "locations": [
+      "Canavale (X 3263 / Y 2212 / Z 6)"
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/722.png"
+  },
+  {
+    "id": 723,
+    "name": "Dartrix",
+    "types": [
+      "Grass",
+      "Flying"
+    ],
+    "generation": 7,
+    "stats": {
+      "hp": 78,
+      "atk": 75,
+      "def": 75,
+      "spatk": 70,
+      "spdef": 70,
+      "spd": 52
+    },
+    "locations": [
+      "Canavale (X 3263 / Y 2212 / Z 6)"
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/723.png"
+  },
+  {
+    "id": 724,
+    "name": "Decidueye",
+    "types": [
+      "Grass",
+      "Ghost"
+    ],
+    "generation": 7,
+    "stats": {
+      "hp": 78,
+      "atk": 107,
+      "def": 75,
+      "spatk": 100,
+      "spdef": 100,
+      "spd": 70
+    },
+    "locations": [
+      "Canavale (X 3263 / Y 2212 / Z 6)"
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/724.png"
+  },
+  {
     "id": 902,
     "name": "Basculegion",
     "types": [
@@ -13354,5 +14183,645 @@
       "Hearthome (X 3791 / Y 2084 / Z 6)"
     ],
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/902.png"
+  },
+  {
+    "id": "58-hisui",
+    "name": "Growlithe",
+    "types": [
+      "Fire",
+      "Rock"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 60,
+      "atk": 75,
+      "def": 45,
+      "spatk": 65,
+      "spdef": 50,
+      "spd": 55
+    },
+    "locations": [
+      {
+        "local": "Canavale (X 3336 / Y 1976 / Z 5)",
+        "nota": "📌 Necessario acesso a Sinnoh"
+      }
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10229.png"
+  },
+  {
+    "id": "59-hisui",
+    "name": "Arcanine",
+    "types": [
+      "Fire",
+      "Rock"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 95,
+      "atk": 115,
+      "def": 80,
+      "spatk": 95,
+      "spdef": 80,
+      "spd": 90
+    },
+    "locations": [
+      {
+        "local": "Canavale (X 3336 / Y 1976 / Z 5)",
+        "nota": "📌 Necessario acesso a Sinnoh"
+      }
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10230.png"
+  },
+  {
+    "id": "100-hisui",
+    "name": "Voltorb",
+    "types": [
+      "Electric",
+      "Grass"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 40,
+      "atk": 30,
+      "def": 50,
+      "spatk": 55,
+      "spdef": 55,
+      "spd": 100
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10231.png"
+  },
+  {
+    "id": "101-hisui",
+    "name": "Electrode",
+    "types": [
+      "Electric",
+      "Grass"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 60,
+      "atk": 50,
+      "def": 70,
+      "spatk": 80,
+      "spdef": 80,
+      "spd": 150
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10232.png"
+  },
+  {
+    "id": "157-hisui",
+    "name": "Typhlosion",
+    "types": [
+      "Fire",
+      "Ghost"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 73,
+      "atk": 84,
+      "def": 78,
+      "spatk": 119,
+      "spdef": 85,
+      "spd": 95
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10233.png"
+  },
+  {
+    "id": "211-hisui",
+    "name": "Qwilfish",
+    "types": [
+      "Dark",
+      "Poison"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 65,
+      "atk": 95,
+      "def": 85,
+      "spatk": 55,
+      "spdef": 55,
+      "spd": 85
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10234.png"
+  },
+  {
+    "id": "215-hisui",
+    "name": "Sneasel",
+    "types": [
+      "Fighting",
+      "Poison"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 55,
+      "atk": 95,
+      "def": 55,
+      "spatk": 35,
+      "spdef": 75,
+      "spd": 115
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10235.png"
+  },
+  {
+    "id": "503-hisui",
+    "name": "Samurott",
+    "types": [
+      "Water",
+      "Dark"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 90,
+      "atk": 108,
+      "def": 80,
+      "spatk": 100,
+      "spdef": 65,
+      "spd": 85
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10236.png"
+  },
+  {
+    "id": "549-hisui",
+    "name": "Lilligant",
+    "types": [
+      "Grass",
+      "Fighting"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 70,
+      "atk": 105,
+      "def": 75,
+      "spatk": 50,
+      "spdef": 75,
+      "spd": 105
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10237.png"
+  },
+  {
+    "id": "570-hisui",
+    "name": "Zorua",
+    "types": [
+      "Normal",
+      "Ghost"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 35,
+      "atk": 60,
+      "def": 40,
+      "spatk": 85,
+      "spdef": 40,
+      "spd": 70
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10238.png"
+  },
+  {
+    "id": "571-hisui",
+    "name": "Zoroark",
+    "types": [
+      "Normal",
+      "Ghost"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 55,
+      "atk": 100,
+      "def": 60,
+      "spatk": 125,
+      "spdef": 60,
+      "spd": 110
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10239.png"
+  },
+  {
+    "id": "705-hisui",
+    "name": "Sliggoo",
+    "types": [
+      "Steel",
+      "Dragon"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 58,
+      "atk": 75,
+      "def": 83,
+      "spatk": 83,
+      "spdef": 113,
+      "spd": 40
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10241.png"
+  },
+  {
+    "id": "713-hisui",
+    "name": "Avalugg",
+    "types": [
+      "Ice",
+      "Rock"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 95,
+      "atk": 127,
+      "def": 184,
+      "spatk": 34,
+      "spdef": 36,
+      "spd": 38
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10243.png"
+  },
+  {
+    "id": "724-hisui",
+    "name": "Decidueye",
+    "types": [
+      "Grass",
+      "Fighting"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 88,
+      "atk": 112,
+      "def": 80,
+      "spatk": 95,
+      "spdef": 95,
+      "spd": 60
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10244.png"
+  },
+  {
+    "id": "628-hisui",
+    "name": "Braviary",
+    "types": [
+      "Grass",
+      "Fighting"
+    ],
+    "generation": "Hisui",
+    "stats": {
+      "hp": 110,
+      "atk": 83,
+      "def": 70,
+      "spatk": 112,
+      "spdef": 70,
+      "spd": 65
+    },
+    "locations": [
+      {
+        "local": "Hearthome (X 3791 / Y 2084 / Z 6)",
+        "nota": "📌 Necessario acesso a Sinnoh"
+      }
+    ],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10240.png"
+  },
+  
+  {
+    "id": "19-alola",
+    "name": "Rattata",
+    "types": [
+      "Dark",
+      "Normal"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 30,
+      "atk": 56,
+      "def": 35,
+      "spatk": 25,
+      "spdef": 35,
+      "spd": 72
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10091.png"
+  },
+  {
+    "id": "20-alola",
+    "name": "Raticate",
+    "types": [
+      "Dark",
+      "Normal"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 75,
+      "atk": 71,
+      "def": 70,
+      "spatk": 40,
+      "spdef": 80,
+      "spd": 77
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10092.png"
+  },
+  {
+    "id": "26-alola",
+    "name": "Raichu",
+    "types": [
+      "Electric",
+      "Psychic"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 60,
+      "atk": 85,
+      "def": 50,
+      "spatk": 95,
+      "spdef": 85,
+      "spd": 110
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10100.png"
+  },
+  {
+    "id": "27-alola",
+    "name": "Sandshrew",
+    "types": [
+      "Ice",
+      "Steel"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 50,
+      "atk": 75,
+      "def": 90,
+      "spatk": 10,
+      "spdef": 35,
+      "spd": 40
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10101.png"
+  },
+  {
+    "id": "28-alola",
+    "name": "Sandslash",
+    "types": [
+      "Ice",
+      "Steel"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 75,
+      "atk": 100,
+      "def": 120,
+      "spatk": 25,
+      "spdef": 65,
+      "spd": 65
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10102.png"
+  },
+  {
+    "id": "37-alola",
+    "name": "Vulpix",
+    "types": [
+      "Ice"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 38,
+      "atk": 41,
+      "def": 40,
+      "spatk": 50,
+      "spdef": 65,
+      "spd": 65
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10103.png"
+  },
+  {
+    "id": "38-alola",
+    "name": "Ninetales",
+    "types": [
+      "Ice",
+      "Fairy"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 73,
+      "atk": 67,
+      "def": 75,
+      "spatk": 81,
+      "spdef": 100,
+      "spd": 109
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10104.png"
+  },
+  {
+    "id": "50-alola",
+    "name": "Diglett",
+    "types": [
+      "Ground",
+      "Steel"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 10,
+      "atk": 55,
+      "def": 30,
+      "spatk": 35,
+      "spdef": 45,
+      "spd": 90
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10105.png"
+  },
+  {
+    "id": "51-alola",
+    "name": "Dugtrio",
+    "types": [
+      "Ground",
+      "Steel"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 35,
+      "atk": 100,
+      "def": 60,
+      "spatk": 50,
+      "spdef": 70,
+      "spd": 110
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10106.png"
+  },
+  {
+    "id": "52-alola",
+    "name": "Meowth",
+    "types": [
+      "Dark"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 40,
+      "atk": 35,
+      "def": 35,
+      "spatk": 50,
+      "spdef": 40,
+      "spd": 90
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10107.png"
+  },
+  {
+    "id": "53-alola",
+    "name": "Persian",
+    "types": [
+      "Dark"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 65,
+      "atk": 60,
+      "def": 60,
+      "spatk": 75,
+      "spdef": 65,
+      "spd": 115
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10108.png"
+  },
+  {
+    "id": "74-alola",
+    "name": "Geodude",
+    "types": [
+      "Rock",
+      "Electric"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 40,
+      "atk": 80,
+      "def": 100,
+      "spatk": 30,
+      "spdef": 30,
+      "spd": 20
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10109.png"
+  },
+  {
+    "id": "75-alola",
+    "name": "Graveler",
+    "types": [
+      "Rock",
+      "Electric"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 55,
+      "atk": 95,
+      "def": 115,
+      "spatk": 45,
+      "spdef": 45,
+      "spd": 35
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10110.png"
+  },
+  {
+    "id": "76-alola",
+    "name": "Golem",
+    "types": [
+      "Rock",
+      "Electric"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 80,
+      "atk": 120,
+      "def": 130,
+      "spatk": 55,
+      "spdef": 65,
+      "spd": 45
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10111.png"
+  },
+  {
+    "id": "88-alola",
+    "name": "Grimer",
+    "types": [
+      "Poison",
+      "Dark"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 80,
+      "atk": 80,
+      "def": 50,
+      "spatk": 40,
+      "spdef": 50,
+      "spd": 25
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10112.png"
+  },
+  {
+    "id": "89-alola",
+    "name": "Muk",
+    "types": [
+      "Poison",
+      "Dark"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 105,
+      "atk": 105,
+      "def": 75,
+      "spatk": 65,
+      "spdef": 100,
+      "spd": 50
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10113.png"
+  },
+  {
+    "id": "103-alola",
+    "name": "Exeggutor",
+    "types": [
+      "Grass",
+      "Dragon"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 95,
+      "atk": 105,
+      "def": 85,
+      "spatk": 125,
+      "spdef": 75,
+      "spd": 45
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10114.png"
+  },
+  {
+    "id": "105-alola",
+    "name": "Marowak",
+    "types": [
+      "Fire",
+      "Ghost"
+    ],
+    "generation": "Alola",
+    "stats": {
+      "hp": 60,
+      "atk": 80,
+      "def": 110,
+      "spatk": 50,
+      "spdef": 80,
+      "spd": 45
+    },
+    "locations": [],
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10115.png"
   }
 ]
