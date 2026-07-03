@@ -1421,3 +1421,48 @@ body.dark-mode .contributor-badge { border-color: #3498db; color: #3498db; }
     .floating-report-btn { left: 5px; bottom: 5px; }
     .floating-support-btn { right: 5px; bottom: 5px; left: auto; }
 }
+
+/* ==============================================================
+   BOTÃO DE CHAMADA DO APP (ESTILO POKÉDEX RETRÔ)
+============================================================== */
+.app-download-trigger-btn {
+    width: 100%;
+    background: #ffcb05; /* Amarelo elétrico forte */
+    color: #111;
+    border: 3px solid var(--dex-border);
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 12px;
+    box-shadow: 4px 4px 0 var(--dex-border);
+    transition: transform 0.05s linear, box-shadow 0.05s linear;
+    outline: none;
+    will-change: transform;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+/* Animação mecânica de clique realista */
+.app-download-trigger-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 transparent;
+}
+
+/* Ajustes finos adicionais para o Modo Escuro do novo Modal */
+body.dark-mode .app-download-trigger-btn {
+    background: #e6b800; /* Tom de ouro mais denso */
+    box-shadow: 4px 4px 0 #000;
+    border-color: #000;
+}
+body.dark-mode #download-app-modal .report-screen {
+    background: #1a1a1a;
+    border-color: #000;
+}
+body.dark-mode #download-app-modal .report-title {
+    color: #ffcb05;
+    border-color: #333;
+}
