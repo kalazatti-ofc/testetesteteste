@@ -1186,66 +1186,101 @@ body.dark-mode .master-toggle {
 }
 
 /* ==========================================
-   VISOR DIGITAL E MODAL VIP (APOIADORES)
+   VISOR DIGITAL VIP - VERSÃO MINIMALISTA (LCD)
 ========================================== */
 
-/* Carcaça do Letreiro */
+/* Envoltório externo: agora age como um sutil entalhe na carcaça */
 .vip-marquee-container {
-    background: #222;
-    padding: 6px;
-    border-radius: 12px;
-    border: 4px solid var(--dex-border);
-    margin-bottom: 12px;
-    box-shadow: inset 0 0 10px #000, 3px 3px 0 rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.05); /* Quase invisível, apenas uma profundidade sutil */
+    padding: 3px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.12);
+    margin-bottom: 14px;
     cursor: pointer;
-    transition: transform 0.1s, box-shadow 0.1s;
+    transition: all 0.2s ease;
     flex-shrink: 0;
+    box-shadow: none;
 }
 
-.vip-marquee-container:active {
-    transform: translateY(2px);
-    box-shadow: inset 0 0 10px #000, 0 0 0 transparent;
-}
-
-/* Telinha de vidro do letreiro */
+/* Telinha interna: Fundo branco fosco nativo */
 .vip-marquee-screen {
-    background: #0a1f10; /* Fundo verde super escuro (visor de LCD antigo) */
-    border: 2px solid #111;
+    background: #ffffff; /* Fundo puro branco solicitado */
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 6px;
-    padding: 6px 10px 6px 50px; /* Espaço na esquerda para a etiqueta VIP */
+    padding: 5px 10px 5px 42px; /* Ajuste fino de padding para a etiqueta */
     overflow: hidden;
     position: relative;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
     display: flex;
     align-items: center;
     white-space: nowrap;
 }
 
-/* Etiqueta fixa escrita "VIP" */
+/* Etiqueta fixa VIP: Minimalista e limpa */
 .vip-marquee-screen::before {
     content: 'VIP';
     position: absolute;
     left: 0; top: 0; bottom: 0;
-    background: #ffcb05;
-    color: #111;
+    background: var(--dex-dark-red); /* Vermelho escuro combinando com a Pokédex */
+    color: #ffffff;
     font-family: 'Press Start 2P', monospace;
-    font-size: 0.55rem;
+    font-size: 0.5rem;
     display: flex;
     align-items: center;
-    padding: 0 8px;
+    padding: 0 6px;
     z-index: 2;
-    border-right: 3px solid #111;
+    font-weight: normal;
 }
 
-/* O texto correndo (Marquee) */
+/* O texto correndo: Sóbrio, limpo e sem brilhos agressivos */
 .vip-marquee-text {
     display: inline-block;
-    color: #32cd32; /* Verde neon estilo Matrix/Radar */
+    color: #444444; /* Grafite elegante e legível no fundo branco */
     font-family: 'Press Start 2P', monospace;
-    font-size: 0.6rem;
-    text-shadow: 0 0 5px rgba(50, 205, 50, 0.8);
-    padding-left: 100%; /* Começa totalmente escondido à direita */
-    animation: marqueeScroll 25s linear infinite; /* Tempo da animação */
+    font-size: 0.52rem; /* Fonte menor e super polida */
+    text-shadow: none; /* Remoção total do neon chamativo */
+    padding-left: 100%;
+    animation: marqueeScroll 28s linear infinite; /* Fluxo suave e contínuo */
+}
+
+/* ==========================================
+   ADAPTAÇÃO ADAPTATIVA: MODO ESCURO
+========================================== */
+body.dark-mode .vip-marquee-container {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .vip-marquee-screen {
+    background: #0d0d0d; /* Fundo preto absoluto solicitado */
+    border-color: #050505;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.6);
+}
+
+body.dark-mode .vip-marquee-screen::before {
+    background: #ffcb05; /* Badge amarela clássica no modo escuro */
+    color: #0d0d0d;
+}
+
+body.dark-mode .vip-marquee-text {
+    color: #ffcb05; /* Texto dourado discreto no modo escuro */
+    text-shadow: 0 0 3px rgba(255, 203, 5, 0.2); /* Brilho imperceptível para legibilidade */
+}
+
+/* Efeito de Reflexo Diagonal de Vidro no Visor */
+.vip-marquee-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 45%, rgba(255,255,255,0.4) 50%, transparent 55%);
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.4;
+}
+/* No modo escuro o reflexo fica mais suave */
+body.dark-mode .vip-marquee-screen::after {
+    background: linear-gradient(115deg, transparent 45%, rgba(255,255,255,0.15) 50%, transparent 55%);
+    opacity: 0.2;
 }
 
 @keyframes marqueeScroll {
