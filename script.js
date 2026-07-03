@@ -218,7 +218,7 @@ function setupToggles() {
 function applyFilters() {
     const search = document.getElementById('search-input').value.toLowerCase();
     
-    const filtered = pokemonData.filter(p => {
+    let filtered = pokemonData.filter(p => {
         const pCat = p.category || 'normal';
         if (pCat !== activeCategory) return false;
 
@@ -231,19 +231,30 @@ function applyFilters() {
         if (activeCatchFilter === 'caught') mCatch = isCaught;
         if (activeCatchFilter === 'uncaught') mCatch = !isCaught;
 
-        let mMeta = true;
-        if (activeMetaFilter !== 'all') {
-            if (activeMetaFilter === 'tank') {
-                const defTotal = p.stats ? ((p.stats.def||0) + (p.stats.spdef||0)) : 0;
-                mMeta = defTotal >= 200;
-            } else {
-                const locString = JSON.stringify(p.locations || []).toLowerCase();
-                mMeta = locString.includes(activeMetaFilter);
-            }
-        }
+        // O mMeta agora fica sempre true para não esconder Pokémons, pois vamos apenas ordená-los abaixo
+        let mMeta = true; 
 
         return mName && mGen && mType && mCatch && mMeta;
     });
+    
+    // NOVO: SISTEMA DE ORDENAÇÃO DE STATUS (DO MAIOR PARA O MENOR)
+    if (activeMetaFilter !== 'all') {
+        filtered.sort((a, b) => {
+            const sA = a.stats || {};
+            const sB = b.stats || {};
+            
+            if (activeMetaFilter === 'atk') return (sB.atk || 0) - (sA.atk || 0);
+            if (activeMetaFilter === 'spatk') return (sB.spatk || 0) - (sA.spatk || 0);
+            if (activeMetaFilter === 'speed') return (sB.spd || 0) - (sA.spd || 0); // Nota: No JSON a velocidade está salva como "spd"
+            if (activeMetaFilter === 'tank') {
+                // Cálculo de Tank considerando a soma das defesas física e especial
+                const totalTankA = (sA.def || 0) + (sA.spdef || 0);
+                const totalTankB = (sB.def || 0) + (sB.spdef || 0);
+                return totalTankB - totalTankA;
+            }
+            return 0;
+        });
+    }
     
     currentVisibleList = filtered;
     renderPokemon(filtered);
