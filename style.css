@@ -223,41 +223,61 @@ body.dark-mode .pokedex-controls::-webkit-scrollbar-thumb { background: rgba(255
    PAINEL DIREITO E CARDS INICIAIS
 ========================================= */
 .pokedex-right-panel { 
-    padding: 20px; 
+    padding: 25px; 
     display: flex; 
     flex-direction: column; 
     flex: 1; 
-    min-width: 0; /* CRÍTICO: Impede que o letreiro estique o painel para fora */
+    min-width: 0; 
     transition: background 0.3s ease; 
 }
+
 .pokedex-main-display {
     background: var(--screen-bg); border-radius: 15px; border: 6px solid var(--dex-border);
     box-shadow: inset 0 10px 20px rgba(0,0,0,0.1); padding: 15px;
-    height: 500px; overflow-y: auto; position: relative; flex: 1;
+    flex: 1; min-height: 0; height: auto; overflow-y: auto; position: relative;
     transition: background 0.3s ease;
 }
 .pokedex-main-display::-webkit-scrollbar { width: 14px; }
 .pokedex-main-display::-webkit-scrollbar-track { background: #d0d0d0; border-left: 3px solid var(--dex-border); border-radius: 0 10px 10px 0;}
 .pokedex-main-display::-webkit-scrollbar-thumb { background: #555; border: 3px solid var(--dex-border); border-radius: 10px; }
 
-.pk-gen-bar {
-    font-family: monospace; font-size: 0.6rem; font-weight: 800; color: #666;
-    background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px; padding: 2px 8px; margin: 2px auto 6px auto;
-    display: inline-block; letter-spacing: 0.5px; transition: all 0.3s ease; z-index: 2; position: relative;
+/* GRID GLOBAL (PC) - TAMANHO GRANDE DINÂMICO */
+.pokemon-grid { 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(115px, 1fr)); 
+    gap: 12px; 
+    width: 100%; 
 }
-.modal-gen-bar { font-family: monospace; font-size: 0.7rem; font-weight: 800; color: var(--dex-border); background: rgba(0, 0, 0, 0.1); border: 1px dashed rgba(0, 0, 0, 0.3); padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; display: inline-block; }
+    
+.pk-card { 
+    background: #fff; border: 3px solid var(--dex-border); border-radius: 12px;
+    cursor: pointer; box-shadow: 3px 3px 0 rgba(0,0,0,0.1); transition: 0.1s ease;
+    overflow: hidden; position: relative; text-align: center; padding: 10px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+    
+.pk-card img { width: 70px; height: 70px; object-fit: contain; filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.2)); z-index: 2; position: relative; margin: 0 auto; display: block; }
+    
+.pk-name { 
+    font-size: 0.8rem; font-weight: 800; color: var(--dex-border); text-transform: uppercase; z-index: 2; position: relative; margin: 4px 0; transition: color 0.3s ease; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+    
+body.dark-mode .pk-card { background: #2a2a2c; }
+body.dark-mode .pk-name { color: #f0f0f0; }
 
-.catch-btn {
-    position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; border-radius: 50%;
-    border: 2px solid var(--dex-border); background: linear-gradient(to bottom, #ccc 45%, var(--dex-border) 45%, var(--dex-border) 55%, #f0f0f0 55%);
-    cursor: pointer; z-index: 10; transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 2px 2px 0 rgba(0,0,0,0.1); opacity: 0.6;
-}
+.pk-id { position: absolute; top: 6px; left: 6px; font-family: monospace; font-size: 0.65rem; font-weight: bold; color: #888; z-index: 2; transition: color 0.3s ease;}
+    
+.catch-btn { position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--dex-border); background: linear-gradient(to bottom, #ccc 45%, var(--dex-border) 45%, var(--dex-border) 55%, #f0f0f0 55%); cursor: pointer; z-index: 10; transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 2px 2px 0 rgba(0,0,0,0.1); opacity: 0.6; }
 .catch-btn::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 6px; height: 6px; background: #fff; border: 2px solid var(--dex-border); border-radius: 50%; }
 .catch-btn:hover { opacity: 1; transform: scale(1.15); }
 .catch-btn.caught { background: linear-gradient(to bottom, #ff3333 45%, var(--dex-border) 45%, var(--dex-border) 55%, #fff 55%); opacity: 1; box-shadow: 2px 2px 0 rgba(0,0,0,0.3); animation: catchBounce 0.4s ease; }
 @keyframes catchBounce { 0% { transform: scale(1); } 50% { transform: scale(1.3) rotate(-15deg); } 100% { transform: scale(1) rotate(0deg); } }
+
+.pk-gen-bar { font-family: monospace; font-size: 0.6rem; font-weight: 800; color: #666; background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 8px; padding: 2px 8px; margin: 2px auto 6px auto; display: inline-block; letter-spacing: 0.5px; transition: all 0.3s ease; z-index: 2; position: relative; }
+.modal-gen-bar { font-family: monospace; font-size: 0.7rem; font-weight: 800; color: var(--dex-border); background: rgba(0, 0, 0, 0.1); border: 1px dashed rgba(0, 0, 0, 0.3); padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; display: inline-block; }
+    
+.pk-types-mini { display: flex; justify-content: center; gap: 4px; z-index: 2; position: relative; width: 100%;}
+.type-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--dex-border); }
 
 /* =========================================
    TELA DO MAPA GIGANTE E VISUALIZADOR
@@ -622,7 +642,13 @@ body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
         flex-direction: column;
     }
     .pokedex-right-panel { flex: 1; background: #c22e28; }
-    .pokedex-main-display { display: flex; flex-direction: column; flex: 1; height: auto; min-height: 0; }
+    .pokedex-main-display { 
+        display: flex; 
+        flex-direction: column; 
+        flex: 1; 
+        height: auto; 
+        min-height: 0;
+    }
     .modal-pokedex-view { flex-direction: row; height: 85vh; max-width: 900px; }
     .modal-left-wing { width: 50%; border-bottom: none; border-right: 6px solid var(--dex-border); }
     .modal-right-wing { width: 50%; }
