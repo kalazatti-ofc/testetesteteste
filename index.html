@@ -128,6 +128,14 @@
         </div>
 
         <div class="pokedex-right-panel">
+            
+            <div class="vip-marquee-container" onclick="openVipModal()" title="Ver todos os Apoiadores">
+                <div class="vip-marquee-screen">
+                    <span class="vip-marquee-text" id="vip-marquee-text">
+                        </span>
+                </div>
+            </div>
+
             <div class="pokedex-main-display">
                 
                 <div class="pokemon-grid" id="pokedex-grid">
@@ -236,6 +244,20 @@
                     <button type="submit" class="final-support-btn" id="submit-report-btn">ENVIAR RELATÓRIO</button>
                     <p id="report-status" class="report-status"></p>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="vip-modal" class="oak-overlay hidden">
+        <div class="oak-container">
+            <button class="oak-close-btn" onclick="closeVipModal()">&times;</button>
+            <div class="oak-screen" style="border-color: #ffcb05;">
+                <h2 class="report-title" style="color: #ffcb05; border-bottom-color: #ffcb05;">🏆 HALL DA FAMA</h2>
+                <p style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 700; text-align: center; color: var(--dex-border); margin-bottom: 15px; line-height: 1.4;">
+                    Um agradecimento gigante a esses treinadores! 💖<br>Eles pagaram um café via LivePix e estão ajudando a manter o desenvolvedor vivo, focado e cheio de energia para trazer novidades para a Pokédex.<br>Todo apoio é super bem-vindo!
+                </p>
+                <div class="vip-grid" id="vip-names-grid">
+                    </div>
             </div>
         </div>
     </div>
