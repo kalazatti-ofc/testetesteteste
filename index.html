@@ -149,11 +149,11 @@
     </div>
 
     <div id="pokemon-modal" class="modal hidden">
-        <div class="modal-overlay"></div>
+        <div class="modal-overlay" onclick="document.getElementById('pokemon-modal').classList.add('hidden')"></div>
         <div class="modal-content">
-            <button class="close-btn">&times;</button>
+            <button class="close-btn" onclick="document.getElementById('pokemon-modal').classList.add('hidden')">&times;</button>
             <div id="modal-body">
-                </div>
+            </div>
         </div>
     </div>
 
