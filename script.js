@@ -646,8 +646,26 @@ window.openModal = (id) => {
         }
     }).join('');
 
-    // Removidas as barras antigas. O Canvas será preenchido pelo JS logo abaixo.
-    const statsHTML = `<canvas id="radar-chart" width="220" height="220" style="margin: 0 auto; display: block;"></canvas>`;
+    // Procure por "const statsHTML" no seu script.js e substitua por este bloco:
+    const statsList = [
+        { name: 'HP', val: p.stats.hp, class: 'stat-hp' },
+        { name: 'ATK', val: p.stats.atk, class: 'stat-atk' },
+        { name: 'DEF', val: p.stats.def, class: 'stat-def' },
+        { name: 'SP. ATK', val: p.stats.spatk, class: 'stat-spatk' },
+        { name: 'SP. DEF', val: p.stats.spdef, class: 'stat-spdef' },
+        { name: 'SPD', val: p.stats.spd, class: 'stat-spd' }
+    ];
+
+    const statsHTML = `
+        <div class="hexa-stats-grid">
+            ${statsList.map(stat => `
+                <div class="stat-hexa-pill ${stat.class}">
+                    <span class="stat-name">${stat.name}</span>
+                    <span class="stat-value display-font">${stat.val}</span>
+                </div>
+            `).join('')}
+        </div>
+    `;
 
     let rightWingHTML = '';
 
@@ -804,9 +822,6 @@ window.openModal = (id) => {
     `;
     
     document.getElementById('pokemon-modal').classList.remove('hidden');
-    
-    // DESENHA O RADAR ASSIM QUE O MODAL ABRIR
-    drawRadarChart(p.stats || {});
     
     setTimeout(() => {
         const firstLoc = document.querySelector('.loc-button');
