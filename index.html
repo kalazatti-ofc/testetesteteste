@@ -52,6 +52,7 @@
                 </div>
 
                 <div class="pokedex-filters" id="filters-container">
+                    <button class="app-download-trigger-btn" onclick="initDownloadAppModal(event)">📱 DOWNLOAD APP POKEDEXPBR</button>
                     <button class="filter-toggle master-toggle" id="toggle-all-filters">⚙️ MOSTRAR FILTROS AVANÇADOS</button>
                     
                     <div id="all-filters-wrapper" class="hidden-filter" style="margin-top: 10px;">
@@ -259,6 +260,36 @@
                     <button type="submit" class="final-support-btn" id="submit-report-btn">ENVIAR RELATÓRIO</button>
                     <p id="report-status" class="report-status"></p>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="download-app-modal" class="oak-overlay hidden">
+        <div class="oak-container report-container">
+            <button class="oak-close-btn" id="close-download-app">&times;</button>
+            <div class="oak-screen report-screen" style="border-color: #ffcb05;">
+                <h2 class="report-title" style="color: #ffcb05; border-bottom-color: #ffcb05;">📱 APP POKÉDEX FLUTUANTE</h2>
+                
+                <div class="map-list-scroll" style="width: 100%; max-height: 260px; overflow-y: auto; padding-right: 5px; font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: #fff; line-height: 1.5; text-align: justify; margin-bottom: 15px;">
+                    <p style="margin-bottom: 12px; font-weight: 700; color: #ffcb05; text-align: center; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">▶ SINCRONIZAÇÃO DETECTADA</p>
+                    
+                    <p style="margin-bottom: 12px;">Olá, Treinador! Você sabia que pode usar todo o poder de rastreamento desta Pokédex <b>diretamente sobre a tela do seu jogo</b> sem precisar fechar ou minimizar o PBR? Desenvolvi um aplicativo leve que cria uma Pokébola flutuante para você consultar as localizações ou natures recomendadas sem precisar minimizar nada!</p>
+                    
+                    <p style="margin-bottom: 12px; font-weight: 700; color: #ff4b2b; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">⚠ POR QUE FORA DA PLAY STORE?</p>
+                    <p style="margin-bottom: 12px;">Para manter este projeto <b>100% independente, e principalmente gratuito, completamente livre de anúncios chatos</b> que atrapalham a sua gameplay, optei por distribuir o app de forma direta, pulando as taxas abusivas e as burocracias das grandes lojas. (Faz o L).</p>
+                    
+                    <p style="margin-bottom: 12px; font-weight: 700; color: #3498db; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">💖 UM PROJETO DE FÃ PARA FÃ</p>
+                    <p style="margin-bottom: 12px;">Todo este ecossistema é planejado, programado e mantido por <b>uma equipe de uma única pessoa (hehe)</b> nas horas vagas. Ferramentas assim só continuam existindo e se mantendo online pelo apoio contínuo da comunidade, seja reportando bugs, enviando novas ideias ou pagando um cafezinho para manter o CLT de pé!</p>
+                    
+                    <p style="margin-bottom: 12px; font-weight: 700; color: #32cd32; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">📥 MANUAL RÁPIDO DE INSTALAÇÃO:</p>
+                    <ol style="margin-left: 20px; margin-bottom: 10px; padding-left: 0; font-family: monospace; font-weight: bold; font-size: 0.75rem; color: #ddd;">
+                        <li style="margin-bottom: 6px;">Clique no grande botão abaixo para baixar o <b>.APK</b>.</li>
+                        <li style="margin-bottom: 6px;">Ao abrir, o Android exibirá um aviso de "Fonte Desconhecida". Não se preocupe! Clique em <b>"Mais Detalhes"</b> e depois em <b>"Instalar mesmo assim"</b>.</li>
+                        <li style="margin-bottom: 6px;">Abra o app, ative a permissão de <b>Sobreposição de Tela</b> para a Pokebola aparecer por cima do jogo, e boa caçada!</li>
+                    </ol>
+                </div>
+                
+                <a href="Pokedex-PBR-v1.0.apk" download="Pokedex-PBR-v1.0.apk" class="final-support-btn" style="background: #e3350d; color: #FFFFFF; border-color: #111; width: 100%; text-decoration: none; display: block; padding: 15px; font-size: 0.75rem; box-shadow: 4px 4px 0 #111;">⚡ BAIXAR AGORA (.APK)</a>
             </div>
         </div>
     </div>
