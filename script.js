@@ -626,31 +626,48 @@ window.openModal = (id) => {
     }).join('');
 
     // ==========================================
-    // LÓGICA DE STATUS INTELIGENTE (BARRAS ANIMADAS)
+    // LÓGICA DE STATUS E NATURES
     // ==========================================
     const statColors = {
         hp: '#32cd32', atk: '#e3350d', def: '#ff9800',
         spatk: '#3498db', spdef: '#9c27b0', spd: '#f1c40f'
     };
 
-    let pokeRole = "⚖️ BALANCEADO";
-    const totalStats = Object.values(p.stats || {}).reduce((a,b) => a+b, 0);
-    const totalDef = (p.stats.def || 0) + (p.stats.spdef || 0);
-    const maxAtk = Math.max(p.stats.atk || 0, p.stats.spatk || 0);
+    // 2. IA para recomendar Natures baseado nos Stats Base
+    const baseAtk = p.stats?.atk || 0;
+    const baseSpAtk = p.stats?.spatk || 0;
+    let recommendedNatures = [];
 
-    if (totalStats >= 600) pokeRole = "👑 TITÃ / LENDÁRIO";
-    else if (totalDef >= 200) pokeRole = "🛡️ TANKER / DEFENSIVO";
-    else if (maxAtk >= 110 && (p.stats.spd || 0) >= 90) pokeRole = "⚔️ ATACANTE RÁPIDO";
-    else if (maxAtk >= 125) pokeRole = "💥 DEVASTADOR";
+    if (p.natures && Array.isArray(p.natures)) {
+        // Se você adicionar as Natures manualmente no JSON, o sistema prioriza elas!
+        recommendedNatures = p.natures;
+    } else if (baseAtk > baseSpAtk + 10) {
+        // Focado em Dano Físico
+        recommendedNatures = ["Adamant (+ATK)", "Jolly (+SPD)", "Brave (+ATK)"];
+    } else if (baseSpAtk > baseAtk + 10) {
+        // Focado em Dano Especial
+        recommendedNatures = ["Modest (+SP.ATK)", "Timid (+SPD)", "Quiet (+SP.ATK)"];
+    } else {
+        // Balanceados / Mixed Attackers
+        recommendedNatures = ["Lonely (+ATK)", "Mild (+SP.ATK)", "Hasty (+SPD)"];
+    }
 
+    // 3. Achar o maior status numérico para fazê-lo pulsar na tela
     const maxStatValue = Math.max(...Object.values(p.stats || {}));
 
+    // 4. Montar o HTML com as Natures Minimalistas e Barras
     const statsHTML = `
-        <div class="role-badge">${pokeRole}</div>
+        <div class="nature-container">
+            <span class="nature-title">NATURES RECOMENDADAS</span>
+            <div class="nature-pills">
+                ${recommendedNatures.map(n => `<span class="nature-pill">${n}</span>`).join('')}
+            </div>
+        </div>
         <div class="stats-list-animated">
             ${Object.entries(p.stats || {}).map(([name, val]) => {
                 const isHighest = val === maxStatValue;
                 const cor = statColors[name.toLowerCase()] || '#ff4b2b';
+                
                 return `
                 <div class="stat-row ${isHighest ? 'stat-highest' : ''}">
                     <label>${name.toUpperCase()}</label>
