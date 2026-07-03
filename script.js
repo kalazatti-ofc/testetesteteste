@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupToggles();
     initOakModal();
     initPanAndZoom(); 
-    initVipSystem();
+    initVipSystem(); // Inicializa Letreiro e Modal VIP
     
     // Modo Escuro
     const themeBtn = document.getElementById('theme-toggle');
@@ -63,9 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('pokedex-dark-mode', document.body.classList.contains('dark-mode'));
         });
     }
-    
-    document.querySelector('.close-btn').onclick = () => document.getElementById('pokemon-modal').classList.add('hidden');
-    window.onclick = e => { if(e.target.classList.contains('modal-overlay')) document.getElementById('pokemon-modal').classList.add('hidden'); };
     
     document.getElementById('search-input').addEventListener('input', applyFilters);
     document.getElementById('search-input').addEventListener('keypress', function(e) {
@@ -167,7 +164,7 @@ function renderTypeButtons() {
 }
 
 function setupToggles() {
-    // Lógica do Botão Mestre
+    // Botão Mestre de Otimização Mobile
     const toggleAll = document.getElementById('toggle-all-filters');
     if (toggleAll) {
         toggleAll.onclick = function() {
@@ -296,7 +293,7 @@ function renderPokemon(list) {
 }
 
 // ==========================================
-// PAN (ARRASTAR) & ZOOM DO MAPA (COM CONTRA-ZOOM)
+// PAN (ARRASTAR) & ZOOM DO MAPA
 // ==========================================
 function initPanAndZoom() {
     const wrapper = document.getElementById('map-wrapper');
@@ -569,9 +566,6 @@ window.openModal = (id) => {
     const matchups = calculateMatchups(p.types);
     const pCategory = p.category || 'normal';
     
-    // ==========================================
-    // CAÇADOR DE FORMAS REGIONAIS
-    // ==========================================
     let baseId = p.id.toString();
     if (/^\d+-/.test(baseId)) baseId = baseId.split('-')[0]; 
 
@@ -593,7 +587,6 @@ window.openModal = (id) => {
             }).join('') + 
         `</div>`;
     }
-    // ==========================================
     
     const locationsHTML = (p.locations || []).map(loc => {
         if (typeof loc === 'string') {
@@ -654,7 +647,7 @@ window.openModal = (id) => {
     }).join('');
 
     // ==========================================
-    // LÓGICA DE STATUS E NATURES (COMPACTA)
+    // LÓGICA DE STATUS E NATURES (COMPACTA E NEGRIFADA)
     // ==========================================
     const statColors = {
         hp: '#32cd32', atk: '#e3350d', def: '#ff9800',
@@ -669,24 +662,20 @@ window.openModal = (id) => {
     let recommendedNatures = [];
 
     if (p.natures && Array.isArray(p.natures)) {
-        // Suporte caso adicione manual no JSON
         recommendedNatures = p.natures.map(n => ({ name: n, desc: 'Recomendada', bold: true }));
     } else if (baseAtk > baseSpAtk) {
-        // FOCADO EM DANO FÍSICO
         recommendedNatures = [
-            { name: "ADAMANT", desc: "+ATK / -SP.ATK", bold: true }, // 1ª Foca no Dano (Melhor)
-            { name: "BRAVE", desc: "+ATK / -SPD", bold: false },     // 2ª Foca no Dano
-            { name: "JOLLY", desc: "+SPD / -SP.ATK", bold: false }   // 3ª Status Secundário (Velocidade)
+            { name: "ADAMANT", desc: "+ATK / -SP.ATK", bold: true }, 
+            { name: "BRAVE", desc: "+ATK / -SPD", bold: false },     
+            { name: "JOLLY", desc: "+SPD / -SP.ATK", bold: false }   
         ];
     } else if (baseSpAtk > baseAtk) {
-        // FOCADO EM DANO ESPECIAL
         recommendedNatures = [
-            { name: "MODEST", desc: "+SP.ATK / -ATK", bold: true }, // 1ª Foca no Dano (Melhor)
-            { name: "QUIET", desc: "+SP.ATK / -SPD", bold: false },  // 2ª Foca no Dano
-            { name: "TIMID", desc: "+SPD / -ATK", bold: false }      // 3ª Status Secundário (Velocidade)
+            { name: "MODEST", desc: "+SP.ATK / -ATK", bold: true }, 
+            { name: "QUIET", desc: "+SP.ATK / -SPD", bold: false },  
+            { name: "TIMID", desc: "+SPD / -ATK", bold: false }      
         ];
     } else {
-        // BALANCEADO (Attack == Sp.Atk)
         recommendedNatures = [
             { name: "LONELY", desc: "+ATK / -DEF", bold: true },
             { name: "MILD", desc: "+SP.ATK / -DEF", bold: false },
@@ -694,7 +683,6 @@ window.openModal = (id) => {
         ];
     }
 
-    // Ajuste da 3ª Nature se o Pokémon for muito defensivo
     const totalDef = baseDef + baseSpDef;
     if (totalDef >= 180 && !p.natures) {
         if (baseDef >= baseSpDef && baseAtk > baseSpAtk) {
@@ -706,7 +694,6 @@ window.openModal = (id) => {
 
     const maxStatValue = Math.max(...Object.values(p.stats || {}));
 
-    // HTML Gerado com classe 'info-tooltip' nativa para o balãozinho
     const statsHTML = `
         <div class="nature-container">
             <span class="nature-title">NATURES RECOMENDADAS</span>
@@ -1016,8 +1003,7 @@ const oakDialogues = [
     "Olá! Bem-vindo ao mundo de PokemonR - PBR!",
     "Esta Pokedex e uma pagina criada de fãs para fãs e NAO é um produto oficial do Servidor",
     "Um agradecimento super especial a comunidade pelo apoio continuo!",
-    "Desenvolvida por: Kalazatti.",
-    "Use a barra de pesquisa ou os filtros para rastrear os POKeMON. Boa caça!"
+    "Use a barra de pesquisa ou os filtros para rastrear os POKeMON. Boa caca!"
 ];
 
 let currentDialogIndex = 0;
@@ -1324,55 +1310,12 @@ window.switchForm = (newId) => {
 };
 
 // ==========================================
-// DESENHAR ROTAS (QUESTS) NO MAPA
-// ==========================================
-window.drawRouteOnMap = (passos) => {
-    const routeContainer = document.getElementById('map-routes-container');
-    if (!routeContainer) return;
-    routeContainer.innerHTML = ''; 
-
-    const cityConfig = cityMaps[currentCity];
-    if (!cityConfig || !cityConfig.bounds) return;
-
-    const { minX, maxX, minY, maxY } = cityConfig.bounds;
-    let points = [];
-
-    passos.forEach(passo => {
-        let match = passo.match(/X\s*[:]?\s*(\d+)[^\d]*Y\s*[:]?\s*(\d+)/i);
-        if (match) {
-            let x = parseInt(match[1]);
-            let y = parseInt(match[2]);
-            let percentX = ((x - minX) / (maxX - minX)) * 100;
-            let percentY = ((y - minY) / (maxY - minY)) * 100;
-            points.push({ x: percentX, y: percentY });
-        }
-    });
-
-    if (points.length < 2) return;
-
-    let svgHTML = '';
-    for (let i = 0; i < points.length - 1; i++) {
-        svgHTML += `<line 
-            x1="${points[i].x}%" y1="${points[i].y}%" 
-            x2="${points[i+1].x}%" y2="${points[i+1].y}%" 
-            stroke="#ffcb05" stroke-width="2" stroke-dasharray="4"
-            style="filter: drop-shadow(0px 0px 3px rgba(0,0,0,0.8));"
-        />`;
-        svgHTML += `<circle cx="${points[i+1].x}%" cy="${points[i+1].y}%" r="3" fill="#e3350d" stroke="#fff" stroke-width="1" />`;
-    }
-    svgHTML += `<circle cx="${points[0].x}%" cy="${points[0].y}%" r="4" fill="#32cd32" stroke="#fff" stroke-width="2" />`;
-    
-    routeContainer.innerHTML = svgHTML;
-};
-
-// ==========================================
 // SISTEMA DE APOIADORES VIP (LETREIRO E MODAL)
 // ==========================================
 
-// Dividimos a guilda em duas classes!
 const vipData = {
-    donators: ["Jarubinha", "TheDarkness", "Avil", "Jumpluf"],
-    contributors: ["Paleguazv", "Marlin", "Leander Hastings", "Vincent", "Ricardobtj", "Bonacina", "Upzin"]
+    donators: ["Jarubinha", "Ricardobtj", "Bonacina", "Upzin"],
+    contributors: ["Paleguazv", "Marlin", "Leander Hastings", "Vincent"]
 };
 
 function initVipSystem() {
@@ -1380,24 +1323,19 @@ function initVipSystem() {
     const donatorsGrid = document.getElementById('vip-donators-grid');
     const contributorsGrid = document.getElementById('vip-contributors-grid');
 
-    // 1. Letreiro Animado (Junta todo mundo no visor da Pokédex)
     if (marqueeText) {
-        // Formata com o ícone correspondente
         const donatorsString = vipData.donators.map(n => `☕ ${n}`).join(' &nbsp; ★ &nbsp; ');
         const contributorsString = vipData.contributors.map(n => `🗺️ ${n}`).join(' &nbsp; ★ &nbsp; ');
         
-        // Exibe no letreiro
         marqueeText.innerHTML = `HALL DA FAMA: &nbsp;&nbsp; ★ &nbsp; ${donatorsString} &nbsp; ★ &nbsp; ${contributorsString} &nbsp; ★`;
     }
 
-    // 2. Injeta os botões de Patronos (Doações)
     if (donatorsGrid) {
         donatorsGrid.innerHTML = vipData.donators.map(name => 
             `<div class="vip-name-badge donator-badge">${name}</div>`
         ).join('');
     }
 
-    // 3. Injeta os botões de Pesquisadores (Dados/Bugs)
     if (contributorsGrid) {
         contributorsGrid.innerHTML = vipData.contributors.map(name => 
             `<div class="vip-name-badge contributor-badge">${name}</div>`
@@ -1405,7 +1343,6 @@ function initVipSystem() {
     }
 }
 
-// Funções para abrir e fechar o Modal VIP
 window.openVipModal = () => {
     document.getElementById('vip-modal').classList.remove('hidden');
 };
