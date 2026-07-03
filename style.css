@@ -1337,3 +1337,87 @@ body.dark-mode .vip-grid { background: rgba(0,0,0,0.2); }
 body.dark-mode .vip-name-badge { background: #2a2a2c; color: #fff; box-shadow: 2px 2px 0 #000; }
 body.dark-mode .donator-badge { border-color: #ffcb05; color: #ffcb05; }
 body.dark-mode .contributor-badge { border-color: #3498db; color: #3498db; }
+
+/* ==============================================================
+   OTIMIZAÇÃO EXTREMA: MOBILE HORIZONTAL (LANDSCAPE / APK)
+============================================================== */
+@media (max-height: 600px) and (orientation: landscape) {
+    
+    /* 1. Transforma o Modal numa visão Lado a Lado (Estilo PC) */
+    .modal-pokedex-view {
+        flex-direction: row; 
+        height: 95vh; /* Ocupa o máximo de altura possível */
+        width: 100%;
+        max-width: 95vw;
+    }
+
+    /* 2. Divide a tela 50/50 */
+    .modal-left-wing, .modal-right-wing {
+        width: 50%;
+        padding: 10px 15px; /* Reduz drasticamente as margens internas */
+        border-bottom: none;
+    }
+    
+    .modal-left-wing {
+        border-right: 4px solid var(--dex-border); /* Borda divisória */
+    }
+
+    /* 3. Compactação do Cabeçalho (Telinha Verde) */
+    .screen-border {
+        padding: 8px 15px; 
+        border-radius: 12px;
+        margin-bottom: 8px;
+    }
+    .main-screen {
+        padding: 5px 10px;
+    }
+    
+    /* 4. Encolhe os Sprites e as Fontes para caberem sem vazar */
+    .poke-img-large, .poke-img-stacked {
+        width: 60px; 
+        height: 60px;
+    }
+    .screen-info h2, .poke-name-stacked {
+        font-size: 1rem;
+        margin-bottom: 2px;
+    }
+    .modal-gen-bar {
+        font-size: 0.55rem;
+        padding: 2px 6px;
+        margin-bottom: 4px;
+    }
+    .tag {
+        font-size: 0.55rem;
+        padding: 2px 5px;
+    }
+
+    /* 5. Ajuste fino na lista de localizações e stats */
+    .location-module {
+        max-height: none; /* Remove o limite anterior */
+        flex: 1; /* Ocupa o resto do espaço disponível */
+    }
+    .loc-list-scroll {
+        max-height: 120px; /* Garante que cabe na telinha achatada */
+    }
+    
+    .stat-row {
+        gap: 5px;
+        font-size: 0.65rem;
+    }
+    .bar-container {
+        height: 8px; /* Barras mais finas */
+    }
+
+    /* 6. Oculta elementos que roubam espaço atoa no modo deitado */
+    .radar-module {
+        display: none !important; /* Tchau radar gigante! */
+    }
+
+    /* 7. Recolhe os botões flutuantes para não atrapalhar o toque na tela */
+    .floating-report-btn, .floating-support-btn {
+        transform: scale(0.65);
+        transform-origin: bottom;
+    }
+    .floating-report-btn { left: 5px; bottom: 5px; }
+    .floating-support-btn { right: 5px; bottom: 5px; left: auto; }
+}
