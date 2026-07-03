@@ -658,10 +658,49 @@ body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
 @media (max-width: 768px) {
     .filter-pill { padding: 4px 8px; font-size: 0.6rem; }
     .pokedex-main-display { flex: none; height: 350px; max-height: 350px; }
-    .pokemon-grid { grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 8px; }
-    .pk-card { padding: 8px; border-width: 2px; }
-    .pk-card img { width: 55px; height: 55px; }
-    .pk-name { font-size: 0.6rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    /* =======================================
+       CORREÇÃO DEFINITIVA DA GRID MOBILE (EM PÉ) E MAPAS
+    ======================================= */
+    .pokemon-grid { 
+        display: grid; /* Sem o !important, assim o JS consegue esconder na aba Mapas! */
+        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)) !important; 
+        gap: 8px !important; 
+        width: 100%;
+    }
+    
+    .pk-card { 
+        padding: 6px !important; 
+        border: 2px solid var(--dex-border) !important; 
+        border-radius: 8px !important;
+        background: #fff !important; 
+        display: flex !important; 
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .pk-card img { width: 45px !important; height: 45px !important; margin: 0 auto; display: block; }
+    
+    .pk-name { 
+        font-size: 0.6rem !important; 
+        color: var(--dex-border); 
+        width: 100%;
+        text-align: center;
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        margin: 4px 0 !important;
+    }
+    
+    body.dark-mode .pk-card { background: #2a2a2c !important; }
+    body.dark-mode .pk-name { color: #f0f0f0 !important; }
+
+    .pk-id { font-size: 0.5rem !important; top: 4px !important; left: 4px !important; }
+    .catch-btn { width: 14px !important; height: 14px !important; top: 4px !important; right: 4px !important; }
+    .catch-btn::after { width: 4px !important; height: 4px !important; }
+    .pk-gen-bar { font-size: 0.5rem !important; padding: 1px 4px !important; margin: 2px auto !important; }
+    .pk-types-mini { display: flex !important; justify-content: center !important; gap: 4px !important; width: 100% !important; }
+    .type-dot { width: 10px !important; height: 10px !important; border-radius: 50% !important; border: 2px solid var(--dex-border) !important; }
     .screen-border { padding: 12px 22px; border-radius: 12px 12px 12px 25px; }
     .nav-arrow { width: 18px; height: 40px; font-size: 0.9rem; border-width: 2px; border-radius: 8px; }
     .prev-arrow { left: 3px; } .next-arrow { right: 3px; }
@@ -1676,7 +1715,7 @@ body.dark-mode #download-app-modal .report-title {
     
     /* Garante que a grid no modo deitado também obedeça as colunas */
     .pokemon-grid { 
-        display: grid !important;
+        display: grid; /* <-- Removemos o !important daqui também */
         grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)) !important; 
         gap: 8px !important; 
     }
@@ -1685,4 +1724,41 @@ body.dark-mode #download-app-modal .report-title {
     .pk-name { font-size: 0.65rem !important; }
     .pk-types-mini { display: flex !important; justify-content: center !important; gap: 4px !important; }
     .type-dot { width: 10px !important; height: 10px !important; border-radius: 50% !important; border: 2px solid var(--dex-border) !important; }
+
+    /* =======================================================
+       COMPACTAÇÃO EXTREMA DO PAINEL ESQUERDO (HORIZONTAL)
+    ======================================================= */
+    
+    /* 1. Reduz o preenchimento da carcaça vermelha */
+    .pokedex-left-panel { padding: 8px 12px !important; }
+
+    /* 2. Miniaturiza a Lente Azul e as Luzes */
+    .main-lens-container { margin-bottom: 2px !important; }
+    .big-blue-lens { width: 36px !important; height: 36px !important; border-width: 3px !important; }
+    .big-blue-lens::after { width: 10px !important; height: 10px !important; top: 5px !important; left: 5px !important; }
+    .mini-lights { margin-top: 2px !important; gap: 5px !important; }
+    .light { width: 10px !important; height: 10px !important; border-width: 2px !important; }
+
+    /* 3. Achata o Título Principal e remove margens */
+    .pokedex-title { font-size: 1.25rem !important; margin: 0 0 8px 0 !important; }
+    .pokedex-title span { font-size: 0.65rem !important; margin-top: 2px !important; }
+
+    /* 4. Encolhe o botão da Lua e joga ele mais pro canto */
+    .joystick-theme-btn { width: 30px !important; height: 30px !important; font-size: 0.8rem !important; top: -2px !important; right: -2px !important; }
+
+    /* 5. Esmaga a Barra de Pesquisa */
+    .search-module { margin-bottom: 8px !important; }
+    .search-console { padding: 4px 10px !important; border-width: 3px !important; }
+    .search-console input { font-size: 0.8rem !important; }
+    .search-btn { width: 26px !important; height: 26px !important; font-size: 0.75rem !important; border-width: 2px !important; margin-left: 6px !important; }
+
+    /* 6. Diminui a altura das abas de Categorias */
+    .category-module { margin-bottom: 8px !important; gap: 6px !important; }
+    .cat-btn { padding: 6px 4px !important; font-size: 0.65rem !important; border-width: 2px !important; }
+
+    /* 7. Diminui o Botão de Download do APP (se existir) */
+    .app-download-trigger-btn { padding: 8px 10px !important; margin-bottom: 8px !important; font-size: 0.55rem !important; border-width: 2px !important; }
+    
+    .tech-label { font-size: 0.6rem !important; margin-bottom: 2px !important; }
+
 }
