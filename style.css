@@ -1136,3 +1136,36 @@ body.dark-mode .form-toggle-btn:hover {
     border-color: #fff;
 }
 
+/* ==========================================
+   AJUSTES ESPECÍFICOS DO FILTRO MESTRE E REGIÕES
+========================================== */
+
+/* Estilo de destaque para o Botão Mestre */
+.master-toggle {
+    background: var(--dex-red);
+    color: #fff;
+    text-align: center;
+    border-color: var(--dex-border);
+    font-size: 0.85rem;
+    padding: 12px 15px;
+}
+.master-toggle:hover {
+    background: var(--dex-dark-red);
+    color: #ffcb05;
+}
+body.dark-mode .master-toggle {
+    background: #111;
+    color: #ffcb05;
+}
+
+/* Quebra de linha forçada no Filtro de Regiões */
+#gen-filters .filter-pill[data-gen="alola"], 
+#gen-filters .filter-pill[data-gen="hisui"] {
+    flex-basis: calc(50% - 4px); /* Força a ocupar metade da tela menos o espaço do gap */
+    max-width: calc(50% - 4px);
+}
+
+#gen-filters .filter-pill[data-gen="all"] {
+    flex-basis: 100%; /* Força a ocupar a linha inteira sozinho */
+    max-width: 100%;
+}
