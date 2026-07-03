@@ -1611,7 +1611,7 @@ body.dark-mode #download-app-modal .report-title {
         font-size: 0.65rem;
     }
     .bar-container {
-        height: 8px; /* Barras mais finas */
+        height: 8px; /* Barra mais finas */
     }
 
     /* 6. Oculta elementos que roubam espaço atoa no modo deitado */
