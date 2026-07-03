@@ -1371,7 +1371,7 @@ body.dark-mode .master-toggle:hover {
 }
 
 .vip-marquee-screen::before {
-    content: 'VIP';
+    content: 'APOIADORES';
     position: absolute;
     left: 0; top: 0; bottom: 0;
     background: var(--dex-dark-red); 
