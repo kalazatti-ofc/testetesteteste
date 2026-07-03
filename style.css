@@ -85,6 +85,9 @@ body {
 /* =========================================
    CONTROLES, BUSCA E ABAS (CATEGORIAS)
 ========================================= */
+/* =========================================
+   CONTROLES, BUSCA E ABAS (CATEGORIAS)
+========================================= */
 .pokedex-controls { 
     flex: 1; 
     display: flex; 
@@ -92,13 +95,15 @@ body {
     align-items: stretch; 
     justify-content: flex-start; 
     min-height: 0; 
-    overflow-y: auto; /* ADICIONADO: Habilita a rolagem */
-    padding-right: 5px; /* ADICIONADO: Espaço para a barra não colar nos botões */
+    overflow-y: auto !important; /* Habilita a barra de rolagem */
+    padding-right: 5px; /* Evita que a barra fique em cima dos botões */
 }
 
-/* Estilo da barrinha de rolagem do painel */
+/* Estilo da barrinha lateral invisível/suave */
 .pokedex-controls::-webkit-scrollbar { width: 6px; }
-.pokedex-controls::-webkit-scrollbar-thumb { background: var(--dex-border); border-radius: 4px; }
+.pokedex-controls::-webkit-scrollbar-track { background: transparent; }
+.pokedex-controls::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
+body.dark-mode .pokedex-controls::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
 .search-module { 
     width: 100%; 
     margin-bottom: 20px; 
@@ -235,52 +240,47 @@ body {
 .pokedex-main-display::-webkit-scrollbar-track { background: #d0d0d0; border-left: 3px solid var(--dex-border); border-radius: 0 10px 10px 0;}
 .pokedex-main-display::-webkit-scrollbar-thumb { background: #555; border: 3px solid var(--dex-border); border-radius: 10px; }
 
-    /* =======================================
-       CORREÇÃO DEFINITIVA DA GRID MOBILE
-    ======================================= */
-    .pokemon-grid { 
-        display: grid !important;
-        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)) !important; 
-        gap: 8px; 
-        width: 100%;
-    }
+    /* GRID FORÇADA PARA MÚLTIPLAS COLUNAS E BORDAS CORRETAS */
+.pokemon-grid { 
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)) !important; 
+    gap: 8px !important; 
+}
     
-    .pk-card { 
-        padding: 6px; 
-        border: 2px solid var(--dex-border) !important; /* Força a borda preta a aparecer */
-        border-radius: 8px;
-        background: #fff; /* Fundo branco garantido */
-        display: flex !important;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+.pk-card { 
+    padding: 6px !important; 
+    border: 2px solid var(--dex-border) !important; /* Traz a borda de volta */
+    border-radius: 8px !important;
+    background: #fff !important; 
+    display: block !important; 
+    text-align: center !important;
+}
     
-    .pk-card img { width: 45px; height: 45px; }
+.pk-card img { width: 45px !important; height: 45px !important; margin: 0 auto; display: block; }
     
-    .pk-name { 
-        font-size: 0.6rem; 
-        color: var(--dex-border); 
-        width: 100%;
-        text-align: center;
-        white-space: nowrap; 
-        overflow: hidden; 
-        text-overflow: ellipsis; 
-        margin: 4px 0;
-    }
+.pk-name { 
+    font-size: 0.6rem !important; 
+    color: var(--dex-border); 
+    width: 100%;
+    text-align: center;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    margin: 4px 0 !important;
+}
     
-    body.dark-mode .pk-card { background: #2a2a2c; }
-    body.dark-mode .pk-name { color: #f0f0f0; }
+body.dark-mode .pk-card { background: #2a2a2c !important; }
+body.dark-mode .pk-name { color: #f0f0f0; }
 
-    .pk-id { font-size: 0.5rem; top: 4px; left: 4px; }
+.pk-id { font-size: 0.5rem !important; top: 4px !important; left: 4px !important; }
     
-    .catch-btn { width: 14px; height: 14px; top: 4px; right: 4px; }
-    .catch-btn::after { width: 4px; height: 4px; }
+.catch-btn { width: 14px !important; height: 14px !important; top: 4px !important; right: 4px !important; }
+.catch-btn::after { width: 4px !important; height: 4px !important; }
     
-    .pk-gen-bar { font-size: 0.5rem; padding: 1px 4px; margin: 2px auto; }
+.pk-gen-bar { font-size: 0.5rem !important; padding: 1px 4px !important; margin: 2px auto !important; }
     
-    .pk-types-mini { display: flex; gap: 3px; justify-content: center; width: 100%; }
-    .type-dot { width: 10px; height: 10px; }
+.pk-types-mini { display: flex !important; justify-content: center !important; gap: 4px !important; width: 100% !important; }
+.type-dot { width: 10px !important; height: 10px !important; border-radius: 50% !important; border: 2px solid var(--dex-border) !important; }
 
 .pk-gen-bar {
     font-family: monospace; font-size: 0.6rem; font-weight: 800; color: #666;
@@ -754,8 +754,7 @@ body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
     animation: slideDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
     background: transparent; 
     padding: 0; 
-    /* Borda branca gigante foi removida daqui! */
-    box-shadow: 0 20px 40px rgba(0,0,0,0.8); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8); /* Borda branca grossa removida! */
 }
 @keyframes slideDown { 0% { transform: translateY(-50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 .oak-close-btn { position: absolute; top: -25px; right: -25px; width: 40px; height: 40px; background: #e3350d; border: 3px solid #111; border-radius: 50%; color: #fff; font-size: 1.5rem; font-weight: bold; cursor: pointer; box-shadow: 2px 2px 0 #111; z-index: 20; }
@@ -769,10 +768,17 @@ body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
     flex-direction: column; 
     align-items: center; 
     position: relative; 
-    max-height: 80vh; /* O modal nunca fica maior que a tela */
-    overflow-y: auto; /* A barrinha de rolagem fica APENAS aqui dentro! */
-    overflow-x: hidden;
+    overflow: visible !important; /* Impede que a cabeça do Oak seja cortada */
 }
+
+/* Scroll interno APENAS para modais longos (Report e App Download) */
+.report-screen {
+    max-height: 80vh;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+.report-screen::-webkit-scrollbar { width: 6px; }
+.report-screen::-webkit-scrollbar-thumb { background: var(--dex-red); border-radius: 4px; }
 
 .oak-screen::-webkit-scrollbar { width: 6px; }
 .oak-screen::-webkit-scrollbar-thumb { background: var(--dex-red); border-radius: 4px; }
@@ -1639,4 +1645,34 @@ body.dark-mode #download-app-modal .report-title {
         width: 24px;
         height: 24px;
     }
+
+    /* =======================================================
+       AJUSTES FINOS HORIZONTAIS (OAK LADO A LADO E GRID)
+    ======================================================= */
+    #oak-modal .oak-screen, 
+    #support-modal .oak-screen {
+        flex-direction: row; /* Coloca o personagem e a caixa lado a lado */
+        align-items: center;
+        padding: 15px;
+    }
+    .oak-sprite-area {
+        position: relative !important;
+        top: 0 !important; left: 0 !important; transform: none !important;
+        width: 70px; height: 100px;
+        margin-right: 15px;
+    }
+    .oak-sprite { width: 70px; height: auto; animation: none; }
+    .oak-dialog-box { margin-top: 0; flex: 1; }
+    
+    /* Garante que a grid no modo deitado também obedeça as colunas */
+    .pokemon-grid { 
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)) !important; 
+        gap: 8px !important; 
+    }
+    .pk-card { padding: 6px !important; border: 2px solid var(--dex-border) !important; display: block !important; }
+    .pk-card img { width: 45px !important; height: 45px !important; margin: 0 auto; display: block; }
+    .pk-name { font-size: 0.65rem !important; }
+    .pk-types-mini { display: flex !important; justify-content: center !important; gap: 4px !important; }
+    .type-dot { width: 10px !important; height: 10px !important; border-radius: 50% !important; border: 2px solid var(--dex-border) !important; }
 }
