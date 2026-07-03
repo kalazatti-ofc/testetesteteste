@@ -85,7 +85,20 @@ body {
 /* =========================================
    CONTROLES, BUSCA E ABAS (CATEGORIAS)
 ========================================= */
-.pokedex-controls { flex: 1; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; min-height: 0; }
+.pokedex-controls { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: stretch; 
+    justify-content: flex-start; 
+    min-height: 0; 
+    overflow-y: auto; /* ADICIONADO: Habilita a rolagem */
+    padding-right: 5px; /* ADICIONADO: Espaço para a barra não colar nos botões */
+}
+
+/* Estilo da barrinha de rolagem do painel */
+.pokedex-controls::-webkit-scrollbar { width: 6px; }
+.pokedex-controls::-webkit-scrollbar-thumb { background: var(--dex-border); border-radius: 4px; }
 .search-module { width: 100%; margin-bottom: 20px; }
 .tech-label { font-family: monospace; font-size: 0.8rem; color: #ffcb05; font-weight: bold; text-shadow: 1px 1px 0 #000; margin-bottom: 5px; display: block; }
 .search-console { background: #ffffff; border: 4px solid var(--dex-border); border-radius: 12px; padding: 12px 15px; display: flex; align-items: center; box-shadow: inset 0 3px 8px rgba(0,0,0,0.15), 0 4px 0 rgba(255,255,255,0.3); }
@@ -213,53 +226,47 @@ body {
 .pokedex-main-display::-webkit-scrollbar-track { background: #d0d0d0; border-left: 3px solid var(--dex-border); border-radius: 0 10px 10px 0;}
 .pokedex-main-display::-webkit-scrollbar-thumb { background: #555; border: 3px solid var(--dex-border); border-radius: 10px; }
 
-/* =======================================
-       PRIORIDADE 2: GRID COMPACTA NO MOBILE
-    ======================================= */
+    /* GRID FORÇADA PARA MÚLTIPLAS COLUNAS */
     .pokemon-grid { 
-        grid-template-columns: repeat(auto-fill, minmax(68px, 1fr)); /* Reduzido de 95px para 68px */
-        gap: 6px; 
+        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); 
+        gap: 8px; 
     }
+    
     .pk-card { 
-        padding: 5px; 
+        padding: 6px; 
         border-width: 2px; 
         border-radius: 8px;
+        background: #fff; /* Garante que o fundo não suma */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-    .pk-card img { 
-        width: 45px; 
-        height: 45px; 
-    }
+    
+    .pk-card img { width: 48px; height: 48px; }
+    
     .pk-name { 
-        font-size: 0.55rem; 
+        font-size: 0.6rem; 
+        color: var(--dex-border); /* Garante que o texto fique escuro no modo claro */
+        width: 100%;
+        text-align: center;
         white-space: nowrap; 
         overflow: hidden; 
         text-overflow: ellipsis; 
-        margin: 2px 0;
+        margin: 4px 0;
     }
-    .pk-id {
-        font-size: 0.5rem;
-        top: 4px;
-        left: 4px;
-    }
-    .catch-btn {
-        width: 14px;
-        height: 14px;
-        top: 4px;
-        right: 4px;
-    }
-    .catch-btn::after {
-        width: 4px;
-        height: 4px;
-    }
-    .pk-gen-bar {
-        font-size: 0.5rem;
-        padding: 1px 4px;
-        margin: 2px auto 4px auto;
-    }
-    .type-dot {
-        width: 10px;
-        height: 10px;
-    }
+    
+    body.dark-mode .pk-card { background: #2a2a2c; }
+    body.dark-mode .pk-name { color: #f0f0f0; }
+
+    .pk-id { font-size: 0.5rem; top: 4px; left: 4px; }
+    
+    .catch-btn { width: 14px; height: 14px; top: 4px; right: 4px; }
+    .catch-btn::after { width: 4px; height: 4px; }
+    
+    .pk-gen-bar { font-size: 0.5rem; padding: 1px 4px; margin: 2px auto; }
+    
+    .pk-types-mini { display: flex; gap: 3px; justify-content: center; }
+    .type-dot { width: 10px; height: 10px; }
 
 .pk-gen-bar {
     font-family: monospace; font-size: 0.6rem; font-weight: 800; color: #666;
@@ -729,7 +736,23 @@ body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
 .oak-container { width: 90%; max-width: 500px; position: relative; animation: slideDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: transparent; padding: 0; box-shadow: 0 0 0 15px white, 0 20px 40px rgba(0,0,0,0.6); }
 @keyframes slideDown { 0% { transform: translateY(-50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 .oak-close-btn { position: absolute; top: -25px; right: -25px; width: 40px; height: 40px; background: #e3350d; border: 3px solid #111; border-radius: 50%; color: #fff; font-size: 1.5rem; font-weight: bold; cursor: pointer; box-shadow: 2px 2px 0 #111; z-index: 20; }
-.oak-screen { background: #f8f8f8; border: 6px solid #111; border-radius: 12px; padding: 20px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; position: relative; overflow: visible; }
+.oak-screen { 
+    background: #f8f8f8; 
+    border: 6px solid #111; 
+    border-radius: 12px; 
+    padding: 20px; 
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    position: relative; 
+    overflow-y: auto; /* A rolagem agora fica DENTRO da tela, salvando a cabeça do Oak */
+    overflow-x: hidden;
+    max-height: 80vh; /* Impede do modal vazar para fora da tela */
+}
+
+.oak-screen::-webkit-scrollbar { width: 6px; }
+.oak-screen::-webkit-scrollbar-thumb { background: var(--dex-red); border-radius: 4px; }
 .oak-sprite-area { width: 120px; height: 160px; display: flex; align-items: flex-end; justify-content: center; position: absolute; top: -140px; left: 50%; transform: translateX(-50%); z-index: 10; }
 .oak-sprite { width: 120px; height: auto; image-rendering: pixelated; animation: oakBob 2s infinite ease-in-out; }
 @keyframes oakBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
@@ -1469,6 +1492,22 @@ body.dark-mode #download-app-modal .report-title {
    OTIMIZAÇÃO EXTREMA: MOBILE HORIZONTAL (LANDSCAPE / APK)
 ============================================================== */
 @media (max-height: 600px) and (orientation: landscape) {
+
+    /* Ajustes dos Modais Secundários para Modo Deitado */
+    .oak-container {
+        width: 95%; /* Fica mais largo na horizontal */
+        max-width: 700px;
+    }
+    .oak-screen {
+        padding: 15px;
+        max-height: 85vh;
+    }
+    .oak-sprite-area {
+        display: none !important; /* Esconde o personagem para economizar muito espaço na vertical */
+    }
+    .vip-grid {
+        max-height: 150px; /* Limita a grade de apoiadores para caber na tela */
+    }
     
     /* 1. Transforma o Modal numa visão Lado a Lado (Estilo PC) */
     .modal-pokedex-view {
@@ -1495,7 +1534,7 @@ body.dark-mode #download-app-modal .report-title {
         height: 30px;
         font-size: 1rem;
     }
-    
+
     .modal-left-wing, .modal-right-wing {
         width: 50%;
         padding: 10px 15px; /* Reduz drasticamente as margens internas */
