@@ -699,7 +699,7 @@ window.openModal = (id) => {
             <span class="nature-title">NATURES RECOMENDADAS</span>
             <div class="nature-pills">
                 ${recommendedNatures.map(n => 
-                    `<span class="nature-pill info-tooltip" data-tooltip="${n.desc}">
+                    `<span class="nature-pill nature-tooltip" data-tooltip="${n.desc}">
                         ${n.bold ? `<b>${n.name}</b>` : n.name}
                     </span>`
                 ).join('')}
