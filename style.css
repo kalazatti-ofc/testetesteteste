@@ -213,19 +213,53 @@ body {
 .pokedex-main-display::-webkit-scrollbar-track { background: #d0d0d0; border-left: 3px solid var(--dex-border); border-radius: 0 10px 10px 0;}
 .pokedex-main-display::-webkit-scrollbar-thumb { background: #555; border: 3px solid var(--dex-border); border-radius: 10px; }
 
-.pokemon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(115px, 1fr)); gap: 12px; }
-.pk-card {
-    background: #fff; border: 3px solid var(--dex-border); border-radius: 12px;
-    cursor: pointer; box-shadow: 3px 3px 0 rgba(0,0,0,0.1); transition: 0.1s ease;
-    overflow: hidden; position: relative; text-align: center; padding: 10px;
-}
-.pk-card:active { transform: translate(3px, 3px); box-shadow: 0 0 0 rgba(0,0,0,0); }
-.pk-id { position: absolute; top: 6px; left: 6px; font-family: monospace; font-size: 0.65rem; font-weight: bold; color: #888; z-index: 2; transition: color 0.3s ease;}
-
-.pk-card img { width: 70px; height: 70px; object-fit: contain; filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.2)); z-index: 2; position: relative; }
-.pk-name { font-size: 0.8rem; font-weight: 800; color: var(--dex-border); text-transform: uppercase; z-index: 2; position: relative; margin: 4px 0; transition: color 0.3s ease;}
-.pk-types-mini { display: flex; justify-content: center; gap: 4px; z-index: 2; position: relative;}
-.type-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--dex-border); }
+/* =======================================
+       PRIORIDADE 2: GRID COMPACTA NO MOBILE
+    ======================================= */
+    .pokemon-grid { 
+        grid-template-columns: repeat(auto-fill, minmax(68px, 1fr)); /* Reduzido de 95px para 68px */
+        gap: 6px; 
+    }
+    .pk-card { 
+        padding: 5px; 
+        border-width: 2px; 
+        border-radius: 8px;
+    }
+    .pk-card img { 
+        width: 45px; 
+        height: 45px; 
+    }
+    .pk-name { 
+        font-size: 0.55rem; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        margin: 2px 0;
+    }
+    .pk-id {
+        font-size: 0.5rem;
+        top: 4px;
+        left: 4px;
+    }
+    .catch-btn {
+        width: 14px;
+        height: 14px;
+        top: 4px;
+        right: 4px;
+    }
+    .catch-btn::after {
+        width: 4px;
+        height: 4px;
+    }
+    .pk-gen-bar {
+        font-size: 0.5rem;
+        padding: 1px 4px;
+        margin: 2px auto 4px auto;
+    }
+    .type-dot {
+        width: 10px;
+        height: 10px;
+    }
 
 .pk-gen-bar {
     font-family: monospace; font-size: 0.6rem; font-weight: 800; color: #666;
@@ -642,6 +676,37 @@ body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
     .zoom-btn { width: 30px; height: 30px; font-size: 1rem; }
     .z-display-box { width: 30px; height: 30px; font-size: 0.8rem; }
     .map-hud-floating { bottom: 10px; left: 10px; font-size: 0.45rem; padding: 6px 10px; }
+
+    /* =======================================
+       PRIORIDADE 1: CORREÇÃO DOS MODAIS E BOTÃO X
+    ======================================= */
+    /* Traz o botão X da Pokédex para perto da borda interna */
+    .close-btn { 
+        top: -5px; 
+        right: -5px; 
+        width: 35px; 
+        height: 35px; 
+        font-size: 1.2rem; 
+    }
+    
+    /* Traz o botão X dos outros modais (VIP, Report, etc) para dentro */
+    .oak-close-btn { 
+        top: -10px; 
+        right: -10px; 
+        width: 35px; 
+        height: 35px; 
+        font-size: 1.2rem; 
+    }
+
+    /* Trava o tamanho máximo dos modais VIP/Report e ativa scroll interno */
+    .oak-container {
+        max-height: 90vh;
+        overflow-y: auto;
+        border-radius: 12px;
+    }
+    
+    .oak-container::-webkit-scrollbar { width: 6px; }
+    .oak-container::-webkit-scrollbar-thumb { background: var(--dex-red); border-radius: 4px; }
 
     /* =======================================
        LIMITE DE LOCALIZAÇÕES NO MOBILE (SCROLL)
@@ -1339,6 +1404,68 @@ body.dark-mode .donator-badge { border-color: #ffcb05; color: #ffcb05; }
 body.dark-mode .contributor-badge { border-color: #3498db; color: #3498db; }
 
 /* ==============================================================
+   BOTÃO DE CHAMADA DO APP (ESTILO POKÉDEX RETRÔ) E MODAL
+============================================================== */
+.app-download-trigger-btn {
+    width: 100%;
+    background: #ffcb05; /* Amarelo elétrico forte */
+    color: #111;
+    border: 3px solid var(--dex-border);
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 12px;
+    box-shadow: 4px 4px 0 var(--dex-border);
+    transition: transform 0.05s linear, box-shadow 0.05s linear;
+    outline: none;
+    will-change: transform;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+.app-download-trigger-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 transparent;
+}
+
+/* Cores do texto no Modal - Modo Claro (Padrão) */
+.app-modal-text {
+    color: #333333;
+}
+.app-modal-text b {
+    color: #000000;
+}
+
+/* ==============================================================
+   ADAPTAÇÕES PARA O MODO ESCURO (DARK MODE)
+============================================================== */
+body.dark-mode .app-download-trigger-btn {
+    background: #e6b800; /* Tom de ouro mais denso */
+    box-shadow: 4px 4px 0 #000;
+    border-color: #000;
+}
+
+body.dark-mode .app-modal-text {
+    color: #dddddd;
+}
+body.dark-mode .app-modal-text b {
+    color: #ffffff;
+}
+
+body.dark-mode #download-app-modal .report-screen {
+    background: #1a1a1a;
+    border-color: #e3350d !important;
+}
+body.dark-mode #download-app-modal .report-title {
+    color: #e3350d;
+    border-color: #e3350d !important;
+}
+
+/* ==============================================================
    OTIMIZAÇÃO EXTREMA: MOBILE HORIZONTAL (LANDSCAPE / APK)
 ============================================================== */
 @media (max-height: 600px) and (orientation: landscape) {
@@ -1352,6 +1479,23 @@ body.dark-mode .contributor-badge { border-color: #3498db; color: #3498db; }
     }
 
     /* 2. Divide a tela 50/50 */
+
+    /* Traz os botões de fechar totalmente para dentro no modo deitado */
+    .close-btn {
+        top: 5px;
+        right: 5px;
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    .oak-close-btn {
+        top: 5px;
+        right: 5px;
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
     .modal-left-wing, .modal-right-wing {
         width: 50%;
         padding: 10px 15px; /* Reduz drasticamente as margens internas */
@@ -1417,80 +1561,20 @@ body.dark-mode .contributor-badge { border-color: #3498db; color: #3498db; }
     .floating-report-btn, .floating-support-btn {
         transform: scale(0.65);
         transform-origin: bottom;
+        top: auto;
+        padding: 14px;
+        border-radius: 50%;
+        gap: 0;
     }
     .floating-report-btn { left: 5px; bottom: 5px; }
     .floating-support-btn { right: 5px; bottom: 5px; left: auto; }
-}
 
-/* ==============================================================
-   BOTÃO DE CHAMADA DO APP (ESTILO POKÉDEX RETRÔ)
-============================================================== */
-.app-download-trigger-btn {
-    width: 100%;
-    background: #ffcb05; /* Amarelo elétrico forte */
-    color: #111;
-    border: 3px solid var(--dex-border);
-    padding: 12px 15px;
-    border-radius: 8px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.65rem;
-    font-weight: 900;
-    text-align: center;
-    cursor: pointer;
-    margin-bottom: 12px;
-    box-shadow: 4px 4px 0 var(--dex-border);
-    transition: transform 0.05s linear, box-shadow 0.05s linear;
-    outline: none;
-    will-change: transform;
-    display: block;
-    letter-spacing: 0.5px;
-}
-
-/* Animação mecânica de clique realista */
-.app-download-trigger-btn:active {
-    transform: translate(4px, 4px);
-    box-shadow: 0 0 0 transparent;
-}
-
-/* Ajustes finos adicionais para o Modo Escuro do novo Modal */
-body.dark-mode .app-download-trigger-btn {
-    background: #e6b800; /* Tom de ouro mais denso */
-    box-shadow: 4px 4px 0 #000;
-    border-color: #000;
-}
-body.dark-mode #download-app-modal .report-screen {
-    background: #1a1a1a;
-    border-color: #000;
-}
-body.dark-mode #download-app-modal .report-title {
-    color: #ffcb05;
-    border-color: #333;
-}
-
-/* =============================================================
-   AJUSTE DE CORES DO MODAL DO APLICATIVO
-============================================================== */
-/* Cores para o modo Claro (Padrão) */
-.app-modal-text {
-    color: #333333;
-}
-.app-modal-text b {
-    color: #000000;
-}
-
-/* Adaptação inteligente para o Modo Escuro */
-body.dark-mode .app-modal-text {
-    color: #dddddd;
-}
-body.dark-mode .app-modal-text b {
-    color: #ffffff;
-}
-
-/* No modo escuro, mantemos o título e as bordas vermelhas */
-body.dark-mode #download-app-modal .report-screen {
-    border-color: #e3350d;
-}
-body.dark-mode #download-app-modal .report-title {
-    color: #e3350d;
-    border-color: #e3350d;
+    /* Esconde o texto e mostra apenas o ícone no modo deitado */
+    .support-text, .report-text {
+        display: none;
+    }
+    .coffee-svg {
+        width: 24px;
+        height: 24px;
+    }
 }
