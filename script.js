@@ -1314,8 +1314,8 @@ window.switchForm = (newId) => {
 // ==========================================
 
 const vipData = {
-    donators: ["Jarubinha", "Ricardobtj", "Bonacina", "Upzin"],
-    contributors: ["Paleguazv", "Marlin", "Leander Hastings", "Vincent"]
+    donators: ["Jarubinha", "The DarkNess", "Avil"],
+    contributors: ["Paleguazv", "Marlin", "Leander Hastings", "Vincent", "Ricardobtj", "Bonacina", "Upzin"]
 };
 
 function initVipSystem() {
