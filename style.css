@@ -99,7 +99,11 @@ body {
 /* Estilo da barrinha de rolagem do painel */
 .pokedex-controls::-webkit-scrollbar { width: 6px; }
 .pokedex-controls::-webkit-scrollbar-thumb { background: var(--dex-border); border-radius: 4px; }
-.search-module { width: 100%; margin-bottom: 20px; }
+.search-module { 
+    width: 100%; 
+    margin-bottom: 20px; 
+    flex-shrink: 0; 
+}
 .tech-label { font-family: monospace; font-size: 0.8rem; color: #ffcb05; font-weight: bold; text-shadow: 1px 1px 0 #000; margin-bottom: 5px; display: block; }
 .search-console { background: #ffffff; border: 4px solid var(--dex-border); border-radius: 12px; padding: 12px 15px; display: flex; align-items: center; box-shadow: inset 0 3px 8px rgba(0,0,0,0.15), 0 4px 0 rgba(255,255,255,0.3); }
 .search-console input { background: transparent; border: none; outline: none; width: 100%; color: var(--dex-border); font-family: monospace; font-size: 1.1rem; text-transform: uppercase; font-weight: 800; }
@@ -116,7 +120,12 @@ body {
 .search-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 transparent; }
 .search-btn.red-btn { background: var(--dex-red); color: #fff; }
 
-.category-module { display: flex; gap: 8px; margin-bottom: 20px; }
+.category-module { 
+    display: flex; 
+    gap: 8px; 
+    margin-bottom: 20px; 
+    flex-shrink: 0; 
+}
 .cat-btn {
     flex: 1; padding: 10px 5px; border-radius: 8px; font-family: monospace; font-size: 0.8rem;
     font-weight: 900; text-align: center; border: 3px solid var(--dex-border);
@@ -226,27 +235,32 @@ body {
 .pokedex-main-display::-webkit-scrollbar-track { background: #d0d0d0; border-left: 3px solid var(--dex-border); border-radius: 0 10px 10px 0;}
 .pokedex-main-display::-webkit-scrollbar-thumb { background: #555; border: 3px solid var(--dex-border); border-radius: 10px; }
 
-    /* GRID FORÇADA PARA MÚLTIPLAS COLUNAS */
+    /* =======================================
+       CORREÇÃO DEFINITIVA DA GRID MOBILE
+    ======================================= */
     .pokemon-grid { 
-        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); 
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)) !important; 
         gap: 8px; 
+        width: 100%;
     }
     
     .pk-card { 
         padding: 6px; 
-        border-width: 2px; 
+        border: 2px solid var(--dex-border) !important; /* Força a borda preta a aparecer */
         border-radius: 8px;
-        background: #fff; /* Garante que o fundo não suma */
-        display: flex;
+        background: #fff; /* Fundo branco garantido */
+        display: flex !important;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
     
-    .pk-card img { width: 48px; height: 48px; }
+    .pk-card img { width: 45px; height: 45px; }
     
     .pk-name { 
         font-size: 0.6rem; 
-        color: var(--dex-border); /* Garante que o texto fique escuro no modo claro */
+        color: var(--dex-border); 
         width: 100%;
         text-align: center;
         white-space: nowrap; 
@@ -265,7 +279,7 @@ body {
     
     .pk-gen-bar { font-size: 0.5rem; padding: 1px 4px; margin: 2px auto; }
     
-    .pk-types-mini { display: flex; gap: 3px; justify-content: center; }
+    .pk-types-mini { display: flex; gap: 3px; justify-content: center; width: 100%; }
     .type-dot { width: 10px; height: 10px; }
 
 .pk-gen-bar {
@@ -733,7 +747,16 @@ body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
 
 .oak-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); background: radial-gradient(circle, rgba(20,20,20,0.9) 0%, rgba(10,10,10,0.95) 100%); }
 .oak-overlay.hidden { display: none !important; }
-.oak-container { width: 90%; max-width: 500px; position: relative; animation: slideDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: transparent; padding: 0; box-shadow: 0 0 0 15px white, 0 20px 40px rgba(0,0,0,0.6); }
+.oak-container { 
+    width: 90%; 
+    max-width: 500px; 
+    position: relative; 
+    animation: slideDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    background: transparent; 
+    padding: 0; 
+    /* Borda branca gigante foi removida daqui! */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8); 
+}
 @keyframes slideDown { 0% { transform: translateY(-50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 .oak-close-btn { position: absolute; top: -25px; right: -25px; width: 40px; height: 40px; background: #e3350d; border: 3px solid #111; border-radius: 50%; color: #fff; font-size: 1.5rem; font-weight: bold; cursor: pointer; box-shadow: 2px 2px 0 #111; z-index: 20; }
 .oak-screen { 
@@ -746,9 +769,9 @@ body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
     flex-direction: column; 
     align-items: center; 
     position: relative; 
-    overflow-y: auto; /* A rolagem agora fica DENTRO da tela, salvando a cabeça do Oak */
+    max-height: 80vh; /* O modal nunca fica maior que a tela */
+    overflow-y: auto; /* A barrinha de rolagem fica APENAS aqui dentro! */
     overflow-x: hidden;
-    max-height: 80vh; /* Impede do modal vazar para fora da tela */
 }
 
 .oak-screen::-webkit-scrollbar { width: 6px; }
