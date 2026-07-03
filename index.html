@@ -266,27 +266,31 @@
 
     <div id="download-app-modal" class="oak-overlay hidden">
         <div class="oak-container report-container">
-            <button class="oak-close-btn" id="close-download-app">&times;</button>
-            <div class="oak-screen report-screen" style="border-color: #e3350d;">
-                <h2 class="report-title" style="color: #e3350d; border-bottom-color: #e3350d;">📱 APP POKÉDEX FLUTUANTE</h2>
+            
+            <button class="oak-close-btn" id="close-download-app" onclick="document.getElementById('download-app-modal').classList.add('hidden')">&times;</button>
+            
+            <div class="oak-screen report-screen" style="border-color: #111;">
+                
+                <h2 class="report-title" style="color: #e3350d; border-bottom-color: #111;">📱 APP POKÉDEX FLUTUANTE</h2>
                 
                 <div class="map-list-scroll app-modal-text" style="width: 100%; max-height: 280px; overflow-y: auto; padding-right: 10px; font-family: 'Outfit', sans-serif; font-size: 0.85rem; line-height: 1.6; text-align: justify;">
                     
                     <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; text-align: center; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">▶ SINCRONIZAÇÃO DETECTADA</p>
                     
-                    <p style="margin-bottom: 12px;">Olá, Treinador! Você sabia que pode usar todo o poder de rastreamento desta Pokédex <b>diretamente sobre a tela do seu jogo</b> sem precisar fechar ou minimizar o PBR? Desenvolvi um aplicativo leve que cria uma Pokébola flutuante para você consultar mapas, localizações e natures sem precisar minimizar nada!</p>
+                    <p style="margin-bottom: 12px;">Olá, Treinador! Você sabia que pode usar todo o poder de rastreamento desta Pokedex <b>diretamente sobre a tela do seu jogo</b> sem precisar fechar ou minimizar o PBR? Desenvolvi um aplicativo leve que cria uma Pokébola flutuante para você consultar mapas, localizações e natures sem precisar minimizar nada!</p>
                     
                     <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">⚠ POR QUE FORA DA PLAY STORE?</p>
-                    <p style="margin-bottom: 12px;">Para manter este projeto <b>100% independente e gratuito</b>, completamente livre de anúncios chatos que atrapalham a sua gameplay, optei por distribuir o app de forma direta, pulando as taxas e a burocracia das lojas oficiais.</p>
+                    <p style="margin-bottom: 12px;">Para manter este projeto <b>100% independente e principalmente gratuito</b>, completamente livre de anúncios chatos, optei por distribuir o app de forma direta, pulando as taxas e a burocracia das lojas oficiais.</p>
                     
                     <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">💖 UM PROJETO DE FÃ PARA FÃ</p>
-                    <p style="margin-bottom: 12px;">Todo este ecossistema é programado e mantido por <b>uma equipe de uma única pessoa (Kalazatti)</b> nas horas vagas. Ferramentas assim só continuam existindo pelo apoio da comunidade, seja reportando bugs, enviando ideias ou pagando um cafezinho para manter o servidor online!</p>
+                    <p style="margin-bottom: 12px;">Todo este ecossistema é programado e mantido por <b>uma equipe de uma única pessoa</b> nas horas vagas. Ferramentas assim só continuam existindo pelo apoio da comunidade, seja reportando bugs, enviando ideias ou pagando um cafezinho para manter o CLT online!</p>
                     
                     <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">📥 MANUAL DE INSTALAÇÃO:</p>
                     <ol style="margin-left: 20px; margin-bottom: 25px; padding-left: 0; font-family: monospace; font-weight: bold; font-size: 0.75rem;">
                         <li style="margin-bottom: 6px;">Clique no botão abaixo para baixar o arquivo <b>.APK</b>.</li>
-                        <li style="margin-bottom: 6px;">O Android pode exibir um aviso de "Fonte Desconhecida". Fique tranquilo! Clique em <b>"Mais Detalhes"</b> e depois em <b>"Instalar mesmo assim"</b>.</li>
-                        <li style="margin-bottom: 6px;">Abra o app, ative a permissão de <b>Sobreposição de Tela</b> e boa caçada!</li>
+                        <li style="margin-bottom: 6px;">O Android pode exibir um aviso de "Fonte Desconhecida". Fique tranquilo! Isso ocorre pois não estamos utilizando um certificado oficial Google.</li>
+                        <li style="margin-bottom: 6px;">Clique em <b>"Mais Detalhes"</b> e depois em <b>"Instalar mesmo assim"</b>.</li>
+                        <li style="margin-bottom: 6px;">Abra o app, ative a permissão de <b>Sobreposição de Tela</b> para a pokebola aparecer por cima do PBR, e boa caçada!</li>
                     </ol>
 
                     <a href="Pokedex-PBR-v1.0.apk" download="Pokedex-PBR-v1.0.apk" class="final-support-btn" style="background: #e3350d; color: #FFFFFF; border-color: #111; width: 100%; text-decoration: none; display: block; padding: 16px; font-size: 0.75rem; box-shadow: 4px 4px 0 #111; text-align: center; margin-bottom: 10px;">⚡ BAIXAR AGORA (.APK)</a>
