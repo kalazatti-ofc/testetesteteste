@@ -166,6 +166,18 @@ function renderTypeButtons() {
 }
 
 function setupToggles() {
+    // Lógica do Botão Mestre
+    const toggleAll = document.getElementById('toggle-all-filters');
+    if (toggleAll) {
+        toggleAll.onclick = function() {
+            const wrapper = document.getElementById('all-filters-wrapper');
+            wrapper.classList.toggle('hidden-filter');
+            this.innerText = wrapper.classList.contains('hidden-filter') 
+                ? '⚙️ MOSTRAR FILTROS AVANÇADOS' 
+                : '⚙️ ESCONDER FILTROS';
+        };
+    }
+
     const toggleGen = document.getElementById('toggle-gen');
     if (toggleGen) {
         toggleGen.onclick = function() {
