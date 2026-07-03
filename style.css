@@ -363,31 +363,73 @@ body {
 .data-module { background: #e0e0e0; padding: 15px; border-radius: 12px; border: 4px solid var(--dex-border); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); transition: background 0.3s ease; }
 .data-module .label-tech { color: var(--dex-border); text-shadow: none; border-bottom: 2px dashed #999;}
 
-
 /* ==========================================
-   BARRAS DE STATUS ANIMADAS E DINÂMICAS
+   NATURES RECOMENDADAS (MINIMALISTA)
 ========================================== */
 
-/* Badge que avisa o papel do Pokémon (Tank, Sweeper, etc) */
-.role-badge {
-    text-align: center;
-    background: #111;
-    color: #ffcb05;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.55rem;
-    padding: 8px 10px;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    border: 2px solid var(--dex-border);
-    box-shadow: 2px 2px 0 var(--dex-border);
-    letter-spacing: 1px;
+/* Container geral das Natures */
+.nature-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 2px dashed rgba(0,0,0,0.1);
 }
 
-body.dark-mode .role-badge {
-    background: #ffcb05;
-    color: #111;
-    border-color: #000;
-    box-shadow: 2px 2px 0 #000;
+body.dark-mode .nature-container {
+    border-bottom-color: rgba(255,255,255,0.1);
+}
+
+/* Título discreto */
+.nature-title {
+    font-size: 0.6rem;
+    font-weight: 900;
+    color: #888;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+body.dark-mode .nature-title { 
+    color: #999; 
+}
+
+/* Flexbox para alinhar as pílulas */
+.nature-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Estética da Pílula Minimalista */
+.nature-pill {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: var(--dex-border);
+    font-family: monospace;
+    font-size: 0.65rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.nature-pill:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Modo Escuro para as Natures */
+body.dark-mode .nature-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #ddd;
+}
+
+body.dark-mode .nature-pill:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .stats-list-animated {
@@ -1024,3 +1066,4 @@ body.dark-mode .form-toggle-btn:hover {
     color: #fff; 
     border-color: #fff;
 }
+
