@@ -1338,9 +1338,9 @@ document.getElementById('report-form').addEventListener('submit', async (e) => {
     btn.disabled = false;
 });
 
-// ==========================================
+// =========================================
 // ALTERNAR FORMAS REGIONAIS NO MODAL
-// ==========================================
+// =========================================
 window.switchForm = (newId) => {
     const modalContent = document.querySelector('.modal-pokedex-view');
     modalContent.style.opacity = '0';
