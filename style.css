@@ -1836,7 +1836,7 @@ body.dark-mode #download-app-modal .report-title {
     .category-module { margin-bottom: 8px !important; gap: 6px !important; }
     .cat-btn { padding: 6px 4px !important; font-size: 0.65rem !important; border-width: 2px !important; }
 
-    /* 7. Diminui o Botão de Download do APP */
+    /* 7. Diminui o Botão de Download do APP (se existir) */
     .app-download-trigger-btn { padding: 8px 10px !important; margin-bottom: 8px !important; font-size: 0.55rem !important; border-width: 2px !important; }
     
     .tech-label { font-size: 0.6rem !important; margin-bottom: 2px !important; }
