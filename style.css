@@ -722,25 +722,40 @@ body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
     .map-hud-floating { bottom: 10px; left: 10px; font-size: 0.45rem; padding: 6px 10px; }
 
     /* =======================================
-       PRIORIDADE 1: CORREÇÃO DOS MODAIS E BOTÃO X
+       CORREÇÃO DE MODAIS PARA WEBVIEW (VERTICAL)
     ======================================= */
-    /* Traz o botão X da Pokédex para perto da borda interna */
-    .close-btn { 
-        top: -5px; 
-        right: -5px; 
-        width: 35px; 
-        height: 35px; 
-        font-size: 1.2rem; 
+    /* 1. Trava a carcaça do modal em 85% da tela da WebView */
+    .oak-container, .modal-content {
+        max-height: 85vh !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
-    
-    /* Traz o botão X dos outros modais (VIP, Report, etc) para dentro */
-    .oak-close-btn { 
-        top: -10px; 
-        right: -10px; 
-        width: 35px; 
-        height: 35px; 
-        font-size: 1.2rem; 
+
+    /* 2. Áreas de conteúdo ganham Scroll Interno (respeitando a carcaça) */
+    .report-screen, .app-modal-text {
+        max-height: 100% !important; 
+        overflow-y: auto !important;
+        padding: 20px 15px !important; /* Padding reduzido para economizar espaço */
     }
+
+    /* 3. Botão X ancorado na carcaça (NUNCA vai rolar com o texto) */
+    .close-btn, .oak-close-btn { 
+        position: absolute !important;
+        top: -2px !important; /* Trazido para a zona segura visível */
+        right: -2px !important; 
+        width: 32px !important; 
+        height: 32px !important; 
+        font-size: 1.1rem !important; 
+        z-index: 50 !important;
+    }
+
+    /* 4. Miniaturização Elegante de Fontes e Formulários (Estética Retrô) */
+    .report-title { font-size: 0.8rem !important; margin-bottom: 12px !important; padding-bottom: 8px !important; }
+    .report-form { gap: 8px !important; }
+    .report-form label { font-size: 0.55rem !important; margin-top: 0 !important; }
+    .report-form input, .report-form select, .report-form textarea { padding: 8px !important; font-size: 0.8rem !important; }
+    #submit-report-btn { padding: 10px !important; font-size: 0.75rem !important; margin-top: 5px !important; }
+    .vip-sections { max-height: 60vh !important; }
 
     /* =======================================
        LIMITE DE LOCALIZAÇÕES NO MOBILE (SCROLL)
@@ -1677,16 +1692,40 @@ body.dark-mode #download-app-modal .report-title {
     }
 
     /* =======================================================
-       AJUSTES FINOS HORIZONTAIS (OAK LADO A LADO E GRID)
+       CORREÇÃO DE MODAIS PARA WEBVIEW (HORIZONTAL)
     ======================================================= */
-    /* Protege o botão X no modo deitado */
-    .oak-close-btn {
-        top: -5px; 
-        right: -5px; 
-        width: 30px; 
-        height: 30px; 
-        font-size: 1.2rem;
+    /* 1. Trava a altura extrema na horizontal */
+    .oak-container, .modal-content { 
+        max-height: 85vh !important; 
+        display: flex !important;
+        flex-direction: column !important;
     }
+
+    /* 2. Scroll interno para formulários e textos na tela deitada */
+    .report-screen, .app-modal-text {
+        max-height: 100% !important;
+        overflow-y: auto !important;
+        padding: 10px 15px !important; /* Super compacto */
+    }
+
+    /* 3. Botão X ancorado na zona super segura */
+    .close-btn, .oak-close-btn {
+        position: absolute !important;
+        top: 0px !important; 
+        right: 0px !important; 
+        width: 28px !important; 
+        height: 28px !important; 
+        font-size: 1rem !important;
+        z-index: 50 !important;
+    }
+
+    /* 4. Esmagamento Extremo do Formulário (Para não precisar rolar tanto) */
+    .report-title { font-size: 0.7rem !important; margin-bottom: 6px !important; padding-bottom: 6px !important; }
+    .report-form { gap: 6px !important; }
+    .report-form label { font-size: 0.5rem !important; }
+    .report-form input, .report-form select, .report-form textarea { padding: 6px !important; font-size: 0.75rem !important; }
+    #submit-report-btn { padding: 8px !important; font-size: 0.7rem !important; margin-top: 5px !important; }
+    .vip-sections { max-height: 60vh !important; }
 
     #oak-modal .oak-screen, 
     #support-modal .oak-screen { 
