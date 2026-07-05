@@ -627,6 +627,47 @@ body.dark-mode .stat-highest .stat-num { color: #ffcb05; }
 .soul-value { font-size: 0.9rem; font-weight: 900; color: var(--dex-border); }
 .exclusive-badge { display: block; text-align: center; font-size: 0.8rem; font-weight: 900; color: var(--dex-red); background: #fff; border: 2px solid var(--dex-border); border-radius: 6px; padding: 6px; margin-top: 6px; }
 
+/* ==============================================================
+   TUTORIAL DO APP APK (IMAGENS E PASSOS)
+============================================================== */
+.hidden-step {
+    display: none !important;
+}
+
+.tutorial-step {
+    background: rgba(0, 0, 0, 0.04);
+    border: 2px dashed var(--dex-border);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+body.dark-mode .tutorial-step {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #444;
+}
+
+.tutorial-step p {
+    margin-bottom: 10px !important;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.apk-tutorial-img {
+    width: 100%;
+    max-width: 250px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 3px solid var(--dex-border);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+body.dark-mode .apk-tutorial-img {
+    border-color: #000;
+    box-shadow: 4px 4px 0 #000;
+}
+
 /* =========================================
    RESPONSIVIDADE E ADAPTAÇÃO DE TELAS
 ========================================= */
@@ -1764,7 +1805,7 @@ body.dark-mode #download-app-modal .report-title {
     .pk-types-mini { display: flex !important; justify-content: center !important; gap: 4px !important; }
     .type-dot { width: 10px !important; height: 10px !important; border-radius: 50% !important; border: 2px solid var(--dex-border) !important; }
 
-    /* ======================================================
+    /* =======================================================
        COMPACTAÇÃO EXTREMA DO PAINEL ESQUERDO (HORIZONTAL)
     ======================================================= */
     
