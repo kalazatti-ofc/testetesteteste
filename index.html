@@ -275,25 +275,47 @@
                 
                 <div class="map-list-scroll app-modal-text" style="width: 100%; max-height: 280px; overflow-y: auto; padding-right: 10px; font-family: 'Outfit', sans-serif; font-size: 0.85rem; line-height: 1.6; text-align: justify;">
                     
-                    <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; text-align: center; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">▶ SINCRONIZAÇÃO DETECTADA</p>
-                    
-                    <p style="margin-bottom: 12px;">Olá, Treinador! Você sabia que pode usar todo o poder de rastreamento desta Pokedex <b>diretamente sobre a tela do seu jogo</b> sem precisar fechar ou minimizar o PBR? Desenvolvi um aplicativo leve que cria uma Pokébola flutuante para você consultar mapas, localizações e natures sem precisar minimizar nada!</p>
-                    
-                    <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">⚠ POR QUE FORA DA PLAY STORE?</p>
-                    <p style="margin-bottom: 12px;">Para manter este projeto <b>100% independente e principalmente gratuito</b>, completamente livre de anúncios chatos, optei por distribuir o app de forma direta, pulando as taxas e a burocracia das lojas oficiais.</p>
-                    
-                    <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">💖 UM PROJETO DE FÃ PARA FÃ</p>
-                    <p style="margin-bottom: 12px;">Todo este ecossistema é programado e mantido por <b>uma equipe de uma única pessoa</b> nas horas vagas. Ferramentas assim só continuam existindo pelo apoio da comunidade, seja reportando bugs, enviando ideias ou pagando um cafezinho para manter o CLT online!</p>
-                    
-                    <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">📥 MANUAL DE INSTALAÇÃO:</p>
-                    <ol style="margin-left: 20px; margin-bottom: 25px; padding-left: 0; font-family: monospace; font-weight: bold; font-size: 0.75rem;">
-                        <li style="margin-bottom: 6px;">Clique no botão abaixo para baixar o arquivo <b>.APK</b>.</li>
-                        <li style="margin-bottom: 6px;">O Android pode exibir um aviso de "Fonte Desconhecida". Fique tranquilo! Isso ocorre pois não estamos utilizando um certificado oficial Google.</li>
-                        <li style="margin-bottom: 6px;">Clique em <b>"Mais Detalhes"</b> e depois em <b>"Instalar mesmo assim"</b>.</li>
-                        <li style="margin-bottom: 6px;">Abra o app, ative a permissão de <b>Sobreposição de Tela</b> para a pokebola aparecer por cima do PBR, e boa caçada!</li>
-                    </ol>
+                    <div id="apk-page-1">
+                        <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; text-align: center; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">▶ ADEUS, JOGO REINICIANDO!</p>
+                        
+                        <p style="margin-bottom: 12px;">Cansado de minimizar o PBR, abrir o navegador para olhar a Pokédex e, quando voltar, <b>o jogo ter fechado ou reiniciado?</b></p>
+                        <p style="margin-bottom: 12px;">Desenvolvi um aplicativo leve que cria uma <b>Pokébola Flutuante</b> na tela do seu celular. Você consulta mapas, natures e fraquezas direto por cima do jogo, sem precisar minimizar nada!</p>
+                        
+                        <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">⚠ POR QUE FORA DA PLAY STORE?</p>
+                        <p style="margin-bottom: 12px;">Para manter este projeto <b>100% gratuito e livre de anúncios chatos</b>, optei por distribuir o app diretamente aqui (via APK), pulando as taxas e a burocracia das lojas oficiais. É um projeto amador, feito de fã para fã!</p>
+                        
+                        <button onclick="changeApkPage(2)" class="final-support-btn" style="width: 100%; margin-top: 20px;">VER COMO INSTALAR ❯</button>
+                    </div>
 
-                    <a href="Pokedex-PBR-v1.0.apk" download="Pokedex-PBR-v1.0.apk" class="final-support-btn" style="background: #e3350d; color: #FFFFFF; border-color: #111; width: 100%; text-decoration: none; display: block; padding: 16px; font-size: 0.75rem; box-shadow: 4px 4px 0 #111; text-align: center; margin-bottom: 10px;">⚡ BAIXAR AGORA (.APK)</a>
+                    <div id="apk-page-2" class="hidden-step">
+                        <p style="margin-bottom: 15px; font-weight: 700; color: #e3350d; text-align: center; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">🛠️ PASSO A PASSO DA INSTALAÇÃO</p>
+                        
+                        <div class="tutorial-step">
+                            <p><b>1. Alerta do Google Play Protect:</b> Como o app não está na Play Store, o Google exibirá um alerta padrão de segurança. Clique em <b>"Mais detalhes"</b> (setinha para baixo).</p>
+                            <img src="apk-step1.png" alt="Passo 1" class="apk-tutorial-img">
+                        </div>
+
+                        <div class="tutorial-step">
+                            <p><b>2. Forçar Instalação:</b> Em seguida, clique em <b>"Instalar assim mesmo"</b>. Fique tranquilo, o app é totalmente seguro e não possui anúncios maliciosos!</p>
+                            <img src="apk-step2.png" alt="Passo 2" class="apk-tutorial-img">
+                        </div>
+
+                        <div class="tutorial-step">
+                            <p><b>3. Permissão de Notificação:</b> Ao abrir o app, clique em <b>"Permitir"</b>. Isso é crucial para que o sistema Android não mate a Pokedex enquanto ela roda em segundo plano.</p>
+                            <img src="apk-step3.png" alt="Passo 3" class="apk-tutorial-img">
+                        </div>
+
+                        <div class="tutorial-step">
+                            <p><b>4. Permissão Crítica (Sobreposição):</b> O app pedirá para "Aparecer sobre outros". <b>Você DEVE ativar esta chave!</b> Sem isso, a Pokébola flutuante não vai conseguir aparecer por cima do seu jogo!</p>
+                            <img src="apk-step4.png" alt="Passo 4" class="apk-tutorial-img">
+                        </div>
+
+                        <div style="display: flex; gap: 10px; margin-top: 20px;">
+                            <button onclick="changeApkPage(1)" class="final-support-btn" style="background: #444; color: #fff; border-color: #111; flex: 1; box-shadow: 4px 4px 0 #111;">❮ VOLTAR</button>
+                            <a href="Pokedex-PBR-v1.0.apk" download="Pokedex-PBR-v1.0.apk" class="final-support-btn" style="background: #e3350d; color: #FFFFFF; border-color: #111; flex: 2; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: 4px 4px 0 #111;">⚡ BAIXAR (.APK)</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
