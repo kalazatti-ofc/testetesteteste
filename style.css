@@ -129,8 +129,6 @@ body.dark-mode .pokedex-controls::-webkit-scrollbar-thumb { background: rgba(255
 .category-module { 
     display: flex; 
     gap: 8px; 
-    margin-top: 15px; /* Empurra pra baixo para a etiqueta não bater no teto */
-    padding-right: 10px; /* Dá espaço na direita para não cortar */
     margin-bottom: 20px; 
     flex-shrink: 0; 
 }
@@ -1864,7 +1862,7 @@ body.dark-mode #download-app-modal .report-title {
     .pk-types-mini { display: flex !important; justify-content: center !important; gap: 4px !important; }
     .type-dot { width: 10px !important; height: 10px !important; border-radius: 50% !important; border: 2px solid var(--dex-border) !important; }
 
-    /* =======================================================
+    /* ======================================================
        COMPACTAÇÃO EXTREMA DO PAINEL ESQUERDO (HORIZONTAL)
     ======================================================= */
     
