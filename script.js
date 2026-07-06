@@ -110,20 +110,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('download-app-modal').classList.add('hidden');
                 };
             }
+            // Oculta todos os módulos inicialmente
+            const tutModule = document.getElementById('tutorials-module');
             
             if (activeCategory === 'mapas') {
                 gridContainer.style.display = 'none';
                 searchModule.style.display = 'none';
                 filtersModule.style.display = 'none';
+                if(tutModule) tutModule.style.display = 'none';
                 if(mapSidebar) mapSidebar.style.display = 'block'; 
                 mapContainer.style.display = 'flex';
                 initMapViewer(); 
+            } else if (activeCategory === 'guias') {
+                gridContainer.style.display = 'none';
+                searchModule.style.display = 'none';
+                filtersModule.style.display = 'none';
+                mapContainer.style.display = 'none';
+                if(mapSidebar) mapSidebar.style.display = 'none'; 
+                if(tutModule) {
+                    tutModule.style.display = 'block';
+                    closeTutorial(); // Garante que abre sempre na vitrine de cards
+                }
             } else {
                 gridContainer.style.display = 'grid';
                 searchModule.style.display = 'block';
                 filtersModule.style.display = 'block';
                 if(mapSidebar) mapSidebar.style.display = 'none'; 
                 mapContainer.style.display = 'none';
+                if(tutModule) tutModule.style.display = 'none';
                 applyFilters();
             }
         });
@@ -1395,4 +1409,26 @@ window.openVipModal = () => {
 
 window.closeVipModal = () => {
     document.getElementById('vip-modal').classList.add('hidden');
+};
+
+// ==========================================
+// SISTEMA DE TUTORIAIS E GUIAS (WIKI)
+// ==========================================
+window.openTutorial = (articleId) => {
+    document.getElementById('tutorials-grid').style.display = 'none';
+    document.getElementById('tutorial-article-view').style.display = 'block';
+    
+    // Esconde todos os textos e mostra só o que foi clicado
+    document.querySelectorAll('.article-content-block').forEach(el => el.style.display = 'none');
+    
+    const targetArticle = document.getElementById('article-' + articleId);
+    if(targetArticle) targetArticle.style.display = 'block';
+    
+    // Joga o scroll do painel principal para cima
+    document.getElementById('tutorials-module').scrollTop = 0;
+};
+
+window.closeTutorial = () => {
+    document.getElementById('tutorials-grid').style.display = 'grid';
+    document.getElementById('tutorial-article-view').style.display = 'none';
 };
