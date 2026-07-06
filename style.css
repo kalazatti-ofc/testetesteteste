@@ -759,6 +759,19 @@ body.dark-mode .article-body b { color: #ffcb05; }
     margin-bottom: 15px;
     box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: #333 !important; /* Força o texto base a ser escuro */
+}
+
+/* Força a cor escura nos parágrafos e listas dentro das caixas */
+.guide-section-box p, 
+.guide-section-box ul, 
+.guide-section-box li {
+    color: #333 !important;
+}
+
+/* Destaca o texto em negrito com a cor vermelha da Pokedex */
+.guide-section-box b {
+    color: var(--dex-red) !important;
 }
 
 .guide-section-box:hover {
@@ -789,7 +802,14 @@ body.dark-mode .article-body b { color: #ffcb05; }
 /* DARK MODE PARA AS CAIXAS */
 body.dark-mode .guide-main-title { color: #ffcb05; text-shadow: 2px 2px 0 #000; }
 body.dark-mode .guide-sub-title { color: #fff; text-shadow: 1px 1px 0 #000; border-bottom-color: rgba(255,255,255,0.1); }
-body.dark-mode .guide-section-box { background: #2a2a2c; border-color: #111; box-shadow: 4px 4px 0 #000; }
+body.dark-mode .guide-section-box { background: #2a2a2c; border-color: #111; box-shadow: 4px 4px 0 #000; color: #ddd !important; }
+
+/* Inverte as cores dos textos no modo escuro */
+body.dark-mode .guide-section-box p, 
+body.dark-mode .guide-section-box ul, 
+body.dark-mode .guide-section-box li { color: #ddd !important; }
+body.dark-mode .guide-section-box b { color: #ffcb05 !important; }
+
 body.dark-mode .intro-box { background: #1a242f; border-color: #2980b9; }
 body.dark-mode .alert-box { background: #3e2723; border-color: #d35400; }
 body.dark-mode .alert-box .guide-sub-title { color: #e67e22; }
