@@ -129,6 +129,8 @@ body.dark-mode .pokedex-controls::-webkit-scrollbar-thumb { background: rgba(255
 .category-module { 
     display: flex; 
     gap: 8px; 
+    margin-top: 15px; /* Empurra pra baixo para a etiqueta não bater no teto */
+    padding-right: 10px; /* Dá espaço na direita para não cortar */
     margin-bottom: 20px; 
     flex-shrink: 0; 
 }
@@ -724,6 +726,76 @@ body.dark-mode .article-body { background: #1a1a1a; border-color: #111; color: #
 body.dark-mode .article-body h2 { color: #ffcb05; border-bottom-color: #333; }
 body.dark-mode .article-body h3 { color: #fff; }
 body.dark-mode .article-body b { color: #ffcb05; }
+
+/* =========================================
+   ESTILIZAÇÃO DOS GUIAS (CAIXAS E DESTAQUES)
+========================================= */
+.guide-main-title {
+    font-family: 'Press Start 2P', monospace; 
+    font-size: 1.1rem; 
+    color: var(--dex-red);
+    text-shadow: 2px 2px 0 var(--dex-border); /* Sombra 3D */
+    margin-bottom: 25px; 
+    text-align: center; 
+    border-bottom: 4px dashed var(--dex-border); 
+    padding-bottom: 15px;
+}
+
+.guide-sub-title {
+    font-family: 'Press Start 2P', monospace; 
+    font-size: 0.8rem; 
+    color: var(--dex-border);
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.15); /* Destaque sutil */
+    margin: 0 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+.guide-section-box {
+    background: #f8f9fa;
+    border: 3px solid var(--dex-border);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guide-section-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 6px 0 rgba(0,0,0,0.15);
+}
+
+.intro-box { background: #eaf2f8; border-color: #3498db; }
+.alert-box { background: #fdf2e9; border-color: #e67e22; border-left: 6px solid #e67e22; }
+.alert-box .guide-sub-title { color: #d35400; }
+
+/* Layout para Vitaminas */
+.vitamin-images {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    margin-top: 15px; padding-top: 15px; border-top: 2px dashed rgba(0,0,0,0.1);
+}
+
+.vit-item {
+    display: flex; flex-direction: column; align-items: center;
+    background: #fff; border: 2px solid var(--dex-border); border-radius: 8px;
+    padding: 6px; min-width: 55px; box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+}
+
+.vit-item img { width: 32px; height: 32px; image-rendering: pixelated; margin-bottom: 4px; }
+.vit-item span { font-family: monospace; font-size: 0.6rem; font-weight: 900; color: var(--dex-border); }
+.multi-vit { border-color: #e84393; background: #ffeaf3; }
+
+/* DARK MODE PARA AS CAIXAS */
+body.dark-mode .guide-main-title { color: #ffcb05; text-shadow: 2px 2px 0 #000; }
+body.dark-mode .guide-sub-title { color: #fff; text-shadow: 1px 1px 0 #000; border-bottom-color: rgba(255,255,255,0.1); }
+body.dark-mode .guide-section-box { background: #2a2a2c; border-color: #111; box-shadow: 4px 4px 0 #000; }
+body.dark-mode .intro-box { background: #1a242f; border-color: #2980b9; }
+body.dark-mode .alert-box { background: #3e2723; border-color: #d35400; }
+body.dark-mode .alert-box .guide-sub-title { color: #e67e22; }
+body.dark-mode .vit-item { background: #111; border-color: #000; box-shadow: 2px 2px 0 #000; }
+body.dark-mode .vit-item span { color: #ccc; }
+body.dark-mode .multi-vit { background: #2d0014; border-color: #e84393; }
 
 /* =========================================
    RESPONSIVIDADE E ADAPTAÇÃO DE TELAS
@@ -1862,7 +1934,7 @@ body.dark-mode #download-app-modal .report-title {
     .pk-types-mini { display: flex !important; justify-content: center !important; gap: 4px !important; }
     .type-dot { width: 10px !important; height: 10px !important; border-radius: 50% !important; border: 2px solid var(--dex-border) !important; }
 
-    /* ======================================================
+    /* =======================================================
        COMPACTAÇÃO EXTREMA DO PAINEL ESQUERDO (HORIZONTAL)
     ======================================================= */
     
