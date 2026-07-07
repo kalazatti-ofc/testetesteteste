@@ -882,7 +882,7 @@ window.openModal = (id) => {
                 const fallbackJS = `this.onerror=null; this.src='img/loots/${safeImgName}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};`;
                 
                 return `
-                    <div class="loot-icon-item loot-tooltip" data-tooltip="${item}" onclick="searchByLoot(\`${item}\`)">
+                    <div class="loot-icon-item loot-tooltip" data-tooltip="${item}" onclick="searchByLoot(\`${item}\`, event)">
                         <img src="img/loots/${safeImgName}.gif" alt="${item}" onerror="${fallbackJS}">
                     </div>
                 `;
@@ -1514,19 +1514,22 @@ window.reportLoot = (pokeName) => {
 // SISTEMA DE PESQUISA AVANÇADA (NOME / LOOT)
 // ==========================================
 
-// Configura o clique no botão de trocar modo de busca
+// Configura o clique no novo interruptor (Pílula)
 document.addEventListener('DOMContentLoaded', () => {
-    const searchModeBtn = document.getElementById('search-mode-btn');
-    if(searchModeBtn) {
-        searchModeBtn.addEventListener('click', () => {
+    const searchModeToggle = document.getElementById('search-mode-toggle');
+    const optPokemon = document.getElementById('mode-pokemon');
+    const optLoot = document.getElementById('mode-loot');
+
+    if(searchModeToggle) {
+        searchModeToggle.addEventListener('click', () => {
             if (searchMode === 'pokemon') {
                 searchMode = 'loot';
-                searchModeBtn.dataset.mode = 'loot';
-                searchModeBtn.innerHTML = 'LOOT';
+                optPokemon.classList.remove('active');
+                optLoot.classList.add('active');
             } else {
                 searchMode = 'pokemon';
-                searchModeBtn.dataset.mode = 'pokemon';
-                searchModeBtn.innerHTML = 'NOME';
+                optLoot.classList.remove('active');
+                optPokemon.classList.add('active');
             }
             applyFilters(); // Refaz a busca automaticamente ao trocar
         });
@@ -1534,7 +1537,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // O Gatilho de Engenharia Reversa (Ao clicar no Loot no Modal)
-window.searchByLoot = (lootName) => {
+window.searchByLoot = (lootName, event) => {
+    // LÓGICA DO MOBILE (TOQUE DE SELEÇÃO / TOQUE DUPLO)
+    // Se o aparelho for touch (não suporta hover de mouse)...
+    if (event && window.matchMedia("(hover: none)").matches) {
+        const el = event.currentTarget;
+        // Se ainda não estiver selecionado, seleciona e para por aqui (1º toque)
+        if (!el.classList.contains('mobile-selected')) {
+            document.querySelectorAll('.loot-icon-item').forEach(i => i.classList.remove('mobile-selected'));
+            el.classList.add('mobile-selected');
+            return; 
+        }
+        // Se já estiver selecionado, passa reto e executa a busca! (2º toque)
+    }
+
     // 1. Fecha o modal do Pokémon
     document.getElementById('pokemon-modal').classList.add('hidden');
     
@@ -1543,11 +1559,14 @@ window.searchByLoot = (lootName) => {
         document.querySelector('.cat-btn[data-cat="normal"]').click();
     }
     
-    // 3. Muda a barra para o modo "LOOT"
+    // 3. Muda a pílula para o modo "LOOT"
     searchMode = 'loot';
-    const searchModeBtn = document.getElementById('search-mode-btn');
-    searchModeBtn.dataset.mode = 'loot';
-    searchModeBtn.innerHTML = '🎒 LOOT';
+    const optPokemon = document.getElementById('mode-pokemon');
+    const optLoot = document.getElementById('mode-loot');
+    if (optPokemon && optLoot) {
+        optPokemon.classList.remove('active');
+        optLoot.classList.add('active');
+    }
     
     // 4. Preenche o campo de texto com o nome do item
     document.getElementById('search-input').value = lootName;
