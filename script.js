@@ -827,6 +827,25 @@ window.openModal = (id) => {
             </div>
         `;
     } else {
+        // MÁGICA DO LOOT VISUAL: Transforma a string em um array de ícones
+        let lootHTML = '<span style="color:#888; font-size: 0.8rem; font-family: monospace;">Loot não registrado.</span>';
+        
+        if (p.loot && p.loot.trim() !== '') {
+            // Separa os itens pela vírgula
+            const items = p.loot.split(',').map(item => item.trim());
+            
+            lootHTML = '<div class="loot-icons-container">' + items.map(item => {
+                // Transforma "Pot of lava" em "pot-of-lava" para buscar a imagem na pasta
+                const safeImgName = item.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                
+                return `
+                    <div class="loot-icon-item info-tooltip" data-tooltip="${item}">
+                        <img src="img/loots/${safeImgName}.png" alt="${item}" onerror="this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';">
+                    </div>
+                `;
+            }).join('') + '</div>';
+        }
+
         rightWingHTML = `
             <div class="radar-module">
                 <div class="radar-display" id="radar-screen">
@@ -838,11 +857,15 @@ window.openModal = (id) => {
                 <h4 class="label-tech">STATUS BASE</h4>
                 <div class="stats-list">${statsHTML}</div>
             </div>
+            
             <div class="data-module" style="margin-bottom: 10px;">
-                <h4 class="label-tech">TABELA DE DROP (LOOT)</h4>
-                <div style="font-family: monospace; font-size: 0.8rem; font-weight: 800; color: var(--dex-border); margin-top: 5px;">${p.loot || '<span style="color:#888;">Loot não registrado.</span>'}</div>
-                <button class="app-download-trigger-btn" style="margin-top: 10px; padding: 6px; font-size: 0.55rem; background: #ffcb05; color: var(--dex-border);" onclick="reportLoot('${p.name}')">✚ CONTRIBUIR COM LOOT</button>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #999; margin-bottom: 8px; padding-bottom: 4px;">
+                    <h4 class="label-tech" style="border: none; margin: 0; padding: 0;">TABELA DE DROP</h4>
+                    <button class="loot-report-btn info-tooltip" data-tooltip="Faltou algo? Reportar Loot" onclick="reportLoot('${p.name}')">⚠️</button>
+                </div>
+                ${lootHTML}
             </div>
+
             <div class="eff-module">
                 <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
                 <div class="eff-group">
