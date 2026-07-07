@@ -10,6 +10,7 @@ let activeGenFilter = 'all';
 let activeCatchFilter = 'all';
 let activeCategory = 'normal'; // Controla a aba atual
 let activeMetaFilter = 'all';  // Filtro Meta-Gaming
+let searchMode = 'pokemon'; // Controla se estamos buscando por nome ou por loot
 
 let caughtPokemon = JSON.parse(localStorage.getItem('pokedex-caught')) || [];
 
@@ -237,13 +238,24 @@ function setupToggles() {
 }
 
 function applyFilters() {
-    const search = document.getElementById('search-input').value.toLowerCase();
+    const search = document.getElementById('search-input').value.toLowerCase().trim();
     
     let filtered = pokemonData.filter(p => {
         const pCat = p.category || 'normal';
         if (pCat !== activeCategory) return false;
 
-        const mName = p.name.toLowerCase().includes(search) || p.id.toString() === search;
+        // NOVO: SISTEMA DE BUSCA DUPLA (NOME vs LOOT)
+        let mSearch = false;
+        if (search === '') {
+            mSearch = true;
+        } else if (searchMode === 'pokemon') {
+            mSearch = p.name.toLowerCase().includes(search) || p.id.toString() === search;
+        } else if (searchMode === 'loot') {
+            if (p.loot) {
+                mSearch = p.loot.toLowerCase().includes(search);
+            }
+        }
+
         const mGen = activeGenFilter === 'all' || (p.generation && p.generation.toString().toLowerCase() === activeGenFilter.toLowerCase());
         const mType = activeTypeFilter === 'all' || p.types.includes(activeTypeFilter);
         
@@ -252,10 +264,9 @@ function applyFilters() {
         if (activeCatchFilter === 'caught') mCatch = isCaught;
         if (activeCatchFilter === 'uncaught') mCatch = !isCaught;
 
-        // O mMeta agora fica sempre true para não esconder Pokémons, pois vamos apenas ordená-los abaixo
         let mMeta = true; 
 
-        return mName && mGen && mType && mCatch && mMeta;
+        return mSearch && mGen && mType && mCatch && mMeta;
     });
     
     // NOVO: SISTEMA DE ORDENAÇÃO DE STATUS (DO MAIOR PARA O MENOR)
@@ -841,8 +852,11 @@ window.openModal = (id) => {
                 // SISTEMA DE FALLBACK (Tenta GIF -> Tenta PNG -> Imagem de Erro)
                 const fallbackJS = `this.onerror=null; this.src='img/loots/${safeImgName}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};`;
                 
+               // SISTEMA DE FALLBACK (Tenta GIF -> Tenta PNG -> Imagem de Erro)
+                const fallbackJS = `this.onerror=null; this.src='img/loots/${safeImgName}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};`;
+                
                 return `
-                    <div class="loot-icon-item loot-tooltip" data-tooltip="${item}">
+                    <div class="loot-icon-item loot-tooltip" data-tooltip="${item}" onclick="searchByLoot(\`${item}\`)">
                         <img src="img/loots/${safeImgName}.gif" alt="${item}" onerror="${fallbackJS}">
                     </div>
                 `;
@@ -1468,4 +1482,53 @@ window.reportLoot = (pokeName) => {
     
     // Foca na caixa de texto
     document.getElementById('report-msg').focus();
+};
+
+// ==========================================
+// SISTEMA DE PESQUISA AVANÇADA (NOME / LOOT)
+// ==========================================
+
+// Configura o clique no botão de trocar modo de busca
+document.addEventListener('DOMContentLoaded', () => {
+    const searchModeBtn = document.getElementById('search-mode-btn');
+    if(searchModeBtn) {
+        searchModeBtn.addEventListener('click', () => {
+            if (searchMode === 'pokemon') {
+                searchMode = 'loot';
+                searchModeBtn.dataset.mode = 'loot';
+                searchModeBtn.innerHTML = '🎒 LOOT';
+            } else {
+                searchMode = 'pokemon';
+                searchModeBtn.dataset.mode = 'pokemon';
+                searchModeBtn.innerHTML = '🐾 NOME';
+            }
+            applyFilters(); // Refaz a busca automaticamente ao trocar
+        });
+    }
+});
+
+// O Gatilho de Engenharia Reversa (Ao clicar no Loot no Modal)
+window.searchByLoot = (lootName) => {
+    // 1. Fecha o modal do Pokémon
+    document.getElementById('pokemon-modal').classList.add('hidden');
+    
+    // 2. Garante que estamos na aba NORMAL (Onde ficam os drops)
+    if (activeCategory !== 'normal') {
+        document.querySelector('.cat-btn[data-cat="normal"]').click();
+    }
+    
+    // 3. Muda a barra para o modo "LOOT"
+    searchMode = 'loot';
+    const searchModeBtn = document.getElementById('search-mode-btn');
+    searchModeBtn.dataset.mode = 'loot';
+    searchModeBtn.innerHTML = '🎒 LOOT';
+    
+    // 4. Preenche o campo de texto com o nome do item
+    document.getElementById('search-input').value = lootName;
+    
+    // 5. Executa a pesquisa e leva o jogador para o topo da tela
+    applyFilters();
+    
+    const displayElement = document.querySelector('.pokedex-main-display');
+    if(displayElement) displayElement.scrollTop = 0;
 };
