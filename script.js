@@ -29,6 +29,29 @@ const typeModifiers = {
     Fairy: { Fighting: 0.5, Poison: 2, Bug: 0.5, Dragon: 0, Dark: 0.5, Steel: 2 }
 };
 
+// ==========================================
+// DICIONÁRIO DE TIPAGEM DOS TMS (LOOT VISUAL)
+// ==========================================
+const tmDictionary = {
+    "solar beam": "grass", "frenzy plant": "grass", "seed bomb": "grass", "power whip": "grass", "magical leaf": "grass", "petal blizzard": "grass", "grassy terrain": "grass",
+    "flamethrower": "fire", "fire blast": "fire", "mystical fire": "fire", "fire punch": "fire", "flame burst": "fire", "fire spin": "fire", "overheat": "fire", "blast burn": "fire",
+    "water gun": "water", "hydro pump": "water", "hydro cannon": "water", "surf": "water", "water pulse": "water", "bubble beam": "water", "waterfall": "water", "razor shell": "water", "rain dance": "water", "aqua ring": "water",
+    "thunder wave": "electric", "zap cannon": "electric", "charge beam": "electric", "thunder punch": "electric", "thunder": "electric", "thunder fang": "electric",
+    "ice beam": "ice", "frost breath": "ice", "blizzard": "ice", "ice punch": "ice",
+    "poison jab": "poison", "gunk shot": "poison", "toxic": "poison", "sludge bomb": "poison", "venoshock": "poison", "cross poison": "poison",
+    "mud slap": "ground", "sand tomb": "ground", "earth power": "ground", "bulldoze": "ground", "earthquake": "ground",
+    "roost": "flying", "whirlwind": "flying", "pluck": "flying", "air slash": "flying", "air cutter": "flying",
+    "psychic": "psychic", "amnesia": "psychic", "teleport": "psychic", "reflect": "psychic", "calm mind": "psychic", "dream eater": "psychic", "psybeam": "psychic", "rest": "psychic", "future sight": "psychic", "zen headbutt": "psychic",
+    "bug buzz": "bug", "fury cutter": "bug", "leech life": "bug", "infestation": "bug", "bug bite": "bug",
+    "sandstorm": "rock", "power gem": "rock", "stone edge": "rock", "rock slide": "rock", "rock tomb": "rock",
+    "shadow claw": "ghost", "night shade": "ghost", "confuse ray": "ghost",
+    "draco meteor": "dragon", "dragon tail": "dragon", "dragon dance": "dragon",
+    "dark pulse": "dark",
+    "metal claw": "steel", "metal sound": "steel", "flash cannon": "steel", "iron defense": "steel", "iron tail": "steel", "gyro ball": "steel",
+    "focus blast": "fighting", "drain punch": "fighting", "dynamic punch": "fighting", "brick break": "fighting", "wake-up slap": "fighting", "low sweep": "fighting", "power-up punch": "fighting", "focus punch": "fighting", "aura sphere": "fighting",
+    "skull bash": "normal", "swift": "normal", "body slam": "normal", "horn drill": "normal", "metronome": "normal", "roar": "normal", "tri-attack": "normal", "pay day": "normal", "screech": "normal", "rage": "normal", "take down": "normal", "protect": "normal", "mega kick": "normal", "mega punch": "normal", "mimic": "normal", "encore": "normal", "double-edge": "normal", "headbutt": "normal", "hyper beam": "normal", "echoed voice": "normal", "hidden power": "normal"
+};
+
 // Configurações do Mapa
 const cityMaps = {
     "kanto": { name: "Kanto", minZ: 0, maxZ: 9, defaultZ: 7, bounds: { minX: 529, minY: 635, maxX: 1367, maxY: 1801 } },
