@@ -849,9 +849,6 @@ window.openModal = (id) => {
                 // Transforma "Pot of lava" em "pot-of-lava" para buscar a imagem na pasta
                 const safeImgName = item.toLowerCase().replace(/[^a-z0-9]/g, '-');
                 
-                // SISTEMA DE FALLBACK (Tenta GIF -> Tenta PNG -> Imagem de Erro)
-                const fallbackJS = `this.onerror=null; this.src='img/loots/${safeImgName}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};`;
-                
                // SISTEMA DE FALLBACK (Tenta GIF -> Tenta PNG -> Imagem de Erro)
                 const fallbackJS = `this.onerror=null; this.src='img/loots/${safeImgName}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};`;
                 
