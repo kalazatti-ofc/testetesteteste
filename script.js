@@ -869,10 +869,16 @@ window.openModal = (id) => {
             const items = p.loot.split(',').map(item => item.trim());
             
             lootHTML = '<div class="loot-icons-container">' + items.map(item => {
-                // Transforma "Pot of lava" em "pot-of-lava" para buscar a imagem na pasta
-                const safeImgName = item.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                let safeImgName = item.toLowerCase().replace(/[^a-z0-9]/g, '-');
                 
-               // SISTEMA DE FALLBACK (Tenta GIF -> Tenta PNG -> Imagem de Erro)
+                // INTELIGÊNCIA DOS TMS: Se começar com "TM ", ele busca a tipagem no dicionário!
+                if (item.toUpperCase().startsWith("TM ")) {
+                    const moveName = item.substring(3).toLowerCase().trim(); // Pega só o nome do ataque
+                    const tmType = tmDictionary[moveName] || 'normal'; // Busca a cor. Se não achar na lista, vira normal.
+                    safeImgName = `tm-${tmType}`; // Força o nome do arquivo a ser, ex: "tm-fire"
+                }
+                
+                // SISTEMA DE FALLBACK (Tenta GIF -> Tenta PNG -> Imagem de Erro)
                 const fallbackJS = `this.onerror=null; this.src='img/loots/${safeImgName}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};`;
                 
                 return `
