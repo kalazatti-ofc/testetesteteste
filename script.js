@@ -838,9 +838,12 @@ window.openModal = (id) => {
                 // Transforma "Pot of lava" em "pot-of-lava" para buscar a imagem na pasta
                 const safeImgName = item.toLowerCase().replace(/[^a-z0-9]/g, '-');
                 
+                // SISTEMA DE FALLBACK (Tenta GIF -> Tenta PNG -> Imagem de Erro)
+                const fallbackJS = `this.onerror=null; this.src='img/loots/${safeImgName}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};`;
+                
                 return `
-                    <div class="loot-icon-item info-tooltip" data-tooltip="${item}">
-                        <img src="img/loots/${safeImgName}.png" alt="${item}" onerror="this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';">
+                    <div class="loot-icon-item loot-tooltip" data-tooltip="${item}">
+                        <img src="img/loots/${safeImgName}.gif" alt="${item}" onerror="${fallbackJS}">
                     </div>
                 `;
             }).join('') + '</div>';
@@ -861,7 +864,7 @@ window.openModal = (id) => {
             <div class="data-module" style="margin-bottom: 10px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #999; margin-bottom: 8px; padding-bottom: 4px;">
                     <h4 class="label-tech" style="border: none; margin: 0; padding: 0;">TABELA DE DROP</h4>
-                    <button class="loot-report-btn info-tooltip" data-tooltip="Faltou algo? Reportar Loot" onclick="reportLoot('${p.name}')">⚠️</button>
+                    <button class="loot-report-btn loot-tooltip" data-tooltip="REPORTAR LOOT" onclick="reportLoot('${p.name}')">⚠️</button>
                 </div>
                 ${lootHTML}
             </div>
