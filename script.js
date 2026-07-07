@@ -1493,11 +1493,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (searchMode === 'pokemon') {
                 searchMode = 'loot';
                 searchModeBtn.dataset.mode = 'loot';
-                searchModeBtn.innerHTML = '🎒 LOOT';
+                searchModeBtn.innerHTML = 'LOOT';
             } else {
                 searchMode = 'pokemon';
                 searchModeBtn.dataset.mode = 'pokemon';
-                searchModeBtn.innerHTML = '🐾 NOME';
+                searchModeBtn.innerHTML = 'NOME';
             }
             applyFilters(); // Refaz a busca automaticamente ao trocar
         });
