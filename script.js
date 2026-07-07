@@ -780,7 +780,12 @@ window.openModal = (id) => {
                 <h4 class="label-tech">MANUAL DE COMBATE</h4>
                 <p class="boss-guide-text">${p.guide || 'Nenhuma informação avançada detectada sobre este Boss.'}</p>
             </div>
-            
+
+            <div class="data-module" style="margin-bottom: 10px;">
+                <h4 class="label-tech">TABELA DE DROP (LOOT)</h4>
+                <div style="font-family: monospace; font-size: 0.8rem; font-weight: 800; color: var(--dex-border); margin-top: 5px;">${p.loot || '<span style="color:#888;">Loot não registrado.</span>'}</div>
+                <button class="app-download-trigger-btn" style="margin-top: 10px; padding: 6px; font-size: 0.55rem; background: #ffcb05; color: var(--dex-border);" onclick="reportLoot('${p.name}')">✚ CONTRIBUIR COM LOOT</button>
+            </div>
             <div class="eff-module">
                 <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
                 <div class="eff-group">
@@ -1431,4 +1436,20 @@ window.openTutorial = (articleId) => {
 window.closeTutorial = () => {
     document.getElementById('tutorials-grid').style.display = 'grid';
     document.getElementById('tutorial-article-view').style.display = 'none';
+};
+
+window.reportLoot = (pokeName) => {
+    // Esconde o modal do pokemon
+    document.getElementById('pokemon-modal').classList.add('hidden');
+    
+    // Abre o modal de report
+    document.getElementById('report-modal').classList.remove('hidden');
+    document.getElementById('report-status').innerText = '';
+    
+    // Preenche os campos automaticamente
+    document.getElementById('report-type').value = 'SUGESTÃO';
+    document.getElementById('report-msg').value = `LOOT DO ${pokeName.toUpperCase()}:\n- \n- \n- `;
+    
+    // Foca na caixa de texto
+    document.getElementById('report-msg').focus();
 };
