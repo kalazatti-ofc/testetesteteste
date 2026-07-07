@@ -766,21 +766,78 @@ window.openModal = (id) => {
                 </div>
             </div>
             
-            <div class="boss-loot-module">
-                <h4 class="label-tech">RECOMPENSA DIÁRIA</h4>
-                <div class="loot-box">${p.loot || '???'}</div>
-                
-                <div class="boss-bonus-container">
-                    <span class="bonus-badge shiny-bonus" title="Derrotar a versão Shiny garante o dobro de recompensas!" onclick="toggleShinyModal(this, '${p.name}', '${p.image}')">✨ SHINY: 2X LOOT</span>
-                    <span class="bonus-badge fds-bonus" title="Aos sábados e domingos, o loot padrão é dobrado!">📅 FDS: 2X LOOT</span>
-                </div>
-            </div>
-
             <div class="boss-guide-module">
                 <h4 class="label-tech">MANUAL DE COMBATE</h4>
                 <p class="boss-guide-text">${p.guide || 'Nenhuma informação avançada detectada sobre este Boss.'}</p>
             </div>
+            
+            <div class="eff-module">
+                <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
+                <div class="eff-group">
+                    <label>FRAQUEZAS (Leva 2x Dano)</label>
+                    <div class="eff-icons">${matchups.weak.length > 0 ? matchups.weak.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
+                </div>
+                <div class="eff-group">
+                    <label>RESISTÊNCIAS (Leva 0.5x Dano)</label>
+                    <div class="eff-icons">${matchups.resist.length > 0 ? matchups.resist.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
+                </div>
+            </div>
+        `;
+    } else if (pCategory === 'dark') {
+        let soulsHTML = '';
+        if (p.souls) {
+            const soulsNormal = p.souls.normal ? p.souls.normal : '???';
+            const soulsEternizado = p.souls.eternizado ? p.souls.eternizado : '???';
+            soulsHTML = `
+                <div class="souls-module">
+                    <h4 class="label-tech">CUSTO DE CONVERSÃO (SOULS)</h4>
+                    <div class="souls-container">
+                        <div class="soul-box"><span class="soul-label">NORMAL</span><span class="soul-value">${soulsNormal}</span></div>
+                        <div class="soul-box eternizado"><span class="soul-label">ETERNIZADO</span><span class="soul-value">${soulsEternizado}</span></div>
+                    </div>
+                </div>
+            `;
+        } else {
+            const textoExclusivo = p.exclusive ? p.exclusive : 'CAPTURA EXCLUSIVA / EVENTO';
+            soulsHTML = `<div class="souls-module"><h4 class="label-tech">MÉTODO DE OBTENÇÃO</h4><span class="exclusive-badge">${textoExclusivo.toUpperCase()}</span></div>`;
+        }
 
+        rightWingHTML = `
+            <div class="radar-module">
+                <div class="radar-display" id="radar-screen">
+                    <div class="radar-grid"></div><div class="radar-beam"></div>
+                    <p id="radar-label">RASTREANDO...</p>
+                </div>
+            </div>
+            <div class="data-module">
+                <h4 class="label-tech">STATUS BASE</h4>
+                <div class="stats-list">${statsHTML}</div>
+            </div>
+            ${soulsHTML}
+            <div class="eff-module">
+                <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
+                <div class="eff-group">
+                    <label>FRAQUEZAS (Leva 2x Dano)</label>
+                    <div class="eff-icons">${matchups.weak.length > 0 ? matchups.weak.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
+                </div>
+                <div class="eff-group">
+                    <label>RESISTÊNCIAS (Leva 0.5x Dano)</label>
+                    <div class="eff-icons">${matchups.resist.length > 0 ? matchups.resist.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
+                </div>
+            </div>
+        `;
+    } else {
+        rightWingHTML = `
+            <div class="radar-module">
+                <div class="radar-display" id="radar-screen">
+                    <div class="radar-grid"></div><div class="radar-beam"></div>
+                    <p id="radar-label">RASTREANDO...</p>
+                </div>
+            </div>
+            <div class="data-module">
+                <h4 class="label-tech">STATUS BASE</h4>
+                <div class="stats-list">${statsHTML}</div>
+            </div>
             <div class="data-module" style="margin-bottom: 10px;">
                 <h4 class="label-tech">TABELA DE DROP (LOOT)</h4>
                 <div style="font-family: monospace; font-size: 0.8rem; font-weight: 800; color: var(--dex-border); margin-top: 5px;">${p.loot || '<span style="color:#888;">Loot não registrado.</span>'}</div>
@@ -797,7 +854,15 @@ window.openModal = (id) => {
                     <div class="eff-icons">${matchups.resist.length > 0 ? matchups.resist.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
                 </div>
             </div>
+            <div class="evo-module">
+                <h4 class="label-tech">CADEIA EVOLUTIVA</h4>
+                <div class="evo-icons" id="evo-container">
+                    <span class="blink" style="color: #ffcb05;">Sincronizando...</span>
+                </div>
+            </div>
         `;
+    }
+    
     } else if (pCategory === 'dark') {
         let soulsHTML = '';
         if (p.souls) {
