@@ -2067,17 +2067,18 @@ body.dark-mode .loot-icon-item:hover {
     background: #f0f4f8; 
     color: var(--dex-border); 
     border: 2px solid var(--dex-border); 
-    padding: 6px 10px; 
+    padding: 4px 8px; /* Espaçamento idêntico ao das Natures */
     border-radius: 6px;
-    font-size: 0.65rem;
-    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6rem; /* Tamanho reduzido */
+    font-family: monospace; /* Fonte limpa igual a das Natures */
+    font-weight: 900; /* Deixa a letra gordinha e legível */
     text-transform: uppercase;
     white-space: nowrap; 
     opacity: 0;
     visibility: hidden;
     transition: all 0.2s ease;
     z-index: 1000;
-    box-shadow: 3px 3px 0 rgba(0,0,0,0.15); 
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.15); /* Sombra mais sutil */
     pointer-events: none;
 }
 
