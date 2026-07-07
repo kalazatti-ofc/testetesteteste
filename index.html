@@ -33,10 +33,16 @@
             <div class="pokedex-controls">
                 
                 <div class="search-module" id="search-module-container">
-                    <span class="tech-label">SISTEMA DE BUSCA</span>
-                    <div class="search-console">
-                        <button id="search-mode-btn" class="search-mode-btn" data-mode="pokemon" title="Trocar tipo de pesquisa">NOME</button>
+                    <div class="search-header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 5px;">
+                        <span class="tech-label" style="margin-bottom: 0;">SISTEMA DE BUSCA</span>
                         
+                        <div class="search-toggle-pill" id="search-mode-toggle">
+                            <div class="pill-option active" id="mode-pokemon">🐾 NOME</div>
+                            <div class="pill-option" id="mode-loot">🎒 LOOT</div>
+                        </div>
+                    </div>
+                    
+                    <div class="search-console">
                         <span class="cursor-blink">>_</span>
                         <input type="text" id="search-input" placeholder="DIGITE AQUI..." autocomplete="off">
                         <button id="search-btn" class="search-btn red-btn" title="Pesquisar">🔎</button>
