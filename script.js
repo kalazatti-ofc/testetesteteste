@@ -833,8 +833,8 @@ window.openModal = (id) => {
                     <button class="loot-report-btn loot-tooltip" style="color: #111;" data-tooltip="REPORTAR LOOT" onclick="reportLoot('${p.name}')">⚠️</button>
                 </div>
                 
-                <div class="loot-box" style="margin-top: 10px; background: #fff; padding: 10px; border-radius: 8px; border: 3px solid var(--dex-border);">
-                    ${lootHTML}
+                <div class="loot-box" style="margin-top: 10px; background: #fff; padding: 10px; border-radius: 8px; border: 3px solid var(--dex-border); font-size: 1rem; color: var(--dex-red); font-weight: 900; text-transform: uppercase;">
+                    ${p.loot || '<span style="color:#888; font-size: 0.8rem;">Recompensa não registrada.</span>'}
                 </div>
                 
                 <div class="boss-bonus-container">
