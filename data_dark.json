@@ -1,6 +1,6 @@
 [
   {
-    "id": "Dark-Dragonite",
+    "id": "dark-dragonite",
     "category": "dark",
     "name": "Dark Dragonite",
     "types": [
@@ -29,14 +29,42 @@
     "image": "Sprites/dark-dragonite.png"
   },
   {
-    "id": "Dark-Gardevoir",
+    "id": "dark-alakazam",
+    "category": "dark",
+    "name": "Dark Alakazam",
+    "types": [
+      "Psychic"
+    ],
+    "generation": 1,
+    "stats": {
+      "hp": 55,
+      "atk": 50,
+      "def": 45,
+      "spatk": 135,
+      "spdef": 95,
+      "spd": 120
+    },
+    "souls": {
+      "normal": "100",
+      "eternizado": "300"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-alakazam.png"
+  },
+  {
+    "id": "dark-gardevoir",
     "category": "dark",
     "name": "Dark Gardevoir",
     "types": [
-      "Fire",
-      "Flying"
+      "Psychic",
+      "Fairy"
     ],
-    "generation": 1,
+    "generation": 3,
     "stats": {
       "hp": 68,
       "atk": 65,
@@ -58,7 +86,369 @@
     "image": "Sprites/dark-gardevoir.png"
   },
   {
-    "id": "Dark-Raichu-Fly",
+    "id": "dark-gallade",
+    "category": "dark",
+    "name": "Dark Gallade",
+    "types": [
+      "Psychic",
+      "Fighting"
+    ],
+    "generation": 3,
+    "stats": {
+      "hp": 68,
+      "atk": 125,
+      "def": 65,
+      "spatk": 65,
+      "spdef": 115,
+      "spd": 80
+    },
+    "souls": {
+      "normal": "110",
+      "eternizado": "330"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-gallade.png"
+  },
+  {
+    "id": "dark-slaking",
+    "category": "dark",
+    "name": "Dark Slaking",
+    "types": [
+      "Normal"
+    ],
+    "generation": 2,
+    "stats": {
+      "hp": 150,
+      "atk": 160,
+      "def": 100,
+      "spatk": 95,
+      "spdef": 65,
+      "spd": 100
+    },
+    "souls": {
+      "normal": "130",
+      "eternizado": "390"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-slaking.png"
+  },
+  {
+    "id": "dark-gengar",
+    "category": "dark",
+    "name": "Dark Gengar",
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "generation": 1,
+    "stats": {
+      "hp": 60,
+      "atk": 65,
+      "def": 60,
+      "spatk": 130,
+      "spdef": 75,
+      "spd": 110
+    },
+    "souls": {
+      "normal": "100",
+      "eternizado": "300"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-gengar.png"
+  },
+  {
+    "id": "dark-reuniclus",
+    "category": "dark",
+    "name": "Dark Reuniclus",
+    "types": [
+      "Psychic"
+    ],
+    "generation": 5,
+    "stats": {
+      "hp": 110 ,
+      "atk": 65,
+      "def": 75,
+      "spatk": 125,
+      "spdef": 85,
+      "spd": 30
+    },
+    "souls": {
+      "normal": "100",
+      "eternizado": "300"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-reuniclus.png"
+  },
+  {
+    "id": "dark-tyranitar",
+    "category": "dark",
+    "name": "Dark Tyranitar",
+    "types": [
+      "Rock",
+      "Dark"
+    ],
+    "generation": 2,
+    "stats": {
+      "hp": 100,
+      "atk": 134,
+      "def": 110,
+      "spatk": 95,
+      "spdef": 100,
+      "spd": 61
+    },
+    "souls": {
+      "normal": "130",
+      "eternizado": "390"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-tyranitar.png"
+  },
+  {
+    "id": "dark-salamence",
+    "category": "dark",
+    "name": "Dark Salamence",
+    "types": [
+      "Dragon",
+      "Flying"
+    ],
+    "generation": 3,
+    "stats": {
+      "hp": 95,
+      "atk": 135,
+      "def": 80,
+      "spatk": 110,
+      "spdef": 80,
+      "spd": 100
+    },
+    "souls": {
+      "normal": "130",
+      "eternizado": "390"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-salamence.png"
+  },
+  {
+    "id": "dark-metagross",
+    "category": "dark",
+    "name": "Dark Metagross",
+    "types": [
+      "Steel",
+      "Psychic"
+    ],
+    "generation": 3,
+    "stats": {
+      "hp": 80,
+      "atk": 135,
+      "def": 130,
+      "spatk": 95,
+      "spdef": 90,
+      "spd": 70
+    },
+    "souls": {
+      "normal": "130",
+      "eternizado": "390"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-metagross.png"
+  },
+  {
+    "id": "dark-golurk",
+    "category": "dark",
+    "name": "Dark Golurk",
+    "types": [
+      "Ground",
+      "Ghost"
+    ],
+    "generation": 5,
+    "stats": {
+      "hp": 89,
+      "atk": 124,
+      "def": 80,
+      "spatk": 55,
+      "spdef": 80,
+      "spd": 55
+    },
+    "souls": {
+      "normal": "100",
+      "eternizado": "300"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-golurk.png"
+  },
+  {
+    "id": "dark-ditto",
+    "category": "dark",
+    "name": "Dark Ditto",
+    "types": [
+      "Normal"
+    ],
+    "generation": 1,
+    "stats": {
+      "hp": 48,
+      "atk": 98,
+      "def": 98,
+      "spatk": 98,
+      "spdef": 98,
+      "spd": 48
+    },
+    "souls": {
+      "normal": "100",
+      "eternizado": "300"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-ditto.png"
+  },
+  {
+    "id": "dark-zombie-ditto",
+    "category": "dark",
+    "name": "Dark Zombie Ditto",
+    "types": [
+      "Normal"
+    ],
+    "generation": 1,
+    "stats": {
+      "hp": 108,
+      "atk": 108,
+      "def": 108,
+      "spatk": 108,
+      "spdef": 108,
+      "spd": 38
+    },
+    "souls": {
+      "normal": "120",
+      "eternizado": "360"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-zombieditto.png"
+  },
+  {
+    "id": "dark-probopass",
+    "category": "dark",
+    "name": "Dark Probopass",
+    "types": [
+      "Rock",
+	  "Steel"
+    ],
+    "generation": 5,
+    "stats": {
+      "hp": 60,
+      "atk": 55,
+      "def": 145,
+      "spatk": 75,
+      "spdef": 150,
+      "spd": 40
+    },
+    "souls": {
+      "normal": "110",
+      "eternizado": "330"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-probopass.png"
+  },
+  {
+    "id": "dark-cryogonal",
+    "category": "dark",
+    "name": "Dark Cryogonal",
+    "types": [
+      "Ice"
+    ],
+    "generation": 5,
+    "stats": {
+      "hp": 80,
+      "atk": 50,
+      "def": 50,
+      "spatk": 95,
+      "spdef": 135,
+      "spd": 105
+    },
+    "souls": {
+      "normal": "110",
+      "eternizado": "330"
+    },
+    "locations": [
+      {
+        "local": "Trainer Center (X 955 - Y 2088 - Z 7)",
+        "nota": "📌 Somente via Souls no NPC Doug Soul."
+      }
+    ],
+    "image": "Sprites/dark-cryogonal.png"
+  },
+  {
+    "id": "dark-cinderace",
+    "category": "dark",
+    "name": "Dark Cinderace",
+    "types": [
+      "Fire"
+    ],
+    "generation": 1,
+    "stats": {
+      "hp": 80,
+      "atk": 116,
+      "def": 75,
+      "spatk": 65,
+      "spdef": 75,
+      "spd": 119
+    },
+    "exclusive": "Somente Evento",
+    "image": "Sprites/dark-cinderace.png"
+  },
+  {
+    "id": "dark-raichu-fly",
     "category": "dark",
     "name": "Dark Raichu Fly",
     "types": [
@@ -73,7 +463,7 @@
       "spdef": 120,
       "spd": 165
     },
-    "exclusive": "Somente na Quest de Natal 2021", 
+    "exclusive": "Somente na Quest de Natal 2021",
     "image": "Sprites/dark-raichufly.png"
   }
 ]
