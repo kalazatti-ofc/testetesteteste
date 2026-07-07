@@ -861,34 +861,119 @@ window.openModal = (id) => {
             </div>
         `;
     } else {
-        // MÁGICA DO LOOT VISUAL: Transforma a string em um array de ícones
-        let lootHTML = '<span style="color:#888; font-size: 0.8rem; font-family: monospace;">Loot não registrado.</span>';
+        // MÁGICA DO LOOT VISUAL: Subimos esta parte para que o Boss também possa usá-la!
+    let lootHTML = '<span style="color:#888; font-size: 0.8rem; font-family: monospace;">Loot não registrado.</span>';
+    
+    if (p.loot && typeof p.loot === 'string' && p.loot.trim() !== '') {
+        const items = p.loot.split(',').map(item => item.trim());
         
-        if (p.loot && p.loot.trim() !== '') {
-            // Separa os itens pela vírgula
-            const items = p.loot.split(',').map(item => item.trim());
+        lootHTML = '<div class="loot-icons-container">' + items.map(item => {
+            let safeImgName = item.toLowerCase().replace(/[^a-z0-9]/g, '-');
             
-            lootHTML = '<div class="loot-icons-container">' + items.map(item => {
-                let safeImgName = item.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            if (item.toUpperCase().startsWith("TM ")) {
+                const moveName = item.substring(3).toLowerCase().trim();
+                const tmType = tmDictionary[moveName] || 'normal';
+                safeImgName = `tm-${tmType}`;
+            }
+            
+            const fallbackJS = `this.onerror=null; this.src='img/loots/${safeImgName}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};`;
+            
+            return `
+                <div class="loot-icon-item loot-tooltip" data-tooltip="${item}" onclick="searchByLoot(\`${item}\`, event)">
+                    <img src="img/loots/${safeImgName}.gif" alt="${item}" onerror="${fallbackJS}">
+                </div>
+            `;
+        }).join('') + '</div>';
+    }
+
+    let rightWingHTML = '';
+
+    if (pCategory === 'boss') {
+        rightWingHTML = `
+            <div class="radar-module">
+                <div class="radar-display" id="radar-screen">
+                    <div class="radar-grid"></div><div class="radar-beam"></div>
+                    <p id="radar-label">RASTREANDO...</p>
+                </div>
+            </div>
+            
+            <div class="boss-guide-module">
+                <h4 class="label-tech">MANUAL DE COMBATE</h4>
+                <p class="boss-guide-text">${p.guide || 'Nenhuma informação avançada detectada sobre este Boss.'}</p>
+            </div>
+            
+            <div class="boss-loot-module">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed rgba(0,0,0,0.2); margin-bottom: 8px; padding-bottom: 4px;">
+                    <h4 class="label-tech" style="border: none; margin: 0; padding: 0; text-shadow: none;">RECOMPENSA DIÁRIA</h4>
+                    <button class="loot-report-btn loot-tooltip" style="color: #111;" data-tooltip="REPORTAR LOOT" onclick="reportLoot('${p.name}')">⚠️</button>
+                </div>
                 
-                // INTELIGÊNCIA DOS TMS: Se começar com "TM ", ele busca a tipagem no dicionário!
-                if (item.toUpperCase().startsWith("TM ")) {
-                    const moveName = item.substring(3).toLowerCase().trim(); // Pega só o nome do ataque
-                    const tmType = tmDictionary[moveName] || 'normal'; // Busca a cor. Se não achar na lista, vira normal.
-                    safeImgName = `tm-${tmType}`; // Força o nome do arquivo a ser, ex: "tm-fire"
-                }
+                <div class="loot-box" style="margin-top: 10px; background: #fff; padding: 10px; border-radius: 8px; border: 3px solid var(--dex-border);">
+                    ${lootHTML}
+                </div>
                 
-                // SISTEMA DE FALLBACK (Tenta GIF -> Tenta PNG -> Imagem de Erro)
-                const fallbackJS = `this.onerror=null; this.src='img/loots/${safeImgName}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};`;
-                
-                return `
-                    <div class="loot-icon-item loot-tooltip" data-tooltip="${item}" onclick="searchByLoot(\`${item}\`, event)">
-                        <img src="img/loots/${safeImgName}.gif" alt="${item}" onerror="${fallbackJS}">
+                <div class="boss-bonus-container">
+                    <span class="bonus-badge shiny-bonus" title="Derrotar a versão Shiny garante o dobro de recompensas!" onclick="toggleShinyModal(this, '${p.name}', '${p.image}')">✨ SHINY: 2X LOOT</span>
+                    <span class="bonus-badge fds-bonus" title="Aos sábados e domingos, o loot padrão é dobrado!">📅 FDS: 2X LOOT</span>
+                </div>
+            </div>
+            
+            <div class="eff-module">
+                <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
+                <div class="eff-group">
+                    <label>FRAQUEZAS (Leva 2x Dano)</label>
+                    <div class="eff-icons">${matchups.weak.length > 0 ? matchups.weak.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
+                </div>
+                <div class="eff-group">
+                    <label>RESISTÊNCIAS (Leva 0.5x Dano)</label>
+                    <div class="eff-icons">${matchups.resist.length > 0 ? matchups.resist.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
+                </div>
+            </div>
+        `;
+    } else if (pCategory === 'dark') {
+        let soulsHTML = '';
+        if (p.souls) {
+            const soulsNormal = p.souls.normal ? p.souls.normal : '???';
+            const soulsEternizado = p.souls.eternizado ? p.souls.eternizado : '???';
+            soulsHTML = `
+                <div class="souls-module">
+                    <h4 class="label-tech">CUSTO DE CONVERSÃO (SOULS)</h4>
+                    <div class="souls-container">
+                        <div class="soul-box"><span class="soul-label">NORMAL</span><span class="soul-value">${soulsNormal}</span></div>
+                        <div class="soul-box eternizado"><span class="soul-label">ETERNIZADO</span><span class="soul-value">${soulsEternizado}</span></div>
                     </div>
-                `;
-            }).join('') + '</div>';
+                </div>
+            `;
+        } else {
+            const textoExclusivo = p.exclusive ? p.exclusive : 'CAPTURA EXCLUSIVA / EVENTO';
+            soulsHTML = `<div class="souls-module"><h4 class="label-tech">MÉTODO DE OBTENÇÃO</h4><span class="exclusive-badge">${textoExclusivo.toUpperCase()}</span></div>`;
         }
 
+        rightWingHTML = `
+            <div class="radar-module">
+                <div class="radar-display" id="radar-screen">
+                    <div class="radar-grid"></div><div class="radar-beam"></div>
+                    <p id="radar-label">RASTREANDO...</p>
+                </div>
+            </div>
+            <div class="data-module">
+                <h4 class="label-tech">STATUS BASE</h4>
+                <div class="stats-list">${statsHTML}</div>
+            </div>
+            ${soulsHTML}
+            <div class="eff-module">
+                <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
+                <div class="eff-group">
+                    <label>FRAQUEZAS (Leva 2x Dano)</label>
+                    <div class="eff-icons">${matchups.weak.length > 0 ? matchups.weak.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
+                </div>
+                <div class="eff-group">
+                    <label>RESISTÊNCIAS (Leva 0.5x Dano)</label>
+                    <div class="eff-icons">${matchups.resist.length > 0 ? matchups.resist.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
+                </div>
+            </div>
+        `;
+    } else {
         rightWingHTML = `
             <div class="radar-module">
                 <div class="radar-display" id="radar-screen">
