@@ -133,11 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const mapSidebar = document.getElementById('map-sidebar-menu');
             const tutModule = document.getElementById('tutorials-module');
             
-            // MÁGICA DE SINCRONIA: Aba ITENS <-> Pílula LOOT
+            // MÁGICA DE SINCRONIA: Abas DROPS/TMS <-> Pílula LOOT
             const optPokemon = document.getElementById('mode-pokemon');
             const optLoot = document.getElementById('mode-loot');
             
-            if (activeCategory === 'itens') {
+            if (activeCategory === 'drops' || activeCategory === 'tms') {
                 searchMode = 'loot';
                 if (optPokemon && optLoot) { optPokemon.classList.remove('active'); optLoot.classList.add('active'); }
             } else if (activeCategory === 'normal' || activeCategory === 'dark' || activeCategory === 'boss') {
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 gridContainer.style.display = 'none'; searchModule.style.display = 'none'; filtersModule.style.display = 'none';
                 mapContainer.style.display = 'none'; if(mapSidebar) mapSidebar.style.display = 'none'; 
                 if(tutModule) { tutModule.style.display = 'block'; closeTutorial(); }
-            } else if (activeCategory === 'itens') {
+            } else if (activeCategory === 'drops' || activeCategory === 'tms') {
                 gridContainer.style.display = 'grid'; searchModule.style.display = 'block';
                 filtersModule.style.display = 'none'; // Esconde os filtros de Tipos/Regiões para os Itens
                 if(mapSidebar) mapSidebar.style.display = 'none'; mapContainer.style.display = 'none'; if(tutModule) tutModule.style.display = 'none';
@@ -267,16 +267,26 @@ function applyFilters() {
     const search = document.getElementById('search-input').value.toLowerCase().trim();
     
     // INTERCEPTADOR: MODO ITENS/LOOT
-    if (activeCategory === 'itens' || searchMode === 'loot') {
+    if (activeCategory === 'drops' || activeCategory === 'tms' || searchMode === 'loot') {
         let filteredItems = itemData || [];
+        
+        // Separa os TMs do resto dos drops
+        if (activeCategory === 'tms') {
+            filteredItems = filteredItems.filter(i => i.name.toUpperCase().startsWith("TM "));
+        } else if (activeCategory === 'drops') {
+            filteredItems = filteredItems.filter(i => !i.name.toUpperCase().startsWith("TM "));
+        }
+
         if (search !== '') {
             filteredItems = filteredItems.filter(i => i.name.toLowerCase().includes(search));
         }
+        
         renderItems(filteredItems);
-        return; // Interrompe a função aqui. Não renderiza Pokémons!
+        return; // Interrompe a função aqui para não renderizar Pokémons!
     }
 
     let filtered = pokemonData.filter(p => {
+        // ... (continua igual o resto da sua função applyFilters)
         const pCat = p.category || 'normal';
         if (pCat !== activeCategory) return false;
 
@@ -1569,8 +1579,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if(searchModeToggle) {
         searchModeToggle.addEventListener('click', () => {
             if (searchMode === 'pokemon') {
-                const itemBtn = document.querySelector('.cat-btn[data-cat="itens"]');
-                if(itemBtn) itemBtn.click(); // O clique na aba já cuida de tudo!
+                const itemBtn = document.querySelector('.cat-btn[data-cat="drops"]');
+                if(itemBtn) itemBtn.click();
             } else {
                 const normBtn = document.querySelector('.cat-btn[data-cat="normal"]');
                 if(normBtn) normBtn.click();
