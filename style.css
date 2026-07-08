@@ -2210,19 +2210,66 @@ body.dark-mode .item-card-name { color: #f0f0f0; }
 }
 .hinge-line { width: 4px; height: 100%; background: rgba(0,0,0,0.4); border-right: 1px solid rgba(255,255,255,0.2); }
 
-/* Tela Inferior (Lista de Quem Dropa) */
-.vertical-bottom-screen { padding: 20px; background: #222; max-height: 350px; overflow-y: auto; }
-.vertical-bottom-screen::-webkit-scrollbar { width: 8px; }
-.vertical-bottom-screen::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
-.vertical-bottom-screen .label-tech { color: #aaa; text-shadow: none; }
-
-.droppers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; }
-.mini-dropper-card { 
-    background: #333; border: 2px solid var(--dex-border); border-radius: 8px; padding: 8px 5px; 
-    display: flex; flex-direction: column; align-items: center; cursor: pointer;
-    box-shadow: 2px 2px 0 #000; transition: 0.1s;
+/* Tela Inferior (Lista de Quem Dropa) - VISUAL CLARO E LIMPO */
+.vertical-bottom-screen { 
+    padding: 20px; 
+    background: #e0e0e0; /* Cinza clássico da Pokédex */
+    max-height: 350px; 
+    overflow-y: auto; 
 }
-.mini-dropper-card:hover { border-color: #ffcb05; background: #444; transform: translateY(-2px); }
-.mini-dropper-card:active { transform: translateY(2px); box-shadow: 0 0 0 transparent; }
-.mini-dropper-card img { width: 40px; height: 40px; object-fit: contain; filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.5)); margin-bottom: 4px; }
-.mini-dropper-card span { font-size: 0.6rem; font-weight: 800; color: #fff; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; text-align: center; }
+.vertical-bottom-screen::-webkit-scrollbar { width: 8px; }
+.vertical-bottom-screen::-webkit-scrollbar-thumb { background: #999; border-radius: 4px; }
+.vertical-bottom-screen .label-tech { 
+    color: var(--dex-border); /* Texto escuro para dar leitura no cinza */
+    text-shadow: none; 
+    border-bottom: 2px dashed #999 !important; 
+}
+
+.droppers-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); 
+    gap: 10px; 
+}
+
+/* Cartões Brancos simulando botões */
+.mini-dropper-card { 
+    background: #fff; /* Fundo branco do botão */
+    border: 2px solid var(--dex-border); 
+    border-radius: 8px; 
+    padding: 8px 5px; 
+    display: flex; flex-direction: column; align-items: center; 
+    cursor: pointer;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.15); /* Sombra suave de botão */
+    transition: transform 0.1s, box-shadow 0.1s, border-color 0.2s;
+}
+
+.mini-dropper-card:hover { 
+    border-color: var(--dex-red); 
+    transform: translateY(-2px); 
+    box-shadow: 2px 4px 0 rgba(0,0,0,0.2); 
+}
+
+.mini-dropper-card:active { 
+    transform: translateY(2px); 
+    box-shadow: 0 0 0 transparent; 
+}
+
+.mini-dropper-card img { 
+    width: 40px; height: 40px; object-fit: contain; 
+    filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.15)); 
+    margin-bottom: 4px; 
+}
+
+.mini-dropper-card span { 
+    font-size: 0.6rem; font-weight: 900; 
+    color: var(--dex-border); /* Letra escura combinando com o botão branco */
+    text-transform: uppercase; white-space: nowrap; overflow: hidden; 
+    text-overflow: ellipsis; width: 100%; text-align: center; 
+}
+
+/* ADAPTAÇÃO AUTOMÁTICA PARA O MODO ESCURO (LUA) */
+body.dark-mode .vertical-bottom-screen { background: #2a2a2c; }
+body.dark-mode .vertical-bottom-screen .label-tech { color: #aaa; border-bottom-color: #555 !important; }
+body.dark-mode .mini-dropper-card { background: #1a1a1a; border-color: #111; box-shadow: 2px 2px 0 #000; }
+body.dark-mode .mini-dropper-card:hover { border-color: #ffcb05; }
+body.dark-mode .mini-dropper-card span { color: #fff; }
