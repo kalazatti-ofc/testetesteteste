@@ -121,13 +121,16 @@ body.dark-mode .pokedex-controls::-webkit-scrollbar-thumb { background: rgba(255
 .search-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 transparent; }
 .search-btn.red-btn { background: var(--dex-red); color: #fff; }
 
+/* ESTRUTURA DOS CARTUCHOS EM 3 LINHAS */
 .category-module { 
     display: flex; flex-direction: column; gap: 8px; 
     margin-top: 10px; padding-right: 10px; margin-bottom: 20px; flex-shrink: 0; 
 }
-.cat-row-1 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.cat-row-1 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .cat-row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.cat-row-3 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
 
+/* VISUAL DOS BOTÕES INATIVOS (PADRÃO GRAFITE) */
 .cat-btn {
     padding: 10px 5px; border-radius: 8px; font-family: monospace; font-size: 0.75rem;
     font-weight: 900; text-align: center; border: 3px solid var(--dex-border);
@@ -136,19 +139,29 @@ body.dark-mode .pokedex-controls::-webkit-scrollbar-thumb { background: rgba(255
 }
 .cat-btn:active { transform: translate(3px, 3px); box-shadow: 0 0 0 transparent; }
 
-/* Cores das abas Ativas */
+/* CORES DOS BOTÕES APENAS QUANDO ATIVOS */
 .cat-btn[data-cat="normal"].active { background: #fff; color: var(--dex-border); }
 .cat-btn[data-cat="boss"].active { background: #ffcb05; color: var(--dex-border); }
 .cat-btn[data-cat="dark"].active { background: #8a2be2; color: #fff; }
 .cat-btn[data-cat="mapas"].active { background: #3498db; color: #fff; }
-.cat-btn[data-cat="itens"].active { background: #d35400 !important; color: #fff; border-color: #fff; }
+.cat-btn[data-cat="guias"].active { background: #27ae60; color: #fff; }
+.cat-btn[data-cat="drops"].active, .cat-btn[data-cat="tms"].active { background: #e67e22; color: #fff; border-color: #fff; }
 
-/* RESPONSIVIDADE DO MOBILE (QUADRADO 2x2) */
+/* RESPONSIVIDADE DO MOBILE (Ocultando Mapa) */
 @media (max-width: 768px) {
-    .cat-row-1 { grid-template-columns: repeat(2, 1fr); }
+    /* Esconde o botão de mapas do mobile */
+    #btn-mapas { display: none !important; }
+    
+    /* Faz a linha de Ferramentas virar coluna única para esticar o Guias */
+    .cat-row-3 { grid-template-columns: 1fr; }
+    
+    /* Reduz levemente a fonte da Linha 1 para os 3 botões não vazarem na tela pequena */
+    .cat-row-1 .cat-btn { font-size: 0.65rem; padding: 10px 2px; }
 }
+
+/* Evita quebras no modo deitado (Landscape) */
 @media (max-height: 600px) and (orientation: landscape) {
-    .cat-row-1 { grid-template-columns: repeat(4, 1fr); } /* Retorna a 4 se celular deitar */
+    .cat-row-1 { grid-template-columns: repeat(3, 1fr); } 
 }
 
 /* FILTROS SECUNDÁRIOS EM GRAFITE ELEGANTE */
