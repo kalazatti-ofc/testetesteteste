@@ -15,6 +15,7 @@ let activeMetaFilter = 'all';  // Filtro Meta-Gaming
 let searchMode = 'pokemon'; // Controla se estamos buscando por nome ou por loot
 
 let caughtPokemon = JSON.parse(localStorage.getItem('pokedex-caught')) || [];
+caughtPokemon = caughtPokemon.map(String); // MÁGICA 1: Força todos os saves antigos a virarem texto!
 
 const types = ['Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy'];
 
@@ -305,7 +306,7 @@ function applyFilters() {
         const mGen = activeGenFilter === 'all' || (p.generation && p.generation.toString().toLowerCase() === activeGenFilter.toLowerCase());
         const mType = activeTypeFilter === 'all' || p.types.includes(activeTypeFilter);
         
-        const isCaught = caughtPokemon.includes(p.id);
+        const isCaught = caughtPokemon.includes(p.id.toString()); // MÁGICA 2
         let mCatch = true;
         if (activeCatchFilter === 'caught') mCatch = isCaught;
         if (activeCatchFilter === 'uncaught') mCatch = !isCaught;
@@ -363,12 +364,14 @@ function renderItems(list) {
 
 window.toggleCatch = (event, id) => {
     event.stopPropagation();
-    const idx = caughtPokemon.indexOf(id);
+    const safeId = id.toString(); // MÁGICA 3: Converte o clique para texto
+    const idx = caughtPokemon.indexOf(safeId);
+    
     if(idx > -1) {
         caughtPokemon.splice(idx, 1);
         event.target.classList.remove('caught');
     } else {
-        caughtPokemon.push(id);
+        caughtPokemon.push(safeId);
         event.target.classList.add('caught');
     }
     localStorage.setItem('pokedex-caught', JSON.stringify(caughtPokemon));
@@ -378,7 +381,7 @@ window.toggleCatch = (event, id) => {
 function renderPokemon(list) {
     const grid = document.getElementById('pokedex-grid');
     grid.innerHTML = list.map(p => {
-        const isCaught = caughtPokemon.includes(p.id);
+        const isCaught = caughtPokemon.includes(p.id.toString()); // MÁGICA 4
         const pCategory = p.category || 'normal';
         
         let genText = '';
