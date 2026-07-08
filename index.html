@@ -280,33 +280,15 @@
         </div>
     </div>
 
+    <!-- ======================================================= -->
+    <!-- MODAL DE ITENS (POKÉDEX VERTICAL) -->
+    <!-- ======================================================= -->
     <div id="item-modal" class="modal hidden">
         <div class="modal-overlay" onclick="document.getElementById('item-modal').classList.add('hidden')"></div>
         <div class="modal-content item-modal-content">
             <button class="close-btn" onclick="document.getElementById('item-modal').classList.add('hidden')">&times;</button>
-            
-            <div class="vertical-dex-body">
-                
-                <div class="vertical-top-screen">
-                    <div class="item-lcd-display">
-                        <img id="modal-item-img" src="" alt="Item">
-                        <h2 id="modal-item-name">NOME DO ITEM</h2>
-                        <span class="item-count-badge" id="modal-item-count">0 POKÉMONS DROPAM</span>
-                    </div>
-                </div>
-
-                <div class="dex-hinge">
-                    <div class="hinge-line"></div>
-                    <div class="hinge-line"></div>
-                    <div class="hinge-line"></div>
-                </div>
-
-                <div class="vertical-bottom-screen">
-                    <h4 class="label-tech" style="text-align: center; margin-bottom: 12px; border-bottom: 2px dashed #555; padding-bottom: 6px;">QUEM DROPA?</h4>
-                    <div class="droppers-grid" id="modal-item-droppers">
-                        </div>
-                </div>
-
+            <div id="item-modal-body">
+                <!-- O JavaScript vai renderizar o visor e os cards aqui dentro! -->
             </div>
         </div>
     </div>
