@@ -120,6 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Controle de Abas e Transição de Telas
     document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.addEventListener('click', () => {
+            if (btn.classList.contains('active')) return; // Previne loops
+
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             activeCategory = btn.dataset.cat;
@@ -129,41 +131,36 @@ document.addEventListener('DOMContentLoaded', () => {
             const filtersModule = document.getElementById('filters-container');
             const mapContainer = document.getElementById('map-viewer-container');
             const mapSidebar = document.getElementById('map-sidebar-menu');
-            // Ativador de fechamento do Modal de Download do Aplicativo
-            const closeDownloadBtn = document.getElementById('close-download-app');
-            if (closeDownloadBtn) {
-                closeDownloadBtn.onclick = () => {
-                    document.getElementById('download-app-modal').classList.add('hidden');
-                };
-            }
-            // Oculta todos os módulos inicialmente
             const tutModule = document.getElementById('tutorials-module');
             
+            // MÁGICA DE SINCRONIA: Aba ITENS <-> Pílula LOOT
+            const optPokemon = document.getElementById('mode-pokemon');
+            const optLoot = document.getElementById('mode-loot');
+            
+            if (activeCategory === 'itens') {
+                searchMode = 'loot';
+                if (optPokemon && optLoot) { optPokemon.classList.remove('active'); optLoot.classList.add('active'); }
+            } else if (activeCategory === 'normal' || activeCategory === 'dark' || activeCategory === 'boss') {
+                searchMode = 'pokemon';
+                if (optPokemon && optLoot) { optLoot.classList.remove('active'); optPokemon.classList.add('active'); }
+            }
+
             if (activeCategory === 'mapas') {
-                gridContainer.style.display = 'none';
-                searchModule.style.display = 'none';
-                filtersModule.style.display = 'none';
-                if(tutModule) tutModule.style.display = 'none';
-                if(mapSidebar) mapSidebar.style.display = 'block'; 
-                mapContainer.style.display = 'flex';
-                initMapViewer(); 
+                gridContainer.style.display = 'none'; searchModule.style.display = 'none'; filtersModule.style.display = 'none';
+                if(tutModule) tutModule.style.display = 'none'; if(mapSidebar) mapSidebar.style.display = 'block'; 
+                mapContainer.style.display = 'flex'; initMapViewer(); 
             } else if (activeCategory === 'guias') {
-                gridContainer.style.display = 'none';
-                searchModule.style.display = 'none';
-                filtersModule.style.display = 'none';
-                mapContainer.style.display = 'none';
-                if(mapSidebar) mapSidebar.style.display = 'none'; 
-                if(tutModule) {
-                    tutModule.style.display = 'block';
-                    closeTutorial(); // Garante que abre sempre na vitrine de cards
-                }
+                gridContainer.style.display = 'none'; searchModule.style.display = 'none'; filtersModule.style.display = 'none';
+                mapContainer.style.display = 'none'; if(mapSidebar) mapSidebar.style.display = 'none'; 
+                if(tutModule) { tutModule.style.display = 'block'; closeTutorial(); }
+            } else if (activeCategory === 'itens') {
+                gridContainer.style.display = 'grid'; searchModule.style.display = 'block';
+                filtersModule.style.display = 'none'; // Esconde os filtros de Tipos/Regiões para os Itens
+                if(mapSidebar) mapSidebar.style.display = 'none'; mapContainer.style.display = 'none'; if(tutModule) tutModule.style.display = 'none';
+                applyFilters(); 
             } else {
-                gridContainer.style.display = 'grid';
-                searchModule.style.display = 'block';
-                filtersModule.style.display = 'block';
-                if(mapSidebar) mapSidebar.style.display = 'none'; 
-                mapContainer.style.display = 'none';
-                if(tutModule) tutModule.style.display = 'none';
+                gridContainer.style.display = 'grid'; searchModule.style.display = 'block'; filtersModule.style.display = 'block';
+                if(mapSidebar) mapSidebar.style.display = 'none'; mapContainer.style.display = 'none'; if(tutModule) tutModule.style.display = 'none';
                 applyFilters();
             }
         });
@@ -269,6 +266,16 @@ function setupToggles() {
 function applyFilters() {
     const search = document.getElementById('search-input').value.toLowerCase().trim();
     
+    // INTERCEPTADOR: MODO ITENS/LOOT
+    if (activeCategory === 'itens' || searchMode === 'loot') {
+        let filteredItems = itemData || [];
+        if (search !== '') {
+            filteredItems = filteredItems.filter(i => i.name.toLowerCase().includes(search));
+        }
+        renderItems(filteredItems);
+        return; // Interrompe a função aqui. Não renderiza Pokémons!
+    }
+
     let filtered = pokemonData.filter(p => {
         const pCat = p.category || 'normal';
         if (pCat !== activeCategory) return false;
@@ -1562,15 +1569,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if(searchModeToggle) {
         searchModeToggle.addEventListener('click', () => {
             if (searchMode === 'pokemon') {
-                searchMode = 'loot';
-                optPokemon.classList.remove('active');
-                optLoot.classList.add('active');
+                const itemBtn = document.querySelector('.cat-btn[data-cat="itens"]');
+                if(itemBtn) itemBtn.click(); // O clique na aba já cuida de tudo!
             } else {
-                searchMode = 'pokemon';
-                optLoot.classList.remove('active');
-                optPokemon.classList.add('active');
+                const normBtn = document.querySelector('.cat-btn[data-cat="normal"]');
+                if(normBtn) normBtn.click();
             }
-            applyFilters(); // Refaz a busca automaticamente ao trocar
         });
     }
 });
