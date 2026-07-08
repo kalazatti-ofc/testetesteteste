@@ -5,6 +5,7 @@ let pokemonData = [];
 let itemData = [];
 let currentVisibleList = []; // Guarda a lista que está sendo exibida na tela
 let currentModalIndex = 0;   // Guarda a posição do Pokémon aberto no modal
+let currentModalItemIndex = 0; // Guarda a posição do Item aberto no modal
 
 let activeTypeFilter = 'all';
 let activeGenFilter = 'all';
@@ -1631,34 +1632,81 @@ window.searchByLoot = (lootName, event) => {
     openItemModal(lootName);
 };
 
-// Abre a Pokédex Vertical e lista os Pokémons
+// ==========================================
+// POKÉDEX VERTICAL (MODAL DE ITENS COM NAVEGAÇÃO)
+// ==========================================
+
+window.searchByLoot = (lootName, event) => {
+    if (event) event.stopPropagation();
+    document.getElementById('pokemon-modal').classList.add('hidden');
+    openItemModal(lootName);
+};
+
+// Navegação Pelas Setas no Modal do Item
+window.navigateItem = (direction, event) => {
+    if (event) event.stopPropagation();
+    if (itemData.length === 0) return;
+
+    currentModalItemIndex += direction;
+    if (currentModalItemIndex < 0) currentModalItemIndex = itemData.length - 1;
+    else if (currentModalItemIndex >= itemData.length) currentModalItemIndex = 0;
+
+    renderItemModal();
+};
+
 window.openItemModal = (itemName) => {
-    const item = itemData.find(i => i.name === itemName);
+    const index = itemData.findIndex(i => i.name === itemName);
+    if (index === -1) return;
+    
+    currentModalItemIndex = index;
+    renderItemModal();
+    document.getElementById('item-modal').classList.remove('hidden');
+};
+
+function renderItemModal() {
+    const item = itemData[currentModalItemIndex];
     if (!item) return;
 
-    // Popula a Tela Superior
-    document.getElementById('modal-item-name').innerText = item.name;
-    document.getElementById('modal-item-count').innerText = `${item.droppedBy.length} POKÉMON(S) DROPAM`;
-    
-    const imgEl = document.getElementById('modal-item-img');
     const fallbackJS = `this.onerror=null; this.src='img/loots/${item.icon_name}.png'; this.onerror=function(){this.src='https://dummyimage.com/64x64/dcdde1/2c3e50.png&text=?';};`;
-    imgEl.onerror = new Function(fallbackJS);
-    imgEl.src = `img/loots/${item.icon_name}.gif`;
 
-    // Popula a Tela Inferior
-    const droppersContainer = document.getElementById('modal-item-droppers');
-    droppersContainer.innerHTML = item.droppedBy.map(p => `
+    const droppersHTML = item.droppedBy.map(p => `
         <div class="mini-dropper-card" onclick="swapToPokemonModal('${p.id}')">
             <img src="${p.image}" loading="lazy">
             <span>${p.name}</span>
         </div>
     `).join('');
 
-    // Exibe o Modal
-    document.getElementById('item-modal').classList.remove('hidden');
-};
+    // Injeta o HTML usando as MESMAS classes visuais do Modal de Pokémon (Carcaça Vermelha)
+    document.getElementById('item-modal-body').innerHTML = `
+        <div class="modal-pokedex-view item-vertical-view">
+            <div class="modal-left-wing item-vertical-wing">
+                
+                <div class="screen-border" style="position: relative;">
+                    <button class="nav-arrow prev-arrow" title="Anterior" onclick="navigateItem(-1, event)">&#10094;</button>
+                    <button class="nav-arrow next-arrow" title="Próximo" onclick="navigateItem(1, event)">&#10095;</button>
+                    
+                    <div class="main-screen main-screen-stacked">
+                        <div class="stacked-container">
+                            <img src="img/loots/${item.icon_name}.gif" class="poke-img-stacked" style="width: 70px; height: 70px; image-rendering: pixelated; margin-bottom: -5px;" onerror="${fallbackJS}">
+                            <h2 class="poke-name-stacked" style="font-size: 1.15rem; margin-top: 5px;">${item.name}</h2>
+                            <div class="modal-gen-bar stacked-gen-bar">${item.droppedBy.length} POKÉMON(S) DROPAM</div>
+                        </div>
+                    </div>
+                </div>
 
-// Quando o cara tá no Modal de Item e clica num rosto de Pokémon
+                <div class="location-module" style="margin-top: 15px;">
+                    <h4 class="label-tech">DROPA DE:</h4>
+                    <div class="loc-list-scroll droppers-grid">
+                        ${droppersHTML}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    `;
+}
+
+// Quando o jogador clica num rosto de Pokémon dentro do Item
 window.swapToPokemonModal = (pokeId) => {
     document.getElementById('item-modal').classList.add('hidden');
     openModal(pokeId);
