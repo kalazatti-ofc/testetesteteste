@@ -122,28 +122,34 @@ body.dark-mode .pokedex-controls::-webkit-scrollbar-thumb { background: rgba(255
 .search-btn.red-btn { background: var(--dex-red); color: #fff; }
 
 .category-module { 
-    display: flex; 
-    gap: 8px; 
-    margin-top: 15px; /* Empurra pra baixo para a etiqueta não bater no teto */
-    padding-right: 10px; /* Dá espaço na direita para não cortar */
-    margin-bottom: 20px; 
-    flex-shrink: 0; 
+    display: flex; flex-direction: column; gap: 8px; 
+    margin-top: 10px; padding-right: 10px; margin-bottom: 20px; flex-shrink: 0; 
 }
+.cat-row-1 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.cat-row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
 .cat-btn {
-    flex: 1; padding: 10px 5px; border-radius: 8px; font-family: monospace; font-size: 0.8rem;
+    padding: 10px 5px; border-radius: 8px; font-family: monospace; font-size: 0.75rem;
     font-weight: 900; text-align: center; border: 3px solid var(--dex-border);
     box-shadow: 3px 3px 0 var(--dex-border); cursor: pointer;
-    background: #444; color: #aaa;
-    transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s, color 0.2s;
-    will-change: transform;
+    background: #444; color: #aaa; transition: 0.1s; will-change: transform;
 }
 .cat-btn:active { transform: translate(3px, 3px); box-shadow: 0 0 0 transparent; }
 
-/* Cores das abas */
+/* Cores das abas Ativas */
 .cat-btn[data-cat="normal"].active { background: #fff; color: var(--dex-border); }
 .cat-btn[data-cat="boss"].active { background: #ffcb05; color: var(--dex-border); }
 .cat-btn[data-cat="dark"].active { background: #8a2be2; color: #fff; }
 .cat-btn[data-cat="mapas"].active { background: #3498db; color: #fff; }
+.cat-btn[data-cat="itens"].active { background: #d35400 !important; color: #fff; border-color: #fff; }
+
+/* RESPONSIVIDADE DO MOBILE (QUADRADO 2x2) */
+@media (max-width: 768px) {
+    .cat-row-1 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-height: 600px) and (orientation: landscape) {
+    .cat-row-1 { grid-template-columns: repeat(4, 1fr); } /* Retorna a 4 se celular deitar */
+}
 
 /* FILTROS SECUNDÁRIOS EM GRAFITE ELEGANTE */
 .pokedex-filters { margin-bottom: 20px; }
