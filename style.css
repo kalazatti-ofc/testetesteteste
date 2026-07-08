@@ -2197,6 +2197,32 @@ body.dark-mode .item-card { background: #2a2a2c; }
 body.dark-mode .item-card-name { color: #f0f0f0; }
 
 /* =========================================
+   AJUSTE DE TEXTO DOS ITENS NO MOBILE
+========================================= */
+@media (max-width: 768px) {
+    .item-card {
+        padding: 8px 6px; /* Diminui o espaço interno do card */
+        border-radius: 8px; /* Cantos um pouco menos redondos para combinar com o tamanho menor */
+    }
+    .item-card img {
+        width: 30px; /* Ícone levemente menor */
+        height: 30px;
+        margin-bottom: 4px;
+    }
+    .item-card-name { 
+        font-size: 0.5rem; /* <-- AQUI ESTÁ A MÁGICA: Reduz a fonte do nome do item */
+        white-space: normal; /* Permite que o nome quebre para a linha de baixo se for muito grande */
+        word-break: break-word; /* Força a quebra de palavras muito longas */
+        line-height: 1.2; /* Ajusta a altura da linha para não colar as palavras */
+        max-height: 1.2rem; /* Limita a altura para não empurrar os cards muito pra baixo */
+    }
+    .item-card-count {
+        font-size: 0.5rem; /* Diminui a fonte do "X DROP(S)" */
+        margin-top: 2px;
+    }
+}
+
+/* =========================================
    MODAL DE ITENS (ESTRUTURA VERTICAL VERMELHA E DOBRADIÇA)
 ========================================= */
 .item-modal-content { max-width: 400px; margin: 0 auto; width: 100%; }
