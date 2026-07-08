@@ -10752,5 +10752,16 @@
                 "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/145.png"
             }
         ]
+    },
+    {
+        "name": "TM Electro Ball",
+        "icon_name": "tm-electric",
+        "droppedBy": [
+            {
+                "id": 466,
+                "name": "Electivire",
+                "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/466.png"
+            }
+        ]
     }
 ]
