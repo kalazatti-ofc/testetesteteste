@@ -1681,27 +1681,29 @@ function renderItemModal() {
         <div class="modal-pokedex-view item-vertical-view">
             <div class="modal-left-wing item-vertical-wing">
                 
-                <div class="screen-border" style="position: relative;">
+                <div class="screen-border" style="position: relative; margin-bottom: 0;">
                     <button class="nav-arrow prev-arrow" title="Anterior" onclick="navigateItem(-1, event)">&#10094;</button>
                     <button class="nav-arrow next-arrow" title="Próximo" onclick="navigateItem(1, event)">&#10095;</button>
                     
                     <div class="main-screen main-screen-stacked">
                         <div class="stacked-container">
-                            <img src="img/loots/${item.icon_name}.gif" class="poke-img-stacked" style="width: 70px; height: 70px; image-rendering: pixelated; margin-bottom: -5px;" onerror="${fallbackJS}">
+                            <img src="img/loots/${item.icon_name}.gif" class="poke-img-stacked" style="image-rendering: pixelated; margin-bottom: -5px;" onerror="${fallbackJS}">
                             <h2 class="poke-name-stacked" style="font-size: 1.15rem; margin-top: 5px;">${item.name}</h2>
                             <div class="modal-gen-bar stacked-gen-bar">${item.droppedBy.length} POKÉMON(S) DROPAM</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="location-module" style="margin-top: 15px;">
-                    <h4 class="label-tech">DROPA DE:</h4>
-                    <div class="loc-list-scroll droppers-grid">
-                        ${droppersHTML}
-                    </div>
-                </div>
-
             </div>
+
+            <!-- A parte de baixo da dobradiça -->
+            <div class="item-bottom-area">
+                <h4 class="label-tech">DROPA DE:</h4>
+                <div class="droppers-grid">
+                    ${droppersHTML}
+                </div>
+            </div>
+
         </div>
     `;
 }
