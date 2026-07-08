@@ -8199,7 +8199,8 @@
         "locations": [
             "Quest feebas"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/349.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/349.png",
+        "loot": "Water Stone, Water gem, Water Pendant"
     },
     {
         "id": 350,
@@ -8244,7 +8245,8 @@
                 "nota": "🔑 Quest Level 185"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/351.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/351.png",
+        "loot": "Heart Stone"
     },
     {
         "id": 352,
@@ -8265,7 +8267,8 @@
             "Sandgem (X 3483 / Y 2231 / Z 7)",
             "Goldenrod (X 1584 / Y 118 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/352.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/352.png",
+        "loot": "Feather, TM Substitute"
     },
     {
         "id": 353,
@@ -8285,7 +8288,8 @@
         "locations": [
             "Hunter Village (X 1637 / Y 1452 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/353.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/353.png",
+        "loot": "Darkness Stone, TM Night Shade, TM Confuse Ray"
     },
     {
         "id": 354,
@@ -8313,7 +8317,8 @@
                 ]
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/354.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/354.png",
+        "loot": "Darkness Stone, Traces of Ghost, TM Night Shade, TM Confuse Ray"
     },
     {
         "id": 355,
@@ -8341,7 +8346,8 @@
                     "4. Entre no Portal!"
                 ]
             }
-        ]
+        ],
+        "loot": "Darkness Stone, Traces of Ghost, Future Orb, TM Will-O-Wisp, Duskull Skull"
     },
     {
         "id": 356,
@@ -8369,7 +8375,8 @@
                     "4. Entre no Portal!"
                 ]
             }
-        ]
+        ],
+        "loot": "Darkness Stone, Traces of Ghost, Future Orb, TM Will-O-Wisp"
     },
     {
         "id": 357,
@@ -8408,7 +8415,8 @@
             "spd": 65
         },
         "locations": [],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/358.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/358.png",
+        "loot": "Enigma Stone"
     },
     {
         "id": 359,
@@ -8432,7 +8440,8 @@
                 "nota": "📌 Buraco entre as Árvores"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/359.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/359.png",
+        "loot": "Wool ball, TM Razor Wind"
     },
     {
         "id": 360,
@@ -8470,7 +8479,8 @@
         "locations": [
             "sina (X 565 / Y 535 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/361.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/361.png",
+        "loot": "TM Icy Wind, TM Frost Breath, TM Ice Spinner"
     },
     {
         "id": 362,
@@ -8491,7 +8501,8 @@
             "one island (X 2723 / Y 1095 / Z 7)",
             "sina (X 565 / Y 535 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/362.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/362.png",
+        "loot": "Ice Stone, Ice Orb, TM Icy Wind, TM Frost Breath, TM Ice Spinner"
     },
     {
         "id": 363,
@@ -8512,7 +8523,8 @@
         "locations": [
             "Sina (X 546 / Y 524 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/363.png",
+        "loot": "Water Pendant, Water gem"
     },
     {
         "id": 364,
@@ -8533,7 +8545,8 @@
         "locations": [
             "Sina (X 546 / Y 524 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/364.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/364.png",
+        "loot": "Water Stone, Water gem"
     },
     {
         "id": 365,
@@ -8554,7 +8567,8 @@
         "locations": [
             "Sina (X 546 / Y 524 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/365.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/365.png",
+        "loot": "Ice Stone, Water Stone, Water Pendant, Water gem, TM Ice Fang"
     },
     {
         "id": 366,
@@ -8572,7 +8586,8 @@
             "spd": 32
         },
         "locations": [],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/366.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/366.png",
+        "loot": "Water Stone, Water gem, Water Pendant, TM Whirlpool"
     },
     {
         "id": 367,
@@ -8592,7 +8607,8 @@
         "locations": [
             "Hearthome (X 3770 / Y 2056 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/367.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/367.png",
+        "loot": "Water Stone, TM Whirlpool"
     },
     {
         "id": 368,
@@ -8612,7 +8628,8 @@
         "locations": [
             "Hearthome (X 3770 / Y 2056 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/368.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/368.png",
+        "loot": "Water Stone, TM Whirlpool"
     },
     {
         "id": 369,
@@ -8633,7 +8650,8 @@
         "locations": [
             "Mahogany (X 2029 / Y 171 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/369.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/369.png",
+        "loot": "Water gem"
     },
     {
         "id": 370,
@@ -8651,7 +8669,8 @@
             "spd": 97
         },
         "locations": [],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/370.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/370.png",
+        "loot": "Water Stone, Water gem, Water Pendant"
     },
     {
         "id": 371,
@@ -8671,7 +8690,8 @@
         "locations": [
             "Pirita (X 2605 / Y 1741 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/371.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/371.png",
+        "loot": "Crystal Stone, Dragon Tooth, TM Draco Meteor"
     },
     {
         "id": 372,
@@ -8691,7 +8711,8 @@
         "locations": [
             "Pirita (X 2605 / Y 1741 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/372.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/372.png",
+        "loot": "Crystal Stone, TM Draco Meteor"
     },
     {
         "id": 373,
@@ -8719,7 +8740,8 @@
                 "nota": "📌 Necessário pagar HDs para poder farmar"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/373.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/373.png",
+        "loot": "Crystal Stone, TM Dragon Breath, TM Dragon Tail, TM Draco Meteor"
     },
     {
         "id": 374,
@@ -8746,7 +8768,8 @@
                 ]
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/374.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/374.png",
+        "loot": "TM Zen Headbutt, Future Orb"
     },
     {
         "id": 375,
@@ -8780,7 +8803,8 @@
                     "2. Desça as escadas (X 796 / Y 1273 / Z 9)"
                 ]
             }
-        ]
+        ],
+        "loot": "Feather, TM Zen Headbutt, TM Iron Defense"
     },
     {
         "id": 376,
@@ -8809,7 +8833,8 @@
                 ]
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/376.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/376.png",
+        "loot": "Feather, TM Iron Head, Enigma Stone, TM Iron Defense, TM Metal Claw"
     },
     {
         "id": 377,
@@ -8869,7 +8894,8 @@
         "locations": [
             "Quest Boost Stone"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/379.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/379.png",
+        "loot": "TM Superpower, Thunder Stone"
     },
     {
         "id": 380,
@@ -8967,7 +8993,8 @@
             "Pewter (X 611 / Y 913 / Z 4)",
             "Quest togekiss"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/384.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/384.png",
+        "loot": "Thunder Stone, TM Dragon Dance"
     },
     {
         "id": 385,
@@ -9024,7 +9051,8 @@
         "locations": [
             "Three Island (X 2565 / Y 697 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/387.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/387.png",
+        "loot": "Mushroom"
     },
     {
         "id": 388,
@@ -9044,7 +9072,8 @@
         "locations": [
             "Three Island (X 2565 / Y 697 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/388.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/388.png",
+        "loot": "Mushroom, Leaf Stone"
     },
     {
         "id": 389,
@@ -9065,7 +9094,8 @@
         "locations": [
             "Three Island (X 2565 / Y 697 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/389.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/389.png",
+        "loot": "Mushroom, Leaf Stone, TM Giga Drain, TM Earthquake, TM Frenzy Plant"
     },
     {
         "id": 390,
@@ -9085,7 +9115,8 @@
         "locations": [
             "One island (X 2513 / Y 1178 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/390.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/390.png",
+        "loot": "Mushroom, TM Acrobatics"
     },
     {
         "id": 391,
@@ -9106,7 +9137,8 @@
         "locations": [
             "One island (X 2513 / Y 1178 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/391.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/391.png",
+        "loot": "Mushroom, TM Acrobatics"
     },
     {
         "id": 392,
@@ -9127,7 +9159,8 @@
         "locations": [
             "One island (X 2513 / Y 1178 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/392.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/392.png",
+        "loot": "Mushroom, Punch Stone, TM Acrobatics, TM Blast Burn"
     },
     {
         "id": 393,
@@ -9147,7 +9180,8 @@
         "locations": [
             "Two island (X 2740 / Y 907 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/393.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/393.png",
+        "loot": "Mushroom, TM Bubble Beam, TM Whirlpool"
     },
     {
         "id": 394,
@@ -9167,7 +9201,8 @@
         "locations": [
             "Two island (X 2740 / Y 907 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/394.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/394.png",
+        "loot": "Mushroom, TM Bubble Beam, TM Whirlpool"
     },
     {
         "id": 395,
@@ -9188,7 +9223,8 @@
         "locations": [
             "Two island (X 2740 / Y 907 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/395.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/395.png",
+        "loot": "Mushroom, TM Bubble Beam, TM Whirlpool, TM Hydro Cannon, TM Metal Claw"
     },
     {
         "id": 396,
@@ -9209,7 +9245,8 @@
         "locations": [
             "One island (X 2459 / Y 1048 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/396.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/396.png",
+        "loot": "Mushroom, TM Whirlwind"
     },
     {
         "id": 397,
@@ -9230,7 +9267,8 @@
         "locations": [
             "One island (X 2441 / Y 1046 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/397.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/397.png",
+        "loot": "Mushroom, Heart Stone, TM Whirlwind"
     },
     {
         "id": 398,
@@ -9252,7 +9290,8 @@
             "One island (X 2441 / Y 1046 / Z 6)",
             "Jublife (X 3634 / Y 2088 / Z 5)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/398.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/398.png",
+        "loot": "Feather, Mushroom, Heart Stone, TM Double Team, TM Whirlwind"
     },
     {
         "id": 399,
@@ -9272,7 +9311,8 @@
         "locations": [
             "Three Island (X 2565 / Y 697 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/399.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/399.png",
+        "loot": "Mushroom"
     },
     {
         "id": 400,
@@ -9293,7 +9333,8 @@
         "locations": [
             "Three Island (X 2565 / Y 697 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/400.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/400.png",
+        "loot": "Mushroom, Heart Stone"
     },
     {
         "id": 401,
@@ -9313,7 +9354,8 @@
         "locations": [
             "Three Island (X 2546 / Y 613 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/401.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/401.png",
+        "loot": "Mushroom, TM Struggle Bug"
     },
     {
         "id": 402,
@@ -9333,7 +9375,8 @@
         "locations": [
             "Three Island (X 2546 / Y 613 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/402.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/402.png",
+        "loot": "Mushroom, Cocoon Stone, TM Leech Life"
     },
     {
         "id": 403,
@@ -9353,7 +9396,8 @@
         "locations": [
             "Phenac (X 2520 / Y 1548 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/403.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/403.png",
+        "loot": "Mushroom, TM Wild Charge"
     },
     {
         "id": 404,
@@ -9373,7 +9417,8 @@
         "locations": [
             "Phenac (X 2520 / Y 1548 / Z 5)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/404.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/404.png",
+        "loot": "Mushroom, Thunder Stone, TM Wild Charge"
     },
     {
         "id": 405,
@@ -9393,7 +9438,8 @@
         "locations": [
             "Phenac (X 2520 / Y 1548 / Z 4)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/405.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/405.png",
+        "loot": "Mushroom, Thunder Stone, TM Wild Charge"
     },
     {
         "id": 406,
@@ -9435,7 +9481,8 @@
         "locations": [
             "Veilstone (X 4287 / Y 2028 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/407.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/407.png",
+        "loot": "Sun Stone, Seed, Leaves, Bag of Pollen, Leaf Stone"
     },
     {
         "id": 408,
@@ -9458,7 +9505,8 @@
                 "nota": "📌 Fim do caminho, subindo as escadas"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/408.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/408.png",
+        "loot": "Mushroom, Rock Stone"
     },
     {
         "id": 409,
@@ -9481,7 +9529,8 @@
                 "nota": "📌 Fim do caminho, subindo as escadas"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/409.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/409.png",
+        "loot": "Mushroom, Rock Stone"
     },
     {
         "id": 410,
@@ -9502,7 +9551,8 @@
         "locations": [
             "One island (X 2512 / Y 977 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/410.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/410.png",
+        "loot": "Mushroom, Rock Stone, TM Protect, TM Metal Sound"
     },
     {
         "id": 411,
@@ -9523,7 +9573,8 @@
         "locations": [
             "One island (X 2512 / Y 977 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/411.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/411.png",
+        "loot": "Mushroom, Rock Stone, TM Protect, TM Metal Sound"
     },
     {
         "id": 412,
@@ -9543,7 +9594,8 @@
         "locations": [
             "Two Island (X 2632 / Y 775 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/412.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/412.png",
+        "loot": "Mushroom"
     },
     {
         "id": 413,
@@ -9563,7 +9615,8 @@
         "locations": [
             "Jublife (X 3514 / Y 1859 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/413.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/413.png",
+        "loot": "Mushroom, Cocoon Stone"
     },
     {
         "id": 415,
@@ -9584,7 +9637,8 @@
         "locations": [
             "Two Island (X 2632 / Y 775 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/415.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/415.png",
+        "loot": "Mushroom, TM Struggle Bug"
     },
     {
         "id": 416,
@@ -9606,7 +9660,8 @@
             "Singer (X 1664 / Y 1031 / Z 7)",
             "One Island (X 2573 / Y 1071 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/416.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/416.png",
+        "loot": "Mushroom, Cocoon Stone, TM Struggle Bug, TM Bug Bite"
     },
     {
         "id": 417,
@@ -9626,7 +9681,8 @@
         "locations": [
             "Phenac (X 2513 / Y 1532 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/417.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/417.png",
+        "loot": "Mushroom"
     },
     {
         "id": 418,
@@ -9646,7 +9702,8 @@
         "locations": [
             "One island (X 2459 / Y 992 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/418.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/418.png",
+        "loot": "Mushroom, TM Whirlpool, TM Waterfall"
     },
     {
         "id": 419,
@@ -9666,7 +9723,8 @@
         "locations": [
             "One island (X 2459 / Y 992 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/419.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/419.png",
+        "loot": "Mushroom, Water Stone, TM Whirlpool"
     },
     {
         "id": 420,
@@ -9687,7 +9745,8 @@
             "One Island (X 2573 / Y 1071 / Z 7)",
             "Mahogany (X 2212 / Y 93 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/420.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/420.png",
+        "loot": "Mushroom, TM Magical Leaf"
     },
     {
         "id": 421,
@@ -9708,7 +9767,8 @@
             "One Island (X 2573 / Y 1071 / Z 7)",
             "Mahogany (X 2212 / Y 93 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/421.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/421.png",
+        "loot": "Mushroom, Leaf Stone, TM Magical Leaf"
     },
     {
         "id": 422,
@@ -9728,7 +9788,8 @@
         "locations": [
             "Two island (X 2740 / Y 907 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/422.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/422.png",
+        "loot": "Mushroom, Water Stone, TM Earth Power"
     },
     {
         "id": 423,
@@ -9751,7 +9812,8 @@
             "Pastoria (X 4039 / Y 2098 / Z 7)",
             "Pastoria (X 3917 / Y 2203 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/423.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/423.png",
+        "loot": "Mushroom, Water Stone, TM Earth Power"
     },
     {
         "id": 424,
@@ -9794,7 +9856,8 @@
             "Singer (X 1664 / Y 1031 / Z 7)",
             "One Island (X 2671 / Y 1154 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/425.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/425.png",
+        "loot": "Mushroom, TM Shadow Ball"
     },
     {
         "id": 426,
@@ -9816,7 +9879,8 @@
             "One island (X 2453 / Y 893 / Z 7)",
             "Singer (X 1664 / Y 1031 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/426.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/426.png",
+        "loot": "Mushroom, Darkness Stone, TM Shadow Ball, TM Phantom Force, TM Hex, TM Tailwind"
     },
     {
         "id": 427,
@@ -9836,7 +9900,8 @@
         "locations": [
             "Veilstone (X 4082 / Y 1927 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/427.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/427.png",
+        "loot": ""
     },
     {
         "id": 428,
@@ -9856,7 +9921,8 @@
         "locations": [
             "Veilstone (X 4082 / Y 1927 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/428.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/428.png",
+        "loot": ""
     },
     {
         "id": 429,
@@ -9876,7 +9942,8 @@
         "locations": [
             "Quest Darkside"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/429.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/429.png",
+        "loot": "Mushroom, Darkness Stone"
     },
     {
         "id": 430,
@@ -9897,7 +9964,8 @@
         "locations": [
             "Jublife (X 3324 / Y 2198 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/430.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/430.png",
+        "loot": ""
     },
     {
         "id": 431,
@@ -9917,7 +9985,8 @@
         "locations": [
             "Hearthome (X 3835 / Y 2020 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/431.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/431.png",
+        "loot": "Mushroom, Heart Stone"
     },
     {
         "id": 432,
@@ -9937,7 +10006,8 @@
         "locations": [
             "Hearthome (X 3835 / Y 2020 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/432.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/432.png",
+        "loot": "Mushroom, Heart Stone"
     },
     {
         "id": 433,
@@ -9976,7 +10046,8 @@
         "locations": [
             "Three Island (X 2541 / Y 619 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/434.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/434.png",
+        "loot": "Mushroom, Venom Stone"
     },
     {
         "id": 435,
@@ -9997,7 +10068,8 @@
         "locations": [
             "Three Island (X 2541 / Y 619 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/435.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/435.png",
+        "loot": "Mushroom, Venom Stone"
     },
     {
         "id": 436,
@@ -10025,7 +10097,8 @@
                 ]
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/436.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/436.png",
+        "loot": "Enigma Stone, Mushroom, TM Iron Defense, TM Metal Sound"
     },
     {
         "id": 437,
@@ -10049,7 +10122,8 @@
                 "nota": "📌 Desça as Escadas"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/437.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/437.png",
+        "loot": "Mushroom, Enigma Stone, TM Future Sight, TM Iron Defense, TM Metal Sound"
     },
     {
         "id": 438,
@@ -10069,7 +10143,8 @@
         "locations": [
             "Singer (X 1664 / Y 1031 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/438.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/438.png",
+        "loot": "Mushroom"
     },
     {
         "id": 439,
@@ -10090,7 +10165,8 @@
         "locations": [
             "Vermilion (X 956 / Y 1561 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/439.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/439.png",
+        "loot": "TM Mimic, TM Encore, Enigma Stone"
     },
     {
         "id": 440,
@@ -10110,7 +10186,8 @@
         "locations": [
             "Two Island (X 2609 / Y 873 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/440.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/440.png",
+        "loot": "Mushroom"
     },
     {
         "id": 441,
@@ -10131,7 +10208,8 @@
         "locations": [
             "One island (X 2060 / Y 1037 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/441.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/441.png",
+        "loot": "Mushroom"
     },
     {
         "id": 442,
@@ -10173,7 +10251,8 @@
         "locations": [
             "Grama alta nas Sevii islands"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/443.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/443.png",
+        "loot": "Seed, TM Dragon Claw, Crystal Stone, TM Sandstorm, TM Draco Meteor"
     },
     {
         "id": 444,
@@ -10194,7 +10273,8 @@
         "locations": [
             "Grama alta nas Sevii islands"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/444.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/444.png",
+        "loot": "Seed, TM Dragon Claw, Crystal Stone, TM Sandstorm, TM Draco Meteor"
     },
     {
         "id": 445,
@@ -10215,7 +10295,8 @@
         "locations": [
             "Grama alta nas Sevii islands"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/445.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/445.png",
+        "loot": "Seed, TM Dragon Claw, Crystal Stone, TM Sandstorm"
     },
     {
         "id": 446,
@@ -10235,7 +10316,8 @@
         "locations": [
             "Three island (X 2727 / Y 599 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/446.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/446.png",
+        "loot": "Heart Stone, Mushroom, TM Screech"
     },
     {
         "id": 447,
@@ -10255,7 +10337,8 @@
         "locations": [
             "Pesqueiro com Fishing Rod (X 1724 / Y 782 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/447.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/447.png",
+        "loot": ""
     },
     {
         "id": 448,
@@ -10276,7 +10359,8 @@
         "locations": [
             "Evoluindo riolu"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/448.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/448.png",
+        "loot": ""
     },
     {
         "id": 449,
@@ -10296,7 +10380,8 @@
         "locations": [
             "Two Island (X 2621 / Y 952 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/449.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/449.png",
+        "loot": "Earth Stone, Mushroom, TM Earthquake"
     },
     {
         "id": 450,
@@ -10316,7 +10401,8 @@
         "locations": [
             "Two Island (X 2621 / Y 952 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/450.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/450.png",
+        "loot": "Mushroom, Earth Stone, TM Earthquake"
     },
     {
         "id": 451,
@@ -10337,7 +10423,8 @@
         "locations": [
             "One island (X 2453 / Y 893 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/451.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/451.png",
+        "loot": "Mushroom, Venom Stone, TM Cross Poison"
     },
     {
         "id": 452,
@@ -10382,7 +10469,8 @@
         "locations": [
             "Three Island (X 2612 / Y 641 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/453.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/453.png",
+        "loot": "Mushroom, Venom Stone, TM Sludge Bomb"
     },
     {
         "id": 454,
@@ -10403,7 +10491,8 @@
         "locations": [
             "Three Island (X 2612 / Y 641 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/454.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/454.png",
+        "loot": "Mushroom, Venom Stone, TM Sludge Bomb, TM Venoshock"
     },
     {
         "id": 455,
@@ -10423,7 +10512,8 @@
         "locations": [
             "Three Island (X 2612 / Y 641 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/455.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/455.png",
+        "loot": "Mushroom"
     },
     {
         "id": 456,
@@ -10461,7 +10551,8 @@
             "spd": 91
         },
         "locations": [],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/457.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/457.png",
+        "loot": "Mushroom, Water Stone, TM Rain Dance, TM Silver Wind"
     },
     {
         "id": 458,
@@ -10485,7 +10576,8 @@
                 "nota": "📌 Desça a Escada"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/458.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/458.png",
+        "loot": "Mushroom, TM Bubble Beam"
     },
     {
         "id": 459,
@@ -10506,7 +10598,8 @@
         "locations": [
             "one island (X 2723 / Y 1095 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/459.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/459.png",
+        "loot": "Mushroom, TM Blizzard"
     },
     {
         "id": 460,
@@ -10527,7 +10620,8 @@
         "locations": [
             "one island (X 2723 / Y 1095 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/460.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/460.png",
+        "loot": "Mushroom, Ice Stone, TM Blizzard"
     },
     {
         "id": 461,
@@ -10548,7 +10642,8 @@
         "locations": [
             "Pirita (X 2427 / Y 1724 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/461.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/461.png",
+        "loot": "Ice Stone, Pot of moss bug, TM Icy Wind, TM Dark Pulse, TM Agility, TM Ice Spinner"
     },
     {
         "id": 462,
@@ -10589,7 +10684,8 @@
         "locations": [
             "Sandgem (X 3483 / Y 2231 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/463.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/463.png",
+        "loot": "Mushroom, Heart Stone"
     },
     {
         "id": 464,
@@ -10612,7 +10708,8 @@
             "One island (X 2453 / Y 893 / Z 7)",
             "Jubilife (X 3446 / Y 2018 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/464.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/464.png",
+        "loot": "Rock Stone, Stone Orb, small stone, Horn, TM Earthquake, TM Stone Edge"
     },
     {
         "id": 465,
@@ -10632,7 +10729,8 @@
         "locations": [
             "Pirita (X 2744 / Y 1597 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/465.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/465.png",
+        "loot": "Bag of Pollen, Leaf Stone, TM Giga Drain, TM Brutal Swing, Tangrowth Hair, TM Power Whip"
     },
     {
         "id": 466,
@@ -10653,7 +10751,8 @@
             "Phenac (X 2497 / Y 1547 / Z 4)",
             "Pastoria (X 3930 / Y 2295 / Z 4)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/466.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/466.png",
+        "loot": "Electric Box, Thunder Stone, Screw, TM Giga Impact, TM Thunder, Electivire Hand"
     },
     {
         "id": 467,
@@ -10686,7 +10785,8 @@
             "One island (X 2513 / Y 1178 / Z 7)",
             "Azalea (X 1400 / Y 558 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/467.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/467.png",
+        "loot": "Essence of Fire, Pot of lava, Fire Stone, TM Flame Burst, Magmortar fur"
     },
     {
         "id": 468,
@@ -10707,7 +10807,8 @@
         "locations": [
             "Quest togekiss"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/468.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/468.png",
+        "loot": "Heart Stone"
     },
     {
         "id": 469,
@@ -10728,7 +10829,8 @@
         "locations": [
             "Sandgem (X 3466 / Y 2277 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/469.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/469.png",
+        "loot": "Mushroom, Cocoon Stone, TM Bug Bite"
     },
     {
         "id": 470,
@@ -10748,7 +10850,8 @@
         "locations": [
             "Three island (X 2727 / Y 599 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png",
+        "loot": "Mushroom, Leaf Stone"
     },
     {
         "id": 471,
@@ -10771,7 +10874,8 @@
                 "nota": "🔑 Quest Level 185"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/471.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/471.png",
+        "loot": "Mushroom, Ice Stone"
     },
     {
         "id": 472,
@@ -10792,7 +10896,8 @@
         "locations": [
             "Evoluindo de Gliglar"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/472.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/472.png",
+        "loot": "Heart Stone, Bottle of Poison, Bat Wing, Tooth"
     },
     {
         "id": 473,
@@ -10820,7 +10925,8 @@
                 "nota": "📌 Necessário pagar HDs para poder farmar"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/473.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/473.png",
+        "loot": "Ice Orb, Feather, Ice Stone, TM Blizzard, TM Ice Fang"
     },
     {
         "id": 474,
@@ -10840,7 +10946,8 @@
         "locations": [
             "Evolui de Porygon2"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/474.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/474.png",
+        "loot": "Mushroom"
     },
     {
         "id": 475,
@@ -10868,7 +10975,8 @@
                 "nota": "📌 Necessário pagar HDs para poder farmar"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/475.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/475.png",
+        "loot": "Enigma Stone, Apple Bite, TM Double Team, TM Calm Mind, TM Psybeam"
     },
     {
         "id": 476,
@@ -10896,7 +11004,8 @@
                 ]
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/476.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/476.png",
+        "loot": "Stone Orb, Rock Stone, Enigma Stone, TM Iron Defense"
     },
     {
         "id": 477,
@@ -10924,7 +11033,8 @@
                     "4. Entre no Portal!"
                 ]
             }
-        ]
+        ],
+        "loot": "Darkness Stone, Traces of Ghost, Future Orb, TM Will-O-Wisp, Dusknoir Ball"
     },
     {
         "id": 478,
@@ -10949,7 +11059,8 @@
                 "nota": "🔑 Quest Level 185"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/478.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/478.png",
+        "loot": "Ice Stone, Ice Orb, TM Icy Wind, TM Frost Breath, TM Aurora Veil, TM Ice Spinner"
     },
     {
         "id": 479,
@@ -10970,7 +11081,8 @@
         "locations": [
             "Armia (X 2146 / Y 871 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/479.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/479.png",
+        "loot": "TM Substitute"
     },
     {
         "id": 480,
@@ -11217,7 +11329,8 @@
         "locations": [
             "Jublife (X 3428 / Y 2156 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/496.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/496.png",
+        "loot": "Leaf Stone, Seed, Leaves, TM Coil"
     },
     {
         "id": 497,
@@ -11261,7 +11374,8 @@
                 "nota": "📌 Necessario acesso a Sinnoh"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/498.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/498.png",
+        "loot": "Fire Stone"
     },
     {
         "id": 499,
@@ -11311,7 +11425,8 @@
                 "nota": "📌 Necessario acesso a Sinnoh"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/500.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/500.png",
+        "loot": "Fire Stone, TM Blast Burn"
     },
     {
         "id": 501,
@@ -11332,7 +11447,8 @@
             "Sandgem (X 3573 / Y 2256 / Z 7)",
             "Pastoria (X 4039 / Y 2098 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/501.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/501.png",
+        "loot": "Water Stone, Water gem"
     },
     {
         "id": 502,
@@ -11352,7 +11468,8 @@
         "locations": [
             "Pastoria (X 4039 / Y 2098 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/502.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/502.png",
+        "loot": "Water Stone, TM Retaliate"
     },
     {
         "id": 503,
@@ -11373,7 +11490,8 @@
             "Sandgem (X 3505 / Y 2309 / Z 6)",
             "Pastoria (X 4039 / Y 2098 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/503.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/503.png",
+        "loot": "Water Stone, Water gem, TM Retaliate, TM Hydro Cannon"
     },
     {
         "id": 504,
@@ -11393,7 +11511,8 @@
         "locations": [
             "Solaceon (X 3927 / Y 2034 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/504.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/504.png",
+        "loot": "Heart Stone"
     },
     {
         "id": 505,
@@ -11413,7 +11532,8 @@
         "locations": [
             "Solaceon (X 3927 / Y 2034 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/505.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/505.png",
+        "loot": "Heart Stone"
     },
     {
         "id": 506,
@@ -11433,7 +11553,8 @@
         "locations": [
             "Pastoria (X 4020 / Y 1957 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/506.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/506.png",
+        "loot": "Heart Stone, TM Work Up"
     },
     {
         "id": 507,
@@ -11453,7 +11574,8 @@
         "locations": [
             "Pastoria (X 4020 / Y 1957 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/507.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/507.png",
+        "loot": "Heart Stone, TM Retaliate, TM Work Up"
     },
     {
         "id": 508,
@@ -11473,7 +11595,8 @@
         "locations": [
             "Pastoria (X 4020 / Y 1957 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/508.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/508.png",
+        "loot": "Heart Stone, TM Retaliate, TM Fire Fang, TM Work Up"
     },
     {
         "id": 509,
@@ -11493,7 +11616,8 @@
         "locations": [
             "Hearthome (X 3835 / Y 2020 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/509.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/509.png",
+        "loot": "Darkness Stone"
     },
     {
         "id": 510,
@@ -11513,7 +11637,8 @@
         "locations": [
             "Hearthome (X 3835 / Y 2020 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/510.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/510.png",
+        "loot": "Darkness Stone, TM Play Rough"
     },
     {
         "id": 511,
@@ -11533,7 +11658,8 @@
         "locations": [
             "Jublife (X 3428 / Y 2156 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/511.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/511.png",
+        "loot": "Leaf Stone"
     },
     {
         "id": 512,
@@ -11553,7 +11679,8 @@
         "locations": [
             "Jublife (X 3428 / Y 2156 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/512.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/512.png",
+        "loot": "Leaf Stone"
     },
     {
         "id": 513,
@@ -11577,7 +11704,8 @@
                 "nota": "📌 Necessario acesso a Sinnoh"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/513.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/513.png",
+        "loot": "Fire Stone, TM Incinerate"
     },
     {
         "id": 514,
@@ -11687,7 +11815,8 @@
                 "nota": "🔑 Clique na Bancada"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/518.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/518.png",
+        "loot": "Enigma Stone, TM Psychic, TM Stored Power"
     },
     {
         "id": 519,
@@ -11814,7 +11943,8 @@
                 "nota": "📌 Use RockSmash na Grade"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/524.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/524.png",
+        "loot": "Rock Stone"
     },
     {
         "id": 525,
@@ -11837,7 +11967,8 @@
                 "nota": "📌 Use RockSmash na Grade"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/525.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/525.png",
+        "loot": "Rock Stone, Stone Orb, small stone, TM Power Gem"
     },
     {
         "id": 526,
@@ -11884,7 +12015,8 @@
                 "nota": "📌 Use RockSmash na Grade"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/527.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/527.png",
+        "loot": "Enigma Stone, TM Steel Wing"
     },
     {
         "id": 528,
@@ -11908,7 +12040,8 @@
                 "nota": "📌 Use RockSmash na Grade"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/528.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/528.png",
+        "loot": "Enigma Stone, TM Steel Wing, TM Psycho Cut"
     },
     {
         "id": 529,
@@ -11928,7 +12061,8 @@
         "locations": [
             "Jublife (X 3464 / Y 2006 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/529.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/529.png",
+        "loot": "Earth Stone, TM Drill Run"
     },
     {
         "id": 530,
@@ -11949,7 +12083,8 @@
         "locations": [
             "Jublife (X 3464 / Y 2006 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/530.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/530.png",
+        "loot": "Earth Stone, TM Drill Run"
     },
     {
         "id": 531,
@@ -11969,7 +12104,8 @@
         "locations": [
             "Jublife (X 3495 / Y 1925 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/531.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/531.png",
+        "loot": "Heart Stone, TM Draining Kiss"
     },
     {
         "id": 532,
@@ -11989,7 +12125,8 @@
         "locations": [
             "Pastoria (X 3852 / Y 2251 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/532.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/532.png",
+        "loot": "Punch Stone, TM Low Kick"
     },
     {
         "id": 533,
@@ -12009,7 +12146,8 @@
         "locations": [
             "Pastoria (X 3852 / Y 2251 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/533.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/533.png",
+        "loot": "Punch Stone, TM Low Kick, TM Drain Punch"
     },
     {
         "id": 534,
@@ -12029,7 +12167,8 @@
         "locations": [
             "Pastoria (X 3852 / Y 2251 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/534.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/534.png",
+        "loot": "Punch Stone, TM Drain Punch"
     },
     {
         "id": 535,
@@ -12091,7 +12230,8 @@
         "locations": [
             "Burned"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/537.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/537.png",
+        "loot": "Mushroom, Water Stone, TM Echoed Voice, TM Drain Punch"
     },
     {
         "id": 538,
@@ -12111,7 +12251,8 @@
         "locations": [
             "Snowpoint (X 3779 / Y 1778 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/538.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/538.png",
+        "loot": "Punch Stone, TM Revenge"
     },
     {
         "id": 539,
@@ -12131,7 +12272,8 @@
         "locations": [
             "Snowpoint (X 3779 / Y 1778 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/539.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/539.png",
+        "loot": "Punch Stone, TM Mega Kick, TM Retaliate, TM Low Sweep, TM Stored Power"
     },
     {
         "id": 540,
@@ -12194,7 +12336,8 @@
         "locations": [
             "Jublife (X 3713 / Y 1929 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/542.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/542.png",
+        "loot": "Cocoon Stone"
     },
     {
         "id": 543,
@@ -12266,7 +12409,8 @@
                 "nota": "📌 Entre na Cachoeira"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/545.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/545.png",
+        "loot": "Cocoon Stone, TM Poison Jab"
     },
     {
         "id": 546,
@@ -12287,7 +12431,8 @@
         "locations": [
             "Jublife (X 3561 / Y 1919 / Z 5)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/546.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/546.png",
+        "loot": "Leaf Stone"
     },
     {
         "id": 547,
@@ -12308,7 +12453,8 @@
         "locations": [
             "Jublife (X 3561 / Y 1919 / Z 5)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/547.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/547.png",
+        "loot": "Leaf Stone, TM Helping Hand, TM Tailwind"
     },
     {
         "id": 548,
@@ -12329,7 +12475,8 @@
             "Jublife (X 3567 / Y 1845 / Z 7)",
             "Hearthome (X 3770 / Y 2056 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/548.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/548.png",
+        "loot": "Leaf Stone"
     },
     {
         "id": 549,
@@ -12350,7 +12497,8 @@
             "Jublife (X 3567 / Y 1845 / Z 7)",
             "Hearthome (X 3770 / Y 2056 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/549.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/549.png",
+        "loot": "Leaf Stone, TM Petal Blizzard"
     },
     {
         "id": 550,
@@ -12371,7 +12519,8 @@
             "Hearthome (X 3770 / Y 2056 / Z 6)",
             "Solaceon (X 3964 / Y 2001 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/550.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/550.png",
+        "loot": "Water Stone, Water Pendant, Water gem"
     },
     {
         "id": 551,
@@ -12392,7 +12541,8 @@
         "locations": [
             "Solaceon (X 3879 / Y 1910 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/551.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/551.png",
+        "loot": "Earth Stone, TM Swagger"
     },
     {
         "id": 552,
@@ -12413,7 +12563,8 @@
         "locations": [
             "Solaceon (X 3879 / Y 1910 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/552.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/552.png",
+        "loot": "Earth Stone, TM Swagger, TM Crunch"
     },
     {
         "id": 553,
@@ -12434,7 +12585,8 @@
         "locations": [
             "Solaceon (X 3879 / Y 1910 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/553.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/553.png",
+        "loot": "Earth Stone, TM Swagger, TM Crunch"
     },
     {
         "id": 554,
@@ -12495,7 +12647,8 @@
         "locations": [
             "Pastoria (X 3902 / Y 1846 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/556.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/556.png",
+        "loot": "Leaf Stone, TM Pin Missile"
     },
     {
         "id": 557,
@@ -12564,7 +12717,8 @@
         "locations": [
             "Pastoria (X 3833 / Y 2182 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/559.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/559.png",
+        "loot": "Punch Stone, TM Swagger, TM Facade"
     },
     {
         "id": 560,
@@ -12585,7 +12739,8 @@
         "locations": [
             "Pastoria (X 3833 / Y 2182 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/560.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/560.png",
+        "loot": "Punch Stone, TM Swagger, TM Facade"
     },
     {
         "id": 561,
@@ -12606,7 +12761,8 @@
         "locations": [
             "Grama alta sinnoh"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/561.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/561.png",
+        "loot": "Enigma Stone, TM Steel Wing"
     },
     {
         "id": 562,
@@ -12629,7 +12785,8 @@
                 "nota": "📌 Entre no Buraco"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/562.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/562.png",
+        "loot": "Darkness Stone, TM Brutal Swing"
     },
     {
         "id": 563,
@@ -12652,7 +12809,8 @@
                 "nota": "📌 Entre no Buraco"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/563.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/563.png",
+        "loot": "Darkness Stone, TM Scary Face"
     },
     {
         "id": 564,
@@ -12676,7 +12834,8 @@
                 "nota": "📌 Entre na Montanha"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/564.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/564.png",
+        "loot": "Water Stone, TM Muddy Water"
     },
     {
         "id": 565,
@@ -12700,7 +12859,8 @@
                 "nota": "📌 Entre na Montanha"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/565.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/565.png",
+        "loot": "Water Stone, Water gem, TM Rain Dance, TM Muddy Water"
     },
     {
         "id": 566,
@@ -12721,7 +12881,8 @@
         "locations": [
             "Snowpoint (X 3938 / Y 1812 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/566.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/566.png",
+        "loot": "Rock Stone, Stone Orb, small stone"
     },
     {
         "id": 567,
@@ -12742,7 +12903,8 @@
         "locations": [
             "Snowpoint (X 3938 / Y 1812 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/567.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/567.png",
+        "loot": "Rock Stone, Stone Orb, small stone"
     },
     {
         "id": 568,
@@ -12808,7 +12970,8 @@
         "locations": [
             "Qualquer lugar do mapa, deve ter o oculos da quest Zorua"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/570.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/570.png",
+        "loot": "Mushroom, Darkness Stone"
     },
     {
         "id": 571,
@@ -12828,7 +12991,8 @@
         "locations": [
             "Evoluindo Zorua"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/571.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/571.png",
+        "loot": "Mushroom, Darkness Stone"
     },
     {
         "id": 572,
@@ -12920,7 +13084,8 @@
                 "nota": "📌 Entre no Buraco"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/575.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/575.png",
+        "loot": "Enigma Stone, Future Orb"
     },
     {
         "id": 576,
@@ -12943,7 +13108,8 @@
                 "nota": "📌 Entre no Buraco"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/576.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/576.png",
+        "loot": "Enigma Stone, Future Orb"
     },
     {
         "id": 577,
@@ -13003,7 +13169,8 @@
         "locations": [
             "Evoluindo de Duosion"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/579.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/579.png",
+        "loot": "Mushroom, psychic stone"
     },
     {
         "id": 580,
@@ -13024,7 +13191,8 @@
         "locations": [
             "Pastoria (X 4103 / Y 2053 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/580.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/580.png",
+        "loot": "Water Stone, TM Aqua Ring, TM Aerial Ace, TM Feather Dance"
     },
     {
         "id": 581,
@@ -13045,7 +13213,8 @@
         "locations": [
             "Pastoria (X 4103 / Y 2053 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/581.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/581.png",
+        "loot": "Water Stone, TM Aqua Ring, TM Aerial Ace, TM Feather Dance, TM Tailwind"
     },
     {
         "id": 582,
@@ -13089,7 +13258,8 @@
         "locations": [
             "Snowpoint (X 3682 / Y 1610 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/583.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/583.png",
+        "loot": "Ice Stone, TM Icy Wind"
     },
     {
         "id": 584,
@@ -13109,7 +13279,8 @@
         "locations": [
             "Snowpoint (X 3682 / Y 1610 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/584.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/584.png",
+        "loot": "Ice Stone, TM Icy Wind, TM Icicle Spear"
     },
     {
         "id": 585,
@@ -13130,7 +13301,8 @@
         "locations": [
             "Jublife (X 3487 / Y 1887 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/585.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/585.png",
+        "loot": "Leaf Stone"
     },
     {
         "id": 586,
@@ -13149,7 +13321,8 @@
             "spd": 95
         },
         "locations": [],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/586.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/586.png",
+        "loot": "Leaf Stone"
     },
     {
         "id": 587,
@@ -13168,7 +13341,8 @@
             "spd": 103
         },
         "locations": [],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/587.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/587.png",
+        "loot": "Thunder Stone, TM Phantom Force"
     },
     {
         "id": 588,
@@ -13191,7 +13365,8 @@
                 "nota": "📌 Entre no Buraco"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/588.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/588.png",
+        "loot": "Cocoon Stone"
     },
     {
         "id": 589,
@@ -13215,7 +13390,8 @@
                 "nota": "📌 Entre no Buraco"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/589.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/589.png",
+        "loot": "Metal Coat Stone"
     },
     {
         "id": 590,
@@ -13239,7 +13415,8 @@
                 "nota": "📌 Entre no buraco entre as arvores."
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/590.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/590.png",
+        "loot": "Venom Stone"
     },
     {
         "id": 591,
@@ -13343,7 +13520,8 @@
         "locations": [
             "Jublife (X 3548 / Y 1991 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/595.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/595.png",
+        "loot": "Thunder Stone, TM Phantom Force, TM Sky drop"
     },
     {
         "id": 596,
@@ -13364,7 +13542,8 @@
         "locations": [
             "Jublife (X 3548 / Y 1991 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/596.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/596.png",
+        "loot": "Thunder Stone, TM Phantom Force, TM Electroweb"
     },
     {
         "id": 597,
@@ -13385,7 +13564,8 @@
         "locations": [
             "Jublife (X 3323 / Y 2302 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/597.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/597.png",
+        "loot": "Leaf Stone, Seed"
     },
     {
         "id": 598,
@@ -13406,7 +13586,8 @@
         "locations": [
             "Jublife (X 3323 / Y 2302 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/598.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/598.png",
+        "loot": "Metal Coat Stone, Seed"
     },
     {
         "id": 599,
@@ -13466,7 +13647,8 @@
         "locations": [
             "Jublife (X 3323 / Y 2302 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/601.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/601.png",
+        "loot": "Metal Coat Stone"
     },
     {
         "id": 602,
@@ -13526,7 +13708,8 @@
         "locations": [
             "Burned"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/604.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/604.png",
+        "loot": "Mushroom, Thunder Stone"
     },
     {
         "id": 605,
@@ -13549,7 +13732,8 @@
                 "nota": "📌 Clique no Globo"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/605.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/605.png",
+        "loot": "Enigma Stone, Future Orb, TM Hidden Power, TM Imprison"
     },
     {
         "id": 606,
@@ -13596,7 +13780,8 @@
                 "nota": "📌 Entre no buraco entre as arvores."
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/607.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/607.png",
+        "loot": "Mushroom, Darkness Stone, TM Will-O-Wisp"
     },
     {
         "id": 608,
@@ -13620,7 +13805,8 @@
                 "nota": "📌 Entre no buraco entre as arvores."
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/608.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/608.png",
+        "loot": "Mushroom, Darkness Stone, TM Will-O-Wisp"
     },
     {
         "id": 609,
@@ -13644,7 +13830,8 @@
                 "nota": "📌 Entre no buraco entre as arvores."
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/609.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/609.png",
+        "loot": "Mushroom, Darkness Stone, TM Will-O-Wisp"
     },
     {
         "id": 610,
@@ -13684,7 +13871,8 @@
         "locations": [
             "Grama alta em Sinnoh"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/611.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/611.png",
+        "loot": "Crystal Stone, TM Dragon Claw"
     },
     {
         "id": 612,
@@ -13724,7 +13912,8 @@
         "locations": [
             "Snowpoint (X 3636 / Y 1670 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/613.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/613.png",
+        "loot": "Mushroom, Ice Stone"
     },
     {
         "id": 614,
@@ -13744,7 +13933,8 @@
         "locations": [
             "Snowpoint (X 3636 / Y 1670 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/614.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/614.png",
+        "loot": "Ice Stone, TM Frost Breath"
     },
     {
         "id": 615,
@@ -13764,7 +13954,8 @@
         "locations": [
             "Snowpoint (X 3657 / Y 1585 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/615.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/615.png",
+        "loot": "Ice Stone, TM Ice Beam, TM Ice Spinner"
     },
     {
         "id": 616,
@@ -13787,7 +13978,8 @@
                 "nota": "📌 Entre no Buraco"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/616.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/616.png",
+        "loot": "Cocoon Stone"
     },
     {
         "id": 617,
@@ -13810,7 +14002,8 @@
                 "nota": "📌 Entre no Buraco"
             }
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/617.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/617.png",
+        "loot": "Cocoon Stone, Pot of moss bug, TM Bug Buzz, TM U-Turn"
     },
     {
         "id": 618,
@@ -13831,7 +14024,8 @@
         "locations": [
             "Canavale (X 3408 / Y 2014 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/618.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/618.png",
+        "loot": "Earth Stone, TM Muddy Water, TM Mud Shot"
     },
     {
         "id": 619,
@@ -13852,7 +14046,8 @@
             "Veilstone (X 4136 / Y 1965 / Z 6)",
             "Canavale (X 3263 / Y 2212 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/619.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/619.png",
+        "loot": "Punch Stone"
     },
     {
         "id": 620,
@@ -13873,7 +14068,8 @@
             "Veilstone (X 4136 / Y 1965 / Z 6)",
             "Canavale (X 3263 / Y 2212 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/620.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/620.png",
+        "loot": "Punch Stone"
     },
     {
         "id": 621,
@@ -13893,7 +14089,8 @@
         "locations": [
             "Veilstone (X 4106 / Y 2018 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/621.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/621.png",
+        "loot": "Crystal Stone, TM Dragon Claw, TM Outrage, TM Hone Claws"
     },
     {
         "id": 622,
@@ -13914,7 +14111,8 @@
         "locations": [
             "Snowpoint (X 3682 / Y 1610 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/622.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/622.png",
+        "loot": "Mushroom, gear stone, TM Phantom Force, TM Stomping Tantrum"
     },
     {
         "id": 623,
@@ -13935,7 +14133,8 @@
         "locations": [
             "Snowpoint (X 3682 / Y 1610 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/623.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/623.png",
+        "loot": "Mushroom, psychic stone, TM Phantom Force, TM Stomping Tantrum"
     },
     {
         "id": 624,
@@ -13957,7 +14156,8 @@
             "Jublife (X 3315 / Y 2217 / Z 7)",
             "Jublife (X 3261 / Y 2184 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/624.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/624.png",
+        "loot": "Darkness Stone"
     },
     {
         "id": 625,
@@ -13979,7 +14179,8 @@
             "Jublife (X 3324 / Y 2198 / Z 6)",
             "Jublife (X 3261 / Y 2184 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/625.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/625.png",
+        "loot": "Metal Coat Stone, TM Assurance, TM Metal Claw"
     },
     {
         "id": 626,
@@ -13999,7 +14200,8 @@
         "locations": [
             "Pastoria (X 3970 / Y 2031 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/626.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/626.png",
+        "loot": "Heart Stone, TM Giga Impact"
     },
     {
         "id": 627,
@@ -14020,7 +14222,8 @@
         "locations": [
             "Hearthome (X 3791 / Y 2084 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/627.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/627.png",
+        "loot": "Heart Stone, TM Sky drop"
     },
     {
         "id": 628,
@@ -14041,7 +14244,8 @@
         "locations": [
             "Hearthome (X 3791 / Y 2084 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/628.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/628.png",
+        "loot": "Heart Stone, TM Sky Attack, TM Sky drop, TM Brave Bird"
     },
     {
         "id": 629,
@@ -14083,7 +14287,8 @@
         "locations": [
             "Jublife (X 3564 / Y 2146 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/630.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/630.png",
+        "loot": "Heart Stone, TM Whirlwind, TM Dark Pulse"
     },
     {
         "id": 631,
@@ -14103,7 +14308,8 @@
         "locations": [
             "Canavale (X 3348 / Y 1955 / Z 0)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/631.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/631.png",
+        "loot": "Fire Stone, TM Incinerate, TM Flare Blitz"
     },
     {
         "id": 633,
@@ -14132,7 +14338,8 @@
                     "4. Entre no Portal (X 3797 / Y 2266 / Z 100)"
                 ]
             }
-        ]
+        ],
+        "loot": "Mushroom, Darkness Stone, TM Dragon Pulse, TM Nasty Plot"
     },
     {
         "id": 634,
@@ -14161,7 +14368,8 @@
                     "4. Entre no Portal (X 3797 / Y 2266 / Z 100)"
                 ]
             }
-        ]
+        ],
+        "loot": "Mushroom, Darkness Stone, TM Dragon Pulse, TM Nasty Plot"
     },
     {
         "id": 635,
@@ -14190,7 +14398,8 @@
                     "4. Entre no Portal (X 3797 / Y 2266 / Z 100)"
                 ]
             }
-        ]
+        ],
+        "loot": "Mushroom, Darkness Stone, TM Dragon Pulse, TM Nasty Plot"
     },
     {
         "id": 636,
@@ -14211,7 +14420,8 @@
         "locations": [
             "Luxury (X 2660 / Y 529 / Z 7)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/636.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/636.png",
+        "loot": "Sun Stone, Bottle of Poison, TM Bug Bite"
     },
     {
         "id": 637,
@@ -14232,7 +14442,8 @@
         "locations": [
             "Evoluindo de Larvesta"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/637.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/637.png",
+        "loot": "Sun Stone, Bottle of Poison, TM Bug Bite"
     },
     {
         "id": 638,
@@ -14507,7 +14718,8 @@
         "locations": [
             "Canavale (X 3263 / Y 2212 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/722.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/722.png",
+        "loot": "Feather, Leaves, Leaf Stone, Heart Stone"
     },
     {
         "id": 723,
@@ -14528,7 +14740,8 @@
         "locations": [
             "Canavale (X 3263 / Y 2212 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/723.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/723.png",
+        "loot": "Feather, Leaves, Leaf Stone, Heart Stone"
     },
     {
         "id": 724,
@@ -14549,7 +14762,8 @@
         "locations": [
             "Canavale (X 3263 / Y 2212 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/724.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/724.png",
+        "loot": "Feather, Leaves, Leaf Stone, Heart Stone"
     },
     {
         "id": 902,
@@ -14570,7 +14784,8 @@
             "Hearthome (X 3770 / Y 2056 / Z 6)",
             "Hearthome (X 3791 / Y 2084 / Z 6)"
         ],
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/902.png"
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/902.png",
+        "loot": "Water Stone, Pot of moss bug"
     },
     {
         "id": "58-hisui",
