@@ -3016,8 +3016,8 @@
         ]
     },
     {
-        "name": "Magmortar fur",
-        "icon_name": "magmortar-fur",
+        "name": "Magmortar Fire",
+        "icon_name": "magmortar-fire",
         "droppedBy": [
             {
                 "id": 467,
