@@ -2,6 +2,7 @@
 // VARIÁVEIS GLOBAIS DE ESTADO E MAPA
 // ==========================================
 let pokemonData = [];
+let itemData = [];
 let currentVisibleList = []; // Guarda a lista que está sendo exibida na tela
 let currentModalIndex = 0;   // Guarda a posição do Pokémon aberto no modal
 
@@ -173,16 +174,20 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========================================
 async function fetchData() {
     try {
-        const [normalRes, darkRes, bossRes] = await Promise.all([
+        const [normalRes, darkRes, bossRes, itemRes] = await Promise.all([
             fetch('data_normal.json?v=' + new Date().getTime()),
             fetch('data_dark.json?v=' + new Date().getTime()),
-            fetch('data_boss.json?v=' + new Date().getTime())
+            fetch('data_boss.json?v=' + new Date().getTime()),
+            fetch('data_items.json?v=' + new Date().getTime()).catch(() => null) // Não quebra se o arquivo não existir
         ]);
         const normalData = await normalRes.json();
         const darkData = await darkRes.json();
         const bossData = await bossRes.json();
         pokemonData = [...normalData, ...darkData, ...bossData];
         currentVisibleList = [...pokemonData]; 
+        
+        if(itemRes && itemRes.ok) itemData = await itemRes.json();
+        
         renderPokemon(pokemonData);
     } catch (e) { 
         console.error("Erro ao carregar os bancos de dados.", e); 
@@ -312,7 +317,30 @@ function applyFilters() {
     }
     
     currentVisibleList = filtered;
-    renderPokemon(filtered);
+    
+    // DECISÃO DE RENDERIZAÇÃO: POKÉMON VS INVENTÁRIO
+    if (searchMode === 'loot' && itemData.length > 0) {
+        // Se estiver no modo Loot, filtramos o banco de Itens pelo nome
+        let filteredItems = itemData;
+        if (search !== '') {
+            filteredItems = itemData.filter(i => i.name.toLowerCase().includes(search));
+        }
+        renderItems(filteredItems);
+    } else {
+        renderPokemon(filtered);
+    }
+}
+
+// NOVA FUNÇÃO: DESENHAR A GRADE DE ITENS (INVENTÁRIO)
+function renderItems(list) {
+    const grid = document.getElementById('pokedex-grid');
+    grid.innerHTML = list.map(item => `
+        <div class="item-card" onclick="openItemModal('${item.name}')">
+            <img src="img/loots/${item.icon_name}.gif" alt="${item.name}" onerror="this.onerror=null; this.src='img/loots/${item.icon_name}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};">
+            <span class="item-card-name">${item.name}</span>
+            <span class="item-card-count">${item.droppedBy.length} DROP(S)</span>
+        </div>
+    `).join('');
 }
 
 window.toggleCatch = (event, id) => {
@@ -1586,4 +1614,52 @@ window.searchByLoot = (lootName, event) => {
     
     const displayElement = document.querySelector('.pokedex-main-display');
     if(displayElement) displayElement.scrollTop = 0;
+};
+
+// ==========================================
+// POKÉDEX VERTICAL (MODAL DE ITENS) E CONEXÕES
+// ==========================================
+
+// Substitui a função searchByLoot antiga (Agora ela abre o Modal Vertical direto!)
+window.searchByLoot = (lootName, event) => {
+    if (event) event.stopPropagation();
+    
+    // Fecha o modal do Pokémon
+    document.getElementById('pokemon-modal').classList.add('hidden');
+    
+    // Abre a Pokédex Vertical do Item
+    openItemModal(lootName);
+};
+
+// Abre a Pokédex Vertical e lista os Pokémons
+window.openItemModal = (itemName) => {
+    const item = itemData.find(i => i.name === itemName);
+    if (!item) return;
+
+    // Popula a Tela Superior
+    document.getElementById('modal-item-name').innerText = item.name;
+    document.getElementById('modal-item-count').innerText = `${item.droppedBy.length} POKÉMON(S) DROPAM`;
+    
+    const imgEl = document.getElementById('modal-item-img');
+    const fallbackJS = `this.onerror=null; this.src='img/loots/${item.icon_name}.png'; this.onerror=function(){this.src='https://dummyimage.com/64x64/dcdde1/2c3e50.png&text=?';};`;
+    imgEl.onerror = new Function(fallbackJS);
+    imgEl.src = `img/loots/${item.icon_name}.gif`;
+
+    // Popula a Tela Inferior
+    const droppersContainer = document.getElementById('modal-item-droppers');
+    droppersContainer.innerHTML = item.droppedBy.map(p => `
+        <div class="mini-dropper-card" onclick="swapToPokemonModal('${p.id}')">
+            <img src="${p.image}" loading="lazy">
+            <span>${p.name}</span>
+        </div>
+    `).join('');
+
+    // Exibe o Modal
+    document.getElementById('item-modal').classList.remove('hidden');
+};
+
+// Quando o cara tá no Modal de Item e clica num rosto de Pokémon
+window.swapToPokemonModal = (pokeId) => {
+    document.getElementById('item-modal').classList.add('hidden');
+    openModal(pokeId);
 };
