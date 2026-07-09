@@ -161,11 +161,37 @@
 
             <div class="pokedex-main-display">
                 
-                <!-- MÁGICA DO ÁLBUM: Flash da câmera e Botão Flutuante -->
-                <div id="screen-flash" style="position: absolute; inset: 0; background: #fff; z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.15s;"></div>
-                <button id="edit-tm-btn" class="edit-tm-btn hidden" onclick="toggleTMEditMode()">✏️ EDITAR COLEÇÃO</button>
+                <!-- PAINEL DE CONTROLE DE TMs (ÁLBUM) -->
+                <div id="tm-dashboard" class="tm-dashboard hidden">
+                    <div class="tm-info">
+                        <span class="tm-album-title">💿 ÁLBUM DE TMs</span>
+                        <p class="tm-desc">Marque os TMs que você já possui para rastrear sua coleção.</p>
+                        <div class="tm-progress-bar"><div id="tm-progress-fill"></div></div>
+                    </div>
+                    <div class="tm-controls">
+                        <button onclick="filterTMs('all', this)" class="tm-ctrl-btn active">TODOS</button>
+                        <button onclick="filterTMs('owned', this)" class="tm-ctrl-btn">OBTIDOS</button>
+                        <button onclick="filterTMs('missing', this)" class="tm-ctrl-btn">FALTAM</button>
+                        <button onclick="toggleTMEditMode()" id="edit-tm-btn" class="tm-ctrl-btn tm-edit-action">✏️ EDITAR</button>
+                        <button onclick="requestReset()" class="tm-ctrl-btn reset-btn">🗑️ RESETAR</button>
+                    </div>
+                </div>
 
                 <div class="pokemon-grid" id="pokedex-grid"></div>
+
+                <!-- MODAL DE CONFIRMAÇÃO DE RESET -->
+                <div id="reset-confirm-modal" class="oak-overlay hidden">
+                    <div class="oak-container">
+                        <div class="oak-screen" style="border-color: #e3350d; align-items: center;">
+                            <h2 class="report-title" style="color:#e3350d; border-color:#e3350d;">RESETAR COLEÇÃO?</h2>
+                            <p style="font-family: monospace; font-size: 0.8rem; text-align: center; margin-bottom: 20px;">Tem certeza? Isso apagará todo o seu progresso de TMs marcados e não pode ser desfeito!</p>
+                            <div style="display: flex; gap: 10px; width: 100%;">
+                                <button onclick="resetTMCollection()" class="final-support-btn" style="background:#e3350d; color:#fff; flex:1;">SIM, APAGAR</button>
+                                <button onclick="document.getElementById('reset-confirm-modal').classList.add('hidden')" class="final-support-btn" style="background:#444; color:#fff; flex:1;">NÃO, CANCELAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div id="map-viewer-container" style="display: none; height: 100%; width: 100%;">
                     <div class="map-screen" style="height: 100%; width: 100%; position: relative; border: 4px solid var(--dex-border); border-radius: 12px; background: #2a2a2a; overflow: hidden; display: flex; flex-direction: column;">
