@@ -16,9 +16,11 @@ let activeMetaFilter = 'all';  // Filtro Meta-Gaming
 let searchMode = 'pokemon'; // Controla se estamos buscando por nome ou por loot
 
 let caughtPokemon = JSON.parse(localStorage.getItem('pokedex-caught')) || [];
+caughtPokemon = caughtPokemon.map(String); // MÁGICA 1: Força todos os saves antigos a virarem texto!
+
 let caughtTMs = JSON.parse(localStorage.getItem('pokedex-tms')) || [];
 let isEditingTMs = false; // Controla se estamos no "modo álbum"
-caughtPokemon = caughtPokemon.map(String); // MÁGICA 1: Força todos os saves antigos a virarem texto!
+let currentTmFilter = 'all'; // Filtro do Dashboard
 
 const types = ['Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy'];
 
@@ -141,16 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const optPokemon = document.getElementById('mode-pokemon');
             const optLoot = document.getElementById('mode-loot');
             
-            // Mostra a pílula de edição APENAS na aba de TMs
-            const editTmBtn = document.getElementById('edit-tm-btn');
-            if (activeCategory === 'tms') {
-                if(editTmBtn) editTmBtn.classList.remove('hidden');
-            } else {
-                if(editTmBtn) editTmBtn.classList.add('hidden');
-                // Se sair da aba enquanto edita, fecha e salva o álbum sozinho
-                if(isEditingTMs) toggleTMEditMode(); 
-            }
-
             if (activeCategory === 'drops' || activeCategory === 'tms') {
                 searchMode = 'loot';
                 if (optPokemon && optLoot) { optPokemon.classList.remove('active'); optLoot.classList.add('active'); }
@@ -169,8 +161,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(tutModule) { tutModule.style.display = 'block'; closeTutorial(); }
             } else if (activeCategory === 'drops' || activeCategory === 'tms') {
                 gridContainer.style.display = 'grid'; searchModule.style.display = 'block';
-                filtersModule.style.display = 'none'; // Esconde os filtros de Tipos/Regiões para os Itens
+                filtersModule.style.display = 'none';
                 if(mapSidebar) mapSidebar.style.display = 'none'; mapContainer.style.display = 'none'; if(tutModule) tutModule.style.display = 'none';
+                
+                // MÁGICA DO ÁLBUM: Mostra o Dashboard só nos TMs
+                const tmDash = document.getElementById('tm-dashboard');
+                if (activeCategory === 'tms') {
+                    if(tmDash) tmDash.classList.remove('hidden');
+                    if(window.updateTMProgress) window.updateTMProgress();
+                } else {
+                    if(tmDash) tmDash.classList.add('hidden');
+                    if(isEditingTMs && window.toggleTMEditMode) window.toggleTMEditMode();
+                }
+                
                 applyFilters(); 
             } else {
                 gridContainer.style.display = 'grid'; searchModule.style.display = 'block'; filtersModule.style.display = 'block';
@@ -394,17 +397,22 @@ function applyFilters() {
     }
 }
 
-// NOVA FUNÇÃO: DESENHAR A GRADE DE ITENS (INVENTÁRIO)
+// NOVA FUNÇÃO: DESENHAR A GRADE DE ITENS E APLICAR FILTROS DO ÁLBUM
 function renderItems(list) {
     const grid = document.getElementById('pokedex-grid');
-    grid.innerHTML = list.map(item => {
-        
-        // Verifica se é um TM e se o jogador já marcou que possui
+    
+    // Filtro do Álbum de TMs
+    let displayList = list;
+    if (activeCategory === 'tms') {
+        if (currentTmFilter === 'owned') displayList = list.filter(i => caughtTMs.includes(i.name));
+        if (currentTmFilter === 'missing') displayList = list.filter(i => !caughtTMs.includes(i.name));
+    }
+
+    grid.innerHTML = displayList.map(item => {
         const isTM = item.name.toUpperCase().startsWith("TM ");
         const isOwned = isTM && caughtTMs.includes(item.name);
         const ownedClass = isOwned ? 'tm-owned' : '';
 
-        // Note o novo evento onclick chamando a função handleItemClick!
         return `
             <div class="item-card ${ownedClass}" onclick="handleItemClick('${item.name}', event, ${isTM})">
                 <img src="img/loots/${item.icon_name}.gif" alt="${item.name}" onerror="this.onerror=null; this.src='img/loots/${item.icon_name}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};">
@@ -415,30 +423,23 @@ function renderItems(list) {
     }).join('');
 }
 
-// O "Sequestrador" de clique: Decide se marca como pego ou se abre o Modal
+// LÓGICA DO ÁLBUM DE TMs
 window.handleItemClick = (itemName, event, isTM) => {
     if (event) event.stopPropagation();
     
     if (isEditingTMs && isTM) {
-        // MODO ÁLBUM: Adiciona ou remove da coleção
         const idx = caughtTMs.indexOf(itemName);
-        if (idx > -1) {
-            caughtTMs.splice(idx, 1);
-        } else {
-            caughtTMs.push(itemName);
-        }
-        localStorage.setItem('pokedex-tms', JSON.stringify(caughtTMs));
+        if (idx > -1) { caughtTMs.splice(idx, 1); } 
+        else { caughtTMs.push(itemName); }
         
-        // Dá o efeito visual instantâneo (pisca dourado na hora)
-        const card = event.currentTarget;
-        card.classList.toggle('tm-owned');
+        localStorage.setItem('pokedex-tms', JSON.stringify(caughtTMs));
+        event.currentTarget.classList.toggle('tm-owned');
+        updateTMProgress();
     } else {
-        // MODO NORMAL: Abre o modal para ver quem dropa
         openItemModal(itemName);
     }
 };
 
-// O Ativador do Modo de Edição e o Efeito de Flash
 window.toggleTMEditMode = () => {
     const grid = document.getElementById('pokedex-grid');
     const btn = document.getElementById('edit-tm-btn');
@@ -446,21 +447,51 @@ window.toggleTMEditMode = () => {
     
     isEditingTMs = !isEditingTMs;
     
-    // Efeito Fotográfico
     if(flash) {
         flash.classList.add('flash-active');
         setTimeout(() => flash.classList.remove('flash-active'), 150);
     }
-    
+
     if (isEditingTMs) {
         grid.classList.add('tm-edit-mode');
-        btn.innerHTML = '💾 SALVAR COLEÇÃO';
+        btn.innerHTML = '💾 SALVAR';
         btn.classList.add('editing');
     } else {
         grid.classList.remove('tm-edit-mode');
-        btn.innerHTML = '✏️ EDITAR COLEÇÃO';
+        btn.innerHTML = '✏️ EDITAR';
         btn.classList.remove('editing');
+        applyFilters(); 
     }
+};
+
+window.filterTMs = (type, btnElement) => {
+    currentTmFilter = type;
+    document.querySelectorAll('.tm-ctrl-btn').forEach(b => {
+        if(!b.classList.contains('tm-edit-action') && !b.classList.contains('reset-btn')) {
+            b.classList.remove('active');
+        }
+    });
+    btnElement.classList.add('active');
+    applyFilters();
+};
+
+window.updateTMProgress = () => {
+    const totalTMs = itemData.filter(i => i.name.toUpperCase().startsWith("TM ")).length;
+    if(totalTMs === 0) return;
+    const pct = (caughtTMs.length / totalTMs) * 100;
+    const bar = document.getElementById('tm-progress-fill');
+    if(bar) bar.style.width = pct + '%';
+};
+
+window.requestReset = () => { document.getElementById('reset-confirm-modal').classList.remove('hidden'); };
+
+window.resetTMCollection = () => {
+    caughtTMs = [];
+    localStorage.removeItem('pokedex-tms');
+    document.getElementById('reset-confirm-modal').classList.add('hidden');
+    if(isEditingTMs) toggleTMEditMode();
+    applyFilters();
+    updateTMProgress();
 };
 
 window.toggleCatch = (event, id) => {
@@ -1679,6 +1710,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchModeToggle = document.getElementById('search-mode-toggle');
     const optPokemon = document.getElementById('mode-pokemon');
     const optLoot = document.getElementById('mode-loot');
+    
 
     if(searchModeToggle) {
         searchModeToggle.addEventListener('click', () => {
