@@ -2293,7 +2293,7 @@ body.dark-mode .mini-dropper-card span { color: #fff; }
     transition: all 0.2s ease; outline: none; display: flex; align-items: center; gap: 5px;
 }
 .edit-tm-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 transparent; }
-.edit-tm-btn.editing { background: #32cd32; color: #111; } /* Fica verde quando está editando */
+.edit-tm-btn.editing { background: #32cd32; color: #111; } 
 .edit-tm-btn.hidden { display: none !important; }
 
 /* Animação do Flash fotográfico */
