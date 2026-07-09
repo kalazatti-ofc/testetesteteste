@@ -161,6 +161,10 @@
 
             <div class="pokedex-main-display">
                 
+                <!-- MÁGICA DO ÁLBUM: Flash da câmera e Botão Flutuante -->
+                <div id="screen-flash" style="position: absolute; inset: 0; background: #fff; z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.15s;"></div>
+                <button id="edit-tm-btn" class="edit-tm-btn hidden" onclick="toggleTMEditMode()">✏️ EDITAR COLEÇÃO</button>
+
                 <div class="pokemon-grid" id="pokedex-grid"></div>
 
                 <div id="map-viewer-container" style="display: none; height: 100%; width: 100%;">
