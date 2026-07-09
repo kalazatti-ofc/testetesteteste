@@ -2281,3 +2281,38 @@ body.dark-mode .item-bottom-area .label-tech { color: #aaa; text-shadow: none; b
 body.dark-mode .mini-dropper-card { background: #1a1a1a; border-color: #111; box-shadow: 2px 2px 0 #000; }
 body.dark-mode .mini-dropper-card:hover { border-color: #ffcb05; }
 body.dark-mode .mini-dropper-card span { color: #fff; }
+
+/* =========================================
+   SISTEMA DE ÁLBUM DE TMs (COLEÇÃO)
+========================================= */
+.edit-tm-btn {
+    position: absolute; top: 15px; right: 25px; z-index: 100;
+    background: #444; color: #fff; font-family: monospace; font-weight: 900; font-size: 0.7rem;
+    padding: 8px 12px; border: 3px solid var(--dex-border); border-radius: 20px;
+    cursor: pointer; box-shadow: 2px 2px 0 var(--dex-border);
+    transition: all 0.2s ease; outline: none; display: flex; align-items: center; gap: 5px;
+}
+.edit-tm-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 transparent; }
+.edit-tm-btn.editing { background: #32cd32; color: #111; } /* Fica verde quando está editando */
+.edit-tm-btn.hidden { display: none !important; }
+
+/* Animação do Flash fotográfico */
+.flash-active { opacity: 1 !important; }
+
+/* O Selo Dourado para os TMs Capturados */
+.item-card.tm-owned {
+    border-color: #ffcb05; 
+    box-shadow: 0 0 10px rgba(255, 203, 5, 0.4), 3px 3px 0 rgba(0,0,0,0.1);
+}
+
+/* MÁGICA DO ÁLBUM (Modo Edição)
+   Aplica filtro cinza em todos, mas restaura a cor nos que têm a classe tm-owned 
+*/
+.tm-edit-mode .item-card { filter: grayscale(1) opacity(0.6); }
+.tm-edit-mode .item-card.tm-owned { filter: grayscale(0) opacity(1); }
+.tm-edit-mode .item-card:hover { filter: grayscale(0.2) opacity(0.9); transform: scale(1.05); }
+
+/* Adaptações do Botão para Dark Mode */
+body.dark-mode .edit-tm-btn { background: #1a1a1a; border-color: #000; box-shadow: 2px 2px 0 #000; }
+body.dark-mode .edit-tm-btn.editing { background: #27ae60; color: #fff; }
+body.dark-mode .item-card.tm-owned { border-color: #ffcb05; box-shadow: inset 0 0 10px rgba(255, 203, 5, 0.1), 3px 3px 0 #000; }
