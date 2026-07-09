@@ -2283,60 +2283,87 @@ body.dark-mode .mini-dropper-card:hover { border-color: #ffcb05; }
 body.dark-mode .mini-dropper-card span { color: #fff; }
 
 /* =========================================
-   SISTEMA DE ÁLBUM DE TMs (COLEÇÃO)
+   SISTEMA DE ÁLBUM DE TMs (DASHBOARD REFORMULADO)
 ========================================= */
-.edit-tm-btn {
-    position: absolute; top: 15px; right: 25px; z-index: 100;
-    background: #444; color: #fff; font-family: monospace; font-weight: 900; font-size: 0.7rem;
-    padding: 8px 12px; border: 3px solid var(--dex-border); border-radius: 20px;
-    cursor: pointer; box-shadow: 2px 2px 0 var(--dex-border);
-    transition: all 0.2s ease; outline: none; display: flex; align-items: center; gap: 5px;
-}
-.edit-tm-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 transparent; }
-.edit-tm-btn.editing { background: #32cd32; color: #111; } 
-.edit-tm-btn.hidden { display: none !important; }
-
-/* Animação do Flash fotográfico */
-.flash-active { opacity: 1 !important; }
-
-/* O Selo Dourado para os TMs Capturados */
-.item-card.tm-owned {
-    border-color: #ffcb05; 
-    box-shadow: 0 0 10px rgba(255, 203, 5, 0.4), 3px 3px 0 rgba(0,0,0,0.1);
-}
-
-/* MÁGICA DO ÁLBUM (Modo Edição)
-   Aplica filtro cinza em todos, mas restaura a cor nos que têm a classe tm-owned 
-*/
-.tm-edit-mode .item-card { filter: grayscale(1) opacity(0.6); }
-.tm-edit-mode .item-card.tm-owned { filter: grayscale(0) opacity(1); }
-.tm-edit-mode .item-card:hover { filter: grayscale(0.2) opacity(0.9); transform: scale(1.05); }
-
-/* Adaptações do Botão para Dark Mode */
-body.dark-mode .edit-tm-btn { background: #1a1a1a; border-color: #000; box-shadow: 2px 2px 0 #000; }
-body.dark-mode .edit-tm-btn.editing { background: #27ae60; color: #fff; }
-body.dark-mode .item-card.tm-owned { border-color: #ffcb05; box-shadow: inset 0 0 10px rgba(255, 203, 5, 0.1), 3px 3px 0 #000; }
-
 .tm-dashboard { 
     background: #fff; border: 4px solid var(--dex-border); border-radius: 12px;
     padding: 15px; margin-bottom: 15px; display: flex; gap: 20px; align-items: center;
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05), 4px 4px 0 rgba(0,0,0,0.15);
+    flex-wrap: wrap; 
 }
-.tm-info { flex: 1; }
-.tm-album-title { font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: var(--dex-red); }
-.tm-desc { font-size: 0.75rem; color: #555; font-weight: 700; margin-top: 4px; }
-.tm-progress-bar { width: 100%; height: 8px; background: #eee; border-radius: 4px; margin-top: 8px; overflow: hidden; }
-#tm-progress-fill { height: 100%; background: #32cd32; width: 0%; transition: width 0.5s ease; }
+.tm-info { flex: 1; min-width: 200px; }
+.tm-album-title { font-family: 'Press Start 2P', monospace; font-size: 0.75rem; color: var(--dex-border); }
+.tm-desc { font-size: 0.75rem; color: #555; font-weight: 700; margin-top: 6px; line-height: 1.3;}
+.tm-progress-bar { width: 100%; height: 10px; background: rgba(0,0,0,0.1); border-radius: 6px; margin-top: 10px; overflow: hidden; border: 2px solid var(--dex-border); }
+#tm-progress-fill { height: 100%; background: #32cd32; width: 0%; transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-.tm-controls { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
-.tm-ctrl-btn { 
-    padding: 6px 10px; border: 2px solid var(--dex-border); border-radius: 6px;
-    background: #f0f0f0; font-family: monospace; font-weight: 900; font-size: 0.7rem; cursor: pointer;
+.tm-controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; justify-content: flex-end; }
+
+.tm-action-btn { 
+    padding: 8px 12px; border: 3px solid var(--dex-border); border-radius: 8px;
+    font-family: monospace; font-weight: 900; font-size: 0.7rem; 
+    cursor: pointer; transition: 0.1s; outline: none;
+    display: flex; align-items: center; gap: 5px; justify-content: center;
 }
-.tm-ctrl-btn:hover { background: #e0e0e0; }
-.tm-ctrl-btn.active { background: var(--dex-red); color: #fff; border-color: var(--dex-border); }
-.reset-btn { color: var(--dex-red); }
+.tm-action-btn:active { transform: translate(2px,2px); box-shadow: 0 0 0 transparent !important; }
 
-body.dark-mode .tm-dashboard { background: #2a2a2c; border-color: #111; }
-body.dark-mode .tm-ctrl-btn { background: #333; color: #fff; border-color: #000; }
+/* Cores dos 3 Botões Principais */
+.edit-btn { background: #ffcb05; color: #111; box-shadow: 2px 2px 0 var(--dex-border); }
+.edit-btn:hover { background: #ffe066; }
+.edit-btn.editing { background: #32cd32; color: #111; }
+
+.filter-btn { background: #3498db; color: #fff; box-shadow: 2px 2px 0 var(--dex-border); }
+.filter-btn:hover { background: #5dade2; }
+
+.reset-action-btn { background: #f0f0f0; color: var(--dex-red); border-color: var(--dex-red); box-shadow: 2px 2px 0 var(--dex-red); }
+.reset-action-btn:hover { background: #ffe6e6; }
+
+/* Wrapper do Dropdown (Filtro) */
+.tm-filter-wrapper { position: relative; }
+.tm-dropdown { 
+    position: absolute; top: calc(100% + 5px); left: 0; width: 100%; 
+    background: #fff; border: 3px solid var(--dex-border); border-radius: 8px; 
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2); z-index: 100; overflow: hidden;
+}
+.tm-dropdown.hidden { display: none; }
+.tm-drop-item { 
+    padding: 10px; font-family: monospace; font-weight: 800; font-size: 0.7rem; 
+    color: #444; cursor: pointer; border-bottom: 2px dashed rgba(0,0,0,0.1); transition: 0.2s;
+}
+.tm-drop-item:last-child { border-bottom: none; }
+.tm-drop-item:hover { background: #f0f4f8; color: #111; padding-left: 15px; }
+.tm-drop-item.active { background: #3498db; color: #fff; }
+
+/* Bug 1 Resolvido: Texto do Modal de Reset */
+.reset-modal-text { font-family: monospace; font-size: 0.8rem; text-align: center; margin-bottom: 20px; color: #333; font-weight: 800; line-height: 1.5; }
+
+/* O Selo Dourado para os TMs Capturados */
+.item-card.tm-owned { border-color: #ffcb05; box-shadow: 0 0 10px rgba(255, 203, 5, 0.4), 3px 3px 0 rgba(0,0,0,0.1); }
+
+/* MODO EDIÇÃO (Filtro Cinza) */
+.tm-edit-mode .item-card { filter: grayscale(1) opacity(0.5); }
+.tm-edit-mode .item-card.tm-owned { filter: grayscale(0) opacity(1); }
+.tm-edit-mode .item-card:hover { filter: grayscale(0) opacity(1); transform: scale(1.05); }
+
+/* DARK MODE */
+body.dark-mode .tm-dashboard { background: #1a1a1a; border-color: #000; box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 4px 4px 0 #000; }
+body.dark-mode .tm-album-title { color: #ffcb05; }
 body.dark-mode .tm-desc { color: #aaa; }
+body.dark-mode .tm-progress-bar { background: #111; border-color: #000; }
+body.dark-mode .edit-btn { border-color: #000; box-shadow: 2px 2px 0 #000; }
+body.dark-mode .filter-btn { border-color: #000; box-shadow: 2px 2px 0 #000; }
+body.dark-mode .reset-action-btn { background: #1a1a1a; border-color: var(--dex-red); box-shadow: 2px 2px 0 var(--dex-red); }
+body.dark-mode .reset-action-btn:hover { background: #331a1a; }
+body.dark-mode .tm-dropdown { background: #1a1a1a; border-color: #000; box-shadow: 4px 4px 0 #000; }
+body.dark-mode .tm-drop-item { color: #aaa; border-bottom-color: #333; }
+body.dark-mode .tm-drop-item:hover { background: #2a2a2c; color: #fff; }
+body.dark-mode .tm-drop-item.active { background: #3498db; color: #fff; }
+body.dark-mode .reset-modal-text { color: #ddd; }
+body.dark-mode .item-card.tm-owned { border-color: #ffcb05; box-shadow: inset 0 0 10px rgba(255, 203, 5, 0.1), 3px 3px 0 #000; }
+
+@media (max-width: 768px) {
+    .tm-controls { justify-content: flex-start; width: 100%; }
+    .tm-action-btn { flex: 1; text-align: center; padding: 10px 4px; font-size: 0.65rem; }
+    .tm-filter-wrapper { flex: 1; }
+    #tm-filter-btn { width: 100%; }
+}
