@@ -3,6 +3,7 @@
 // ==========================================
 let pokemonData = [];
 let itemData = [];
+let guiasData = [];
 let currentVisibleList = []; // Guarda a lista que está sendo exibida na tela
 let currentModalIndex = 0;   // Guarda a posição do Pokémon aberto no modal
 let currentModalItemIndex = 0; // Guarda a posição do Item aberto no modal
@@ -173,12 +174,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========================================
 async function fetchData() {
     try {
-        const [normalRes, darkRes, bossRes, itemRes] = await Promise.all([
+        const [normalRes, darkRes, bossRes, itemRes, guiasRes] = await Promise.all([
             fetch('data_normal.json?v=' + new Date().getTime()),
             fetch('data_dark.json?v=' + new Date().getTime()),
             fetch('data_boss.json?v=' + new Date().getTime()),
-            fetch('data_items.json?v=' + new Date().getTime()).catch(() => null) // Não quebra se o arquivo não existir
+            fetch('data_items.json?v=' + new Date().getTime()).catch(() => null),
+            fetch('data_guias.json?v=' + new Date().getTime()).catch(() => null)
         ]);
+        
         const normalData = await normalRes.json();
         const darkData = await darkRes.json();
         const bossData = await bossRes.json();
@@ -187,10 +190,39 @@ async function fetchData() {
         
         if(itemRes && itemRes.ok) itemData = await itemRes.json();
         
+        if(guiasRes && guiasRes.ok) {
+            guiasData = await guiasRes.json();
+            renderGuias(guiasData);
+        }
+        
         renderPokemon(pokemonData);
     } catch (e) { 
         console.error("Erro ao carregar os bancos de dados.", e); 
     }
+}
+
+// NOVA FUNÇÃO: DESENHAR OS GUIAS (WIKI)
+function renderGuias(guias) {
+    const grid = document.getElementById('tutorials-grid');
+    const articleContainer = document.getElementById('tutorial-articles-container');
+
+    if (!grid || !articleContainer) return;
+
+    // Renderiza os cartões (Grid inicial)
+    grid.innerHTML = guias.map(g => `
+        <div class="tut-card" onclick="openTutorial('${g.id}')">
+            <img src="${g.thumb}" alt="${g.title}" class="tut-thumb" onerror="this.src='https://dummyimage.com/200x110/3498db/fff.png&text=Guia'">
+            <h3 class="tut-title">${g.title}</h3>
+            <p class="tut-desc">${g.desc}</p>
+        </div>
+    `).join('');
+
+    // Renderiza o corpo dos artigos completos de forma oculta
+    articleContainer.innerHTML = guias.map(g => `
+        <div class="article-content-block" id="article-${g.id}" style="display: none;">
+            ${g.content.join('\n')}
+        </div>
+    `).join('');
 }
 
 function renderTypeButtons() {
