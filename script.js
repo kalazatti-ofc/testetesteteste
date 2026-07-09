@@ -167,10 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // MÁGICA DO ÁLBUM: Mostra o Dashboard só nos TMs
                 const tmDash = document.getElementById('tm-dashboard');
                 if (activeCategory === 'tms') {
-                    if(tmDash) tmDash.classList.remove('hidden');
+                    if(tmDash) tmDash.style.display = 'flex';
                     if(window.updateTMProgress) window.updateTMProgress();
                 } else {
-                    if(tmDash) tmDash.classList.add('hidden');
+                    if(tmDash) tmDash.style.display = 'none';
                     if(isEditingTMs && window.toggleTMEditMode) window.toggleTMEditMode();
                 }
                 
@@ -464,16 +464,39 @@ window.toggleTMEditMode = () => {
     }
 };
 
-window.filterTMs = (type, btnElement) => {
+// LÓGICA DO MENU FLUTUANTE (DROPDOWN) DE FILTRO
+window.toggleTMFilterMenu = (event) => {
+    if(event) event.stopPropagation();
+    const dropdown = document.getElementById('tm-filter-dropdown');
+    if(dropdown) dropdown.classList.toggle('hidden');
+};
+
+window.selectTMFilter = (type, label, itemElement) => {
     currentTmFilter = type;
-    document.querySelectorAll('.tm-ctrl-btn').forEach(b => {
-        if(!b.classList.contains('tm-edit-action') && !b.classList.contains('reset-btn')) {
-            b.classList.remove('active');
-        }
-    });
-    btnElement.classList.add('active');
+    
+    // Atualiza o texto do botão principal com o que foi escolhido
+    const btn = document.getElementById('tm-filter-btn');
+    if(btn) btn.innerHTML = `🎛️ FILTRO: ${label} ▼`;
+    
+    // Atualiza a marcação azul de quem foi clicado na lista
+    document.querySelectorAll('.tm-drop-item').forEach(el => el.classList.remove('active'));
+    if(itemElement) itemElement.classList.add('active');
+    
+    // Esconde o menuzinho
+    const dropdown = document.getElementById('tm-filter-dropdown');
+    if(dropdown) dropdown.classList.add('hidden');
+    
     applyFilters();
 };
+
+// Esconde o submenu de filtros se o cara clicar em qualquer outro lugar da tela
+document.addEventListener('click', (event) => {
+    const dropdown = document.getElementById('tm-filter-dropdown');
+    const filterBtn = document.getElementById('tm-filter-btn');
+    if (dropdown && !dropdown.classList.contains('hidden') && event.target !== filterBtn) {
+        dropdown.classList.add('hidden');
+    }
+});
 
 window.updateTMProgress = () => {
     const totalTMs = itemData.filter(i => i.name.toUpperCase().startsWith("TM ")).length;
