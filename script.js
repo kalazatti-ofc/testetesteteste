@@ -1649,7 +1649,7 @@ window.switchForm = (newId) => {
 // ==========================================
 
 const vipData = {
-    donators: ["Jarubinha", "The DarkNess", "Avil"],
+    donators: ["Jarubinha", "The DarkNess", "Avil", "Player level One"],
     contributors: ["Paleguazv", "Marlin", "Leander Hastings", "Vincent", "Ricardobtj", "Bonacina", "Upzin"]
 };
 
