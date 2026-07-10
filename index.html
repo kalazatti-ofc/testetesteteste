@@ -162,17 +162,16 @@
             <div class="pokedex-main-display">
                 
                 <!-- PAINEL DE CONTROLE DE TMs (ÁLBUM) -->
+                <div class="pokedex-main-display">
+                
                 <div id="tm-dashboard" class="tm-dashboard" style="display: none;">
                     <div class="tm-info">
-                        <span class="tm-album-title">💿 COLEÇAO DE TMs</span>
+                        <span class="tm-album-title">💿 ÁLBUM DE TMs</span>
                         <p class="tm-desc">Marque os TMs que você já possui para rastrear sua coleção.</p>
                         <div class="tm-progress-bar"><div id="tm-progress-fill"></div></div>
                     </div>
-                    
                     <div class="tm-controls">
                         <button onclick="toggleTMEditMode()" id="edit-tm-btn" class="tm-action-btn edit-btn">✏️ EDITAR COLEÇÃO</button>
-                        
-                        <!-- BOTÃO DE FILTRO COM DROPDOWN -->
                         <div class="tm-filter-wrapper">
                             <button onclick="toggleTMFilterMenu(event)" id="tm-filter-btn" class="tm-action-btn filter-btn">🎛️ FILTRO: TODOS ▼</button>
                             <div id="tm-filter-dropdown" class="tm-dropdown hidden">
@@ -181,27 +180,54 @@
                                 <div onclick="selectTMFilter('missing', 'FALTAM', this)" class="tm-drop-item">Apenas Faltam</div>
                             </div>
                         </div>
-
                         <button onclick="requestReset()" class="tm-action-btn reset-action-btn">🗑️ RESETAR</button>
                     </div>
                 </div>
 
                 <div class="pokemon-grid" id="pokedex-grid"></div>
 
-                <!-- MODAL DE CONFIRMAÇÃO DE RESET (BUG DA COR CORRIGIDO) -->
-                <div id="reset-confirm-modal" class="oak-overlay hidden">
-                    <div class="oak-container">
-                        <div class="oak-screen" style="border-color: #e3350d; align-items: center;">
-                            <h2 class="report-title" style="color:#e3350d; border-color:#e3350d;">RESETAR COLEÇÃO?</h2>
-                            <p class="reset-modal-text">Tem certeza? Isso apagará todo o seu progresso de TMs marcados e não pode ser desfeito!</p>
-                            <div style="display: flex; gap: 10px; width: 100%;">
-                                <button onclick="resetTMCollection()" class="final-support-btn" style="background:#e3350d; color:#fff; flex:1;">SIM, APAGAR</button>
-                                <button onclick="document.getElementById('reset-confirm-modal').classList.add('hidden')" class="final-support-btn" style="background:#444; color:#fff; flex:1;">NÃO, CANCELAR</button>
+                <div id="map-viewer-container" style="display: none; height: 100%; width: 100%;">
+                    <div class="map-screen" style="height: 100%; width: 100%; position: relative; border: 4px solid var(--dex-border); border-radius: 12px; background: #2a2a2a; overflow: hidden; display: flex; flex-direction: column;">
+                        <div id="map-wrapper" style="width: 100%; height: 100%; cursor: grab; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: transparent;">
+                            <div id="map-content" style="position: relative; display: inline-block;">
+                                <img id="map-image" src="" alt="Mapa" style="display: block; width: 100%; height: auto; z-index: 2; transform-origin: center center; will-change: transform;">
+                                <div id="map-pins-container"></div>
+                                <svg id="map-routes-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; overflow: visible;"></svg>
+                                <div class="map-overlay" style="position: absolute; inset: 0; z-index: 4; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 2px, transparent 2px, transparent 4px);"></div>
+                            </div>
+                            <div class="map-controls-vertical">
+                                <button id="btn-zoom-in" class="zoom-btn" title="Aumentar Zoom">＋</button>
+                                <button id="btn-zoom-reset" class="zoom-btn" title="Resetar Visão">🎯</button>
+                                <button id="btn-zoom-out" class="zoom-btn" title="Diminuir Zoom">－</button>
+                            </div>
+                            <div class="map-hud-floating">
+                                <span class="blink" style="color:var(--dex-red);">● REC</span>
+                                <span id="map-status-text">AGUARDANDO SINAL...</span>
                             </div>
                         </div>
                     </div>
+                </div> 
+
+                <div id="tutorials-module" style="display: none; height: 100%; width: 100%; overflow-y: auto;">
+                    <div id="tutorials-grid" class="tut-grid"></div>
+                    <div id="tutorial-article-view" style="display: none; height: 100%;">
+                        <button onclick="closeTutorial()" class="final-support-btn" style="width: max-content; margin: 0 0 15px 0; padding: 10px 15px; display: inline-block;">❮ VOLTAR AOS GUIAS</button>
+                        <div id="tutorial-articles-container"></div>
+                    </div>
                 </div>
+
+            </div> </div> </div> <div id="reset-confirm-modal" class="oak-overlay hidden">
+        <div class="oak-container">
+            <div class="oak-screen" style="border-color: #e3350d; align-items: center;">
+                <h2 class="report-title" style="color:#e3350d; border-color:#e3350d;">RESETAR COLEÇÃO?</h2>
+                <p class="reset-modal-text">Tem certeza? Isso apagará todo o seu progresso de TMs marcados e não pode ser desfeito!</p>
+                <div style="display: flex; gap: 10px; width: 100%;">
+                    <button onclick="resetTMCollection()" class="final-support-btn" style="background:#e3350d; color:#fff; flex:1;">SIM, APAGAR</button>
+                    <button onclick="document.getElementById('reset-confirm-modal').classList.add('hidden')" class="final-support-btn" style="background:#444; color:#fff; flex:1;">NÃO, CANCELAR</button>
                 </div>
+            </div>
+        </div>
+    </div>
 
                 <div id="map-viewer-container" style="display: none; height: 100%; width: 100%;">
                     <div class="map-screen" style="height: 100%; width: 100%; position: relative; border: 4px solid var(--dex-border); border-radius: 12px; background: #2a2a2a; overflow: hidden; display: flex; flex-direction: column;">
