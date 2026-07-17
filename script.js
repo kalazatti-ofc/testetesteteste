@@ -151,6 +151,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (optPokemon && optLoot) { optLoot.classList.remove('active'); optPokemon.classList.add('active'); }
             }
 
+            // 👇 CORREÇÃO: Controle GLOBAL do Dashboard de TMs (agora desliga em todas as outras abas)
+            const tmDash = document.getElementById('tm-dashboard');
+            if (activeCategory === 'tms') {
+                if(tmDash) tmDash.style.display = 'flex';
+                if(window.updateTMProgress) window.updateTMProgress();
+            } else {
+                if(tmDash) tmDash.style.display = 'none';
+                if(isEditingTMs && window.toggleTMEditMode) window.toggleTMEditMode();
+            }
+
+            // Oculta/Mostra elementos baseado na aba clicada
             if (activeCategory === 'mapas') {
                 gridContainer.style.display = 'none'; searchModule.style.display = 'none'; filtersModule.style.display = 'none';
                 if(tutModule) tutModule.style.display = 'none'; if(mapSidebar) mapSidebar.style.display = 'block'; 
@@ -160,20 +171,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 mapContainer.style.display = 'none'; if(mapSidebar) mapSidebar.style.display = 'none'; 
                 if(tutModule) { tutModule.style.display = 'block'; closeTutorial(); }
             } else if (activeCategory === 'drops' || activeCategory === 'tms') {
-                gridContainer.style.display = 'grid'; searchModule.style.display = 'block';
-                filtersModule.style.display = 'none';
+                gridContainer.style.display = 'grid'; searchModule.style.display = 'block'; filtersModule.style.display = 'none';
                 if(mapSidebar) mapSidebar.style.display = 'none'; mapContainer.style.display = 'none'; if(tutModule) tutModule.style.display = 'none';
-                
-                // MÁGICA DO ÁLBUM: Mostra o Dashboard só nos TMs
-                const tmDash = document.getElementById('tm-dashboard');
-                if (activeCategory === 'tms') {
-                    if(tmDash) tmDash.style.display = 'flex';
-                    if(window.updateTMProgress) window.updateTMProgress();
-                } else {
-                    if(tmDash) tmDash.style.display = 'none';
-                    if(isEditingTMs && window.toggleTMEditMode) window.toggleTMEditMode();
-                }
-                
                 applyFilters(); 
             } else {
                 gridContainer.style.display = 'grid'; searchModule.style.display = 'block'; filtersModule.style.display = 'block';
@@ -802,15 +801,10 @@ window.toggleAccordion = (buttonEl, event, passosEscapados) => {
         arrowIcon.innerText = container.classList.contains('hidden-steps') ? '▼' : '▲';
     }
 
-    // Lógica de desenhar no mapa (Corrigida para Mobile)
+    // 5. Lógica de desenhar no mapa (mantida igual à sua)
     if (!container.classList.contains('hidden-steps') && passosEscapados) {
+        document.querySelector('.cat-btn[data-cat="mapas"]').click();
         const arrayPassos = JSON.parse(decodeURIComponent(passosEscapados));
-        
-        // Só muda de aba automaticamente se a tela for maior que 768px (Computador)
-        if (window.innerWidth > 768) {
-            document.querySelector('.cat-btn[data-cat="mapas"]').click();
-        }
-        
         if(window.drawRouteOnMap) window.drawRouteOnMap(arrayPassos);
     }
 };
@@ -1913,23 +1907,4 @@ function renderItemModal() {
 window.swapToPokemonModal = (pokeId) => {
     document.getElementById('item-modal').classList.add('hidden');
     openModal(pokeId);
-};
-
-// ==========================================
-// SANFONA DO HALL DA FAMA (COMO PARTICIPAR)
-// ==========================================
-window.toggleVipAccordion = (btn) => {
-    const content = document.getElementById('vip-join-content');
-    
-    // Liga ou desliga a classe que esconde o conteúdo
-    content.classList.toggle('hidden-steps');
-    
-    // Troca o texto e a seta do botão dependendo do estado
-    if (content.classList.contains('hidden-steps')) {
-        btn.innerText = 'COMO SE TORNAR UM APOIADOR? ▼';
-        btn.style.color = '#ffcb05'; // Volta pro amarelo
-    } else {
-        btn.innerText = 'OCULTAR INFORMAÇÕES ▲';
-        btn.style.color = '#fff'; // Fica branco quando aberto
-    }
 };
