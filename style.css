@@ -2404,99 +2404,74 @@ body.dark-mode .item-card.tm-owned { border-color: #ffcb05; box-shadow: inset 0 
 }
 
 /* ==========================================
-   SEÇÃO "COMO PARTICIPAR" NO MODAL VIP
+   BANNERS HORIZONTAIS - HALL DA FAMA (COMPACTO)
 ========================================== */
-.vip-join-section {
-    margin-top: 35px;
-    padding-top: 25px;
-    border-top: 2px dashed rgba(255, 255, 255, 0.15);
-    text-align: center;
-}
-
-.vip-join-title {
-    color: #ffcb05; /* Amarelo Padrão Pokémon */
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.vip-join-cards {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap; /* Faz quebrar a linha no celular */
-}
-
-.vip-card {
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 20px;
-    flex: 1;
-    min-width: 240px;
+.vip-join-content {
     display: flex;
     flex-direction: column;
+    gap: 12px;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    overflow: hidden;
+}
+
+/* Estado Fechado */
+.vip-join-content.hidden-steps {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0 !important;
+}
+
+/* Estado Aberto */
+.vip-join-content:not(.hidden-steps) {
+    max-height: 400px; /* Espaço suficiente para abrir os banners */
+    opacity: 1;
+}
+
+.vip-horizontal-banner {
+    display: flex;
     align-items: center;
-    transition: transform 0.2s ease, background 0.2s ease;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px 15px;
+    gap: 15px;
 }
 
-.vip-card:hover {
-    transform: translateY(-4px);
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+.vip-horizontal-banner .banner-icon {
+    font-size: 2.2rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
-.vip-card-icon {
-    font-size: 2.8rem;
-    margin-bottom: 12px;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+.vip-horizontal-banner .banner-text {
+    flex: 1; /* Faz o texto empurrar o botão lá pro canto direito */
+    text-align: left;
 }
 
-.vip-card h4 {
-    margin: 0 0 12px 0;
+.vip-horizontal-banner .banner-text h4 {
+    margin: 0 0 4px 0;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 800;
 }
 
-.vip-card p {
+.vip-horizontal-banner .banner-text p {
+    margin: 0;
     color: #bcc2cd;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    flex-grow: 1; /* Empurra os botões sempre pro final do card */
+    font-size: 0.8rem;
+    line-height: 1.4;
 }
 
-.vip-action-btn {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    text-decoration: none;
-    width: 100%;
-    box-sizing: border-box;
-    transition: filter 0.2s ease, transform 0.1s ease;
-}
-
-.vip-action-btn:hover {
-    filter: brightness(1.15);
-}
-
-.vip-action-btn:active {
-    transform: scale(0.96);
-}
-
-.btn-cafe {
-    background: #e67e22;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
-}
-
-.btn-desbravador {
-    background: #3498db;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+/* Adaptação perfeita para Celular */
+@media (max-width: 500px) {
+    .vip-horizontal-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    .vip-horizontal-banner .banner-text {
+        text-align: center;
+    }
+    .vip-horizontal-banner .final-support-btn {
+        width: 100% !important; /* Estica o botão no celular */
+    }
 }
