@@ -346,7 +346,10 @@ function applyFilters() {
             mSearch = p.name.toLowerCase().includes(search) || p.id.toString() === search;
         } else if (searchMode === 'loot') {
             if (p.loot) {
-                mSearch = p.loot.toLowerCase().includes(search);
+                // NOVA LÓGICA: Verifica se é Array. Se sim, busca nos itens. Se não, busca como texto normal.
+                mSearch = Array.isArray(p.loot) 
+                    ? p.loot.some(item => item.toLowerCase().includes(search)) 
+                    : p.loot.toLowerCase().includes(search);
             }
         }
 
@@ -993,9 +996,16 @@ window.openModal = (id) => {
     // ======================= LÓGICA DO LOOT =======================
     let lootHTML = '<span style="color:#888; font-size: 0.8rem; font-family: monospace;">Loot não registrado.</span>';
     
-    if (p.loot && typeof p.loot === 'string' && p.loot.trim() !== '') {
-        const items = p.loot.split(',').map(item => item.trim());
-        
+    let items = [];
+    if (p.loot) {
+        if (Array.isArray(p.loot)) {
+            items = p.loot; // Se já for o Array novo, usa direto
+        } else if (typeof p.loot === 'string' && p.loot.trim() !== '') {
+            items = p.loot.split(',').map(item => item.trim()); // Se for o texto antigo, faz o split
+        }
+    }
+
+    if (items.length > 0) {
         lootHTML = '<div class="loot-icons-container">' + items.map(item => {
             let safeImgName = item.toLowerCase().replace(/[^a-z0-9]/g, '-');
             
@@ -1038,7 +1048,7 @@ window.openModal = (id) => {
                 </div>
                 
                 <div class="loot-box" style="margin-top: 10px; background: #fff; padding: 10px; border-radius: 8px; border: 3px solid var(--dex-border); font-size: 1rem; color: var(--dex-red); font-weight: 900; text-transform: uppercase;">
-                    ${p.loot || '<span style="color:#888; font-size: 0.8rem;">Recompensa não registrada.</span>'}
+                    ${(Array.isArray(p.loot) ? p.loot.join(', ') : p.loot) || '<span style="color:#888; font-size: 0.8rem;">Recompensa não registrada.</span>'}
                 </div>
                 
                 <div class="boss-bonus-container">
