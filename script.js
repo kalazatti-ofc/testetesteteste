@@ -784,12 +784,25 @@ function renderMapPins() {
 // ==========================================
 // UTILITÁRIOS E MODAL
 // ==========================================
-window.toggleAccordion = (arrowEl, event, passosEscapados) => {
+window.toggleAccordion = (buttonEl, event, passosEscapados) => {
     if(event) event.stopPropagation();
-    const container = arrowEl.closest('.loc-accordion').querySelector('.loc-steps-container');
+    
+    // 1. Encontra os containers corretos
+    const accordion = buttonEl.closest('.loc-accordion');
+    const container = accordion.querySelector('.loc-steps-container');
+    
+    // 2. Encontra APENAS o elemento da setinha dentro do botão
+    const arrowIcon = buttonEl.querySelector('.expand-arrow'); 
+    
+    // 3. Abre ou fecha a sanfona
     container.classList.toggle('hidden-steps');
-    arrowEl.innerText = container.classList.contains('hidden-steps') ? '▼' : '▲';
 
+    // 4. Muda apenas o texto da setinha, sem apagar o nome da rota!
+    if (arrowIcon) {
+        arrowIcon.innerText = container.classList.contains('hidden-steps') ? '▼' : '▲';
+    }
+
+    // 5. Lógica de desenhar no mapa (mantida igual à sua)
     if (!container.classList.contains('hidden-steps') && passosEscapados) {
         document.querySelector('.cat-btn[data-cat="mapas"]').click();
         const arrayPassos = JSON.parse(decodeURIComponent(passosEscapados));
