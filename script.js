@@ -1111,12 +1111,13 @@ window.openModal = (id) => {
         let htmlDarkSkill = '';
         if (p.darkSkill) {
             htmlDarkSkill = `
-                <div class="dark-skill-container" ontouchstart="this.classList.add('active')" ontouchend="this.classList.remove('active')">
-                    <div class="dark-skill-content">
-                        <img src="${p.darkSkill.icone}" alt="${p.darkSkill.nome}" class="dark-skill-icon" onerror="this.src='https://dummyimage.com/48x48/8a2be2/fff.png&text=?'">
-                        <div class="dark-skill-text">
-                            <h4 class="dark-skill-name">${p.darkSkill.nome}</h4>
-                            <p class="dark-skill-desc">${p.darkSkill.desc}</p>
+                <div class="data-module" style="margin-bottom: 10px;">
+                    <h4 class="label-tech">HABILIDADE EXCLUSIVA</h4>
+                    <div style="display: flex; gap: 15px; align-items: center; margin-top: 10px; padding: 5px;">
+                        <img src="${p.darkSkill.icone}" alt="${p.darkSkill.nome}" style="width: 50px; height: 50px; border-radius: 8px; border: 2px solid var(--dex-border, #333); image-rendering: pixelated;" onerror="this.src='https://dummyimage.com/50x50/8a2be2/fff.png&text=?'">
+                        <div style="flex: 1;">
+                            <h4 style="margin: 0; color: #111; font-size: 1.1rem; font-weight: 900; text-transform: uppercase;">${p.darkSkill.nome}</h4>
+                            <p style="margin: 5px 0 0 0; color: #444; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">${p.darkSkill.desc}</p>
                         </div>
                     </div>
                 </div>
