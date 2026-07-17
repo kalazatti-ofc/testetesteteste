@@ -2475,3 +2475,60 @@ body.dark-mode .item-card.tm-owned { border-color: #ffcb05; box-shadow: inset 0 
         width: 100% !important; /* Estica o botão no celular */
     }
 }
+
+/* ==========================================
+   OTIMIZAÇÃO MOBILE: DASHBOARD DE TMS
+========================================== */
+@media (max-width: 600px) {
+    .tm-dashboard {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    .tm-album-title {
+        font-size: 1.1rem;
+    }
+    .tm-desc {
+        font-size: 0.75rem;
+        margin-bottom: 10px;
+    }
+    .tm-controls {
+        flex-direction: column; /* Empilha os botões no celular */
+        gap: 8px;
+    }
+    .tm-action-btn {
+        width: 100%;
+        font-size: 0.75rem;
+        padding: 10px;
+    }
+    .tm-filter-wrapper {
+        width: 100%;
+    }
+}
+
+/* ==========================================
+   OTIMIZAÇÃO MOBILE: GUIAS E TUTORIAIS
+========================================== */
+@media (max-width: 600px) {
+    .guide-main-title {
+        font-size: 1.1rem !important;
+        line-height: 1.4;
+        text-align: center;
+    }
+    .guide-sub-title {
+        font-size: 0.9rem !important;
+    }
+    .guide-section-box {
+        padding: 12px;
+    }
+    .guide-section-box p, 
+    .guide-section-box li {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+    /* Botão de "Voltar aos Guias" menor */
+    #tutorial-article-view .final-support-btn {
+        font-size: 0.7rem !important;
+        padding: 8px 12px !important;
+        margin-bottom: 10px !important;
+    }
+}
