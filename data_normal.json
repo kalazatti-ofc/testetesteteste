@@ -2168,8 +2168,9 @@
         },
         "locations": [
             {
-                "rota": "Cerulean (X 1214 / Y 819 / Z 7)",
+                "rota": "Quest Rock Stone (Lvl 80+)",
                 "passos": [
+                    "Cerulean (X 1214 / Y 819 / Z 7)",
                     "Quest Rock Stone (X 1198 / Y 836 / Z 8)"
                 ]
             },
@@ -2204,7 +2205,7 @@
         },
         "locations": [
             {
-                "rota": "Quest Rock Stone -  lVL 88+",
+                "rota": "Quest Rock Stone (Lvl 80+)",
                 "passos": [
                     "Cerulean (X 1214 / Y 819 / Z 7)",
                     "Quest Rock Stone (X 1198 / Y 836 / Z 8)"
@@ -2243,7 +2244,7 @@
         "locations": [
             "Phenac (X 2514 / Y 1475 / Z 5)",
             {
-                "rota": "Quest Rock Stone -  lVL 88+",
+                "rota": "Quest Rock Stone (Lvl 80+)",
                 "passos": [
                     "Cerulean (X 1214 / Y 819 / Z 7)",
                     "Quest Rock Stone (X 1198 / Y 836 / Z 8)"
@@ -3281,7 +3282,7 @@
         },
         "locations": [
             {
-                "rota": "Quest Rock Stone -  lVL 88+",
+                "rota": "Quest Rock Stone (Lvl 80+)",
                 "passos": [
                     "Cerulean (X 1214 / Y 819 / Z 7)",
                     "Quest Rock Stone (X 1198 / Y 836 / Z 8)"
@@ -5382,7 +5383,7 @@
             "Violet (X 1764 / Y 475 / Z 6)",
             "Azalea (X 1759 / Y 471 / Z 7)",
             {
-                "rota": "Rota Hunter Village",
+                "rota": "Arredores de Hunter Village",
                 "passos": [
                     "Hunter Village (X 1502 / Y 1667 / Z 7)",
                     "Hunter Village (X 1439 / Y 1650 / Z 7)",
@@ -5748,7 +5749,7 @@
         },
         "locations": [
             {
-                "rota": "Piramite dos Unowns",
+                "rota": "Piramide dos Unowns",
                 "passos": [
                     "Cianwood (X 605 / Y 116 / Z 7)",
                     "SPOT 1 Siga ao sul (X 614 / Y 142 / Z 8)",
@@ -5781,7 +5782,7 @@
         },
         "locations": [
             {
-                "rota": "Piramite dos Unowns",
+                "rota": "Piramide dos Unowns",
                 "passos": [
                     "Cianwood (X 605 / Y 116 / Z 7)",
                     "SPOT 1 Siga ao sul (X 614 / Y 142 / Z 8)",
@@ -10413,10 +10414,10 @@
                 "nota": "📌 Necessário pagar HDs para poder farmar"
             },
             {
-                "rota": "Cinnabar (X 802 / Y 1264 / Z 7)",
+                "rota": "Catacumbas do Castelo",
                 "passos": [
                     "1. Cinnabar (X 802 / Y 1264 / Z 7)",
-                    "2. Desça as escadas (X 796 / Y 1273 / Z 9)"
+                    "2. Desça as escadas (X 796 / Y 1273 / Z 9)",
                 ]
             }
         ],
@@ -10444,7 +10445,7 @@
         },
         "locations": [
             {
-                "rota": "Cinnabar (X 802 / Y 1264 / Z 7)",
+                "rota": "Catacumbas do Castelo",
                 "passos": [
                     "1. Cinnabar (X 802 / Y 1264 / Z 7)",
                     "2. Desça as escadas (X 796 / Y 1273 / Z 9)",
