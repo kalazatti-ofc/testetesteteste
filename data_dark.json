@@ -83,7 +83,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-gardevoir.png"
+    "image": "Sprites/dark-gardevoir.png",
+    "darkSkill": {
+      "nome": "Dazzling Gleam",
+      "icone": "img/skills/dazzling-gleam.png",
+      "desc": "Causa um bom dano em área e possui tempo de recarga reduzido."
+    }
   },
   {
     "id": "dark-gallade",
@@ -180,7 +185,7 @@
     ],
     "generation": 5,
     "stats": {
-      "hp": 110 ,
+      "hp": 110,
       "atk": 65,
       "def": 75,
       "spatk": 125,
@@ -377,7 +382,7 @@
     "name": "Dark Probopass",
     "types": [
       "Rock",
-	  "Steel"
+      "Steel"
     ],
     "generation": 5,
     "stats": {
