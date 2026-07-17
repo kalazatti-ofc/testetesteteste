@@ -2402,3 +2402,101 @@ body.dark-mode .item-card.tm-owned { border-color: #ffcb05; box-shadow: inset 0 
         transform: translateX(-50%); 
     }
 }
+
+/* ==========================================
+   SEÇÃO "COMO PARTICIPAR" NO MODAL VIP
+========================================== */
+.vip-join-section {
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 2px dashed rgba(255, 255, 255, 0.15);
+    text-align: center;
+}
+
+.vip-join-title {
+    color: #ffcb05; /* Amarelo Padrão Pokémon */
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.vip-join-cards {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap; /* Faz quebrar a linha no celular */
+}
+
+.vip-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    flex: 1;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.vip-card:hover {
+    transform: translateY(-4px);
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.vip-card-icon {
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+.vip-card h4 {
+    margin: 0 0 12px 0;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.vip-card p {
+    color: #bcc2cd;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Empurra os botões sempre pro final do card */
+}
+
+.vip-action-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    transition: filter 0.2s ease, transform 0.1s ease;
+}
+
+.vip-action-btn:hover {
+    filter: brightness(1.15);
+}
+
+.vip-action-btn:active {
+    transform: scale(0.96);
+}
+
+.btn-cafe {
+    background: #e67e22;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+}
+
+.btn-desbravador {
+    background: #3498db;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
