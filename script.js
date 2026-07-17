@@ -1105,6 +1105,24 @@ window.openModal = (id) => {
             soulsHTML = `<div class="souls-module"><h4 class="label-tech">MÉTODO DE OBTENÇÃO</h4><span class="exclusive-badge">${textoExclusivo.toUpperCase()}</span></div>`;
         }
 
+        // ==========================================
+        // NOVA LÓGICA: CAIXA DE HABILIDADE DARK
+        // ==========================================
+        let htmlDarkSkill = '';
+        if (p.darkSkill) {
+            htmlDarkSkill = `
+                <div class="dark-skill-container" ontouchstart="this.classList.add('active')" ontouchend="this.classList.remove('active')">
+                    <div class="dark-skill-content">
+                        <img src="${p.darkSkill.icone}" alt="${p.darkSkill.nome}" class="dark-skill-icon" onerror="this.src='https://dummyimage.com/48x48/8a2be2/fff.png&text=?'">
+                        <div class="dark-skill-text">
+                            <h4 class="dark-skill-name">${p.darkSkill.nome}</h4>
+                            <p class="dark-skill-desc">${p.darkSkill.desc}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         rightWingHTML = `
             <div class="radar-module">
                 <div class="radar-display" id="radar-screen">
@@ -1116,6 +1134,9 @@ window.openModal = (id) => {
                 <h4 class="label-tech">STATUS BASE</h4>
                 <div class="stats-list">${statsHTML}</div>
             </div>
+            
+            ${htmlDarkSkill} <!-- ⬅️ A CAIXA DA SKILL ENTRA AQUI! -->
+            
             ${soulsHTML}
             <div class="eff-module">
                 <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
