@@ -802,10 +802,15 @@ window.toggleAccordion = (buttonEl, event, passosEscapados) => {
         arrowIcon.innerText = container.classList.contains('hidden-steps') ? '▼' : '▲';
     }
 
-    // 5. Lógica de desenhar no mapa (mantida igual à sua)
+    // Lógica de desenhar no mapa (Corrigida para Mobile)
     if (!container.classList.contains('hidden-steps') && passosEscapados) {
-        document.querySelector('.cat-btn[data-cat="mapas"]').click();
         const arrayPassos = JSON.parse(decodeURIComponent(passosEscapados));
+        
+        // Só muda de aba automaticamente se a tela for maior que 768px (Computador)
+        if (window.innerWidth > 768) {
+            document.querySelector('.cat-btn[data-cat="mapas"]').click();
+        }
+        
         if(window.drawRouteOnMap) window.drawRouteOnMap(arrayPassos);
     }
 };
