@@ -64,7 +64,7 @@
     "darkSkill": {
       "nome": "Dark Confusion",
       "icone": "img/skills/dark-confusion.png",
-      "categoria": "special",physical
+      "categoria": "special",
       "desc": "Sem informação definida."
     }
   },
