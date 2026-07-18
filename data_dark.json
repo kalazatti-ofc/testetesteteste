@@ -26,7 +26,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-dragonite.png"
+    "image": "Sprites/dark-dragonite.png",
+    "darkSkill": {
+      "nome": "Dark Draco Meteor",
+      "icone": "img/skills/dark-draco-meteor.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-alakazam",
@@ -117,7 +122,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-gallade.png"
+    "image": "Sprites/dark-gallade.png",
+    "darkSkill": {
+      "nome": "Dark Close Combat",
+      "icone": "img/skills/dark-close-combat.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-slaking",
@@ -145,7 +155,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-slaking.png"
+    "image": "Sprites/dark-slaking.png",
+    "darkSkill": {
+      "nome": "Dark Feint Attack",
+      "icone": "img/skills/dark-feint-attack.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-gengar",
@@ -231,7 +246,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-tyranitar.png"
+    "image": "Sprites/dark-tyranitar.png",
+    "darkSkill": {
+      "nome": "Dark Earthquake",
+      "icone": "img/skills/dark-rarthquake.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-salamence",
@@ -470,5 +490,10 @@
     },
     "exclusive": "Somente na Quest de Natal 2021",
     "image": "Sprites/dark-raichufly.png"
+    "darkSkill": {
+      "nome": "Dark Thunderbolt",
+      "icone": "img/skills/dark-thunderbolt.png",
+      "desc": "Sem informação definida."
+    }
   }
 ]
