@@ -97,7 +97,8 @@
     "darkSkill": {
       "nome": "Dazzling Gleam",
       "icone": "img/skills/dark-dazzling-gleam.png",
-      "desc": "Causa um bom dano em área e possui tempo de recarga reduzido."
+      "categoria": "special",
+      "desc": "Causa um bom dano em área - Cooldown baixo."
     }
   },
   {
