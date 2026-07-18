@@ -1110,13 +1110,47 @@ window.openModal = (id) => {
         // ==========================================
         let htmlDarkSkill = '';
         if (p.darkSkill) {
+            // Mapeia qual ícone oficial mostrar dependendo do tipo da skill
+            let iconeCategoria = '';
+            if (p.darkSkill.categoria === 'physical') {
+                iconeCategoria = 'https://archives.bulbagarden.net/media/upload/thumb/b/b4/Physical_icon_HOME.png/30px-Physical_icon_HOME.png';
+            } else if (p.darkSkill.categoria === 'special') {
+                iconeCategoria = 'https://archives.bulbagarden.net/media/upload/thumb/a/a4/Special_icon_HOME.png/30px-Special_icon_HOME.png';
+            } else {
+                iconeCategoria = 'https://archives.bulbagarden.net/media/upload/thumb/6/62/Status_icon_HOME.png/30px-Status_icon_HOME.png'; // Status / Efeito
+            }
+
             htmlDarkSkill = `
+                <style>
+                    /* Estilos para a animação do Efeito 2 */
+                    .dark-skill-card { display: flex; gap: 15px; align-items: center; margin-top: 10px; padding: 5px; cursor: pointer; }
+                    .d-skill-img { width: 50px; height: 50px; border-radius: 8px; border: 2px solid var(--dex-border, #333); image-rendering: pixelated; transition: all 0.3s ease; }
+                    .d-skill-name { margin: 0; color: #111; font-size: 1.1rem; font-weight: 900; text-transform: uppercase; transition: color 0.3s ease; }
+                    
+                    /* O Foco na Skill Sombria ao passar o mouse (PC) ou tocar (Mobile) */
+                    .dark-skill-card:hover .d-skill-img, .dark-skill-card:active .d-skill-img { 
+                        box-shadow: 0 0 10px 2px rgba(138, 43, 226, 0.8); 
+                        border-color: #8a2be2; 
+                    }
+                    .dark-skill-card:hover .d-skill-name, .dark-skill-card:active .d-skill-name { 
+                        color: #8a2be2; 
+                    }
+                </style>
+                
                 <div class="data-module" style="margin-bottom: 10px;">
                     <h4 class="label-tech">HABILIDADE EXCLUSIVA</h4>
-                    <div style="display: flex; gap: 15px; align-items: center; margin-top: 10px; padding: 5px;">
-                        <img src="${p.darkSkill.icone}" alt="${p.darkSkill.nome}" style="width: 50px; height: 50px; border-radius: 8px; border: 2px solid var(--dex-border, #333); image-rendering: pixelated;" onerror="this.src='https://dummyimage.com/50x50/8a2be2/fff.png&text=?'">
+                    
+                    <div class="dark-skill-card" ontouchstart="">
+                        <div style="position: relative; flex-shrink: 0;">
+                            <img src="${p.darkSkill.icone}" alt="${p.darkSkill.nome}" class="d-skill-img" onerror="this.src='https://dummyimage.com/50x50/8a2be2/fff.png&text=?'">
+                            
+                            <!-- O Ícone Oficial de Categoria (Posicionado no canto inferior direito da imagem) -->
+                            <img src="${iconeCategoria}" alt="${p.darkSkill.categoria}" title="${p.darkSkill.categoria.toUpperCase()}" 
+                                 style="position: absolute; bottom: -5px; right: -5px; width: 24px; height: auto; background: rgba(255,255,255,0.8); border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.6);">
+                        </div>
+                        
                         <div style="flex: 1;">
-                            <h4 style="margin: 0; color: #111; font-size: 1.1rem; font-weight: 900; text-transform: uppercase;">${p.darkSkill.nome}</h4>
+                            <h4 class="d-skill-name">${p.darkSkill.nome}</h4>
                             <p style="margin: 5px 0 0 0; color: #444; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">${p.darkSkill.desc}</p>
                         </div>
                     </div>
