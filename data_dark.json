@@ -30,6 +30,7 @@
     "darkSkill": {
       "nome": "Dark Draco Meteor",
       "icone": "img/skills/dark-draco-meteor.png",
+      "categoria": "physical",
       "desc": "Sem informação definida."
     }
   },
@@ -63,6 +64,7 @@
     "darkSkill": {
       "nome": "Dark Confusion",
       "icone": "img/skills/dark-confusion.png",
+      "categoria": "special",physical
       "desc": "Sem informação definida."
     }
   },
@@ -132,6 +134,7 @@
     "darkSkill": {
       "nome": "Dark Close Combat",
       "icone": "img/skills/dark-close-combat.png",
+      "categoria": "physical",
       "desc": "Sem informação definida."
     }
   },
@@ -165,6 +168,7 @@
     "darkSkill": {
       "nome": "Dark Feint Attack",
       "icone": "img/skills/dark-feint-attack.png",
+      "categoria": "physical",
       "desc": "Sem informação definida."
     }
   },
@@ -199,6 +203,7 @@
     "darkSkill": {
       "nome": "Dark Focus Blast",
       "icone": "img/skills/dark-focus-blast.png",
+      "categoria": "special",
       "desc": "Sem informação definida."
     }
   },
@@ -232,6 +237,7 @@
     "darkSkill": {
       "nome": "Dark Pyschic",
       "icone": "img/skills/dark-pyschic.png",
+      "categoria": "special",
       "desc": "Sem informação definida."
     }
   },
@@ -266,6 +272,7 @@
     "darkSkill": {
       "nome": "Dark Earthquake",
       "icone": "img/skills/dark-earthquake.png",
+      "categoria": "physical",
       "desc": "Sem informação definida."
     }
   },
@@ -300,6 +307,7 @@
     "darkSkill": {
       "nome": "Dark Dragon Breath",
       "icone": "img/skills/dark-dragon-breath.png",
+      "categoria": "physical",
       "desc": "Sem informação definida."
     }
   },
@@ -334,6 +342,7 @@
     "darkSkill": {
       "nome": "Dark Meteor Smash",
       "icone": "img/skills/dark-meteor-smash.png",
+      "categoria": "physical",
       "desc": "Sem informação definida."
     }
   },
@@ -368,6 +377,7 @@
     "darkSkill": {
       "nome": "Dark Astonish",
       "icone": "img/skills/dark-astonish.png",
+      "categoria": "physical",
       "desc": "Sem informação definida."
     }
   },
@@ -401,6 +411,7 @@
     "darkSkill": {
       "nome": "Dark Transform",
       "icone": "img/skills/dark-transform.png",
+      "categoria": "status",
       "desc": "Sem informação definida."
     }
   },
@@ -434,6 +445,7 @@
     "darkSkill": {
       "nome": "Dark Transform",
       "icone": "img/skills/dark-transform.png",
+      "categoria": "status",
       "desc": "Sem informação definida."
     }
   },
@@ -539,6 +551,7 @@
     "darkSkill": {
       "nome": "Dark Thunderbolt",
       "icone": "img/skills/dark-thunderbolt.png",
+      "categoria": "special",
       "desc": "Sem informação definida."
     }
   }
