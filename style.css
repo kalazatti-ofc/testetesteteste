@@ -2539,3 +2539,91 @@ body.dark-mode .item-card.tm-owned { border-color: #ffcb05; box-shadow: inset 0 
         margin-bottom: 10px !important;
     }
 }
+
+/* ==========================================
+   CAIXA DE HABILIDADE DARK (MODAL POKÉMON)
+========================================== */
+.dark-skill-container {
+    background: #f4f4f4; /* Fundo padrão clarinho igual às outras caixas */
+    border: 2px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px; /* Espaço entre ela e a caixa de conversão */
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.dark-skill-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 2; /* Garante que o texto fique acima do fundo sombrio */
+}
+
+.dark-skill-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    border: 2px solid #2a2a2a;
+    background: #fff;
+    object-fit: cover;
+    transition: all 0.4s ease;
+    image-rendering: pixelated; /* Para combinar com a estética do site */
+}
+
+.dark-skill-text {
+    flex: 1;
+    text-align: left;
+}
+
+.dark-skill-name {
+    margin: 0 0 4px 0;
+    color: #2a2a2a;
+    font-size: 0.9rem;
+    font-family: 'Press Start 2P', monospace; /* Fonte do site */
+    font-weight: 400;
+    line-height: 1.2;
+    transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+.dark-skill-desc {
+    margin: 0;
+    color: #555;
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.4;
+    font-family: 'Outfit', sans-serif;
+    transition: color 0.4s ease;
+}
+
+/* ==========================================
+   O EFEITO DE AURA SOMBRIA (Hover/Touch)
+========================================== */
+/* No PC (.hover) e no Mobile (.active, ativado via ontouchstart) */
+.dark-skill-container:hover,
+.dark-skill-container.active {
+    background: linear-gradient(135deg, #120b1c 0%, #1a1a2e 100%);
+    border-color: #8a2be2; /* Borda roxa brilhante */
+    box-shadow: inset 0 0 20px rgba(138, 43, 226, 0.4), 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Muda a cor dos textos e brilho do ícone na ativação */
+.dark-skill-container:hover .dark-skill-name,
+.dark-skill-container.active .dark-skill-name {
+    color: #d1a3ff; /* Roxo neon */
+    text-shadow: 0 0 8px rgba(138, 43, 226, 0.8);
+}
+
+.dark-skill-container:hover .dark-skill-desc,
+.dark-skill-container.active .dark-skill-desc {
+    color: #e0e0e0; /* Cinza claro pra contraste no fundo preto */
+}
+
+.dark-skill-container:hover .dark-skill-icon,
+.dark-skill-container.active .dark-skill-icon {
+    border-color: #d1a3ff;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.6);
+}
