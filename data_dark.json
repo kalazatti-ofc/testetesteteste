@@ -59,7 +59,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-alakazam.png"
+    "image": "Sprites/dark-alakazam.png",
+    "darkSkill": {
+      "nome": "Dark Confusion",
+      "icone": "img/skills/dark-confusion.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-gardevoir",
@@ -189,7 +194,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-gengar.png"
+    "image": "Sprites/dark-gengar.png",
+    "darkSkill": {
+      "nome": "Dark Focus Blast",
+      "icone": "img/skills/dark-focus-blast.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-reuniclus",
@@ -217,7 +227,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-reuniclus.png"
+    "image": "Sprites/dark-reuniclus.png",
+    "darkSkill": {
+      "nome": "Dark Pyschic",
+      "icone": "img/skills/dark-pyschic.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-tyranitar",
@@ -280,7 +295,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-salamence.png"
+    "image": "Sprites/dark-salamence.png",
+    "darkSkill": {
+      "nome": "Dark Dragon Breath",
+      "icone": "img/skills/dark-dragon-breath.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-metagross",
@@ -309,7 +329,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-metagross.png"
+    "image": "Sprites/dark-metagross.png",
+    "darkSkill": {
+      "nome": "Dark Meteor Smash",
+      "icone": "img/skills/dark-meteor-smash.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-golurk",
@@ -338,7 +363,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-golurk.png"
+    "image": "Sprites/dark-golurk.png",
+    "darkSkill": {
+      "nome": "Dark Astonish",
+      "icone": "img/skills/dark-astonish.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-ditto",
@@ -366,7 +396,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-ditto.png"
+    "image": "Sprites/dark-ditto.png",
+    "darkSkill": {
+      "nome": "Dark Transform",
+      "icone": "img/skills/dark-transform.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-zombie-ditto",
@@ -394,7 +429,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-zombieditto.png"
+    "image": "Sprites/dark-zombieditto.png",
+    "darkSkill": {
+      "nome": "Dark Transform",
+      "icone": "img/skills/dark-transform.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-probopass",
@@ -451,7 +491,12 @@
         "nota": "📌 Somente via Souls no NPC Doug Soul."
       }
     ],
-    "image": "Sprites/dark-cryogonal.png"
+    "image": "Sprites/dark-cryogonal.png",
+    "darkSkill": {
+      "nome": "Dark Frost Breath",
+      "icone": "img/skills/dark-frost-breath.png",
+      "desc": "Sem informação definida."
+    }
   },
   {
     "id": "dark-cinderace",
