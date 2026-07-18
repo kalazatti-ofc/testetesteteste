@@ -86,7 +86,7 @@
     "image": "Sprites/dark-gardevoir.png",
     "darkSkill": {
       "nome": "Dazzling Gleam",
-      "icone": "img/skills/dazzling-gleam.png",
+      "icone": "img/skills/dark-dazzling-gleam.png",
       "desc": "Causa um bom dano em área e possui tempo de recarga reduzido."
     }
   },
