@@ -489,7 +489,7 @@
       "spd": 165
     },
     "exclusive": "Somente na Quest de Natal 2021",
-    "image": "Sprites/dark-raichufly.png"
+    "image": "Sprites/dark-raichufly.png",
     "darkSkill": {
       "nome": "Dark Thunderbolt",
       "icone": "img/skills/dark-thunderbolt.png",
