@@ -1106,19 +1106,28 @@ window.openModal = (id) => {
         }
 
         // ==========================================
-        // NOVA LÓGICA: CAIXA DE HABILIDADE DARK
+        // NOVA LÓGICA: CAIXA DE HABILIDADE DARK (CORRIGIDA)
         // ==========================================
         let htmlDarkSkill = '';
         if (p.darkSkill) {
-            // Mapeia qual ícone oficial mostrar dependendo do tipo da skill
+            
+            // Trava de Segurança: Se não declarou a categoria no JSON, assume "status"
+            const cat = p.darkSkill.categoria ? p.darkSkill.categoria.toLowerCase() : 'status';
+            
+            // Mapeia qual ícone oficial mostrar
             let iconeCategoria = '';
-            if (p.darkSkill.categoria === 'physical') {
+            if (cat === 'physical') {
                 iconeCategoria = 'https://archives.bulbagarden.net/media/upload/thumb/b/b4/Physical_icon_HOME.png/30px-Physical_icon_HOME.png';
-            } else if (p.darkSkill.categoria === 'special') {
+            } else if (cat === 'special') {
                 iconeCategoria = 'https://archives.bulbagarden.net/media/upload/thumb/a/a4/Special_icon_HOME.png/30px-Special_icon_HOME.png';
             } else {
-                iconeCategoria = 'https://archives.bulbagarden.net/media/upload/thumb/6/62/Status_icon_HOME.png/30px-Status_icon_HOME.png'; // Status / Efeito
+                iconeCategoria = 'https://archives.bulbagarden.net/media/upload/thumb/6/62/Status_icon_HOME.png/30px-Status_icon_HOME.png'; 
             }
+
+            // Trava de Segurança 2: Garante que os outros campos existem
+            const skillNome = p.darkSkill.nome || 'Habilidade Oculta';
+            const skillIcon = p.darkSkill.icone || '';
+            const skillDesc = p.darkSkill.desc || 'Nenhuma descrição encontrada no banco de dados.';
 
             htmlDarkSkill = `
                 <style>
@@ -1142,16 +1151,16 @@ window.openModal = (id) => {
                     
                     <div class="dark-skill-card" ontouchstart="">
                         <div style="position: relative; flex-shrink: 0;">
-                            <img src="${p.darkSkill.icone}" alt="${p.darkSkill.nome}" class="d-skill-img" onerror="this.src='https://dummyimage.com/50x50/8a2be2/fff.png&text=?'">
+                            <img src="${skillIcon}" alt="${skillNome}" class="d-skill-img" onerror="this.src='https://dummyimage.com/50x50/8a2be2/fff.png&text=?'">
                             
-                            <!-- O Ícone Oficial de Categoria (Posicionado no canto inferior direito da imagem) -->
-                            <img src="${iconeCategoria}" alt="${p.darkSkill.categoria}" title="${p.darkSkill.categoria.toUpperCase()}" 
+                            <!-- O Ícone Oficial de Categoria -->
+                            <img src="${iconeCategoria}" alt="${cat}" title="${cat.toUpperCase()}" 
                                  style="position: absolute; bottom: -5px; right: -5px; width: 24px; height: auto; background: rgba(255,255,255,0.8); border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.6);">
                         </div>
                         
                         <div style="flex: 1;">
-                            <h4 class="d-skill-name">${p.darkSkill.nome}</h4>
-                            <p style="margin: 5px 0 0 0; color: #444; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">${p.darkSkill.desc}</p>
+                            <h4 class="d-skill-name">${skillNome}</h4>
+                            <p style="margin: 5px 0 0 0; color: #444; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">${skillDesc}</p>
                         </div>
                     </div>
                 </div>
