@@ -249,7 +249,7 @@
     "image": "Sprites/dark-tyranitar.png",
     "darkSkill": {
       "nome": "Dark Earthquake",
-      "icone": "img/skills/dark-rarthquake.png",
+      "icone": "img/skills/dark-earthquake.png",
       "desc": "Sem informação definida."
     }
   },
