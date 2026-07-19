@@ -18,11 +18,11 @@
     "funcao": {
       "tipo": "comercio",
       "vende": [
-        { "item": "DarkGreen Aura", "preco": "7 Shiny Stones", "icone": "water-stone" }
-        { "item": "Blue Aura", "preco": "7 Shiny Stones", "icone": "water-stone" }
-        { "item": "Colorful Aura", "preco": "20 Shiny Stones", "icone": "water-stone" }
-        { "item": "Fascinating Aura", "preco": "20 Shiny Stones", "icone": "water-stone" }
-        { "item": "Pink Aura", "preco": "7 Shiny Stones", "icone": "water-stone" }
+        { "item": "DarkGreen Aura", "preco": "7 Shiny Stones", "icone": "water-stone" },
+        { "item": "Blue Aura", "preco": "7 Shiny Stones", "icone": "water-stone" },
+        { "item": "Colorful Aura", "preco": "20 Shiny Stones", "icone": "water-stone" },
+        { "item": "Fascinating Aura", "preco": "20 Shiny Stones", "icone": "water-stone" },
+        { "item": "Pink Aura", "preco": "7 Shiny Stones", "icone": "water-stone" },
         { "item": "Refined Aura", "preco": "10 Shiny Stones", "icone": "water-stone" }
       ],
       "compra": []
