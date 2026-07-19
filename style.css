@@ -2714,12 +2714,23 @@ body.dark-mode .matchup-col h4 { border-bottom-color: rgba(255,255,255,0.2); }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.8rem;
-    margin-bottom: 4px;
-    background: rgba(255,255,255,0.7);
-    padding: 4px 8px;
-    border-radius: 4px;
-    border: 1px solid rgba(0,0,0,0.1);
+    background: #ffffff;
+    border: 1.5px solid #111111; /* Borda preta fina e sólida, igual ao loot */
+    border-radius: 4px; /* Cantos levemente arredondados, combinando com o tema */
+    padding: 4px 6px;
+    margin-bottom: 6px;
+    font-size: 0.75rem;
+    
+    /* Remove qualquer animação pré-existente */
+    animation: none; 
+    
+    /* Sombra opcional leve e sólida para dar o aspecto de "botão/cartão" */
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Evita que o texto quebre e force o ícone para baixo em telas pequenas */
+.type-multiplier span {
+    white-space: nowrap;
 }
 
 body.dark-mode .type-multiplier {
