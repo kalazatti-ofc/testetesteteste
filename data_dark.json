@@ -30,8 +30,11 @@
     "darkSkill": {
       "nome": "Dark Draco Meteor",
       "icone": "img/skills/dark-draco-meteor.png",
-      "categoria": "physical",
-      "desc": "Sem informação definida."
+      "categoria": "Special",
+      "forca": 130,
+      "acuracia": "90%",
+      "recarga": "17s",
+      "tipo": "Dragon"
     }
   },
   {
