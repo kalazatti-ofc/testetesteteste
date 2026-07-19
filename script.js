@@ -133,6 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('active');
             activeCategory = btn.dataset.cat;
             
+            const gridContainerToAnimate = document.getElementById('pokedex-grid');
+            if (gridContainerToAnimate) {
+                gridContainerToAnimate.classList.remove('tab-transition');
+                void gridContainerToAnimate.offsetWidth; // Força o navegador a reiniciar a animação
+                gridContainerToAnimate.classList.add('tab-transition');
+            }
             const gridContainer = document.getElementById('pokedex-grid');
             const searchModule = document.getElementById('search-module-container');
             const filtersModule = document.getElementById('filters-container');
@@ -1081,6 +1087,26 @@ window.openModal = (id) => {
     currentModalIndex = currentVisibleList.findIndex(x => x.id.toString() === id.toString());
 
     const matchups = calculateMatchups(p.types);
+    const matchupUI = `
+        <div class="matchups-container">
+            <h4 class="matchups-title">EFETIVIDADE DE DANO</h4>
+            <div class="matchup-grid">
+                <div class="matchup-col">
+                    <h4 style="color: #e74c3c;">FRAQUEZAS</h4>
+                    ${matchups.weak4x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-4x">4x</span></div>`).join('')}
+                    ${matchups.weak2x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:700;">${t.toUpperCase()}</span> <span class="mult-2x">2x</span></div>`).join('')}
+                    ${(matchups.weak4x.length === 0 && matchups.weak2x.length === 0) ? '<span style="color:#aaa; font-size:0.8rem; margin-top:5px; display:block;">Nenhuma</span>' : ''}
+                </div>
+                <div class="matchup-col">
+                    <h4 style="color: #2ecc71;">RESISTÊNCIAS</h4>
+                    ${matchups.immune0x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-0x">0x (Imune)</span></div>`).join('')}
+                    ${matchups.resist025x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-025x">1/4x</span></div>`).join('')}
+                    ${matchups.resist05x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:700;">${t.toUpperCase()}</span> <span class="mult-05x">1/2x</span></div>`).join('')}
+                    ${(matchups.immune0x.length === 0 && matchups.resist025x.length === 0 && matchups.resist05x.length === 0) ? '<span style="color:#aaa; font-size:0.8rem; margin-top:5px; display:block;">Nenhuma</span>' : ''}
+                </div>
+            </div>
+        </div>
+    `;
     const pCategory = p.category || 'normal';
     
     let baseId = p.id.toString();
@@ -1301,17 +1327,7 @@ window.openModal = (id) => {
                 </div>
             </div>
             
-            <div class="eff-module">
-                <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
-                <div class="eff-group">
-                    <label>FRAQUEZAS (Leva 2x Dano)</label>
-                    <div class="eff-icons">${matchups.weak.length > 0 ? matchups.weak.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
-                </div>
-                <div class="eff-group">
-                    <label>RESISTÊNCIAS (Leva 0.5x Dano)</label>
-                    <div class="eff-icons">${matchups.resist.length > 0 ? matchups.resist.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
-                </div>
-            </div>
+            ${matchupUI}
         `;
     } else if (pCategory === 'dark') {
         let soulsHTML = '';
@@ -1409,17 +1425,7 @@ window.openModal = (id) => {
             ${htmlDarkSkill} <!-- ⬅️ A CAIXA DA SKILL ENTRA AQUI! -->
             
             ${soulsHTML}
-            <div class="eff-module">
-                <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
-                <div class="eff-group">
-                    <label>FRAQUEZAS (Leva 2x Dano)</label>
-                    <div class="eff-icons">${matchups.weak.length > 0 ? matchups.weak.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
-                </div>
-                <div class="eff-group">
-                    <label>RESISTÊNCIAS (Leva 0.5x Dano)</label>
-                    <div class="eff-icons">${matchups.resist.length > 0 ? matchups.resist.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
-                </div>
-            </div>
+            ${matchupUI}
         `;
     } else {
         rightWingHTML = `
@@ -1442,17 +1448,7 @@ window.openModal = (id) => {
                 ${lootHTML}
             </div>
 
-            <div class="eff-module">
-                <h4 class="label-tech">EFETIVIDADE DE TIPO</h4>
-                <div class="eff-group">
-                    <label>FRAQUEZAS (Leva 2x Dano)</label>
-                    <div class="eff-icons">${matchups.weak.length > 0 ? matchups.weak.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
-                </div>
-                <div class="eff-group">
-                    <label>RESISTÊNCIAS (Leva 0.5x Dano)</label>
-                    <div class="eff-icons">${matchups.resist.length > 0 ? matchups.resist.map(t => `<div class="eff-dot" title="${t}" style="background:var(--type-${t.toLowerCase()})"></div>`).join('') : '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>'}</div>
-                </div>
-            </div>
+            ${matchupUI}
             <div class="evo-module">
                 <h4 class="label-tech">CADEIA EVOLUTIVA</h4>
                 <div class="evo-icons" id="evo-container">
@@ -1554,16 +1550,22 @@ async function loadEvolutions(pokemonName) {
 function calculateMatchups(pTypes) {
     let multipliers = {}; 
     types.forEach(t => multipliers[t] = 1);
+    
     pTypes.forEach(pt => {
         const mods = typeModifiers[pt] || {};
         types.forEach(atk => { if(mods[atk] !== undefined) multipliers[atk] *= mods[atk]; });
     });
-    let weak = [], resist = [];
+    
+    let matchups = { weak4x: [], weak2x: [], resist05x: [], resist025x: [], immune0x: [] };
+    
     for(const [t, m] of Object.entries(multipliers)) { 
-        if(m > 1) weak.push(t); 
-        if(m < 1) resist.push(t); 
+        if(m === 4) matchups.weak4x.push(t);
+        else if(m === 2) matchups.weak2x.push(t);
+        else if(m === 0.5) matchups.resist05x.push(t);
+        else if(m === 0.25) matchups.resist025x.push(t);
+        else if(m === 0) matchups.immune0x.push(t);
     }
-    return { weak, resist };
+    return matchups;
 }
 
 window.updateRadar = (name, el, event) => {
