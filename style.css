@@ -2665,11 +2665,6 @@ body.dark-mode .item-card.tm-owned { border-color: #ffcb05; box-shadow: inset 0 
 /* 1. TRANSIÇÕES E ANIMAÇÕES (ABAS) */
 .tab-transition {
     animation: bootGlitch 0.3s ease-out;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
 }
 
 @keyframes bootGlitch {
