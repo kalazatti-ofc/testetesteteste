@@ -1145,26 +1145,26 @@ window.openModal = (id) => {
     const matchupUI = `
         <div class="data-module" style="margin-bottom: 10px;">
             <h4 class="label-tech">EFETIVIDADE DE DANO</h4>
-            <div class="matchup-grid-3" style="margin-top: 10px;">
+            <div class="matchup-grid-3" style="margin-top: 10px; display: flex; gap: 10px;">
                 
-                <div class="matchup-col">
-                    <h4 style="color: #3498db; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">VANTAGEM</h4>
-                    ${matchups.advantage.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-up">2x ⚔️</span></div>`).join('')}
+                <div class="matchup-col" style="flex: 1; border-right: 2px dashed rgba(0,0,0,0.1); padding-right: 8px;">
+                    <h4 style="color: #3498db; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">⚔️ VANTAGEM</h4>
+                    ${matchups.advantage.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #3498db;">2x</span></div>`).join('')}
                     ${matchups.advantage.length === 0 ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
                 </div>
                 
-                <div class="matchup-col">
-                    <h4 style="color: #e74c3c; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">FRAQUEZAS</h4>
-                    ${matchups.weak4x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-down">4x 💔</span></div>`).join('')}
-                    ${matchups.weak2x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-down">2x 💔</span></div>`).join('')}
+                <div class="matchup-col" style="flex: 1; border-right: 2px dashed rgba(0,0,0,0.1); padding-right: 8px;">
+                    <h4 style="color: #e74c3c; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">💔 FRAQUEZAS</h4>
+                    ${matchups.weak4x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #e74c3c;">4x</span></div>`).join('')}
+                    ${matchups.weak2x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #e74c3c;">2x</span></div>`).join('')}
                     ${(matchups.weak4x.length === 0 && matchups.weak2x.length === 0) ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
                 </div>
                 
-                <div class="matchup-col">
-                    <h4 style="color: #2ecc71; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">RESISTÊNCIA</h4>
-                    ${matchups.immune0x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-resist">0x 🛡️</span></div>`).join('')}
-                    ${matchups.resist025x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-resist">1/4 🛡️</span></div>`).join('')}
-                    ${matchups.resist05x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-resist">1/2 🛡️</span></div>`).join('')}
+                <div class="matchup-col" style="flex: 1;">
+                    <h4 style="color: #2ecc71; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">🛡️ RESISTÊNCIA</h4>
+                    ${matchups.immune0x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #2ecc71;">0x</span></div>`).join('')}
+                    ${matchups.resist025x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #2ecc71;">1/4</span></div>`).join('')}
+                    ${matchups.resist05x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #2ecc71;">1/2</span></div>`).join('')}
                     ${(matchups.immune0x.length === 0 && matchups.resist025x.length === 0 && matchups.resist05x.length === 0) ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
                 </div>
 
@@ -1615,19 +1615,22 @@ function calculateMatchups(pTypes) {
     let multipliers = {}; 
     types.forEach(t => multipliers[t] = 1);
     
-    // Calcula quem bate no Pokémon (Fraquezas e Resistências)
+    // Calcula quem bate no Pokémon (Fraquezas e Resistências - Cálculo Defensivo)
     pTypes.forEach(pt => {
         const mods = typeModifiers[pt] || {};
         types.forEach(atk => { if(mods[atk] !== undefined) multipliers[atk] *= mods[atk]; });
     });
     
-    // Calcula em quem o Pokémon Bate (Vantagem Ofensiva)
+    // Calcula em quem o Pokémon Bate (Vantagem Ofensiva - CÁLCULO CORRIGIDO)
     let offensiveAdvantage = new Set();
-    pTypes.forEach(pt => {
-        const atkMods = typeModifiers[pt] || {};
-        for (const [defender, mult] of Object.entries(atkMods)) {
-            if (mult > 1) offensiveAdvantage.add(defender);
-        }
+    pTypes.forEach(atkType => {
+        types.forEach(defType => {
+            // Acessa a tabela do tipo defensor e verifica se o nosso tipo atacante causa > 1x de dano
+            const defMods = typeModifiers[defType] || {};
+            if (defMods[atkType] > 1) {
+                offensiveAdvantage.add(defType);
+            }
+        });
     });
 
     let matchups = { weak4x: [], weak2x: [], resist05x: [], resist025x: [], immune0x: [], advantage: Array.from(offensiveAdvantage) };
