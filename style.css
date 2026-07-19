@@ -2755,3 +2755,41 @@ body.dark-mode .type-multiplier {
         right: 5px !important; 
     }
 }
+
+/* ==========================================================================
+   ATUALIZAÇÕES - MATCHUPS 3 COLUNAS E AJUSTE DE NPCS
+   ========================================================================== */
+
+/* 1. MATCHUPS EM 3 COLUNAS E ANIMAÇÕES */
+.matchup-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+}
+
+/* Animações de Pulsar (Heartbeat) para os multiplicadores */
+.mult-up { color: #3498db; font-weight: 900; animation: pulseBuff 1.5s infinite; display: inline-block; font-size: 0.8rem; }
+.mult-down { color: #e74c3c; font-weight: 900; animation: pulseNerf 1.5s infinite; display: inline-block; font-size: 0.8rem; }
+.mult-resist { color: #2ecc71; font-weight: 900; animation: pulseResist 1.5s infinite; display: inline-block; font-size: 0.8rem; }
+
+@keyframes pulseBuff { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); color: #2980b9; } }
+@keyframes pulseNerf { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); color: #c0392b; } }
+@keyframes pulseResist { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); color: #27ae60; } }
+
+/* 2. PÍLULAS DOS NPCS NOS CARDS */
+.npc-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    margin-top: 10px;
+}
+.npc-tag-badge {
+    font-size: 0.55rem;
+    font-weight: 800;
+    padding: 3px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+    font-family: sans-serif;
+}
