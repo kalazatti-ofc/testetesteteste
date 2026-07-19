@@ -4,6 +4,7 @@
 let pokemonData = [];
 let itemData = [];
 let guiasData = [];
+let npcData = [];
 let currentVisibleList = []; // Guarda a lista que está sendo exibida na tela
 let currentModalIndex = 0;   // Guarda a posição do Pokémon aberto no modal
 let currentModalItemIndex = 0; // Guarda a posição do Item aberto no modal
@@ -146,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (activeCategory === 'drops' || activeCategory === 'tms') {
                 searchMode = 'loot';
                 if (optPokemon && optLoot) { optPokemon.classList.remove('active'); optLoot.classList.add('active'); }
-            } else if (activeCategory === 'normal' || activeCategory === 'dark' || activeCategory === 'boss') {
+            } else if (activeCategory === 'normal' || activeCategory === 'dark' || activeCategory === 'boss' || activeCategory === 'npcs') {
                 searchMode = 'pokemon';
                 if (optPokemon && optLoot) { optLoot.classList.remove('active'); optPokemon.classList.add('active'); }
             }
@@ -188,12 +189,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========================================
 async function fetchData() {
     try {
-        const [normalRes, darkRes, bossRes, itemRes, guiasRes] = await Promise.all([
+        const [normalRes, darkRes, bossRes, itemRes, guiasRes, npcRes] = await Promise.all([
             fetch('data_normal.json?v=' + new Date().getTime()),
             fetch('data_dark.json?v=' + new Date().getTime()),
             fetch('data_boss.json?v=' + new Date().getTime()),
             fetch('data_items.json?v=' + new Date().getTime()).catch(() => null),
-            fetch('data_guias.json?v=' + new Date().getTime()).catch(() => null)
+            fetch('data_guias.json?v=' + new Date().getTime()).catch(() => null),
+            fetch('data_npcs.json?v=' + new Date().getTime()).catch(() => null) // ⬅️ PUXANDO OS NPCs
         ]);
         
         const normalData = await normalRes.json();
@@ -207,6 +209,11 @@ async function fetchData() {
         if(guiasRes && guiasRes.ok) {
             guiasData = await guiasRes.json();
             renderGuias(guiasData);
+        }
+        
+        // ⬅️ SALVANDO OS DADOS DOS NPCs
+        if(npcRes && npcRes.ok) {
+            npcData = await npcRes.json();
         }
         
         renderPokemon(pokemonData);
@@ -313,6 +320,21 @@ function setupToggles() {
 function applyFilters() {
     const search = document.getElementById('search-input').value.toLowerCase().trim();
     
+    // INTERCEPTADOR: MODO NPCs
+    if (activeCategory === 'npcs') {
+        let filteredNPCs = npcData || [];
+        
+        if (search !== '') {
+            filteredNPCs = filteredNPCs.filter(n => 
+                n.nome.toLowerCase().includes(search) || 
+                n.cidade.toLowerCase().includes(search)
+            );
+        }
+        
+        renderNPCs(filteredNPCs);
+        return; // Interrompe aqui para não renderizar Pokémons
+    }
+
     // INTERCEPTADOR: MODO ITENS/LOOT
     if (activeCategory === 'drops' || activeCategory === 'tms' || searchMode === 'loot') {
         let filteredItems = itemData || [];
@@ -533,6 +555,211 @@ window.toggleCatch = (event, id) => {
     }
     localStorage.setItem('pokedex-caught', JSON.stringify(caughtPokemon));
     if (activeCatchFilter !== 'all') { applyFilters(); }
+};
+
+// ==========================================
+// RENDERIZAÇÃO DA GRADE DE NPCs
+// ==========================================
+function renderNPCs(list) {
+    const grid = document.getElementById('pokedex-grid');
+    
+    grid.innerHTML = list.map(npc => {
+        return `
+            <div class="pk-card" onclick="openNpcModal('${npc.id}')">
+                <div class="pk-card-inner">
+                    <img src="${npc.sprite}" loading="lazy" style="width: 64px; height: 64px; image-rendering: pixelated; margin-top: 15px;" onerror="this.src='https://dummyimage.com/64x64/333/fff.png&text=NPC'">
+                    <h3 class="pk-name">${npc.nome}</h3>
+                    <div class="pk-gen-bar" style="background: #2c3e50;">📍 ${npc.cidade.toUpperCase()}</div>
+                    <div class="type-tags" style="margin-top: 8px;">
+                        ${npc.tags.map(t => `<span class="tag" style="background: #8e44ad; font-size: 0.7rem; padding: 2px 6px;">${t.toUpperCase()}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ==========================================
+// ABRIR MODAL DO NPC (FICHA TÉCNICA)
+// ==========================================
+window.openNpcModal = (id) => {
+    const npc = npcData.find(x => x.id === id);
+    if (!npc) return;
+
+    // 1. Monta a Ala Esquerda (Perfil e Saudação)
+    const leftWingHTML = `
+        <div class="screen-border" style="position: relative;">
+            <div class="main-screen main-screen-stacked">
+                <div class="stacked-container">
+                    <img src="${npc.sprite}" class="poke-img-stacked" style="image-rendering: pixelated; width: 96px; height: 96px;" onerror="this.src='https://dummyimage.com/96x96/333/fff.png&text=NPC'">
+                    <h2 class="poke-name-stacked" style="font-size: 1.5rem; margin-top: 10px;">${npc.nome}</h2>
+                    <div class="modal-gen-bar stacked-gen-bar" style="background: #2c3e50;">📍 ${npc.cidade.toUpperCase()}</div>
+                </div>
+            </div>
+        </div>
+        <div class="location-module" style="background: #111; border: 2px solid var(--dex-border); padding: 15px; border-radius: 8px; margin-top: 10px;">
+            <p style="color: #ecf0f1; font-style: italic; text-align: center; margin: 0; font-size: 0.95rem; font-family: monospace;">${npc.saudacao}</p>
+        </div>
+        
+        <!-- Gatilho invisível para acionar o Radar do NPC -->
+        <div id="npc-radar-trigger" class="loc-button" style="display: none;" onclick="updateRadar('${npc.radar}', this)"></div>
+    `;
+
+    // 2. Monta as Pílulas de Requisitos
+    let requisitosHTML = `
+        <span class="bonus-badge" style="background: ${npc.requisitos.level > 0 ? '#e67e22' : '#2ecc71'};">
+            NÍVEL: ${npc.requisitos.level > 0 ? npc.requisitos.level : 'LIVRE'}
+        </span>
+    `;
+    if (npc.requisitos.vip) {
+        requisitosHTML += `<span class="bonus-badge" style="background: #f1c40f; color: #000;">⭐ VIP ACCOUNT</span>`;
+    }
+    if (npc.requisitos.quest_nome) {
+        requisitosHTML += `<span class="bonus-badge" style="background: #e74c3c;">📜 ${npc.requisitos.quest_nome.toUpperCase()}</span>`;
+    }
+
+    // 3. Monta o Botão de Integração com o Guia
+    let botaoGuiaHTML = '';
+    if (npc.requisitos.guia_id) {
+        botaoGuiaHTML = `
+            <button class="full-width-btn" style="margin-top: 10px; background: #3498db; border-color: #2980b9;" onclick="abrirGuiaDoNpc('${npc.requisitos.guia_id}')">
+                📖 VER TUTORIAL DE ACESSO
+            </button>
+        `;
+    }
+
+    // 4. Injeta tudo dentro da "Carcaça" Vermelha do Modal Original
+    document.getElementById('modal-body').innerHTML = `
+        <div class="modal-pokedex-view">
+            <div class="modal-left-wing">
+                ${leftWingHTML}
+            </div>
+            <div class="modal-right-wing">
+                <!-- O Radar -->
+                <div class="radar-module">
+                    <div class="radar-display" id="radar-screen">
+                        <div class="radar-grid"></div><div class="radar-beam"></div>
+                        <p id="radar-label">RASTREANDO...</p>
+                    </div>
+                </div>
+                
+                <!-- Os Requisitos -->
+                <div class="data-module" style="margin-bottom: 10px;">
+                    <h4 class="label-tech">REQUISITOS DE ACESSO</h4>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
+                        ${requisitosHTML}
+                    </div>
+                    ${botaoGuiaHTML}
+                </div>
+                
+                <!-- O Painel Dinâmico da Função -->
+                <div class="data-module" style="margin-bottom: 10px;">
+                    <h4 class="label-tech">FUNÇÃO DO NPC</h4>
+                    <div class="npc-function-container" style="margin-top: 10px;">
+                        ${gerarPainelDeFuncaoNPC(npc.funcao)}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Abre o Modal na tela
+    document.getElementById('pokemon-modal').classList.remove('hidden');
+
+    // Aciona o Radar automaticamente após abrir
+    setTimeout(() => {
+        const radarBtn = document.getElementById('npc-radar-trigger');
+        if (radarBtn) radarBtn.click();
+    }, 100);
+};
+
+// ==========================================
+// CÉREBRO: PAINEL DINÂMICO DE FUNÇÕES (NPC)
+// ==========================================
+function gerarPainelDeFuncaoNPC(funcao) {
+    if (!funcao) return `<p style="color:#aaa;">Nenhuma função detectada.</p>`;
+
+    // 1. MODO: COMÉRCIO (Vendas e Compras)
+    if (funcao.tipo === 'comercio') {
+        let htmlComercio = '';
+        const fallbackJS = `this.onerror=null; this.src='img/loots/unknown.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};`;
+
+        if (funcao.vende && funcao.vende.length > 0) {
+            htmlComercio += `<div style="margin-bottom: 15px;"><label style="color: #2ecc71; font-weight: bold; font-size: 0.85rem;">O NPC VENDE:</label><div class="loot-icons-container" style="margin-top: 5px;">`;
+            htmlComercio += funcao.vende.map(v => `
+                <div class="loot-icon-item loot-tooltip" data-tooltip="${v.item} (${v.preco})">
+                    <img src="img/loots/${v.icone}.gif" alt="${v.item}" onerror="${fallbackJS}">
+                </div>
+            `).join('');
+            htmlComercio += `</div></div>`;
+        }
+
+        if (funcao.compra && funcao.compra.length > 0) {
+            htmlComercio += `<div><label style="color: #e74c3c; font-weight: bold; font-size: 0.85rem;">O NPC COMPRA:</label><div class="loot-icons-container" style="margin-top: 5px;">`;
+            htmlComercio += funcao.compra.map(c => `
+                <div class="loot-icon-item loot-tooltip" data-tooltip="${c.item} (${c.preco})">
+                    <img src="img/loots/${c.icone}.gif" alt="${c.item}" onerror="${fallbackJS}">
+                </div>
+            `).join('');
+            htmlComercio += `</div></div>`;
+        }
+        
+        return htmlComercio || '<p style="color:#aaa;">Este NPC não possui itens em estoque no momento.</p>';
+    }
+
+    // 2. MODO: MISSÃO (Quests Simples / Diárias)
+    if (funcao.tipo === 'missao') {
+        if (!funcao.quests || funcao.quests.length === 0) return '<p style="color:#aaa;">Nenhuma missão disponível.</p>';
+        
+        return funcao.quests.map(q => `
+            <div style="background: rgba(0,0,0,0.05); border-left: 4px solid #3498db; padding: 10px; margin-bottom: 10px; border-radius: 0 4px 4px 0;">
+                <h5 style="margin: 0 0 5px 0; color: #111; font-size: 1rem;">${q.nome.toUpperCase()}</h5>
+                <p style="margin: 0; font-size: 0.85rem; color: #444;"><b>Objetivo:</b> ${q.objetivo}</p>
+                <p style="margin: 5px 0 0 0; font-size: 0.85rem; color: #2ecc71; font-weight: bold;">🎁 ${q.recompensa}</p>
+            </div>
+        `).join('');
+    }
+
+    // 3. MODO: ETAPAS (Sagas longas)
+    if (funcao.tipo === 'etapas') {
+        if (!funcao.fases || funcao.fases.length === 0) return '<p style="color:#aaa;">Nenhuma etapa registrada.</p>';
+        
+        let htmlEtapas = '<div style="position: relative; margin-left: 10px; border-left: 2px dashed #999; padding-left: 15px;">';
+        htmlEtapas += funcao.fases.map(f => `
+            <div style="margin-bottom: 15px; position: relative;">
+                <div style="position: absolute; left: -22px; top: 0; background: #e74c3c; width: 12px; height: 12px; border-radius: 50%; border: 2px solid #fff;"></div>
+                <h5 style="margin: 0; color: #e74c3c; font-size: 0.9rem;">${f.parte.toUpperCase()}</h5>
+                <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: #444;">${f.objetivo}</p>
+            </div>
+        `).join('');
+        htmlEtapas += `</div>`;
+        
+        if (funcao.recompensa_final) {
+            htmlEtapas += `
+            <div style="margin-top: 15px; background: #fff8e1; border: 2px solid #f1c40f; padding: 10px; border-radius: 8px; text-align: center;">
+                <p style="margin: 0; font-size: 0.75rem; color: #d35400; font-weight: bold;">RECOMPENSA FINAL DA SAGA</p>
+                <p style="margin: 5px 0 0 0; font-size: 0.95rem; color: #111; font-weight: 900;">🏆 ${funcao.recompensa_final}</p>
+            </div>`;
+        }
+        
+        return htmlEtapas;
+    }
+
+    // 4. MODO: DIÁLOGO (Apenas Lore / Guia)
+    if (funcao.tipo === 'dialogo') {
+        return `<p style="margin: 0; font-size: 0.9rem; color: #444; line-height: 1.5;">${funcao.texto || 'Nenhuma informação adicional.'}</p>`;
+    }
+
+    return `<p style="color:#aaa;">Função desconhecida.</p>`;
+}
+
+// ==========================================
+// INTEGRAÇÃO: REDIRECIONAR NPC -> GUIA WIKI
+// ==========================================
+window.abrirGuiaDoNpc = (guiaId) => {
+    document.getElementById('pokemon-modal').classList.add('hidden'); // Fecha o Modal do NPC
+    document.querySelector('.cat-btn[data-cat="guias"]').click();     // Muda para a aba de Guias
+    setTimeout(() => { openTutorial(guiaId); }, 200);                 // Abre o artigo específico
 };
 
 function renderPokemon(list) {
