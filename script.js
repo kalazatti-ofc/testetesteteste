@@ -10,6 +10,7 @@ let currentModalIndex = 0;   // Guarda a posição do Pokémon aberto no modal
 let currentModalItemIndex = 0; // Guarda a posição do Item aberto no modal
 
 let activeTypeFilter = 'all';
+let activeNpcFilter = 'all';
 let activeGenFilter = 'all';
 let activeCatchFilter = 'all';
 let activeCategory = 'normal'; // Controla a aba atual
@@ -97,6 +98,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // INJETOR: Adiciona os filtros de NPC dinamicamente na Sidebar
+    const filtersModule = document.getElementById('filters-container');
+    if (filtersModule && !document.getElementById('npc-filters-wrapper')) {
+        const npcFiltersHTML = `
+            <div id="npc-filters-wrapper" class="data-module" style="display: none; margin-top: 15px; padding: 10px;">
+                <h4 class="label-tech" style="text-align: left; margin-bottom: 10px;">FILTRAR CATEGORIA:</h4>
+                <div class="pills-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                    <button class="filter-pill npc-pill active" data-npccat="all">TODOS</button>
+                    <button class="filter-pill npc-pill" data-npccat="comerciante">COMERCIANTES</button>
+                    <button class="filter-pill npc-pill" data-npccat="shop">SHOPS</button>
+                    <button class="filter-pill npc-pill" data-npccat="quests">QUESTS</button>
+                    <button class="filter-pill npc-pill" data-npccat="diária">DIÁRIAS</button>
+                </div>
+            </div>
+        `;
+        filtersModule.insertAdjacentHTML('afterend', npcFiltersHTML);
+
+        // Dá vida aos botões de filtro de NPC
+        document.querySelectorAll('.npc-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.npc-pill').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeNpcFilter = btn.dataset.npccat;
+                applyFilters();
+            });
+        });
+    }
+
     document.getElementById('search-input').addEventListener('input', applyFilters);
     document.getElementById('search-input').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') this.blur(); 
@@ -168,21 +197,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(isEditingTMs && window.toggleTMEditMode) window.toggleTMEditMode();
             }
 
+            const npcWrapper = document.getElementById('npc-filters-wrapper'); // Busca o menu injetado
+
             // Oculta/Mostra elementos baseado na aba clicada
             if (activeCategory === 'mapas') {
                 gridContainer.style.display = 'none'; searchModule.style.display = 'none'; filtersModule.style.display = 'none';
+                if(npcWrapper) npcWrapper.style.display = 'none';
                 if(tutModule) tutModule.style.display = 'none'; if(mapSidebar) mapSidebar.style.display = 'block'; 
                 mapContainer.style.display = 'flex'; initMapViewer(); 
             } else if (activeCategory === 'guias') {
                 gridContainer.style.display = 'none'; searchModule.style.display = 'none'; filtersModule.style.display = 'none';
+                if(npcWrapper) npcWrapper.style.display = 'none';
                 mapContainer.style.display = 'none'; if(mapSidebar) mapSidebar.style.display = 'none'; 
                 if(tutModule) { tutModule.style.display = 'block'; closeTutorial(); }
             } else if (activeCategory === 'drops' || activeCategory === 'tms') {
                 gridContainer.style.display = 'grid'; searchModule.style.display = 'block'; filtersModule.style.display = 'none';
+                if(npcWrapper) npcWrapper.style.display = 'none';
                 if(mapSidebar) mapSidebar.style.display = 'none'; mapContainer.style.display = 'none'; if(tutModule) tutModule.style.display = 'none';
                 applyFilters(); 
+            } else if (activeCategory === 'npcs') { // ⬅️ ABA DE NPCs
+                gridContainer.style.display = 'grid'; searchModule.style.display = 'block'; filtersModule.style.display = 'none';
+                if(npcWrapper) npcWrapper.style.display = 'block'; // Mostra menu de NPC
+                if(mapSidebar) mapSidebar.style.display = 'none'; mapContainer.style.display = 'none'; if(tutModule) tutModule.style.display = 'none';
+                applyFilters();
             } else {
                 gridContainer.style.display = 'grid'; searchModule.style.display = 'block'; filtersModule.style.display = 'block';
+                if(npcWrapper) npcWrapper.style.display = 'none';
                 if(mapSidebar) mapSidebar.style.display = 'none'; mapContainer.style.display = 'none'; if(tutModule) tutModule.style.display = 'none';
                 applyFilters();
             }
@@ -330,6 +370,12 @@ function applyFilters() {
     if (activeCategory === 'npcs') {
         let filteredNPCs = npcData || [];
         
+        // NOVO: Aplica o filtro de categoria de pílula
+        if (activeNpcFilter !== 'all') {
+            filteredNPCs = filteredNPCs.filter(n => n.tags && n.tags.some(t => t.toLowerCase() === activeNpcFilter));
+        }
+
+        // Filtro da Barra de Pesquisa de Texto
         if (search !== '') {
             filteredNPCs = filteredNPCs.filter(n => 
                 n.nome.toLowerCase().includes(search) || 
@@ -576,8 +622,17 @@ function renderNPCs(list) {
                     <img src="${npc.sprite}" loading="lazy" style="width: 64px; height: 64px; image-rendering: pixelated; margin-top: 15px;" onerror="this.src='https://dummyimage.com/64x64/333/fff.png&text=NPC'">
                     <h3 class="pk-name">${npc.nome}</h3>
                     <div class="pk-gen-bar" style="background: #2c3e50;">📍 ${npc.cidade.toUpperCase()}</div>
-                    <div class="type-tags" style="margin-top: 8px;">
-                        ${npc.tags.map(t => `<span class="tag" style="background: #8e44ad; font-size: 0.7rem; padding: 2px 6px;">${t.toUpperCase()}</span>`).join('')}
+                    <div class="npc-tags-container">
+                        ${npc.tags.map(t => {
+                            let corBg = '#34495e'; // Cor neutra padrão
+                            let corTxt = '#ffffff';
+                            const tagLimpa = t.toLowerCase();
+                            
+                            if (tagLimpa === 'comerciante' || tagLimpa === 'shop') corBg = '#2ecc71'; // Verde
+                            else if (tagLimpa === 'diária' || tagLimpa === 'quests') { corBg = '#f1c40f'; corTxt = '#000000'; } // Amarelo
+                            
+                            return `<span class="npc-tag-badge" style="background: ${corBg}; color: ${corTxt};">${t.toUpperCase()}</span>`;
+                        }).join('')}
                     </div>
                 </div>
             </div>
@@ -1088,22 +1143,31 @@ window.openModal = (id) => {
 
     const matchups = calculateMatchups(p.types);
     const matchupUI = `
-        <div class="matchups-container">
-            <h4 class="matchups-title">EFETIVIDADE DE DANO</h4>
-            <div class="matchup-grid">
+        <div class="data-module" style="margin-bottom: 10px;">
+            <h4 class="label-tech">EFETIVIDADE DE DANO</h4>
+            <div class="matchup-grid-3" style="margin-top: 10px;">
+                
                 <div class="matchup-col">
-                    <h4 style="color: #e74c3c;">FRAQUEZAS</h4>
-                    ${matchups.weak4x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-4x">4x</span></div>`).join('')}
-                    ${matchups.weak2x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:700;">${t.toUpperCase()}</span> <span class="mult-2x">2x</span></div>`).join('')}
-                    ${(matchups.weak4x.length === 0 && matchups.weak2x.length === 0) ? '<span style="color:#aaa; font-size:0.8rem; margin-top:5px; display:block;">Nenhuma</span>' : ''}
+                    <h4 style="color: #3498db; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">VANTAGEM</h4>
+                    ${matchups.advantage.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-up">2x ⚔️</span></div>`).join('')}
+                    ${matchups.advantage.length === 0 ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
                 </div>
+                
                 <div class="matchup-col">
-                    <h4 style="color: #2ecc71;">RESISTÊNCIAS</h4>
-                    ${matchups.immune0x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-0x">0x (Imune)</span></div>`).join('')}
-                    ${matchups.resist025x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-025x">1/4x</span></div>`).join('')}
-                    ${matchups.resist05x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:700;">${t.toUpperCase()}</span> <span class="mult-05x">1/2x</span></div>`).join('')}
-                    ${(matchups.immune0x.length === 0 && matchups.resist025x.length === 0 && matchups.resist05x.length === 0) ? '<span style="color:#aaa; font-size:0.8rem; margin-top:5px; display:block;">Nenhuma</span>' : ''}
+                    <h4 style="color: #e74c3c; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">FRAQUEZAS</h4>
+                    ${matchups.weak4x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-down">4x 💔</span></div>`).join('')}
+                    ${matchups.weak2x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-down">2x 💔</span></div>`).join('')}
+                    ${(matchups.weak4x.length === 0 && matchups.weak2x.length === 0) ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
                 </div>
+                
+                <div class="matchup-col">
+                    <h4 style="color: #2ecc71; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">RESISTÊNCIA</h4>
+                    ${matchups.immune0x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-resist">0x 🛡️</span></div>`).join('')}
+                    ${matchups.resist025x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-resist">1/4 🛡️</span></div>`).join('')}
+                    ${matchups.resist05x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span class="mult-resist">1/2 🛡️</span></div>`).join('')}
+                    ${(matchups.immune0x.length === 0 && matchups.resist025x.length === 0 && matchups.resist05x.length === 0) ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
+                </div>
+
             </div>
         </div>
     `;
@@ -1551,12 +1615,22 @@ function calculateMatchups(pTypes) {
     let multipliers = {}; 
     types.forEach(t => multipliers[t] = 1);
     
+    // Calcula quem bate no Pokémon (Fraquezas e Resistências)
     pTypes.forEach(pt => {
         const mods = typeModifiers[pt] || {};
         types.forEach(atk => { if(mods[atk] !== undefined) multipliers[atk] *= mods[atk]; });
     });
     
-    let matchups = { weak4x: [], weak2x: [], resist05x: [], resist025x: [], immune0x: [] };
+    // Calcula em quem o Pokémon Bate (Vantagem Ofensiva)
+    let offensiveAdvantage = new Set();
+    pTypes.forEach(pt => {
+        const atkMods = typeModifiers[pt] || {};
+        for (const [defender, mult] of Object.entries(atkMods)) {
+            if (mult > 1) offensiveAdvantage.add(defender);
+        }
+    });
+
+    let matchups = { weak4x: [], weak2x: [], resist05x: [], resist025x: [], immune0x: [], advantage: Array.from(offensiveAdvantage) };
     
     for(const [t, m] of Object.entries(multipliers)) { 
         if(m === 4) matchups.weak4x.push(t);
@@ -2226,3 +2300,4 @@ window.toggleVipAccordion = (btn) => {
         btn.style.color = '#fff'; // Fica branco quando aberto
     }
 };
+
