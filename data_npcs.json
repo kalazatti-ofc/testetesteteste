@@ -6,7 +6,7 @@
     "coordenadas": "X: 2256 | Y: 859 | Z: 6", 
     "imagem_mapa": "img/mapas/mapa-shurya.png", 
     "saudacao": "\"Bem-vindo ao meu mercado, Gostaria de comprar Auras para Pokemon?\"",
-    "sprite": "img/npcs/shurya.gif",
+    "sprite": "img/npcs/npc-shurya.png",
     "radar": "Armia (Shurya)", 
     "tags": ["comerciante", "shop"], 
     
