@@ -2,8 +2,16 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pokedex PBR | Sistema de Rastreamento</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e3350d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-192x192.png"> <!-- Adicione um ícone depois -->
+
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
@@ -16,6 +24,7 @@
 
     <div class="pokedex-body">
         
+        <!-- PAINEL ESQUERDO (CONTROLES) -->
         <div class="pokedex-left-panel">
             <div class="pokedex-header">
                 <button id="theme-toggle" class="joystick-theme-btn" title="Modo Noturno">🌙</button>
@@ -35,7 +44,6 @@
                 <div class="search-module" id="search-module-container">
                     <div class="search-header">
                         <span class="tech-label">SISTEMA DE BUSCA</span>
-                        
                         <div class="search-toggle-pill" id="search-mode-toggle">
                             <div class="pill-option active" id="mode-pokemon">NOME</div>
                             <div class="pill-option" id="mode-loot">LOOT</div>
@@ -49,21 +57,13 @@
                     </div>
                 </div>
 
-                <!-- NOVA CATEGORIA: GRID DE CARTUCHOS (4 LINHAS) -->
                 <div class="main-nav-grid">
-                    <!-- Linha 1 -->
                     <button class="cat-btn active" data-cat="normal">NORMAL</button>
                     <button class="cat-btn" data-cat="dark">DARK'S</button>
-
-                    <!-- Linha 2 -->
                     <button class="cat-btn" data-cat="boss">BOSS 24H</button>
                     <button class="cat-btn" data-cat="npcs">NPCs</button>
-
-                    <!-- Linha 3 -->
                     <button class="cat-btn" data-cat="drops">DROPS</button>
                     <button class="cat-btn" data-cat="tms">TM'S</button>
-
-                    <!-- Linha 4 -->
                     <button class="cat-btn" data-cat="guias" style="position: relative; overflow: visible;">
                         GUIAS <span class="beta-badge" style="background: #f1c40f;">NOVO</span>
                     </button>
@@ -96,8 +96,7 @@
 
                         <button class="filter-toggle" id="toggle-type">▼ FILTRAR POR TIPO</button>
                         <div class="filter-group hidden-filter" id="group-type">
-                            <div class="pills-container" id="type-filters">
-                            </div>
+                            <div class="pills-container" id="type-filters"></div>
                         </div>
 
                         <button class="filter-toggle" id="toggle-catch">▼ STATUS DA POKEDEX</button>
@@ -119,8 +118,8 @@
                                 <button class="filter-pill active" data-meta="all">NENHUM</button>
                             </div>
                         </div>
-
-                    </div> </div>
+                    </div> 
+                </div>
 
                 <div id="map-sidebar-menu" class="map-sidebar" style="display: none;">
                     <span class="tech-label" style="display: block; margin-bottom: 8px;">SISTEMA GPS GLOBAL</span>
@@ -150,6 +149,7 @@
             </div>
         </div>
 
+        <!-- PAINEL DIREITO (VISUALIZADOR) -->
         <div class="pokedex-right-panel">
             
             <div class="vip-marquee-container" onclick="openVipModal()" title="Ver todos os Apoiadores">
@@ -158,11 +158,10 @@
                 </div>
             </div>
 
-            <div class="pokedex-main-display">
+            <!-- CARCAÇA PRINCIPAL DE CONTEÚDO (APENAS UMA, SEM DUPLICAÇÃO) -->
+            <div class="pokedex-main-display tab-transition">
                 
-                <!-- PAINEL DE CONTROLE DE TMs (ÁLBUM) -->
-                <div class="pokedex-main-display">
-                
+                <!-- PAINEL DE TMs -->
                 <div id="tm-dashboard" class="tm-dashboard" style="display: none;">
                     <div class="tm-info">
                         <span class="tm-album-title">💿 ÁLBUM DE TMs</span>
@@ -183,8 +182,10 @@
                     </div>
                 </div>
 
+                <!-- GRID PRINCIPAL DE POKÉMONS / ITENS -->
                 <div class="pokemon-grid" id="pokedex-grid"></div>
 
+                <!-- MAPA GPS -->
                 <div id="map-viewer-container" style="display: none; height: 100%; width: 100%;">
                     <div class="map-screen" style="height: 100%; width: 100%; position: relative; border: 4px solid var(--dex-border); border-radius: 12px; background: #2a2a2a; overflow: hidden; display: flex; flex-direction: column;">
                         <div id="map-wrapper" style="width: 100%; height: 100%; cursor: grab; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: transparent;">
@@ -194,6 +195,7 @@
                                 <svg id="map-routes-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; overflow: visible;"></svg>
                                 <div class="map-overlay" style="position: absolute; inset: 0; z-index: 4; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 2px, transparent 2px, transparent 4px);"></div>
                             </div>
+                            <!-- Controles de Mapa (Consertados e Únicos) -->
                             <div class="map-controls-vertical">
                                 <button id="btn-zoom-in" class="zoom-btn" title="Aumentar Zoom">＋</button>
                                 <button id="btn-zoom-reset" class="zoom-btn" title="Resetar Visão">🎯</button>
@@ -207,70 +209,44 @@
                     </div>
                 </div> 
 
-            </div> </div> </div> <div id="reset-confirm-modal" class="oak-overlay hidden">
-        <div class="oak-container">
-            <div class="oak-screen" style="border-color: #e3350d; align-items: center;">
-                <h2 class="report-title" style="color:#e3350d; border-color:#e3350d;">RESETAR COLEÇÃO?</h2>
-                <p class="reset-modal-text">Tem certeza? Isso apagará todo o seu progresso de TMs marcados e não pode ser desfeito!</p>
-                <div style="display: flex; gap: 10px; width: 100%;">
-                    <button onclick="resetTMCollection()" class="final-support-btn" style="background:#e3350d; color:#fff; flex:1;">SIM, APAGAR</button>
-                    <button onclick="document.getElementById('reset-confirm-modal').classList.add('hidden')" class="final-support-btn" style="background:#444; color:#fff; flex:1;">NÃO, CANCELAR</button>
-                </div>
-            </div>
-        </div>
-    </div>
-                            
-                            <div class="map-controls-vertical">
-                                <button id="btn-zoom-in" class="zoom-btn" title="Aumentar Zoom">＋</button>
-                                <button id="btn-zoom-reset" class="zoom-btn" title="Resetar Visão">🎯</button>
-                                <button id="btn-zoom-out" class="zoom-btn" title="Diminuir Zoom">－</button>
-                            </div>
-
-                            <div class="map-hud-floating">
-                                <span class="blink" style="color:var(--dex-red);">● REC</span>
-                                <span id="map-status-text">AGUARDANDO SINAL...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
+                <!-- MÓDULO DE TUTORIAIS -->
                 <div id="tutorials-module" style="display: none; height: 100%; width: 100%; overflow-y: auto;">
-                    
-                    <!-- A grade de capas dos guias será gerada aqui pelo JS -->
                     <div id="tutorials-grid" class="tut-grid"></div>
-
-                    <!-- A tela de leitura do guia será gerada aqui pelo JS -->
                     <div id="tutorial-article-view" style="display: none; height: 100%;">
                         <button onclick="closeTutorial()" class="final-support-btn" style="width: max-content; margin: 0 0 15px 0; padding: 10px 15px; display: inline-block;">❮ VOLTAR AOS GUIAS</button>
-                        
-                        <!-- Os artigos serão injetados aqui -->
                         <div id="tutorial-articles-container"></div>
                     </div>
                 </div>
-            </div>
-        </div>
 
+            </div> 
+        </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- ÁREA DE MODAIS (TODOS MOVIDOS PARA A RAIZ DO BODY)      -->
+    <!-- ======================================================= -->
+
+    <!-- MODAL PRINCIPAL DO POKÉMON -->
     <div id="pokemon-modal" class="modal hidden">
         <div class="modal-overlay" onclick="document.getElementById('pokemon-modal').classList.add('hidden')"></div>
         <div class="modal-content">
             <button class="close-btn" onclick="document.getElementById('pokemon-modal').classList.add('hidden')">&times;</button>
             <div id="modal-body">
+                <!-- Conteúdo injetado via JS (incluindo a nova Calculadora de Vantagens) -->
             </div>
         </div>
     </div>
 
-    <!-- ======================================================= -->
-    <!-- MODAL DE ITENS (PokeDEX VERTICAL) -->
-    <!-- ======================================================= -->
+    <!-- MODAL DE ITENS -->
     <div id="item-modal" class="modal hidden">
         <div class="modal-overlay" onclick="document.getElementById('item-modal').classList.add('hidden')"></div>
         <div class="modal-content item-modal-content">
             <button class="close-btn" onclick="document.getElementById('item-modal').classList.add('hidden')">&times;</button>
-            <div id="item-modal-body">
-                <!-- O JavaScript vai renderizar o visor e os cards aqui dentro! -->
-            </div>
+            <div id="item-modal-body"></div>
         </div>
     </div>
         
+    <!-- MODAL OAK -->
     <div id="oak-modal" class="oak-overlay hidden">
         <div class="oak-container">
             <button class="oak-close-btn" id="close-oak">&times;</button>
@@ -286,6 +262,7 @@
         </div>
     </div>
 
+    <!-- MODAL SUPORTE (KALAZATTI) -->
     <div id="support-modal" class="oak-overlay hidden">
         <div class="oak-container">
             <button class="oak-close-btn" id="close-support">&times;</button>
@@ -302,6 +279,7 @@
         </div>
     </div>
 
+    <!-- MODAL HALL DA FAMA (VIP) -->
     <div id="vip-modal" class="oak-overlay hidden">
         <div class="oak-container">
             <button class="oak-close-btn" onclick="closeVipModal()">&times;</button>
@@ -310,26 +288,16 @@
                 <p style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 700; text-align: center; color: var(--dex-border); margin-bottom: 15px; line-height: 1.4;">
                     Um agradecimento gigante a essa equipe de Elite! 💖<br>Seja apoiando com um café ou ajudando a mapear o mundo e caçar bugs, vocês mantêm o projeto vivo e atualizado.
                 </p>
-                
                 <div class="vip-sections" style="width: 100%; max-height: 350px; overflow-y: auto; padding-right: 5px;">
                     <h3 class="vip-subtitle">☕ PAGADORES DO CAFÉZINHO!</h3>
                     <div class="vip-grid" id="vip-donators-grid"></div>
-                    
                     <h3 class="vip-subtitle" style="margin-top: 20px;">🗺️ DESBRAVADORES</h3>
                     <div class="vip-grid" id="vip-contributors-grid"></div>
-
-                    <!-- NOVA SEÇÃO: SANFONA COMPACTA DE APOIO -->
                     <div class="vip-join-accordion-wrapper" style="margin-top: 25px; border-top: 2px dashed rgba(255, 255, 255, 0.15); padding-top: 15px;">
-                        
-                        <!-- Botão que abre a sanfona -->
                         <button class="final-support-btn" style="width: 100%; background: #ffcb05; border-color: #2a2a2a; color: #2a2a2a; box-shadow: 4px 4px 0 rgba(0,0,0,0.5);" onclick="toggleVipAccordion(this)">
                             COMO SE TORNAR UM APOIADOR? ▼
                         </button>
-                        
-                        <!-- Conteúdo Expandido (Começa Escondido) -->
                         <div id="vip-join-content" class="vip-join-content hidden-steps" style="margin-top: 15px;">
-                            
-                            <!-- Banner Horizontal 1 -->
                             <div class="vip-horizontal-banner">
                                 <div class="banner-icon">☕</div>
                                 <div class="banner-text">
@@ -338,8 +306,6 @@
                                 </div>
                                 <a href="https://livepix.gg/kalazatti" target="_blank" class="final-support-btn" style="background: #e67e22; padding: 10px; font-size: 0.8rem; border-color: #111; margin: 0; width: auto;">DOAR LIVEPIX</a>
                             </div>
-                            
-                            <!-- Banner Horizontal 2 -->
                             <div class="vip-horizontal-banner">
                                 <div class="banner-icon">🗺️</div>
                                 <div class="banner-text">
@@ -348,15 +314,14 @@
                                 </div>
                                 <button onclick="closeVipModal(); initReportModal(event);" class="final-support-btn" style="background: #3498db; padding: 10px; font-size: 0.8rem; border-color: #111; margin: 0; width: auto;">REPORTAR INFO</button>
                             </div>
-
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- BOTÃO E MODAL DE REPORT -->
     <a href="#" onclick="initReportModal(event)" class="floating-report-btn" title="Reportar Bug">
         <span class="report-icon">🐛</span>
         <span class="report-text">REPORTAR BUG</span>
@@ -370,17 +335,14 @@
                 <form id="report-form" class="report-form">
                     <label>NICK NO JOGO (OBRIGATÓRIO):</label>
                     <input type="text" id="report-nick" placeholder="Seu nick exato..." required minlength="3" maxlength="20">
-                    
                     <label>QUAL É O PROBLEMA?</label>
                     <select id="report-type" required>
                         <option value="BUG">Erro/Bug no Site</option>
                         <option value="LOCAL">Localização Errada/Faltando</option>
                         <option value="SUGESTÃO">Sugestão de Melhoria</option>
                     </select>
-
                     <label>DESCREVA OS DETALHES:</label>
                     <textarea id="report-msg" rows="4" placeholder="Ex: O respawn do Charizard sumiu na rota de Cinnabar..." required minlength="10"></textarea>
-
                     <button type="submit" class="final-support-btn" id="submit-report-btn">ENVIAR RELATÓRIO</button>
                     <p id="report-status" class="report-status"></p>
                 </form>
@@ -388,62 +350,69 @@
         </div>
     </div>
 
+    <!-- MODAL DE DOWNLOAD DO APP -->
     <div id="download-app-modal" class="oak-overlay hidden">
         <div class="oak-container report-container">
-            
             <button class="oak-close-btn" id="close-download-app" onclick="document.getElementById('download-app-modal').classList.add('hidden')">&times;</button>
-            
             <div class="oak-screen report-screen" style="border-color: #111;">
-                
                 <h2 class="report-title" style="color: #e3350d; border-bottom-color: #111;">📱 APP PokeDEX FLUTUANTE</h2>
-                
                 <div class="map-list-scroll app-modal-text" style="width: 100%; max-height: 280px; overflow-y: auto; padding-right: 10px; font-family: 'Outfit', sans-serif; font-size: 0.85rem; line-height: 1.6; text-align: justify;">
-                    
                     <div id="apk-page-1">
                         <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; text-align: center; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">▶ ADEUS, JOGO REINICIANDO!</p>
-                        
                         <p style="margin-bottom: 12px;">Cansado de minimizar o PBR, abrir o navegador para olhar a Pokedex e, quando voltar, <b>o jogo ter fechado ou reiniciado?</b></p>
                         <p style="margin-bottom: 12px;">Desenvolvi um aplicativo leve que cria uma <b>Pokebola Flutuante</b> na tela do seu celular. Você consulta mapas, natures e fraquezas direto por cima do jogo, sem precisar minimizar nada!</p>
-                        
                         <p style="margin-bottom: 12px; font-weight: 700; color: #e3350d; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">⚠ POR QUE FORA DA PLAY STORE?</p>
                         <p style="margin-bottom: 12px;">Para manter este projeto <b>100% gratuito e livre de anúncios chatos</b>, optei por distribuir o app diretamente aqui (via APK), pulando as taxas e a burocracia das lojas oficiais. É um projeto amador, feito de fã para fã!</p>
-                        
                         <button onclick="changeApkPage(2)" class="final-support-btn" style="width: 100%; margin-top: 20px;">VER COMO INSTALAR ❯</button>
                     </div>
-
                     <div id="apk-page-2" class="hidden-step">
                         <p style="margin-bottom: 15px; font-weight: 700; color: #e3350d; text-align: center; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.5px;">🛠️ PASSO A PASSO DA INSTALAÇÃO</p>
-                        
                         <div class="tutorial-step">
                             <p><b>1. Alerta do Google Play Protect:</b> Como o app não está na Play Store, o Google exibirá um alerta padrão de segurança. Clique em <b>"Mais detalhes"</b> (setinha para baixo).</p>
                             <img src="apk-step1.png" alt="Passo 1" class="apk-tutorial-img">
                         </div>
-
                         <div class="tutorial-step">
                             <p><b>2. Forçar Instalação:</b> Em seguida, clique em <b>"Instalar assim mesmo"</b>. Fique tranquilo, o app é totalmente seguro e não possui anúncios maliciosos!</p>
                             <img src="apk-step2.png" alt="Passo 2" class="apk-tutorial-img">
                         </div>
-
                         <div class="tutorial-step">
                             <p><b>3. Permissão de Notificação:</b> Ao abrir o app, clique em <b>"Permitir"</b>. Isso é crucial para que o sistema Android não mate a Pokedex enquanto ela roda em segundo plano.</p>
                             <img src="apk-step3.png" alt="Passo 3" class="apk-tutorial-img">
                         </div>
-
                         <div class="tutorial-step">
                             <p><b>4. Permissão Crítica (Sobreposição):</b> O app pedirá para "Aparecer sobre outros". <b>Você DEVE ativar esta chave!</b> Sem isso, a Pokebola flutuante não vai conseguir aparecer por cima do seu jogo!</p>
                             <img src="apk-step4.png" alt="Passo 4" class="apk-tutorial-img">
                         </div>
-
                         <div style="display: flex; gap: 10px; margin-top: 20px;">
                             <button onclick="changeApkPage(1)" class="final-support-btn" style="background: #444; color: #fff; border-color: #111; flex: 1; box-shadow: 4px 4px 0 #111;">❮ VOLTAR</button>
                             <a href="Pokedex-PBR-v1.0.apk" download="Pokedex-PBR-v1.0.apk" class="final-support-btn" style="background: #e3350d; color: #FFFFFF; border-color: #111; flex: 2; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: 4px 4px 0 #111;">⚡ BAIXAR (.APK)</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- MODAL DE CONFIRMAÇÃO DE RESET DOS TMs (Movido para fora do Mapa) -->
+    <div id="reset-confirm-modal" class="oak-overlay hidden">
+        <div class="oak-container">
+            <div class="oak-screen" style="border-color: #e3350d; align-items: center;">
+                <h2 class="report-title" style="color:#e3350d; border-color:#e3350d;">RESETAR COLEÇÃO?</h2>
+                <p class="reset-modal-text">Tem certeza? Isso apagará todo o seu progresso de TMs marcados e não pode ser desfeito!</p>
+                <div style="display: flex; gap: 10px; width: 100%;">
+                    <button onclick="resetTMCollection()" class="final-support-btn" style="background:#e3350d; color:#fff; flex:1;">SIM, APAGAR</button>
+                    <button onclick="document.getElementById('reset-confirm-modal').classList.add('hidden')" class="final-support-btn" style="background:#444; color:#fff; flex:1;">NÃO, CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANCO DE EFEITOS SONOROS (SOUND DESIGN RETRÔ) -->
+    <!-- Você precisará colocar arquivos curtos .mp3 na raiz do projeto futuramente -->
+    <audio id="sfx-hover" src="hover.mp3" preload="auto"></audio>
+    <audio id="sfx-click" src="click.mp3" preload="auto"></audio>
+    <audio id="sfx-open" src="open.mp3" preload="auto"></audio>
+    <audio id="sfx-heal" src="heal.mp3" preload="auto"></audio>
     
     <script src="script.js"></script>
 </body>
