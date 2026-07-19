@@ -1,11 +1,13 @@
 [
   {
     "id": "npc-shurya",
-    "nome": "Mark",
-    "cidade": "Saffron City",
+    "nome": "Shurya",
+    "cidade": "Armia City",
+    "coordenadas": "X: 2256 | Y: 859 | Z: 6", 
+    "imagem_mapa": "img/mapas/mapa-shurya.png", 
     "saudacao": "\"Bem-vindo ao meu mercado, Gostaria de comprar Auras para Pokemon?\"",
     "sprite": "img/npcs/shurya.gif",
-    "radar": "Saffron (Shurya)", 
+    "radar": "Armia (Shurya)", 
     "tags": ["comerciante", "shop"], 
     
     "requisitos": {
@@ -32,6 +34,8 @@
     "id": "npc-officer-jenny",
     "nome": "Officer Jenny",
     "cidade": "Cerulean City",
+    "coordenadas": "X: 2500 | Y: 1200 | Z: 7",
+    "imagem_mapa": "img/mapas/mapa-jenny.png",
     "saudacao": "\"Atenção treinador! Temos missões perigosas pela frente.\"",
     "sprite": "img/npcs/jenny.gif",
     "radar": "Cerulean (Jenny)",
