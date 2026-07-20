@@ -1166,26 +1166,22 @@ window.openModal = (id) => {
     const matchupUI = `
     <div class="data-module" style="margin-bottom: 10px;">
         <h4 class="label-tech">EFETIVIDADE DE DANO</h4>
-        <div class="matchup-grid-3" style="margin-top: 10px; display: flex; flex-direction: column; gap: 18px;">
-            
-            <!-- Bloco VANTAGEM -->
-            <div class="matchup-col" style="width: 100%;">
-                <h4 style="color: #000000; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; text-align: left; margin: 0;">
-                    Vantagem
+        <div class="matchup-grid-3" style="margin-top: 10px; display: flex; flex-direction: column; gap: 15px;">
+
+            <div class="matchup-col" style="flex: 1; padding-right: 8px;">
+                <h4 style="color: #000000; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.2); padding-bottom: 5px; margin-bottom: 8px; text-transform: uppercase; text-align: left;">
+                    ⚔️ Vantagem
                 </h4>
-                <div style="border-bottom: 2px dashed rgba(0,0,0,0.15); margin: 6px 0 10px 0;"></div>
                 <div class="effectiveness-container" style="display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 6px;">
                     ${matchups.advantage.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}"></div>`).join('')}
                     ${matchups.advantage.length === 0 ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
                 </div>
             </div>
 
-            <!-- Bloco FRAQUEZAS -->
-            <div class="matchup-col" style="width: 100%;">
-                <h4 style="color: #000000; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; text-align: left; margin: 0;">
-                    Fraquezas
+            <div class="matchup-col" style="flex: 1; padding-right: 8px;">
+                <h4 style="color: #000000; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.2); padding-bottom: 5px; margin-bottom: 8px; text-transform: uppercase; text-align: left;">
+                    💔 Fraquezas
                 </h4>
-                <div style="border-bottom: 2px dashed rgba(0,0,0,0.15); margin: 6px 0 10px 0;"></div>
                 <div class="effectiveness-container" style="display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 6px;">
                     ${matchups.weak4x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()} 4x"></div>`).join('')}
                     ${matchups.weak2x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()} 2x"></div>`).join('')}
@@ -1193,12 +1189,10 @@ window.openModal = (id) => {
                 </div>
             </div>
 
-            <!-- Bloco RESISTÊNCIA -->
-            <div class="matchup-col" style="width: 100%;">
-                <h4 style="color: #000000; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; text-align: left; margin: 0;">
-                    Resistência
+            <div class="matchup-col" style="flex: 1; padding-right: 8px;">
+                <h4 style="color: #000000; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.2); padding-bottom: 5px; margin-bottom: 8px; text-transform: uppercase; text-align: left;">
+                    🛡️ Resistência
                 </h4>
-                <div style="border-bottom: 2px dashed rgba(0,0,0,0.15); margin: 6px 0 10px 0;"></div>
                 <div class="effectiveness-container" style="display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 6px;">
                     ${matchups.immune0x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()} Imune"></div>`).join('')}
                     ${matchups.resist025x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()} 0.25x"></div>`).join('')}
