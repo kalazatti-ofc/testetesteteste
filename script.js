@@ -625,13 +625,15 @@ function renderNPCs(list) {
                     <div class="pk-gen-bar" style="background: #b5b6b6; color: #030000; font-weight: 900; text-shadow: 1px 1px 0px rgba(238, 238, 238, 0.3); border: 1px solid #111;">📍 ${npc.cidade.toUpperCase()}</div>
                     <div class="npc-tags-container">
                         ${npc.tags.map(t => {
-                            let corBg = '#34495e'; // Cor neutra padrão
+                            let corBg = '#e0e0e0'; // Cor neutra padrão
                             let corTxt = '#ffffff';
                             const tagLimpa = t.toLowerCase();
                             
-                            if (tagLimpa === 'comerciante' || tagLimpa === 'shop') { corBg = '#5e9976'; corTxt = '#000000'; }
-                            else if (tagLimpa === 'diária' || tagLimpa === 'quests') { corBg = '#b44545'; corTxt = '#000000'; } 
+                            if (tagLimpa === 'comerciante') { corBg = '#3cb66d'; corTxt = '#000000'; }
+                            else if (tagLimpa === 'diária') { corBg = '#dccd27'; corTxt = '#000000'; } 
                             else if (tagLimpa === 'utilitário') { corBg = '#b2aa7b'; corTxt = '#000000'; } 
+                            else if (tagLimpa === 'shop') { corBg = '#55b9ac'; corTxt = '#000000'; } 
+                            else if (tagLimpa === 'quests') { corBg = '#4d5ce1'; corTxt = '#000000'; } 
                             
                             return `<span class="npc-tag-badge" style="background: ${corBg}; color: ${corTxt};">${t.toUpperCase()}</span>`;
                         }).join('')}
