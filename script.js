@@ -1171,23 +1171,29 @@ window.openModal = (id) => {
                 
                 <div class="matchup-col" style="flex: 1; border-right: 2px dashed rgba(0,0,0,0.1); padding-right: 8px;">
                     <h4 style="color: #3498db; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">⚔️ VANTAGEM</h4>
-                    ${matchups.advantage.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #3498db;">2x</span></div>`).join('')}
-                    ${matchups.advantage.length === 0 ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
+                    <div class="effectiveness-container">
+                        ${matchups.advantage.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}: 2x"></div>`).join('')}
+                        ${matchups.advantage.length === 0 ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
+                    </div>
                 </div>
                 
                 <div class="matchup-col" style="flex: 1; border-right: 2px dashed rgba(0,0,0,0.1); padding-right: 8px;">
                     <h4 style="color: #e74c3c; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">💔 FRAQUEZAS</h4>
-                    ${matchups.weak4x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #e74c3c;">4x</span></div>`).join('')}
-                    ${matchups.weak2x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #e74c3c;">2x</span></div>`).join('')}
-                    ${(matchups.weak4x.length === 0 && matchups.weak2x.length === 0) ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
+                    <div class="effectiveness-container">
+                        ${matchups.weak4x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}: 4x"></div>`).join('')}
+                        ${matchups.weak2x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}: 2x"></div>`).join('')}
+                        ${(matchups.weak4x.length === 0 && matchups.weak2x.length === 0) ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
+                    </div>
                 </div>
                 
                 <div class="matchup-col" style="flex: 1;">
                     <h4 style="color: #2ecc71; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">🛡️ RESISTÊNCIA</h4>
-                    ${matchups.immune0x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #2ecc71;">0x</span></div>`).join('')}
-                    ${matchups.resist025x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #2ecc71;">1/4</span></div>`).join('')}
-                    ${matchups.resist05x.map(t => `<div class="type-multiplier"><span style="color:var(--type-${t.toLowerCase()}); font-weight:900;">${t.toUpperCase()}</span> <span style="font-weight: 900; color: #2ecc71;">1/2</span></div>`).join('')}
-                    ${(matchups.immune0x.length === 0 && matchups.resist025x.length === 0 && matchups.resist05x.length === 0) ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
+                    <div class="effectiveness-container">
+                        ${matchups.immune0x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}: Imune (0x)"></div>`).join('')}
+                        ${matchups.resist025x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}: 1/4"></div>`).join('')}
+                        ${matchups.resist05x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}: 1/2"></div>`).join('')}
+                        ${(matchups.immune0x.length === 0 && matchups.resist025x.length === 0 && matchups.resist05x.length === 0) ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
+                    </div>
                 </div>
 
             </div>
