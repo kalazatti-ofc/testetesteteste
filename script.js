@@ -624,7 +624,6 @@ function renderNPCs(list) {
                 <div class="pk-card-inner">
                     <img src="${npc.sprite}" loading="lazy" style="width: 64px; height: 64px; image-rendering: pixelated; margin-top: 15px;" onerror="this.src='https://dummyimage.com/64x64/333/fff.png&text=NPC'">
                     <h3 class="pk-name">${npc.nome}</h3>
-                    <div class="pk-gen-bar" style="background: #b5b6b6; color: #030000; font-weight: 900; text-shadow: 1px 1px 0px rgba(238, 238, 238, 0.3); border: 1px solid #111;">📍 ${npc.cidade.toUpperCase()}</div>
                     <div class="npc-tags-container">
                         ${npc.tags.map(t => {
                             let corBg = '#e0e0e0'; // Cor neutra padrão
