@@ -1437,24 +1437,34 @@ window.openModal = (id) => {
             // ==========================================
             // NOVA LÓGICA: VERIFICA SE TEM OS DADOS NOVOS OU A DESCRIÇÃO ANTIGA
             // ==========================================
+            // ==========================================
+            // NOVA LÓGICA: VERIFICA SE TEM OS DADOS NOVOS OU A DESCRIÇÃO ANTIGA
+            // ==========================================
             let skillDetailsHTML = "";
             if (p.darkSkill.forca) {
-                // Se os atributos novos existirem, monta as pílulas de status
+                // 1. Prepara o texto da descrição (se existir no JSON)
+                const descHTML = p.darkSkill.desc 
+                    ? `<p style="margin: 4px 0 10px 0; color: inherit; opacity: 0.9; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">${p.darkSkill.desc}</p>` 
+                    : '';
+
+                // 2. Monta o HTML final com a descrição e as pílulas de status
+                // NOTA: 'color: #111;' adicionado nas pílulas para contrastar com o fundo '#f0f0f0'
                 skillDetailsHTML = `
-                    <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px;">
-                        <span style="font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>FORÇA:</strong> ${p.darkSkill.forca}</span>
-                        <span style="font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>ACURÁCIA:</strong> ${p.darkSkill.acuracia}</span>
-                        <span style="font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>RECARGA:</strong> ${p.darkSkill.recarga}</span>
-                        <span style="font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>TIPO:</strong> ${p.darkSkill.tipo}</span>
-                        <span style="font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>CLASSE:</strong> ${p.darkSkill.categoria}</span>
+                    ${descHTML}
+                    <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+                        <span style="color: #111; font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>FORÇA:</strong> ${p.darkSkill.forca}</span>
+                        <span style="color: #111; font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>ACURÁCIA:</strong> ${p.darkSkill.acuracia}</span>
+                        <span style="color: #111; font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>RECARGA:</strong> ${p.darkSkill.recarga}</span>
+                        <span style="color: #111; font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>TIPO:</strong> ${p.darkSkill.tipo}</span>
+                        <span style="color: #111; font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>CLASSE:</strong> ${p.darkSkill.categoria}</span>
                     </div>
                 `;
             } else if (p.darkSkill.desc) {
-                // Se não tiver os atributos novos mas tiver a frase antiga ("Sem informação definida." etc)
-                skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: #444; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">${p.darkSkill.desc}</p>`;
+                // Se não tiver os atributos novos mas tiver a frase antiga
+                skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: inherit; opacity: 0.8; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">${p.darkSkill.desc}</p>`;
             } else {
                 // Fallback de segurança máxima
-                skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: #444; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">Sem informação definida.</p>`;
+                skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: inherit; opacity: 0.8; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">Sem informação definida.</p>`;
             }
 
             htmlDarkSkill = `
