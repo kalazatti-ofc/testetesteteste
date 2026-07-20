@@ -1166,18 +1166,18 @@ window.openModal = (id) => {
     const matchupUI = `
         <div class="data-module" style="margin-bottom: 10px;">
             <h4 class="label-tech">EFETIVIDADE DE DANO</h4>
-            <div class="matchup-grid-3" style="margin-top: 10px; display: flex; gap: 10px;">
+            <div class="matchup-grid-3" style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px;">
                 
-                <div class="matchup-col" style="flex: 1; border-right: 2px dashed rgba(0,0,0,0.1); padding-right: 8px;">
-                    <h4 style="color: #3498db; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">⚔️ VANTAGEM</h4>
+                <div class="matchup-col" style="flex: 1; padding-right: 8px;">
+                    <h4 style="color: #3498db; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">⚔️VANTAGEM</h4>
                     <div class="effectiveness-container">
                         ${matchups.advantage.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}: 2x"></div>`).join('')}
                         ${matchups.advantage.length === 0 ? '<span style="color:#aaa; font-size:0.7rem;">Nenhuma</span>' : ''}
                     </div>
                 </div>
                 
-                <div class="matchup-col" style="flex: 1; border-right: 2px dashed rgba(0,0,0,0.1); padding-right: 8px;">
-                    <h4 style="color: #e74c3c; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">💔 FRAQUEZAS</h4>
+                <div class="matchup-col" style="flex: 1; padding-right: 8px;">
+                    <h4 style="color: #e74c3c; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">💔FRAQUEZAS</h4>
                     <div class="effectiveness-container">
                         ${matchups.weak4x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}: 4x"></div>`).join('')}
                         ${matchups.weak2x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}: 2x"></div>`).join('')}
@@ -1186,7 +1186,7 @@ window.openModal = (id) => {
                 </div>
                 
                 <div class="matchup-col" style="flex: 1;">
-                    <h4 style="color: #2ecc71; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">🛡️ RESISTÊNCIA</h4>
+                    <h4 style="color: #2ecc71; font-size: 0.65rem; font-weight: 900; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 5px; margin-bottom: 8px;">🛡️RESISTÊNCIA</h4>
                     <div class="effectiveness-container">
                         ${matchups.immune0x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}: Imune (0x)"></div>`).join('')}
                         ${matchups.resist025x.map(t => `<div class="type-circle" style="background-color: var(--type-${t.toLowerCase()});" data-tooltip="${t.toUpperCase()}: 1/4"></div>`).join('')}
