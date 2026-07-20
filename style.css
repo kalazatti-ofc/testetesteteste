@@ -2658,6 +2658,74 @@ body.dark-mode .item-card.tm-owned { border-color: #ffcb05; box-shadow: inset 0 
     border-color: #ffcb05; /* Amarelo no hover */
 }
 
+/* =========================================
+   ABAS DE COMÉRCIO DO NPC (MERCADO)
+========================================= */
+.npc-market-container { margin-top: 15px; }
+
+/* Flexbox para garantir que fiquem na horizontal e possam rolar */
+.npc-market-tabs { 
+    display: flex; 
+    gap: 5px; 
+    position: relative;
+    z-index: 2; 
+    overflow-x: auto; 
+}
+.npc-market-tabs::-webkit-scrollbar { height: 4px; }
+.npc-market-tabs::-webkit-scrollbar-thumb { background: var(--dex-border); border-radius: 4px; }
+
+/* Design da aba inativa (Conectada ao estilo dos botões da Dex) */
+.npc-market-tab { 
+    flex: 1; 
+    min-width: 110px; /* Garante que não amassem na horizontal */
+    padding: 8px 10px; 
+    text-align: center; 
+    font-size: 0.75rem; 
+    font-weight: 900; 
+    cursor: pointer; 
+    color: #aaa; 
+    background: #444; 
+    border: 3px solid var(--dex-border); 
+    border-radius: 8px 8px 0 0; 
+    transition: background 0.2s, color 0.2s; 
+    outline: none; 
+    margin-bottom: -3px; 
+}
+
+/* Aba Ativa fundida com o painel principal */
+.npc-market-tab.active { 
+    color: var(--dex-border); 
+    background: var(--screen-bg); 
+    border-bottom: 3px solid var(--screen-bg); 
+}
+
+/* Painel da lista de itens */
+.npc-market-content { 
+    max-height: 200px; 
+    overflow-y: auto; 
+    background: var(--screen-bg);
+    border: 3px solid var(--dex-border);
+    border-radius: 0 8px 8px 8px;
+    position: relative;
+    z-index: 1;
+}
+.npc-market-content::-webkit-scrollbar { width: 6px; }
+.npc-market-content::-webkit-scrollbar-thumb { background: var(--dex-border); border-radius: 4px; }
+
+/* Tabela Zebrada */
+.npc-trade-row { display: flex; align-items: center; padding: 8px 15px; border-bottom: 1px dashed rgba(0,0,0,0.1); }
+.npc-trade-row:nth-child(even) { background-color: rgba(0,0,0,0.03); }
+.npc-trade-img { width: 26px; height: 26px; image-rendering: pixelated; margin-right: 12px; }
+.npc-trade-name { font-size: 0.75rem; font-weight: bold; color: var(--dex-border); text-transform: uppercase; }
+.npc-trade-price { margin-left: auto; font-size: 0.8rem; font-weight: 900; font-family: monospace; text-align: right; }
+
+/* Dark Mode Support (Para não ficarem brancas no tema escuro) */
+body.dark-mode .npc-market-tab.active { background: #1a1a1a; color: #ffcb05; border-bottom-color: #1a1a1a; }
+body.dark-mode .npc-market-content { background: #1a1a1a; }
+body.dark-mode .npc-trade-name { color: #ddd; }
+body.dark-mode .npc-trade-row { border-bottom-color: rgba(255,255,255,0.1); }
+body.dark-mode .npc-trade-row:nth-child(even) { background-color: rgba(255,255,255,0.03); }
+
 /* ==========================================================================
    ATUALIZAÇÕES FINAIS (MATCHUPS, ANIMAÇÕES, MODAIS E MOBILE)
    ========================================================================== */
@@ -2760,10 +2828,14 @@ body.dark-mode .type-multiplier {
     .pill-option { flex: 1; text-align: center; }
 }
 
+/* ==============================================================
+   OTIMIZAÇÃO EXTREMA: MOBILE HORIZONTAL (LANDSCAPE / APK)
+============================================================== */
 @media (max-height: 600px) and (orientation: landscape) {
-    .close-btn, .oak-close-btn {
-        top: 5px !important;
-        right: 5px !important; 
+    /* Ajustes dos Modais Secundários para Modo Deitado */
+    .oak-container {
+        width: 90%;
+        max-height: 90vh;
     }
 }
 
