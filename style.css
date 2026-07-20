@@ -2881,68 +2881,45 @@ body.dark-mode .type-multiplier {
 /* OPÇÃO 1: ROLAGEM HARMÔNICA DOS MODAIS (MOBILE) */
 /* ========================================== */
 @media (max-width: 768px) {
-    /* 1. EXPANDE O MODAL E ATIVA A ROLAGEM FLUIDA */
-    #pokemon-modal > div, /* Pega a caixa branca dentro do fundo escuro */
+    /* 1. EXPANDE O MODAL E PREPARA O FUNDO */
+    #pokemon-modal > div, 
     #item-modal > div,
     #npc-modal > div {
-        width: 95% !important;          /* Ocupa quase toda a largura */
-        max-height: 92vh !important;    /* Ocupa quase toda a altura da tela */
-        overflow-y: auto !important;    /* Habilita o scroll vertical */
-        overflow-x: hidden !important;  /* Impede barra de rolagem horizontal */
-        padding: 12px !important;       /* Margem interna menor */
+        width: 95% !important;          
+        max-height: 92vh !important;    
+        padding: 12px !important;       
         border-radius: 12px !important;
-        -webkit-overflow-scrolling: touch; /* Deixa o scroll macio no iPhone/Android */
     }
 
-    /* 2. EMPILHA TUDO EM UMA COLUNA */
+    /* 2. EMPILHA TUDO E ATIVA A ROLAGEM GERAL AQUI */
     .modal-pokedex-view {
         display: flex !important;
-        flex-direction: column !important; /* Coloca a 'Asa Direita' embaixo da 'Asa Esquerda' */
-        gap: 12px !important;              /* Espaço entre o cabeçalho e as informações */
+        flex-direction: column !important; 
+        gap: 12px !important;
+        overflow-y: auto !important; /* <-- A MÁGICA: Permite que o modal inteiro role */
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch; /* Rolagem macia no mobile */
     }
 
-    /* 3. REDUZ O CABEÇALHO PARA NÃO ENGOLIR A TELA (Asa Esquerda) */
+    /* 3. CABEÇALHO (Asa Esquerda) - SOBE AO ROLAR */
     .modal-left-wing, .item-vertical-wing {
         width: 100% !important;
         position: relative !important;
-        top: 0 !important;
+        flex-shrink: 0 !important; /* Impede que o cabeçalho amasse, mantendo seu tamanho real ao rolar */
     }
 
-    /* Encolhe o container principal onde fica a foto */
-    .screen-border {
-        margin-bottom: 0 !important;
-    }
-    
-    .main-screen, .main-screen-stacked {
-        padding: 10px !important;
-        min-height: auto !important; 
-    }
+    /* Elementos internos do cabeçalho */
+    .screen-border { margin-bottom: 0 !important; }
+    .main-screen, .main-screen-stacked { padding: 10px !important; min-height: auto !important; }
+    .poke-img-large, .poke-img-stacked { max-width: 100px !important; max-height: 100px !important; margin: 0 auto !important; object-fit: contain; }
+    .screen-info h2, .poke-name-stacked { font-size: 1.2rem !important; margin-top: 5px !important; margin-bottom: 5px !important; }
+    .modal-gen-bar, .stacked-gen-bar { font-size: 0.75rem !important; padding: 4px !important; }
 
-    /* Encolhe drasticamente a foto dos Pokémon, NPCs e Bosses */
-    .poke-img-large, .poke-img-stacked {
-        max-width: 100px !important; 
-        max-height: 100px !important;
-        margin: 0 auto !important;
-        object-fit: contain;
-    }
-
-    /* Diminui o Nome e a barra de Geração/Região */
-    .screen-info h2, .poke-name-stacked {
-        font-size: 1.2rem !important;
-        margin-top: 5px !important;
-        margin-bottom: 5px !important;
-    }
-    
-    .modal-gen-bar, .stacked-gen-bar {
-        font-size: 0.75rem !important;
-        padding: 4px !important;
-    }
-
-    /* 4. AJUSTA A ÁREA DE INFORMAÇÕES (Asa Direita) */
+    /* 4. ÁREA DE INFORMAÇÕES (Asa Direita) - CRESCE LIVREMENTE SEM TRAVAR */
     .modal-right-wing {
         width: 100% !important;
         height: auto !important;
-        overflow-y: visible !important; /* Passa o scroll para o modal inteiro, não apenas pra essa asa */
+        overflow-y: visible !important; /* Desliga a barra de rolagem interna, passando a missão de rolar para o contêiner principal */
     }
 
     /* 5. ACHATA OS MÓDULOS PARA ECONOMIZAR ESPAÇO */
@@ -2950,10 +2927,5 @@ body.dark-mode .type-multiplier {
         padding: 10px !important;
         margin-bottom: 10px !important;
     }
-
-    /* Ajusta fontes dos títulos dos módulos */
-    .label-tech {
-        font-size: 0.8rem !important;
-        margin-bottom: 8px !important;
-    }
+    .label-tech { font-size: 0.8rem !important; margin-bottom: 8px !important; }
 }
