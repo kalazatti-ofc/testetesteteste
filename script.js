@@ -731,13 +731,6 @@ window.openNpcModal = (id) => {
     // Abre o Modal na tela
     document.getElementById('pokemon-modal').classList.remove('hidden');
 
-    // Dá um micro-atraso de 50 milissegundos para garantir que o HTML do modal foi desenhado na tela, e então converte para abas se for celular
-        setTimeout(() => {
-            if (typeof window.aplicarAbasMobileModal === 'function') {
-                window.aplicarAbasMobileModal();
-            }
-        }, 50);
-
     // Aciona o Radar automaticamente após abrir
     setTimeout(() => {
         const radarBtn = document.getElementById('npc-radar-trigger');
@@ -787,80 +780,6 @@ function gerarPainelDeFuncaoNPC(funcao) {
 
         // Junta Tudo com o CSS Zebrado e Botões Soltos sem Moldura Extra
         return `
-            <style>
-                /* O container geral agora é invisível, serve apenas para agrupar */
-                .npc-market-container { 
-                    margin-top: 15px; 
-                }
-                
-                /* Container das abas soltas */
-                .npc-market-tabs { 
-                    display: flex; 
-                    gap: 5px; 
-                    position: relative;
-                    z-index: 2; /* Mantém as abas acima da lista para sobrepor a borda */
-                }
-                
-                /* Design de aba solta/inativa */
-                .npc-market-tab { 
-                    flex: 1; 
-                    padding: 8px 10px; 
-                    text-align: center; 
-                    font-size: 0.75rem; 
-                    font-weight: 900; 
-                    cursor: pointer; 
-                    color: #777; 
-                    background: #f5f5f5; 
-                    border: 2px solid #111; 
-                    border-radius: 6px 6px 0 0; 
-                    transition: background 0.2s, color 0.2s; 
-                    outline: none; 
-                    margin-bottom: -2px; /* Puxa a aba para baixo para encostar na linha da lista */
-                }
-                
-                /* Design da aba ATIVA (fundida com a lista branca) */
-                .npc-market-tab.active { 
-                    color: #111; 
-                    background: #ffffff; 
-                    border-bottom: 2px solid #ffffff; /* Apaga a linha da lista embaixo dela */
-                }
-                
-                /* Container da lista de itens (AGORA A BORDA FICA AQUI) */
-                .npc-market-content { 
-                    max-height: 200px; 
-                    overflow-y: auto; 
-                    background: #ffffff;
-                    border: 2px solid #111;
-                    border-radius: 0 6px 6px 6px;
-                    position: relative;
-                    z-index: 1;
-                }
-                
-                .npc-market-content::-webkit-scrollbar { width: 4px; }
-                .npc-market-content::-webkit-scrollbar-thumb { background: #111; border-radius: 4px; }
-                
-                /* Efeito Zebrado nas Linhas */
-                .npc-trade-row { 
-                    display: flex; 
-                    align-items: center; 
-                    padding: 8px 15px; 
-                }
-                .npc-trade-row:nth-child(even) { background-color: #f4f4f4; }
-                .npc-trade-row:nth-child(odd) { background-color: #ffffff; }
-                
-                .npc-trade-img { width: 26px; height: 26px; image-rendering: pixelated; margin-right: 12px; }
-                .npc-trade-name { font-size: 0.75rem; font-weight: bold; color: #111; text-transform: uppercase; }
-                
-                /* Valores encostados à direita */
-                .npc-trade-price { 
-                    margin-left: auto; 
-                    font-size: 0.8rem; 
-                    font-weight: 900; 
-                    font-family: monospace; 
-                    text-align: right; 
-                }
-            </style>
-            
             <div class="npc-market-container">
                 ${htmlTabs}
                 ${renderList(funcao.vende, 'vende', hasVende)}
@@ -1702,13 +1621,6 @@ window.openModal = (id) => {
     if (pCategory === 'normal') {
         loadEvolutions(p.name);
     }
-
-    // ADICIONE ESTE BLOCO AQUI PARA OS POKÉMON TAMBÉM TEREM ABAS NO MOBILE
-    setTimeout(() => {
-        if (typeof window.aplicarAbasMobileModal === 'function') {
-            window.aplicarAbasMobileModal();
-        }
-    }, 50);
 };
 
 async function loadEvolutions(pokemonName) {
@@ -2450,98 +2362,4 @@ window.toggleMarketTab = (tab, event) => {
     event.target.classList.add('active');
     const targetList = container.querySelector(`#market-list-${tab}`);
     if(targetList) targetList.style.display = 'block';
-};
-
-// ==========================================
-// SISTEMA DE ABAS MOBILE (ALTERNATIVA 3) - CORRIGIDO
-// ==========================================
-window.aplicarAbasMobileModal = () => {
-    // 1. Verifica se a tela é de celular (menor que 768px).
-    if (window.innerWidth > 768) return;
-
-    // 2. CORREÇÃO: Foca a busca ESTRITAMENTE dentro do Modal!
-    const modalBody = document.getElementById('modal-body');
-    if (!modalBody) return;
-
-    const modules = modalBody.querySelectorAll('.data-module');
-    if (modules.length < 2) return; // Se tiver só 1 informação, não precisa de abas
-
-    // Se já tiver criado as abas neste modal, aborta para não duplicar
-    if (modalBody.querySelector('.mobile-tabs-wrapper')) return;
-
-    // 3. Injeta um CSS dinâmico para diminuir a foto e o cabeçalho APENAS no mobile
-    if (!document.getElementById('mobile-tabs-css')) {
-        const style = document.createElement('style');
-        style.id = 'mobile-tabs-css';
-        style.innerHTML = `
-            @media (max-width: 768px) {
-                .location-module { margin-top: 5px !important; padding: 10px !important; }
-                .dex-img-box, .npc-img-box { width: 110px !important; height: 110px !important; margin: 0 auto !important; }
-                .dex-img-box img, .npc-img-box img { max-height: 90px !important; }
-                .pk-gen-bar { padding: 4px !important; font-size: 0.7rem !important; }
-                .mobile-tabs-wrapper::-webkit-scrollbar { display: none; }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    // 4. Cria o container que vai segurar os botões (Abas)
-    const tabsWrapper = document.createElement('div');
-    tabsWrapper.className = 'mobile-tabs-wrapper';
-    tabsWrapper.style.cssText = 'display: flex; gap: 4px; overflow-x: auto; margin-bottom: 15px; border-bottom: 2px solid #111; padding-bottom: 0; white-space: nowrap; margin-top: 10px;';
-
-    // 5. Monta um botão de aba para cada módulo de informação
-    modules.forEach((mod, index) => {
-        // Puxa o título original da caixa (ex: "STATUS BASE")
-        const titleEl = mod.querySelector('h4, h3, .label-tech');
-        const title = titleEl ? titleEl.innerText : `Info ${index + 1}`;
-
-        // Oculta o título original de dentro da caixa
-        if (titleEl) titleEl.style.display = 'none';
-
-        const btn = document.createElement('button');
-        btn.innerText = title;
-        btn.style.cssText = `
-            flex: 0 0 auto; 
-            padding: 10px 15px; 
-            font-size: 0.75rem; 
-            font-weight: 900; 
-            background: ${index === 0 ? '#ffffff' : '#e0e0e0'}; 
-            color: #111;
-            border: 2px solid #111; 
-            border-bottom: ${index === 0 ? '2px solid #ffffff' : '2px solid #111'};
-            border-radius: 6px 6px 0 0; 
-            margin-bottom: -2px;
-            cursor: pointer;
-            position: relative;
-            z-index: ${index === 0 ? '2' : '1'};
-            transition: all 0.2s;
-        `;
-
-        // Esconde o conteúdo de todas as caixas, exceto a primeira
-        mod.style.display = index === 0 ? 'block' : 'none';
-
-        // 6. Lógica de clique: Ao tocar na aba
-        btn.onclick = () => {
-            Array.from(tabsWrapper.children).forEach(b => {
-                b.style.background = '#e0e0e0';
-                b.style.borderBottom = '2px solid #111';
-                b.style.zIndex = '1';
-            });
-            modules.forEach(m => m.style.display = 'none');
-
-            btn.style.background = '#ffffff';
-            btn.style.borderBottom = '2px solid #ffffff';
-            btn.style.zIndex = '2';
-            mod.style.display = 'block';
-        };
-
-        tabsWrapper.appendChild(btn);
-    });
-
-    // 7. Insere as abas no topo da área de informações do MODAL
-    const firstModule = modules[0];
-    if (firstModule && firstModule.parentNode) {
-        firstModule.parentNode.insertBefore(tabsWrapper, firstModule);
-    }
 };
