@@ -2946,13 +2946,13 @@ body.dark-mode .type-multiplier {
 
 /* A Bolinha Base */
 .type-circle {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
+    border: 2px solid var(--dex-border);
     position: relative;
     cursor: pointer;
     display: inline-block;
-    border: 2px solid rgba(0, 0, 0, 0.2); /* Bordinha suave para destacar */
 }
 
 /* O Balãozinho (Tooltip) criado via CSS */
