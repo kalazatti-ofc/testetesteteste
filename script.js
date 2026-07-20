@@ -1437,18 +1437,14 @@ window.openModal = (id) => {
             // ==========================================
             // NOVA LÓGICA: VERIFICA SE TEM OS DADOS NOVOS OU A DESCRIÇÃO ANTIGA
             // ==========================================
-            // ==========================================
-            // NOVA LÓGICA: VERIFICA SE TEM OS DADOS NOVOS OU A DESCRIÇÃO ANTIGA
-            // ==========================================
             let skillDetailsHTML = "";
             if (p.darkSkill.forca) {
-                // 1. Prepara o texto da descrição (se existir no JSON)
+                // 1. Descrição compacta, alinhada e com cor escura forçada
                 const descHTML = p.darkSkill.desc 
-                    ? `<p style="margin: 4px 0 10px 0; color: inherit; opacity: 0.9; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">${p.darkSkill.desc}</p>` 
+                    ? `<p style="margin: 4px 0 8px 0; color: #111; font-size: 0.75rem; line-height: 1.2; font-family: sans-serif; text-align: justify;">${p.darkSkill.desc}</p>` 
                     : '';
 
                 // 2. Monta o HTML final com a descrição e as pílulas de status
-                // NOTA: 'color: #111;' adicionado nas pílulas para contrastar com o fundo '#f0f0f0'
                 skillDetailsHTML = `
                     ${descHTML}
                     <div style="display: flex; flex-wrap: wrap; gap: 4px;">
@@ -1460,11 +1456,11 @@ window.openModal = (id) => {
                     </div>
                 `;
             } else if (p.darkSkill.desc) {
-                // Se não tiver os atributos novos mas tiver a frase antiga
-                skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: inherit; opacity: 0.8; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">${p.darkSkill.desc}</p>`;
+                // Descrição compacta escura (caso não tenha as pílulas)
+                skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: #111; font-size: 0.75rem; line-height: 1.2; font-family: sans-serif; text-align: justify;">${p.darkSkill.desc}</p>`;
             } else {
                 // Fallback de segurança máxima
-                skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: inherit; opacity: 0.8; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">Sem informação definida.</p>`;
+                skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: #111; font-size: 0.75rem; line-height: 1.2; font-family: sans-serif;">Sem informação definida.</p>`;
             }
 
             htmlDarkSkill = `
