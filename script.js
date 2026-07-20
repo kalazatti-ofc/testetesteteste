@@ -774,24 +774,20 @@ function gerarPainelDeFuncaoNPC(funcao) {
             return htmlList;
         };
 
-        // Junta Tudo com o CSS Zebrado e Botões Definidos
+        // Junta Tudo com o CSS Zebrado e Botões Soltos sem Moldura Extra
         return `
             <style>
+                /* O container geral agora é invisível, serve apenas para agrupar */
                 .npc-market-container { 
-                    border: 2px solid #111; 
-                    border-radius: 6px; 
-                    background: #ffffff; 
-                    overflow: hidden; 
-                    margin-top: 10px; 
+                    margin-top: 15px; 
                 }
                 
-                /* Fundo cinza das abas para destacar os botões */
+                /* Container das abas soltas */
                 .npc-market-tabs { 
                     display: flex; 
                     gap: 5px; 
-                    padding: 5px 5px 0 5px; 
-                    background: #e0e0e0; 
-                    border-bottom: 2px solid #111; 
+                    position: relative;
+                    z-index: 2; /* Mantém as abas acima da lista para sobrepor a borda */
                 }
                 
                 /* Design de aba solta/inativa */
@@ -805,27 +801,30 @@ function gerarPainelDeFuncaoNPC(funcao) {
                     color: #777; 
                     background: #f5f5f5; 
                     border: 2px solid #111; 
-                    border-bottom: none; 
                     border-radius: 6px 6px 0 0; 
-                    transition: background 0.2s; 
+                    transition: background 0.2s, color 0.2s; 
                     outline: none; 
+                    margin-bottom: -2px; /* Puxa a aba para baixo para encostar na linha da lista */
                 }
                 
                 /* Design da aba ATIVA (fundida com a lista branca) */
                 .npc-market-tab.active { 
                     color: #111; 
                     background: #ffffff; 
-                    border-bottom: 2px solid #ffffff; 
-                    margin-bottom: -2px; 
-                    z-index: 2; 
-                    position: relative; 
+                    border-bottom: 2px solid #ffffff; /* Apaga a linha da lista embaixo dela */
                 }
                 
-                /* Container da lista de itens */
+                /* Container da lista de itens (AGORA A BORDA FICA AQUI) */
                 .npc-market-content { 
                     max-height: 200px; 
                     overflow-y: auto; 
+                    background: #ffffff;
+                    border: 2px solid #111;
+                    border-radius: 0 6px 6px 6px;
+                    position: relative;
+                    z-index: 1;
                 }
+                
                 .npc-market-content::-webkit-scrollbar { width: 4px; }
                 .npc-market-content::-webkit-scrollbar-thumb { background: #111; border-radius: 4px; }
                 
