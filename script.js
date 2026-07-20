@@ -731,6 +731,13 @@ window.openNpcModal = (id) => {
     // Abre o Modal na tela
     document.getElementById('pokemon-modal').classList.remove('hidden');
 
+    // Dá um micro-atraso de 50 milissegundos para garantir que o HTML do modal foi desenhado na tela, e então converte para abas se for celular
+        setTimeout(() => {
+            if (typeof window.aplicarAbasMobileModal === 'function') {
+                window.aplicarAbasMobileModal();
+            }
+        }, 50);
+
     // Aciona o Radar automaticamente após abrir
     setTimeout(() => {
         const radarBtn = document.getElementById('npc-radar-trigger');
