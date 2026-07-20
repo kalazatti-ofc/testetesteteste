@@ -621,7 +621,7 @@ function renderNPCs(list) {
                 <div class="pk-card-inner">
                     <img src="${npc.sprite}" loading="lazy" style="width: 64px; height: 64px; image-rendering: pixelated; margin-top: 15px;" onerror="this.src='https://dummyimage.com/64x64/333/fff.png&text=NPC'">
                     <h3 class="pk-name">${npc.nome}</h3>
-                    <div class="pk-gen-bar" style="background: #2c3e50;">📍 ${npc.cidade.toUpperCase()}</div>
+                    <div class="pk-gen-bar" style="background: #b5b6b6; color: #030000; font-weight: 900; text-shadow: 1px 1px 0px rgba(238, 238, 238, 0.3); border: 1px solid #111;">📍 ${npc.cidade.toUpperCase()}</div>
                     <div class="npc-tags-container">
                         ${npc.tags.map(t => {
                             let corBg = '#34495e'; // Cor neutra padrão
@@ -658,8 +658,8 @@ window.openNpcModal = (id) => {
                 </div>
             </div>
         </div>
-        <div class="location-module" style="background: #111; border: 2px solid var(--dex-border); padding: 15px; border-radius: 8px; margin-top: 10px;">
-            <p style="color: #ecf0f1; font-style: italic; text-align: center; margin: 0; font-size: 0.95rem; font-family: monospace;">${npc.saudacao}</p>
+        <div class="location-module" style="background: #ffffff; border: 2px solid #111; padding: 15px; border-radius: 8px; margin-top: 10px; box-shadow: inset 0 0 0 2px #e0e0e0;">
+            <p style="color: #111111; font-style: italic; text-align: center; margin: 0; font-size: 0.95rem; font-family: sans-serif; font-weight: 600;">"${npc.saudacao}"</p>
         </div>
         
         <!-- Gatilho invisível para acionar o Radar do NPC -->
