@@ -1423,11 +1423,6 @@ body.dark-mode .modal-gen-bar.shiny-buff-bar {
     box-shadow: 0 0 0 transparent; 
 }
 
-.report-screen { 
-    padding: 30px; 
-    align-items: stretch !important; 
-    text-align: left;
-}
 .report-title { 
     font-family: 'Press Start 2P', monospace; 
     font-size: 1rem; 
@@ -2928,4 +2923,15 @@ body.dark-mode .type-multiplier {
         margin-bottom: 10px !important;
     }
     .label-tech { font-size: 0.8rem !important; margin-bottom: 8px !important; }
+}
+
+/* ==========================================
+   AJUSTES PARA MOBILE E WEBVIEW (REPORT MODAL)
+   ========================================== */
+@media (max-width: 768px) {
+    .report-screen, .app-modal-text {
+        max-height: 100% !important; 
+        overflow-y: auto !important;
+        padding: 20px 15px !important; 
+    }
 }
