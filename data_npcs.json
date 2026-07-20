@@ -44,8 +44,8 @@
     "requisitos": {
       "level": null,
       "vip": false,
-      "quest_nome": "Como upar EV's rapido?",
-      "guia_id": "guia-up-ev" 
+      "quest_nome": "NPC Exclusivo para UP de EVs",
+      "guia_id": "guia-up-evs" 
     },
     
     "funcao": {
