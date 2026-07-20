@@ -5,7 +5,7 @@
     "cidade": "Armia City",
     "coordenadas": "X: 2256 | Y: 859 | Z: 6", 
     "imagem_mapa": "img/mapas/mapa-shurya.png", 
-    "saudacao": "\"Bem-vindo ao meu mercado, Gostaria de comprar Auras para Pokemon?\"",
+    "saudacao": "\"Bem-vindo Treinador, Gostaria de comprar Auras para Pokemon?\"",
     "sprite": "img/npcs/npc-shurya.png",
     "radar": "Armia (Shurya)", 
     "tags": ["comerciante"], 
@@ -38,7 +38,7 @@
     "cidade": "Trainer Center",
     "coordenadas": "X: 2500 | Y: 1200 | Z: 7",
     "imagem_mapa": "img/mapas/mapa-jenny.png",
-    "saudacao": "\"Atenção treinador! Temos missões perigosas pela frente.\"",
+    "saudacao": "\"O próprio Mr. Hyper! Quer saber por que sou tão hypado? Porque posso ajudar seu Pokémon com um Hyper Treinamento!\"",
     "sprite": "img/npcs/npc-mr-hyper.png",
     "radar": "Trainer Center (Mr Hyper)",
     "tags": ["utilitário"],
@@ -54,6 +54,31 @@
       "tipo": "missao",
       "quests": [
         { "nome": "UP de EVs", "objetivo": "Upar os EVs / Stats do Pokemon", "recompensa": "+1 Level no IV Escolhido" }
+      ]
+    }
+  },
+  {
+    "id": "npc-zara",
+    "nome": "Zara",
+    "cidade": "Trainer Center",
+    "coordenadas": "X: 2500 | Y: 1200 | Z: 7",
+    "imagem_mapa": "img/mapas/mapa-zara.png",
+    "saudacao": "\"Ola Treinador! Para ser recompensado, experimente capturar pokemons...Escolha um nível: facil, medio, dificil ou muito dificil. Quanto maior a dificuldade, maior a recompensa!\"",
+    "sprite": "img/npcs/npc-zara.png",
+    "radar": "Trainer Center (Zara)",
+    "tags": ["diária"],
+    
+    "requisitos": {
+      "level": null,
+      "vip": false,
+      "quest_nome": "Ganhe HDs e CatchBag aqui!",
+      "guia_id": "guia-catchbag" 
+    },
+    
+    "funcao": {
+      "tipo": "missao",
+      "quests": [
+        { "nome": "Quest das CatchBags", "objetivo": "Após completar uma certa quantidade, ganhe uma CatchBag", "recompensa": "CatchBags + HDs" }
       ]
     }
   }
