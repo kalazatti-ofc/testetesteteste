@@ -1164,7 +1164,6 @@ window.openModal = (id) => {
 
     const matchups = calculateMatchups(p.types);
     const matchupUI = `
-    `
     <div class="data-module" style="margin-bottom: 10px;">
         <h4 class="label-tech">EFETIVIDADE DE DANO</h4>
         <div class="matchup-grid-3" style="margin-top: 10px; display: flex; flex-direction: column; gap: 18px;">
