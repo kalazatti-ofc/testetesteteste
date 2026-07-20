@@ -1433,7 +1433,29 @@ window.openModal = (id) => {
 
             const skillNome = p.darkSkill.nome || 'Habilidade Oculta';
             const skillIcon = p.darkSkill.icone || '';
-            const skillDesc = p.darkSkill.desc || 'Nenhuma descrição encontrada no banco de dados.';
+            
+            // ==========================================
+            // NOVA LÓGICA: VERIFICA SE TEM OS DADOS NOVOS OU A DESCRIÇÃO ANTIGA
+            // ==========================================
+            let skillDetailsHTML = "";
+            if (p.darkSkill.forca) {
+                // Se os atributos novos existirem, monta as pílulas de status
+                skillDetailsHTML = `
+                    <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px;">
+                        <span style="font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>FORÇA:</strong> ${p.darkSkill.forca}</span>
+                        <span style="font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>ACURÁCIA:</strong> ${p.darkSkill.acuracia}</span>
+                        <span style="font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>RECARGA:</strong> ${p.darkSkill.recarga}</span>
+                        <span style="font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>TIPO:</strong> ${p.darkSkill.tipo}</span>
+                        <span style="font-size: 0.65rem; background: #f0f0f0; border: 1px solid #111; border-radius: 3px; padding: 2px 5px;"><strong>CLASSE:</strong> ${p.darkSkill.categoria}</span>
+                    </div>
+                `;
+            } else if (p.darkSkill.desc) {
+                // Se não tiver os atributos novos mas tiver a frase antiga ("Sem informação definida." etc)
+                skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: #444; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">${p.darkSkill.desc}</p>`;
+            } else {
+                // Fallback de segurança máxima
+                skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: #444; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">Sem informação definida.</p>`;
+            }
 
             htmlDarkSkill = `
                 <style>
@@ -1467,7 +1489,7 @@ window.openModal = (id) => {
                         
                         <div style="flex: 1;">
                             <h4 class="d-skill-name">${skillNome}</h4>
-                            <p style="margin: 5px 0 0 0; color: #444; font-size: 0.85rem; line-height: 1.4; font-family: sans-serif;">${skillDesc}</p>
+                            ${skillDetailsHTML} <!-- ⬅️ AQUI ENTRA A MÁGICA DE DECISÃO -->
                         </div>
                     </div>
                 </div>
@@ -2303,4 +2325,3 @@ window.toggleVipAccordion = (btn) => {
         btn.style.color = '#fff'; // Fica branco quando aberto
     }
 };
-
