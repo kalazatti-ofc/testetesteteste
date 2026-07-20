@@ -86,15 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initPanAndZoom(); 
     initVipSystem(); // Inicializa Letreiro e Modal VIP
     
-    // Modo Escuro
-    const themeBtn = document.getElementById('theme-toggle');
-    if (themeBtn) {
-        if (localStorage.getItem('pokedex-dark-mode') === 'true') {
-            document.body.classList.add('dark-mode');
-        }
-        themeBtn.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('pokedex-dark-mode', document.body.classList.contains('dark-mode'));
+    // Configura o clique no novo interruptor (Pílula)
+    const searchModeToggle = document.getElementById('search-mode-toggle');
+    if(searchModeToggle) {
+        searchModeToggle.addEventListener('click', () => {
+            if (searchMode === 'pokemon') {
+                const itemBtn = document.querySelector('.cat-btn[data-cat="drops"]');
+                if(itemBtn) itemBtn.click();
+            } else {
+                const normBtn = document.querySelector('.cat-btn[data-cat="normal"]');
+                if(normBtn) normBtn.click();
+            }
         });
     }
     
@@ -2174,48 +2176,26 @@ window.reportLoot = (pokeName) => {
 // SISTEMA DE PESQUISA AVANÇADA (NOME / LOOT)
 // ==========================================
 
-// Configura o clique no novo interruptor (Pílula)
-document.addEventListener('DOMContentLoaded', () => {
-    const searchModeToggle = document.getElementById('search-mode-toggle');
-    const optPokemon = document.getElementById('mode-pokemon');
-    const optLoot = document.getElementById('mode-loot');
-    
-
-    if(searchModeToggle) {
-        searchModeToggle.addEventListener('click', () => {
-            if (searchMode === 'pokemon') {
-                const itemBtn = document.querySelector('.cat-btn[data-cat="drops"]');
-                if(itemBtn) itemBtn.click();
-            } else {
-                const normBtn = document.querySelector('.cat-btn[data-cat="normal"]');
-                if(normBtn) normBtn.click();
-            }
-        });
-    }
-});
-
 // O Gatilho de Engenharia Reversa (Ao clicar no Loot no Modal)
 window.searchByLoot = (lootName, event) => {
     // LÓGICA DO MOBILE (TOQUE DE SELEÇÃO / TOQUE DUPLO)
-    // Se o aparelho for touch (não suporta hover de mouse)...
     if (event && window.matchMedia("(hover: none)").matches) {
         const el = event.currentTarget;
-        // Se ainda não estiver selecionado, seleciona e para por aqui (1º toque)
         if (!el.classList.contains('mobile-selected')) {
             document.querySelectorAll('.loot-icon-item').forEach(i => i.classList.remove('mobile-selected'));
             el.classList.add('mobile-selected');
             return; 
         }
-        // Se já estiver selecionado, passa reto e executa a busca! (2º toque)
     }
 
+    if (event) event.stopPropagation();
+    
     // 1. Fecha o modal do Pokémon
     document.getElementById('pokemon-modal').classList.add('hidden');
     
-    // 2. Garante que estamos na aba NORMAL (Onde ficam os drops)
-    if (activeCategory !== 'normal') {
-        document.querySelector('.cat-btn[data-cat="normal"]').click();
-    }
+    // 2. Abre a Pokédex Vertical do Item diretamente
+    openItemModal(lootName);
+};
     
     // 3. Muda a pílula para o modo "LOOT"
     searchMode = 'loot';
@@ -2234,31 +2214,6 @@ window.searchByLoot = (lootName, event) => {
     
     const displayElement = document.querySelector('.pokedex-main-display');
     if(displayElement) displayElement.scrollTop = 0;
-};
-
-// ==========================================
-// POKÉDEX VERTICAL (MODAL DE ITENS) E CONEXÕES
-// ==========================================
-
-// Substitui a função searchByLoot antiga (Agora ela abre o Modal Vertical direto!)
-window.searchByLoot = (lootName, event) => {
-    if (event) event.stopPropagation();
-    
-    // Fecha o modal do Pokémon
-    document.getElementById('pokemon-modal').classList.add('hidden');
-    
-    // Abre a Pokédex Vertical do Item
-    openItemModal(lootName);
-};
-
-// ==========================================
-// POKÉDEX VERTICAL (MODAL DE ITENS COM NAVEGAÇÃO)
-// ==========================================
-
-window.searchByLoot = (lootName, event) => {
-    if (event) event.stopPropagation();
-    document.getElementById('pokemon-modal').classList.add('hidden');
-    openItemModal(lootName);
 };
 
 window.navigateItem = (direction, event) => {
