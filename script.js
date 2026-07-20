@@ -660,7 +660,7 @@ window.openNpcModal = (id) => {
                 </div>
             </div>
         </div>
-        <div class="location-module" style="background: #ececec; border: 2px solid #111; padding: 15px; border-radius: 8px; margin-top: 10px; box-shadow: inset 0 0 0 2px #e0e0e0;">
+        <div class="location-module" style="background: #ffffff; border: 2px solid #111; padding: 15px; border-radius: 8px; margin-top: 10px; box-shadow: inset 0 0 0 2px #e0e0e0; height: fit-content; flex: none;">
             <p style="color: #111111; font-style: italic; text-align: center; margin: 0; font-size: 0.95rem; font-family: sans-serif; font-weight: 600;">"${npc.saudacao}"</p>
         </div>
         
