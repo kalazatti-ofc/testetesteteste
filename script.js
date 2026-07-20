@@ -2437,3 +2437,98 @@ window.toggleMarketTab = (tab, event) => {
     const targetList = container.querySelector(`#market-list-${tab}`);
     if(targetList) targetList.style.display = 'block';
 };
+
+// ==========================================
+// SISTEMA DE ABAS MOBILE (ALTERNATIVA 3)
+// ==========================================
+window.aplicarAbasMobileModal = () => {
+    // 1. Verifica se a tela é de celular (menor que 768px). Se for PC, aborta e mantém normal.
+    if (window.innerWidth > 768) return;
+
+    // 2. Procura todos os blocos de informação (Status, Habilidades, Fraquezas, etc)
+    // Eles estão dentro das divs com a classe 'data-module' que você já usa no projeto
+    const modules = document.querySelectorAll('.data-module');
+    if (modules.length < 2) return; // Se tiver só 1 informação, não precisa de abas
+
+    // Se já tiver criado as abas nesta abertura de modal, aborta para não duplicar
+    if (document.querySelector('.mobile-tabs-wrapper')) return;
+
+    // 3. Injeta um CSS dinâmico para diminuir a foto e o cabeçalho APENAS no mobile
+    if (!document.getElementById('mobile-tabs-css')) {
+        const style = document.createElement('style');
+        style.id = 'mobile-tabs-css';
+        style.innerHTML = `
+            @media (max-width: 768px) {
+                /* Reduz o painel esquerdo/topo no celular para liberar espaço */
+                .location-module { margin-top: 5px !important; padding: 10px !important; }
+                .dex-img-box, .npc-img-box { width: 110px !important; height: 110px !important; margin: 0 auto !important; }
+                .dex-img-box img, .npc-img-box img { max-height: 90px !important; }
+                .pk-gen-bar { padding: 4px !important; font-size: 0.7rem !important; }
+                
+                /* Esconde a barra de rolagem horizontal nas abas */
+                .mobile-tabs-wrapper::-webkit-scrollbar { display: none; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // 4. Cria o container que vai segurar os botões (Abas)
+    const tabsWrapper = document.createElement('div');
+    tabsWrapper.className = 'mobile-tabs-wrapper';
+    tabsWrapper.style.cssText = 'display: flex; gap: 4px; overflow-x: auto; margin-bottom: 15px; border-bottom: 2px solid #111; padding-bottom: 0; white-space: nowrap; margin-top: 10px;';
+
+    // 5. Monta um botão de aba para cada módulo de informação
+    modules.forEach((mod, index) => {
+        // Puxa o título original da caixa (ex: "STATUS BASE")
+        const titleEl = mod.querySelector('h4, h3, .label-tech');
+        const title = titleEl ? titleEl.innerText : `Info ${index + 1}`;
+
+        // Oculta o título original de dentro da caixa (já que ele vai virar o nome da aba)
+        if (titleEl) titleEl.style.display = 'none';
+
+        const btn = document.createElement('button');
+        btn.innerText = title;
+        btn.style.cssText = `
+            flex: 0 0 auto; 
+            padding: 10px 15px; 
+            font-size: 0.75rem; 
+            font-weight: 900; 
+            background: ${index === 0 ? '#ffffff' : '#e0e0e0'}; 
+            color: #111;
+            border: 2px solid #111; 
+            border-bottom: ${index === 0 ? '2px solid #ffffff' : '2px solid #111'};
+            border-radius: 6px 6px 0 0; 
+            margin-bottom: -2px;
+            cursor: pointer;
+            position: relative;
+            z-index: ${index === 0 ? '2' : '1'};
+            transition: all 0.2s;
+        `;
+
+        // Esconde o conteúdo de todas as caixas, exceto a primeira
+        mod.style.display = index === 0 ? 'block' : 'none';
+
+        // 6. Lógica de clique: Ao tocar na aba, esconde as outras e mostra a escolhida
+        btn.onclick = () => {
+            Array.from(tabsWrapper.children).forEach(b => {
+                b.style.background = '#e0e0e0';
+                b.style.borderBottom = '2px solid #111';
+                b.style.zIndex = '1';
+            });
+            modules.forEach(m => m.style.display = 'none');
+
+            btn.style.background = '#ffffff';
+            btn.style.borderBottom = '2px solid #ffffff';
+            btn.style.zIndex = '2';
+            mod.style.display = 'block';
+        };
+
+        tabsWrapper.appendChild(btn);
+    });
+
+    // 7. Insere as abas no topo da área de informações
+    const firstModule = modules[0];
+    if (firstModule && firstModule.parentNode) {
+        firstModule.parentNode.insertBefore(tabsWrapper, firstModule);
+    }
+};
