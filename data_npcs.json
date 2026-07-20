@@ -39,7 +39,7 @@
     "coordenadas": "X: 2500 | Y: 1200 | Z: 7",
     "imagem_mapa": "img/mapas/mapa-jenny.png",
     "saudacao": "\"Atenção treinador! Temos missões perigosas pela frente.\"",
-    "sprite": "img/npcs/npc-mr-hyper",
+    "sprite": "img/npcs/npc-mr-hyper.png",
     "radar": "Trainer Center (Mr Hyper)",
     "tags": ["utilitário"],
     
