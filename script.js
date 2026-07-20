@@ -2195,7 +2195,6 @@ window.searchByLoot = (lootName, event) => {
     
     // 2. Abre a Pokédex Vertical do Item diretamente
     openItemModal(lootName);
-};
     
     // 3. Muda a pílula para o modo "LOOT"
     searchMode = 'loot';
