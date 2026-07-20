@@ -29,7 +29,7 @@
     "image": "Sprites/dark-dragonite.png",
     "darkSkill": {
       "nome": "Dark Draco Meteor",
-      "desc": "Sem informação definida.",
+      "desc": "Draco Meteor é uma das habilidades mais fortes do tipo Dragão. Sua função principal é causar dano massivo em área (AoE), atingindo múltiplos inimigos simultaneamente e diminuir o Sp.Atk dos alvos atingidos.",
       "icone": "img/skills/dark-draco-meteor.png",
       "categoria": "Special",
       "forca": 130,
