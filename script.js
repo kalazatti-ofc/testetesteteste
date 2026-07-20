@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="filter-pill npc-pill" data-npccat="shop">SHOPS</button>
                     <button class="filter-pill npc-pill" data-npccat="quests">QUESTS</button>
                     <button class="filter-pill npc-pill" data-npccat="diária">DIÁRIAS</button>
+                    <button class="filter-pill npc-pill" data-npccat="utilitário">UTILITÁRIO</button>
                 </div>
             </div>
         `;
@@ -624,12 +625,13 @@ function renderNPCs(list) {
                     <div class="pk-gen-bar" style="background: #b5b6b6; color: #030000; font-weight: 900; text-shadow: 1px 1px 0px rgba(238, 238, 238, 0.3); border: 1px solid #111;">📍 ${npc.cidade.toUpperCase()}</div>
                     <div class="npc-tags-container">
                         ${npc.tags.map(t => {
-                            let corBg = '#dbdbdb'; // Cor neutra padrão
-                            let corTxt = '#040000';
+                            let corBg = '#34495e'; // Cor neutra padrão
+                            let corTxt = '#ffffff';
                             const tagLimpa = t.toLowerCase();
                             
-                            if (tagLimpa === 'comerciante' || tagLimpa === 'shop') corBg = '#2ecc71'; // Verde
-                            else if (tagLimpa === 'diária' || tagLimpa === 'quests') { corBg = '#f1c40f'; corTxt = '#000000'; } // Amarelo
+                            if (tagLimpa === 'comerciante' || tagLimpa === 'shop') { corBg = '#5e9976'; corTxt = '#000000'; }
+                            else if (tagLimpa === 'diária' || tagLimpa === 'quests') { corBg = '#b44545'; corTxt = '#000000'; } 
+                            else if (tagLimpa === 'utilitário') { corBg = '#b2aa7b'; corTxt = '#000000'; } 
                             
                             return `<span class="npc-tag-badge" style="background: ${corBg}; color: ${corTxt};">${t.toUpperCase()}</span>`;
                         }).join('')}
