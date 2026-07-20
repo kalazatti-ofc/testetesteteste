@@ -749,7 +749,7 @@ function gerarPainelDeFuncaoNPC(funcao) {
         
         const fallbackJS = `this.onerror=null; this.src='img/loots/unknown.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};`;
 
-        // Monta as Abas
+        // Monta as Abas (Agora com estrutura de abas reais)
         let htmlTabs = '<div class="npc-market-tabs">';
         if (hasVende) htmlTabs += `<button class="npc-market-tab ${hasVende ? 'active' : ''}" onclick="toggleMarketTab('vende', event)">🛒 NPC VENDE</button>`;
         if (hasCompra) htmlTabs += `<button class="npc-market-tab ${!hasVende && hasCompra ? 'active' : ''}" onclick="toggleMarketTab('compra', event)">💰 NPC COMPRA</button>`;
@@ -759,7 +759,7 @@ function gerarPainelDeFuncaoNPC(funcao) {
         const renderList = (lista, tipo, isActive) => {
             if (!lista || lista.length === 0) return '';
             
-            // Vermelho = O NPC vende pra você (Você gasta). Verde = O NPC compra de você (Você lucra).
+            // Vermelho = Venda (Você gasta). Verde = Compra (Você lucra).
             const corPreco = tipo === 'vende' ? '#e74c3c' : '#2ecc71'; 
             
             let htmlList = `<div id="market-list-${tipo}" class="npc-market-content" style="display: ${isActive ? 'block' : 'none'};">`;
@@ -774,23 +774,81 @@ function gerarPainelDeFuncaoNPC(funcao) {
             return htmlList;
         };
 
-        // Junta Tudo com o CSS Minimalista Embutido
+        // Junta Tudo com o CSS Zebrado e Botões Definidos
         return `
             <style>
-                .npc-market-container { border: 2px solid #111; border-radius: 6px; background: #ffffff; overflow: hidden; margin-top: 10px; }
-                .npc-market-tabs { display: flex; border-bottom: 2px solid #111; background: #e0e0e0; }
-                .npc-market-tab { flex: 1; padding: 10px; text-align: center; font-size: 0.75rem; font-weight: 900; cursor: pointer; color: #666; border: none; background: transparent; transition: all 0.2s; outline: none; }
-                .npc-market-tab.active { color: #111; background: #ffffff; border-bottom: 2px solid #ffffff; margin-bottom: -2px; }
+                .npc-market-container { 
+                    border: 2px solid #111; 
+                    border-radius: 6px; 
+                    background: #ffffff; 
+                    overflow: hidden; 
+                    margin-top: 10px; 
+                }
                 
-                .npc-market-content { max-height: 200px; overflow-y: auto; padding: 5px 15px; }
+                /* Fundo cinza das abas para destacar os botões */
+                .npc-market-tabs { 
+                    display: flex; 
+                    gap: 5px; 
+                    padding: 5px 5px 0 5px; 
+                    background: #e0e0e0; 
+                    border-bottom: 2px solid #111; 
+                }
+                
+                /* Design de aba solta/inativa */
+                .npc-market-tab { 
+                    flex: 1; 
+                    padding: 8px 10px; 
+                    text-align: center; 
+                    font-size: 0.75rem; 
+                    font-weight: 900; 
+                    cursor: pointer; 
+                    color: #777; 
+                    background: #f5f5f5; 
+                    border: 2px solid #111; 
+                    border-bottom: none; 
+                    border-radius: 6px 6px 0 0; 
+                    transition: background 0.2s; 
+                    outline: none; 
+                }
+                
+                /* Design da aba ATIVA (fundida com a lista branca) */
+                .npc-market-tab.active { 
+                    color: #111; 
+                    background: #ffffff; 
+                    border-bottom: 2px solid #ffffff; 
+                    margin-bottom: -2px; 
+                    z-index: 2; 
+                    position: relative; 
+                }
+                
+                /* Container da lista de itens */
+                .npc-market-content { 
+                    max-height: 200px; 
+                    overflow-y: auto; 
+                }
                 .npc-market-content::-webkit-scrollbar { width: 4px; }
                 .npc-market-content::-webkit-scrollbar-thumb { background: #111; border-radius: 4px; }
                 
-                .npc-trade-row { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px dashed #ccc; }
-                .npc-trade-row:last-child { border-bottom: none; }
+                /* Efeito Zebrado nas Linhas */
+                .npc-trade-row { 
+                    display: flex; 
+                    align-items: center; 
+                    padding: 8px 15px; 
+                }
+                .npc-trade-row:nth-child(even) { background-color: #f4f4f4; }
+                .npc-trade-row:nth-child(odd) { background-color: #ffffff; }
+                
                 .npc-trade-img { width: 26px; height: 26px; image-rendering: pixelated; margin-right: 12px; }
                 .npc-trade-name { font-size: 0.75rem; font-weight: bold; color: #111; text-transform: uppercase; }
-                .npc-trade-price { margin-left: auto; font-size: 0.8rem; font-weight: 900; font-family: monospace; }
+                
+                /* Valores encostados à direita */
+                .npc-trade-price { 
+                    margin-left: auto; 
+                    font-size: 0.8rem; 
+                    font-weight: 900; 
+                    font-family: monospace; 
+                    text-align: right; 
+                }
             </style>
             
             <div class="npc-market-container">
@@ -1366,9 +1424,9 @@ window.openModal = (id) => {
     let items = [];
     if (p.loot) {
         if (Array.isArray(p.loot)) {
-            items = p.loot; 
+            items = p.loot; // Se já for o Array novo, usa direto
         } else if (typeof p.loot === 'string' && p.loot.trim() !== '') {
-            items = p.loot.split(',').map(item => item.trim()); 
+            items = p.loot.split(',').map(item => item.trim()); // Se for o texto antigo, faz o split
         }
     }
 
@@ -1450,9 +1508,11 @@ window.openModal = (id) => {
         // ==========================================
         let htmlDarkSkill = '';
         if (p.darkSkill) {
-
+            
+            // Trava de Segurança: Se não declarou a categoria, assume "status"
             const cat = p.darkSkill.categoria ? p.darkSkill.categoria.toLowerCase() : 'status';
-
+            
+            // Aponta para as imagens salvas na sua pasta local
             let caminhoIcone = '';
             if (cat === 'physical') {
                 caminhoIcone = 'img/icons/physical.png';
@@ -1470,10 +1530,12 @@ window.openModal = (id) => {
             // ==========================================
             let skillDetailsHTML = "";
             if (p.darkSkill.forca) {
+                // 1. Descrição compacta, alinhada e com cor escura forçada
                 const descHTML = p.darkSkill.desc 
                     ? `<p style="margin: 4px 0 8px 0; color: #111; font-size: 0.75rem; line-height: 1.2; font-family: sans-serif; text-align: justify;">${p.darkSkill.desc}</p>` 
                     : '';
 
+                // 2. Monta o HTML final com a descrição e as pílulas de status
                 skillDetailsHTML = `
                     ${descHTML}
                     <div style="display: flex; flex-wrap: wrap; gap: 4px;">
@@ -1485,8 +1547,10 @@ window.openModal = (id) => {
                     </div>
                 `;
             } else if (p.darkSkill.desc) {
+                // Descrição compacta escura (caso não tenha as pílulas)
                 skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: #111; font-size: 0.75rem; line-height: 1.2; font-family: sans-serif; text-align: justify;">${p.darkSkill.desc}</p>`;
             } else {
+                // Fallback de segurança máxima
                 skillDetailsHTML = `<p style="margin: 5px 0 0 0; color: #111; font-size: 0.75rem; line-height: 1.2; font-family: sans-serif;">Sem informação definida.</p>`;
             }
 
@@ -1669,15 +1733,18 @@ async function loadEvolutions(pokemonName) {
 function calculateMatchups(pTypes) {
     let multipliers = {}; 
     types.forEach(t => multipliers[t] = 1);
-
+    
+    // Calcula quem bate no Pokémon (Fraquezas e Resistências - Cálculo Defensivo)
     pTypes.forEach(pt => {
         const mods = typeModifiers[pt] || {};
         types.forEach(atk => { if(mods[atk] !== undefined) multipliers[atk] *= mods[atk]; });
     });
-
+    
+    // Calcula em quem o Pokémon Bate (Vantagem Ofensiva - CÁLCULO CORRIGIDO)
     let offensiveAdvantage = new Set();
     pTypes.forEach(atkType => {
         types.forEach(defType => {
+            // Acessa a tabela do tipo defensor e verifica se o nosso tipo atacante causa > 1x de dano
             const defMods = typeModifiers[defType] || {};
             if (defMods[atkType] > 1) {
                 offensiveAdvantage.add(defType);
@@ -1984,7 +2051,7 @@ window.initReportModal = (event) => {
 window.initDownloadAppModal = (event) => {
     if(event) event.preventDefault();
     document.getElementById('download-app-modal').classList.remove('hidden');
-    changeApkPage(1); 
+    changeApkPage(1); // Garante que sempre abre na página de introdução
 };
 
 window.changeApkPage = (pageNumber) => {
@@ -1999,7 +2066,8 @@ window.changeApkPage = (pageNumber) => {
         page1.classList.add('hidden-step');
         page2.classList.remove('hidden-step');
     }
-
+    
+    // Joga o scroll do modal lá para cima ao trocar de página
     if(scrollContainer) {
         scrollContainer.scrollTop = 0;
     }
@@ -2141,12 +2209,14 @@ window.closeVipModal = () => {
 window.openTutorial = (articleId) => {
     document.getElementById('tutorials-grid').style.display = 'none';
     document.getElementById('tutorial-article-view').style.display = 'block';
-
+    
+    // Esconde todos os textos e mostra só o que foi clicado
     document.querySelectorAll('.article-content-block').forEach(el => el.style.display = 'none');
     
     const targetArticle = document.getElementById('article-' + articleId);
     if(targetArticle) targetArticle.style.display = 'block';
-
+    
+    // Joga o scroll do painel principal para cima
     document.getElementById('tutorials-module').scrollTop = 0;
 };
 
@@ -2156,14 +2226,18 @@ window.closeTutorial = () => {
 };
 
 window.reportLoot = (pokeName) => {
+    // Esconde o modal do pokemon
     document.getElementById('pokemon-modal').classList.add('hidden');
-
+    
+    // Abre o modal de report
     document.getElementById('report-modal').classList.remove('hidden');
     document.getElementById('report-status').innerText = '';
     
+    // Preenche os campos automaticamente
     document.getElementById('report-type').value = 'SUGESTÃO';
     document.getElementById('report-msg').value = `LOOT DO ${pokeName.toUpperCase()}:\n- \n- \n- `;
     
+    // Foca na caixa de texto
     document.getElementById('report-msg').focus();
 };
 
@@ -2171,6 +2245,7 @@ window.reportLoot = (pokeName) => {
 // SISTEMA DE PESQUISA AVANÇADA (NOME / LOOT)
 // ==========================================
 
+// Configura o clique no novo interruptor (Pílula)
 document.addEventListener('DOMContentLoaded', () => {
     const searchModeToggle = document.getElementById('search-mode-toggle');
     const optPokemon = document.getElementById('mode-pokemon');
@@ -2190,22 +2265,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// O Gatilho de Engenharia Reversa (Ao clicar no Loot no Modal)
 window.searchByLoot = (lootName, event) => {
+    // LÓGICA DO MOBILE (TOQUE DE SELEÇÃO / TOQUE DUPLO)
+    // Se o aparelho for touch (não suporta hover de mouse)...
     if (event && window.matchMedia("(hover: none)").matches) {
         const el = event.currentTarget;
+        // Se ainda não estiver selecionado, seleciona e para por aqui (1º toque)
         if (!el.classList.contains('mobile-selected')) {
             document.querySelectorAll('.loot-icon-item').forEach(i => i.classList.remove('mobile-selected'));
             el.classList.add('mobile-selected');
             return; 
         }
+        // Se já estiver selecionado, passa reto e executa a busca! (2º toque)
     }
 
+    // 1. Fecha o modal do Pokémon
     document.getElementById('pokemon-modal').classList.add('hidden');
     
+    // 2. Garante que estamos na aba NORMAL (Onde ficam os drops)
     if (activeCategory !== 'normal') {
         document.querySelector('.cat-btn[data-cat="normal"]').click();
     }
     
+    // 3. Muda a pílula para o modo "LOOT"
     searchMode = 'loot';
     const optPokemon = document.getElementById('mode-pokemon');
     const optLoot = document.getElementById('mode-loot');
@@ -2214,8 +2297,10 @@ window.searchByLoot = (lootName, event) => {
         optLoot.classList.add('active');
     }
     
+    // 4. Preenche o campo de texto com o nome do item
     document.getElementById('search-input').value = lootName;
     
+    // 5. Executa a pesquisa e leva o jogador para o topo da tela
     applyFilters();
     
     const displayElement = document.querySelector('.pokedex-main-display');
@@ -2226,11 +2311,14 @@ window.searchByLoot = (lootName, event) => {
 // POKÉDEX VERTICAL (MODAL DE ITENS) E CONEXÕES
 // ==========================================
 
+// Substitui a função searchByLoot antiga (Agora ela abre o Modal Vertical direto!)
 window.searchByLoot = (lootName, event) => {
     if (event) event.stopPropagation();
-
+    
+    // Fecha o modal do Pokémon
     document.getElementById('pokemon-modal').classList.add('hidden');
     
+    // Abre a Pokédex Vertical do Item
     openItemModal(lootName);
 };
 
