@@ -2453,19 +2453,21 @@ window.toggleMarketTab = (tab, event) => {
 };
 
 // ==========================================
-// SISTEMA DE ABAS MOBILE (ALTERNATIVA 3)
+// SISTEMA DE ABAS MOBILE (ALTERNATIVA 3) - CORRIGIDO
 // ==========================================
 window.aplicarAbasMobileModal = () => {
-    // 1. Verifica se a tela é de celular (menor que 768px). Se for PC, aborta e mantém normal.
+    // 1. Verifica se a tela é de celular (menor que 768px).
     if (window.innerWidth > 768) return;
 
-    // 2. Procura todos os blocos de informação (Status, Habilidades, Fraquezas, etc)
-    // Eles estão dentro das divs com a classe 'data-module' que você já usa no projeto
-    const modules = document.querySelectorAll('.data-module');
+    // 2. CORREÇÃO: Foca a busca ESTRITAMENTE dentro do Modal!
+    const modalBody = document.getElementById('modal-body');
+    if (!modalBody) return;
+
+    const modules = modalBody.querySelectorAll('.data-module');
     if (modules.length < 2) return; // Se tiver só 1 informação, não precisa de abas
 
-    // Se já tiver criado as abas nesta abertura de modal, aborta para não duplicar
-    if (document.querySelector('.mobile-tabs-wrapper')) return;
+    // Se já tiver criado as abas neste modal, aborta para não duplicar
+    if (modalBody.querySelector('.mobile-tabs-wrapper')) return;
 
     // 3. Injeta um CSS dinâmico para diminuir a foto e o cabeçalho APENAS no mobile
     if (!document.getElementById('mobile-tabs-css')) {
@@ -2473,13 +2475,10 @@ window.aplicarAbasMobileModal = () => {
         style.id = 'mobile-tabs-css';
         style.innerHTML = `
             @media (max-width: 768px) {
-                /* Reduz o painel esquerdo/topo no celular para liberar espaço */
                 .location-module { margin-top: 5px !important; padding: 10px !important; }
                 .dex-img-box, .npc-img-box { width: 110px !important; height: 110px !important; margin: 0 auto !important; }
                 .dex-img-box img, .npc-img-box img { max-height: 90px !important; }
                 .pk-gen-bar { padding: 4px !important; font-size: 0.7rem !important; }
-                
-                /* Esconde a barra de rolagem horizontal nas abas */
                 .mobile-tabs-wrapper::-webkit-scrollbar { display: none; }
             }
         `;
@@ -2497,7 +2496,7 @@ window.aplicarAbasMobileModal = () => {
         const titleEl = mod.querySelector('h4, h3, .label-tech');
         const title = titleEl ? titleEl.innerText : `Info ${index + 1}`;
 
-        // Oculta o título original de dentro da caixa (já que ele vai virar o nome da aba)
+        // Oculta o título original de dentro da caixa
         if (titleEl) titleEl.style.display = 'none';
 
         const btn = document.createElement('button');
@@ -2522,7 +2521,7 @@ window.aplicarAbasMobileModal = () => {
         // Esconde o conteúdo de todas as caixas, exceto a primeira
         mod.style.display = index === 0 ? 'block' : 'none';
 
-        // 6. Lógica de clique: Ao tocar na aba, esconde as outras e mostra a escolhida
+        // 6. Lógica de clique: Ao tocar na aba
         btn.onclick = () => {
             Array.from(tabsWrapper.children).forEach(b => {
                 b.style.background = '#e0e0e0';
@@ -2540,7 +2539,7 @@ window.aplicarAbasMobileModal = () => {
         tabsWrapper.appendChild(btn);
     });
 
-    // 7. Insere as abas no topo da área de informações
+    // 7. Insere as abas no topo da área de informações do MODAL
     const firstModule = modules[0];
     if (firstModule && firstModule.parentNode) {
         firstModule.parentNode.insertBefore(tabsWrapper, firstModule);
