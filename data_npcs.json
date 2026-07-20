@@ -8,7 +8,7 @@
     "saudacao": "\"Bem-vindo ao meu mercado, Gostaria de comprar Auras para Pokemon?\"",
     "sprite": "img/npcs/npc-shurya.png",
     "radar": "Armia (Shurya)", 
-    "tags": ["comerciante", "shop"], 
+    "tags": ["comerciante"], 
     
     "requisitos": {
       "level": 0,
@@ -31,27 +31,27 @@
     }
   },
   {
-    "id": "npc-officer-jenny",
-    "nome": "Officer Jenny",
-    "cidade": "Cerulean City",
+    "id": "npc-mr-hyper",
+    "nome": "Mr Hyper",
+    "cidade": "Trainer Center",
     "coordenadas": "X: 2500 | Y: 1200 | Z: 7",
     "imagem_mapa": "img/mapas/mapa-jenny.png",
     "saudacao": "\"Atenção treinador! Temos missões perigosas pela frente.\"",
-    "sprite": "img/npcs/jenny.gif",
-    "radar": "Cerulean (Jenny)",
-    "tags": ["diária", "quests"],
+    "sprite": "img/npcs/npc-mr-hyper",
+    "radar": "Trainer Center (Mr Hyper)",
+    "tags": ["utilitário"],
     
     "requisitos": {
-      "level": 150,
-      "vip": true,
-      "quest_nome": "Acesso à Polícia de Kanto",
-      "guia_id": "guia-policia-kanto" 
+      "level": null,
+      "vip": false,
+      "quest_nome": "Como upar EV's rapido?",
+      "guia_id": "guia-up-ev" 
     },
     
     "funcao": {
       "tipo": "missao",
       "quests": [
-        { "nome": "Patrulha Diária", "objetivo": "Derrote 50 Machamps", "recompensa": "100.000 XP e 50x HDs" }
+        { "nome": "UP de EVs", "objetivo": "Upar os EVs / Stats do Pokemon", "recompensa": "+1 Level no IV Escolhido" }
       ]
     }
   }
