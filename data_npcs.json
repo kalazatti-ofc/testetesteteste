@@ -46,7 +46,7 @@
     "requisitos": {
       "level": null,
       "vip": false,
-      "quest_nome": "NPC Exclusivo para UP de EVs",
+      "quest_nome": null,
       "guia_id": "guia-up-evs" 
     },
     
@@ -71,14 +71,14 @@
     "requisitos": {
       "level": null,
       "vip": false,
-      "quest_nome": "Ganhe HDs e CatchBag aqui!",
+      "quest_nome": null,
       "guia_id": "guia-catchbag" 
     },
     
     "funcao": {
       "tipo": "missao",
       "quests": [
-        { "nome": "Quest das CatchBags", "objetivo": "Após completar uma certa quantidade, ganhe uma CatchBag", "recompensa": "CatchBags + HDs" }
+        { "nome": "CatchBag Quest", "objetivo": "Após completar uma certa quantidade, ganhe uma CatchBag", "recompensa": "CatchBags + HDs" }
       ]
     }
   }
