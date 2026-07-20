@@ -29,6 +29,7 @@
     "image": "Sprites/dark-dragonite.png",
     "darkSkill": {
       "nome": "Dark Draco Meteor",
+      "desc": "Sem informação definida."
       "icone": "img/skills/dark-draco-meteor.png",
       "categoria": "Special",
       "forca": 130,
