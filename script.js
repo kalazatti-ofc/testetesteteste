@@ -1702,6 +1702,13 @@ window.openModal = (id) => {
     if (pCategory === 'normal') {
         loadEvolutions(p.name);
     }
+
+    // ADICIONE ESTE BLOCO AQUI PARA OS POKÉMON TAMBÉM TEREM ABAS NO MOBILE
+    setTimeout(() => {
+        if (typeof window.aplicarAbasMobileModal === 'function') {
+            window.aplicarAbasMobileModal();
+        }
+    }, 50);
 };
 
 async function loadEvolutions(pokemonName) {
