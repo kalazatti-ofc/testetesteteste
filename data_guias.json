@@ -94,7 +94,7 @@
         ],
         "pokemons": ["machamp", "primeape", "hitmonlee", "hitmonchan", "poliwrath"],
         "requisitos": ["VIP"],
-        "mapImage": "img/guias/mapa-mtmoon.png",
+        "mapImage": "img/guias/mapa-guia-up-farms.png",
         "rotaText": "Saia da cidade de Singer pela direita e suba ate achar o buraco da entrada.",
         "rotaCoord": "x: 1045, y: 620, z: 7"
       },
