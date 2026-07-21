@@ -112,6 +112,26 @@
         "mapImage": "img/guias/mapa-seafoam.png",
         "rotaText": "Vá para Cinnabar, surfe para a direita (Rota 20) até encontrar a ilha dupla.",
         "rotaCoord": "x: 1850, y: 2100, z: 5"
+      },
+      {
+        "id": "hunt-catacumbas-metagross",
+        "title": "Catacumbas do Castelo Abandonado - Cinnabar",
+        "desc": "O local fica no subsolo do castelo, excelente para capturar Metang/Metagross farmar Enigma Stones.",
+        "minLevel": 100,
+        "tags": [
+          {"label": "EXP", "tooltip": "Alta chance de TMs do tipo Steel e Enigma Stone."},
+          {"label": "CATCH", "tooltip": "Metang é bom para vender no market e para players."}
+        ],
+        "pokemons": ["metagross"],
+        "requisitos": ["VIP"],
+        "mapImage": "img/guias/mapa-catacumbas.png",
+        "rotaText": "Vá para Cinnabar e siga até o castelo abandonado na área dos vibravas.",
+        "passos": [
+          "1. Cinnabar (X 802 / Y 1264 / Z 7)",
+          "2. Desça as escadas (X 796 / Y 1273 / Z 9)",
+          "3. Clique nos livros (X 791 / Y 1328 / Z 9)",
+          "4. Entre na Porta (X 750 / Y 1306 / Z 10)"
+        ]
       }
     ]
   }
