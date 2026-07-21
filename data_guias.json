@@ -76,7 +76,6 @@
       "</div>"
     ]
   },
-[
   {
     "id": "hunt-mt-moon-terreo",
     "type": "hunt",
@@ -85,48 +84,12 @@
     "desc": "Ótimo local para iniciantes uparem rápido e farmarem itens básicos.",
     "minLevel": 20,
     "tags": [
-      {"label": "Foco: EXP", "tooltip": "Muitos monstros juntos, excelente para subir de nível rápido com ataques em área."},
-      {"label": "Task: Morcegos", "tooltip": "Excelente para fechar a task de Zubats rapidamente."}
+      {"label": "Foco: EXP", "tooltip": "Muitos monstros juntos."}
     ],
-    "pokemons": ["zubat", "geodude", "paras", "sandshrew"],
+    "pokemons": ["zubat", "geodude", "paras"],
     "requisitos": ["Nenhum"],
     "mapImage": "img/guias/mapa-mtmoon.png",
-    "rotaText": "Saia da cidade de Pewter pela direita, atravesse a Rota 3 até encontrar a entrada principal da montanha.",
+    "rotaText": "Saia da cidade de Pewter pela direita e atravesse a Rota 3.",
     "rotaCoord": "x: 1045, y: 620, z: 7"
-  },
-  {
-    "id": "hunt-seafoam-islands",
-    "type": "hunt",
-    "thumb": "img/guias/thumb-seafoam.png",
-    "title": "Seafoam Islands - -2",
-    "desc": "Caverna de gelo focada em alto lucro (Loot) e captura de Pokémon aquáticos.",
-    "minLevel": 60,
-    "tags": [
-      {"label": "Foco: LOOT", "tooltip": "Alta chance de dropar Water Stones e Ice Stones."},
-      {"label": "Requer: SURF", "tooltip": "Você vai precisar navegar por rios subterrâneos para acessar o respawn principal."}
-    ],
-    "pokemons": ["seel", "dewgong", "slowpoke", "jynx", "shellder"],
-    "requisitos": ["Surf", "Rope"],
-    "mapImage": "img/guias/mapa-seafoam.png",
-    "rotaText": "Vá para Cinnabar, surfe para a direita (Rota 20) até encontrar a ilha dupla. Desça dois andares no buraco central.",
-    "rotaCoord": "x: 1850, y: 2100, z: 5"
-  },
-  {
-    "id": "hunt-cerulean-cave",
-    "type": "hunt",
-    "thumb": "img/guias/thumb-cerulean.png",
-    "title": "Cerulean Quest Cave",
-    "desc": "Hunt perigosa de alto nível, excelente para fazer experiência massiva.",
-    "minLevel": 100,
-    "tags": [
-      {"label": "Risco: MORTE", "tooltip": "Monstros hitando muito forte e combando. Venha com bastante poção!"},
-      {"label": "Foco: EXP", "tooltip": "A melhor taxa de experiência bruta do continente."}
-    ],
-    "pokemons": ["alakazam", "machamp", "gengar", "rhydon", "magneton"],
-    "requisitos": ["Rock Smash", "VIP"],
-    "mapImage": "img/guias/mapa-ceruleancave.png",
-    "rotaText": "Saia de Cerulean por cima, surfe pelo rio à esquerda da ponte dourada e use Rock Smash na entrada bloqueada.",
-    "rotaCoord": "x: 1100, y: 350, z: 7"
   }
-]
 ]
