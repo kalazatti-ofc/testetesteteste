@@ -2309,7 +2309,7 @@ window.openHuntModal = (guideId, huntId) => {
         `<span class="bonus-badge hunt-tooltip" data-tooltip="${t.tooltip}" style="background: rgba(0,0,0,0.8); border: 1px solid #ffcb05; color: #ffcb05; margin: 2px; cursor: help; font-size: 0.65rem;">${t.label}</span>`
     ).join('') : '';
 
-    // 2. Monta os MINI CARDS dos Pokémons
+    // 2. Monta as MINIATURAS dos Pokémons (Apenas imagens, em fileira horizontal)
     const pokesHTML = hunt.pokemons && hunt.pokemons.length > 0 ? hunt.pokemons.map(pokeName => {
         const pokeObj = pokemonData.find(p => p.name.toLowerCase() === pokeName.toLowerCase());
         const imgSrc = pokeObj ? pokeObj.image : 'https://dummyimage.com/64x64/333/fff.png&text=?';
@@ -2317,20 +2317,29 @@ window.openHuntModal = (guideId, huntId) => {
         const pName = pokeObj ? pokeObj.name : pokeName.toUpperCase();
         
         return `
-            <div class="hunt-mini-card" ${clickEvent} style="display: flex; align-items: center; background: #f1f2f6; border: 2px solid #ced6e0; border-radius: 6px; padding: 4px 8px; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.borderColor='#3498db'; this.style.transform='scale(1.02)';" onmouseout="this.style.borderColor='#ced6e0'; this.style.transform='scale(1)';">
-                <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                    <img src="${imgSrc}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                </div>
-                <span style="font-size: 0.75rem; font-weight: 900; margin-left: 8px; color: #2f3542; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${pName}</span>
+            <div class="hunt-mini-card" ${clickEvent} title="${pName}" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: #f1f2f6; border: 2px solid #ced6e0; border-radius: 6px; padding: 4px; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.borderColor='#3498db'; this.style.transform='scale(1.1)';" onmouseout="this.style.borderColor='#ced6e0'; this.style.transform='scale(1)';">
+                <img src="${imgSrc}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
             </div>
         `;
-    }).join('') : '<p style="color:#aaa; font-size: 0.8rem; grid-column: span 2;">Nenhum monstro registrado.</p>';
+    }).join('') : '<p style="color:#aaa; font-size: 0.8rem;">Nenhum monstro registrado.</p>';
 
-    // 3. Monta os MINI CARDS dos Loots (Drops)
+    // 3. Sistema Automático de Drops (Lê os drops dos Pokémons da Hunt)
+    let allDrops = new Set(); // O Set() impede que itens duplicados apareçam
+    
+    if (hunt.pokemons) {
+        hunt.pokemons.forEach(pokeName => {
+            const pokeObj = pokemonData.find(p => p.name.toLowerCase() === pokeName.toLowerCase());
+            if (pokeObj && pokeObj.drops) {
+                pokeObj.drops.forEach(drop => allDrops.add(drop));
+            }
+        });
+    }
+
+    const uniqueDrops = Array.from(allDrops);
     let lootSectionHTML = '';
-    if (hunt.loot && Array.isArray(hunt.loot) && hunt.loot.length > 0) {
-        
-        const lootItems = hunt.loot.map(item => {
+
+    if (uniqueDrops.length > 0) {
+        const lootItems = uniqueDrops.map(item => {
             let safeImgName = item.toLowerCase().replace(/[^a-z0-9]/g, '-');
             const fallbackJS = "this.onerror=null; this.src='img/loots/" + safeImgName + ".png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};";
             
@@ -2345,9 +2354,8 @@ window.openHuntModal = (guideId, huntId) => {
         }).join('');
 
         lootSectionHTML = `
-            <div style="margin-top: 15px; border-top: 2px dashed rgba(0,0,0,0.1); padding-top: 10px;">
-                <h4 class="label-tech" style="margin-bottom: 10px; text-align: left;">LOOTS EM DESTAQUE</h4>
-                <!-- GRADE DUPLA PARA OS DROPS -->
+            <div class="location-module" style="background: #fff; border: 2px solid #111; padding: 15px; border-radius: 8px; box-shadow: inset 0 0 0 2px #e0e0e0; margin-top: 10px;">
+                <h4 class="label-tech" style="margin-bottom: 10px; text-align: left;">POSSÍVEIS DROPS DA ÁREA</h4>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
                     ${lootItems}
                 </div>
@@ -2381,15 +2389,17 @@ window.openHuntModal = (guideId, huntId) => {
                     </div>
                 </div>
                 
-                <!-- MONSTROS E LOOTS (AGORA COM GRID E MINI CARDS) -->
-                <div class="location-module" style="background: #fff; border: 2px solid #111; padding: 15px; border-radius: 8px; box-shadow: inset 0 0 0 2px #e0e0e0; flex: 1; overflow-y: auto;">
-                    <h4 class="label-tech" style="margin-bottom: 10px;">MONSTROS NO LOCAL</h4>
-                    
-                    <!-- GRADE DUPLA PARA OS POKÉMONS -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                        ${pokesHTML}
+                <!-- ÁREA DOS POKÉMONS E DROPS -->
+                <div style="flex: 1; overflow-y: auto;">
+                    <!-- CAIXA 1: MONSTROS NO LOCAL (Apenas miniaturas) -->
+                    <div class="location-module" style="background: #fff; border: 2px solid #111; padding: 15px; border-radius: 8px; box-shadow: inset 0 0 0 2px #e0e0e0;">
+                        <h4 class="label-tech" style="margin-bottom: 10px;">MONSTROS NO LOCAL</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start;">
+                            ${pokesHTML}
+                        </div>
                     </div>
                     
+                    <!-- CAIXA 2: LOOTS DA ÁREA (Gerado automaticamente) -->
                     ${lootSectionHTML}
                 </div>
                 
