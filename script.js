@@ -79,16 +79,29 @@ let startDragY = 0;
 // INICIALIZAÇÃO
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+
+    // MODO ESCURO MOVIDO PARA O TOPO (Protegido contra interrupções)
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+        if (localStorage.getItem('pokedex-dark-mode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('pokedex-dark-mode', document.body.classList.contains('dark-mode'));
+        });
+    }
+
     fetchData();
     renderTypeButtons();
     setupToggles();
     initOakModal();
-    initPanAndZoom(); 
+    initPanAndZoom();
     initVipSystem(); // Inicializa Letreiro e Modal VIP
-    
+
     // Configura o clique no novo interruptor (Pílula)
     const searchModeToggle = document.getElementById('search-mode-toggle');
-    if(searchModeToggle) {
+    if (searchModeToggle) {
         searchModeToggle.addEventListener('click', () => {
             if (searchMode === 'pokemon') {
                 const itemBtn = document.querySelector('.cat-btn[data-cat="drops"]');
