@@ -2304,55 +2304,100 @@ window.openHuntModal = (guideId, huntId) => {
     const hunt = guide.hunts.find(h => h.id === huntId);
     if (!hunt) return;
 
-    // 1. Monta as Tags
+    // 1. Monta as Tags para o título (agora escuras com borda para destacar no fundo de imagem)
     const tagsHTML = hunt.tags ? hunt.tags.map(t => 
-        `<span class="bonus-badge hunt-tooltip" data-tooltip="${t.tooltip}" style="background: #34495e; color: #fff; margin-right: 5px; cursor: help;">${t.label}</span>`
+        `<span class="bonus-badge hunt-tooltip" data-tooltip="${t.tooltip}" style="background: rgba(0,0,0,0.8); border: 1px solid #ffcb05; color: #ffcb05; margin: 2px; cursor: help; font-size: 0.65rem;">${t.label}</span>`
     ).join('') : '';
 
-    // 2. Monta as imagens dos Pokémons
+    // 2. Monta as miniaturas interativas dos Pokémons (menores e clicáveis para abrir o Pokémon)
     const pokesHTML = hunt.pokemons ? hunt.pokemons.map(pokeName => {
         const pokeObj = pokemonData.find(p => p.name.toLowerCase() === pokeName.toLowerCase());
         const imgSrc = pokeObj ? pokeObj.image : 'https://dummyimage.com/64x64/333/fff.png&text=?';
+        
+        // Se encontrar o Pokémon no banco, adiciona a ação de clique para abrir o modal dele
         const clickEvent = pokeObj ? `onclick="openModal('${pokeObj.id}')" style="cursor:pointer;"` : '';
-        return `<img src="${imgSrc}" ${clickEvent} title="${pokeName.toUpperCase()}" style="width: 50px; height: 50px; object-fit: contain; background: rgba(0,0,0,0.05); border-radius: 50%; padding: 2px;">`;
+        
+        return `
+            <div class="mini-dropper-card" ${clickEvent} style="width: 50px; height: 50px; padding: 2px; margin: 3px; background: #f8f9fa; border: 2px solid #ddd; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, border-color 0.2s;" onmouseover="this.style.transform='scale(1.1)'; this.style.borderColor='#3498db';" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#ddd';">
+                <img src="${imgSrc}" title="${pokeName.toUpperCase()}" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+        `;
     }).join('') : '<p style="color:#aaa;">Nenhum monstro registrado.</p>';
+
+    // 2.5 Monta o Loot Específico (Adiciona a seção apenas se existir "loot" no JSON da hunt)
+    let lootSectionHTML = '';
+    if (hunt.loot && Array.isArray(hunt.loot) && hunt.loot.length > 0) {
+        lootSectionHTML = `
+            <div style="margin-top: 15px; border-top: 2px dashed rgba(0,0,0,0.1); padding-top: 10px;">
+                <h4 class="label-tech" style="margin-bottom: 8px; text-align: left;">LOOTS EM DESTAQUE</h4>
+                <div class="loot-icons-container" style="justify-content: center;">
+                    ${hunt.loot.map(item => {
+                        let safeImgName = item.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                        const fallbackJS = \`this.onerror=null; this.src='img/loots/\${safeImgName}.png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};\`;
+                        return \`
+                            <div class="loot-icon-item loot-tooltip" data-tooltip="\${item}" onclick="searchByLoot('\${item}', event)">
+                                <img src="img/loots/\${safeImgName}.gif" alt="\${item}" onerror="\${fallbackJS}">
+                            </div>
+                        \`;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
 
     // 3. Monta as pílulas de Requisitos
     const reqHTML = hunt.requisitos ? hunt.requisitos.map(r => 
         `<span style="background: #e74c3c; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; display: inline-block; margin-top: 4px;">${r.toUpperCase()}</span>`
     ).join('') : '';
 
-    // 4. Injeta os dados dentro da "Carcaça" Vermelha original
+    // 4. Injeta os dados reconstruídos no Modal
     document.getElementById('modal-body').innerHTML = `
         <div class="modal-pokedex-view">
-            <div class="modal-left-wing">
-                <div class="screen-border" style="position: relative;">
-                    <div class="main-screen main-screen-stacked">
-                        <div class="stacked-container" style="padding: 20px;">
-                            <h2 class="poke-name-stacked" style="font-size: 1.4rem; margin-top: 10px; line-height: 1.1;">${hunt.title}</h2>
-                            <div class="modal-gen-bar stacked-gen-bar" style="background: #e67e22; color: #fff;">NÍVEL RECOMENDADO: ${hunt.minLevel}+</div>
-                            <div style="margin-top: 12px;">${tagsHTML}</div>
+            <div class="modal-left-wing" style="display: flex; flex-direction: column;">
+                
+                <!-- 1. TELA COM TÍTULO COMPACTO E BACKGROUND MAPA -->
+                <div class="screen-border" style="position: relative; margin-bottom: 10px; flex-shrink: 0;">
+                    <div class="main-screen main-screen-stacked" style="height: 140px; padding: 0; overflow: hidden; border: 2px solid #111;">
+                        <div class="stacked-container" style="background: url('${hunt.mapImage}') center/cover; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; position: relative;">
+                            
+                            <!-- Película Escura para dar leitura ao texto -->
+                            <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.65); z-index: 1;"></div>
+                            
+                            <div style="position: relative; z-index: 2; padding: 15px; width: 100%; text-align: center;">
+                                <h2 class="poke-name-stacked" style="font-size: 1.25rem; margin: 0 0 8px 0; color: #fff; text-shadow: 2px 2px 0 #000, -1px -1px 0 #111;">${hunt.title}</h2>
+                                <div class="modal-gen-bar stacked-gen-bar" style="background: #e67e22; color: #fff; border: 1px solid #111; display: inline-block; margin-bottom: 8px;">NÍVEL RECOMENDADO: ${hunt.minLevel}+</div>
+                                <div style="display: flex; flex-wrap: wrap; justify-content: center;">${tagsHTML}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="location-module" style="background: #fff; border: 2px solid #111; padding: 15px; border-radius: 8px; margin-top: 10px; box-shadow: inset 0 0 0 2px #e0e0e0;">
+                
+                <!-- 2. MONSTROS E LOOTS -->
+                <div class="location-module" style="background: #fff; border: 2px solid #111; padding: 15px; border-radius: 8px; box-shadow: inset 0 0 0 2px #e0e0e0; flex: 1; overflow-y: auto;">
                     <h4 class="label-tech" style="margin-bottom: 10px;">MONSTROS NO LOCAL</h4>
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
                         ${pokesHTML}
                     </div>
+                    
+                    <!-- Exibe os Loots caso existam no JSON -->
+                    ${lootSectionHTML}
                 </div>
+                
             </div>
             
-            <div class="modal-right-wing">
-                <div class="data-module" style="margin-bottom: 10px;">
+            <div class="modal-right-wing" style="display: flex; flex-direction: column;">
+                
+                <!-- 3. ROTA E COORDENADA (Com botão interativo padrão) -->
+                <div class="data-module" style="margin-bottom: 10px; flex-shrink: 0;">
                     <h4 class="label-tech">ROTA DE ACESSO E REQUISITOS</h4>
                     <p style="font-size: 0.9rem; color: #333; margin-top: 8px; margin-bottom: 12px; line-height: 1.4; font-family: sans-serif;">${hunt.rotaText}</p>
                     
                     ${hunt.rotaCoord ? `
-                        <div class="loc-button" onclick="copyLoc('${hunt.rotaCoord}', this, event)" style="margin-bottom: 10px;">
+                        <div class="loc-button" onclick="copyLoc('${hunt.rotaCoord}', this, event)">
                             <span class="loc-text">${hunt.rotaCoord}</span>
                             <div class="loc-actions">
                                 <span class="loc-icon copy-icon" title="Copiar Coordenada">📋</span>
+                                <span class="loc-icon">🗺️</span>
                             </div>
                         </div>
                     ` : ''}
@@ -2363,10 +2408,23 @@ window.openHuntModal = (guideId, huntId) => {
                     </div>
                 </div>
                 
-                <div class="data-module" style="margin-bottom: 10px; padding: 0; overflow: hidden; border: 2px solid #111; border-radius: 8px; background: #2c3e50;">
-                    <h4 class="label-tech" style="border-bottom: 2px solid #111; margin: 0; border-radius: 0;">MAPA DA ÁREA</h4>
-                    <img src="${hunt.mapImage}" onerror="this.src='https://dummyimage.com/400x250/2c3e50/fff.png&text=MAPA+N%C3%83O+ENCONTRADO'" style="width: 100%; height: auto; display: block;">
+                <!-- 4. MAPA ESTILO RADAR (Com animação e HUD) -->
+                <div class="radar-module" style="flex: 1; min-height: 180px; display: flex; flex-direction: column;">
+                    <h4 class="label-tech" style="margin-bottom: 0; border-bottom: none; border-radius: 6px 6px 0 0;">MAPA DA ÁREA</h4>
+                    <div class="radar-display" id="radar-screen" style="flex: 1; border-radius: 0 0 6px 6px; position: relative; overflow: hidden;">
+                        <img src="${hunt.mapImage}" class="map-img" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;" onerror="this.src='https://dummyimage.com/400x250/2c3e50/fff.png&text=MAPA+INDISPON%C3%8DVEL'">
+                        <div class="radar-grid"></div>
+                        <div class="radar-beam"></div>
+                        <div class="map-overlay"></div>
+                        
+                        <div class="sat-hud">
+                            <div class="sat-hud-line rec">● REC</div>
+                            <div class="sat-hud-line">LOC: HUNT</div>
+                            <div class="sat-hud-line" style="color:#ffd700;">${hunt.title.toUpperCase()}</div>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         </div>
     `;
