@@ -2323,19 +2323,34 @@ window.openHuntModal = (guideId, huntId) => {
         `;
     }).join('') : '<p style="color:#666; font-size: 0.8rem;">Nenhum monstro.</p>';
 
-    // 3. Sistema Automático de Drops 
+    // 3. Sistema Automático de Drops (AGORA BLINDADO PARA LER QUALQUER FORMATO NO JSON)
     let allDrops = new Set();
     
     if (hunt.pokemons) {
         hunt.pokemons.forEach(pokeName => {
             const pokeObj = pokemonData.find(p => p.name.toLowerCase() === pokeName.toLowerCase());
-            if (pokeObj && pokeObj.drops) {
-                pokeObj.drops.forEach(drop => {
-                    const itemName = typeof drop === 'object' ? (drop.item || drop.name) : drop;
-                    if (itemName) allDrops.add(itemName);
-                });
+            if (pokeObj) {
+                // Tenta procurar a propriedade "drops" ou "loot" dentro do Pokémon
+                let pokeLoot = pokeObj.drops || pokeObj.loot; 
+                if (pokeLoot) {
+                    if (Array.isArray(pokeLoot)) {
+                        pokeLoot.forEach(drop => {
+                            // Se for objeto, extrai o nome, senão pega a string direto
+                            const itemName = typeof drop === 'object' ? (drop.item || drop.name || drop.id) : drop;
+                            if (itemName) allDrops.add(itemName.toString().trim());
+                        });
+                    } else if (typeof pokeLoot === 'object') {
+                        // Caso seja um formato de chave/valor ex: {"Punch Stone": 10}
+                        Object.keys(pokeLoot).forEach(key => allDrops.add(key.trim()));
+                    }
+                }
             }
         });
+    }
+
+    // Fallback de segurança: Se os Pokémons não tiverem drops, puxa o que você preencheu na Hunt.
+    if (allDrops.size === 0 && hunt.loot && Array.isArray(hunt.loot)) {
+        hunt.loot.forEach(item => allDrops.add(item));
     }
 
     const uniqueDrops = Array.from(allDrops);
@@ -2355,11 +2370,18 @@ window.openHuntModal = (guideId, huntId) => {
 
         lootSectionHTML = `
             <div class="data-module" style="margin-top: 15px;">
-                <!-- Usando a classe nativa label-tech para a fonte e linha tracejada corretas -->
                 <h4 class="label-tech" style="margin-bottom: 10px;">TABELA DE DROP DA ÁREA</h4>
                 <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start;">
                     ${lootItems}
                 </div>
+            </div>
+        `;
+    } else {
+        // Exibe um aviso para você saber que a janela abriu, mas o banco de dados não retornou nenhum drop.
+        lootSectionHTML = `
+            <div class="data-module" style="margin-top: 15px;">
+                <h4 class="label-tech" style="margin-bottom: 10px;">TABELA DE DROP DA ÁREA</h4>
+                <p style="font-size: 0.8rem; color: #888;">Nenhum drop registrado no banco de dados para os monstros dessa área.</p>
             </div>
         `;
     }
@@ -2369,22 +2391,21 @@ window.openHuntModal = (guideId, huntId) => {
         `<span style="background: #e74c3c; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; display: inline-block; margin-top: 4px;">${r.toUpperCase()}</span>`
     ).join('') : '';
 
-    // 5. Injeta os dados reconstruídos no Modal (Totalmente dependente do CSS nativo)
+    // 5. Injeta os dados reconstruídos no Modal
     document.getElementById('modal-body').innerHTML = `
         <div class="modal-pokedex-view">
             <div class="modal-left-wing" style="display: flex; flex-direction: column;">
                 
-                <!-- TELA COMPACTA (Classes originais: screen-border e main-screen) -->
+                <!-- TELA AUMENTADA UM POUQUINHO (De 100px para 135px) -->
                 <div class="screen-border" style="margin-bottom: 15px; flex-shrink: 0;">
-                    <div class="main-screen" style="height: 100px; padding: 0; overflow: hidden; position: relative;">
+                    <div class="main-screen" style="height: 135px; padding: 0; overflow: hidden; position: relative;">
                         
-                        <!-- Imagem e Película de fundo -->
                         <div style="background: url('${hunt.mapImage}') center/cover; width: 100%; height: 100%; position: absolute; top:0; left:0;"></div>
                         <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.65); z-index: 1;"></div>
                         
-                        <!-- Conteúdo Centralizado -->
                         <div style="position: relative; z-index: 2; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 5px;">
-                            <h2 class="poke-name-stacked" style="font-size: 1.1rem; margin: 0 0 10px 0; color: #fff; text-shadow: 2px 2px 0 #000; text-align: center; line-height: 1.2;">${hunt.title}</h2>
+                            <!-- Fonte levemente maior para melhor leitura -->
+                            <h2 class="poke-name-stacked" style="font-size: 1.25rem; margin: 0 0 12px 0; color: #fff; text-shadow: 2px 2px 0 #000; text-align: center; line-height: 1.2;">${hunt.title}</h2>
                             <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
                                 <span class="modal-gen-bar stacked-gen-bar" style="background: #e67e22; color: #fff; padding: 4px 6px; font-size: 0.6rem; border-radius: 4px;">LVL: ${hunt.minLevel}+</span>
                                 ${tagsHTML}
@@ -2397,10 +2418,8 @@ window.openHuntModal = (guideId, huntId) => {
                 <!-- ÁREA DOS POKÉMONS E DROPS -->
                 <div style="flex: 1; overflow-y: auto; padding-right: 4px;">
                     
-                    <!-- CAIXA 1: MONSTROS NO LOCAL (Classe nativa data-module) -->
                     <div class="data-module">
                         <h4 class="label-tech" style="margin-bottom: 10px;">MONSTROS NO LOCAL</h4>
-                        
                         <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start;">
                             ${pokesHTML}
                         </div>
@@ -2436,7 +2455,7 @@ window.openHuntModal = (guideId, huntId) => {
                     </div>
                 </div>
                 
-                <!-- MAPA ESTILO RADAR (Livre de inline css pesado) -->
+                <!-- MAPA ESTILO RADAR -->
                 <div class="radar-module" style="flex: 1; min-height: 180px; display: flex; flex-direction: column;">
                     <h4 class="label-tech" style="margin-bottom: 0; border-bottom: none; border-radius: 6px 6px 0 0;">MAPA DA ÁREA</h4>
                     <div class="radar-display" id="radar-screen" style="flex: 1; border-radius: 0 0 6px 6px; position: relative; overflow: hidden; background: #000;">
