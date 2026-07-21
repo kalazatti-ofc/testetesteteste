@@ -86,17 +86,17 @@
       {
         "id": "hunt-mt-moon",
         "title": "Covil dos Lutadores - Singer",
-        "desc": "Ótimo local para iniciantes uparem rápido e farmar",
+        "desc": "Ótimo local para iniciantes uparem rápido e farmar HDs",
         "minLevel": 10,
         "tags": [
-          {"label": "Foco: EXP", "tooltip": "Muitos monstros juntos."},
-          {"label": "Drops: Punch Stone / TMs", "tooltip": "Adicionar ao Autoloot."}
+          {"label": "EXP", "tooltip": "Muitos monstros juntos."},
+          {"label": "LOOT: Stones / TMs", "tooltip": "Adicionar ao Autoloot."}
         ],
         "pokemons": ["machamp", "primeape", "hitmonlee", "hitmonchan", "poliwrath"],
         "requisitos": ["VIP"],
         "mapImage": "img/guias/mapa-guia-up-farms.png",
         "rotaText": "Saia da cidade de Singer pela direita e suba ate achar o buraco da entrada.",
-        "rotaCoord": "x: 1045, y: 620, z: 7"
+        "rotaCoord": "Singer (X 1045 / Y 620 / Z 7)"
       },
       {
         "id": "hunt-seafoam",
