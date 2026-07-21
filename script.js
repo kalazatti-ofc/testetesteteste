@@ -284,14 +284,14 @@ async function fetchData() {
     }
 }
 
-// NOVA FUNÇÃO: DESENHAR OS GUIAS (WIKI E HUNTS)
+// NOVA FUNÇÃO: DESENHAR OS GUIAS (WIKI E SISTEMA DE HUNTS)
 function renderGuias(guias) {
     const grid = document.getElementById('tutorials-grid');
     const articleContainer = document.getElementById('tutorial-articles-container');
 
     if (!grid || !articleContainer) return;
 
-    // Renderiza os cartões (Grid inicial) - Funciona para ambos os tipos (Hunts e Wikis)
+    // 1. Renderiza os cartões quadrados do menu principal
     grid.innerHTML = guias.map(g => `
         <div class="tut-card" onclick="openTutorial('${g.id}')">
             <img src="${g.thumb}" alt="${g.title}" class="tut-thumb" onerror="this.src='https://dummyimage.com/200x110/3498db/fff.png&text=Guia'">
@@ -300,10 +300,53 @@ function renderGuias(guias) {
         </div>
     `).join('');
 
-    // Renderiza o corpo dos artigos completos de forma oculta (SOMENTE SE FOR WIKI)
-    articleContainer.innerHTML = guias.filter(g => g.type === 'wiki').map(g => `
-        <div class="article-content-block" id="article-${g.id}" style="display: none;">
-            ${g.content.join('\n')}
+    // 2. Renderiza o interior de cada guia (Texto ou Sistema de Hunts)
+    articleContainer.innerHTML = guias.map(g => {
+        if (g.type === 'wiki') {
+            return `
+                <div class="article-content-block" id="article-${g.id}" style="display: none;">
+                    ${g.content.join('\n')}
+                </div>
+            `;
+        } else if (g.type === 'hunt_system') {
+            return `
+                <div class="article-content-block hunt-system-block" id="article-${g.id}" style="display: none; padding: 15px;">
+                    <div style="background: rgba(255, 203, 5, 0.1); border-left: 4px solid #ffcb05; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
+                        <h3 style="margin: 0 0 5px 0; color: #ffcb05; font-size: 1.2rem; text-shadow: 1px 1px 0 #000;">GUIA DE UP & FARM</h3>
+                        <p style="margin: 0; font-size: 0.9rem; color: #fff;">As rotas abaixo são apenas <b>recomendações da comunidade</b> e não representam uma regra absoluta do jogo. Explore o mapa e descubra seus próprios locais favoritos!</p>
+                    </div>
+                    
+                    <div style="background: #2c3e50; border: 2px solid #111; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
+                        <label style="display: block; color: #ffcb05; font-weight: bold; margin-bottom: 8px; font-size: 0.9rem;">FILTRAR POR SEU LEVEL:</label>
+                        <input type="number" id="hunt-level-input" placeholder="Ex: 50" style="width: 100%; padding: 10px; border-radius: 4px; border: 2px solid #111; font-size: 1rem; background: #fff; color: #111;" oninput="filterHunts(this.value, '${g.id}')">
+                    </div>
+
+                    <div class="hunt-cards-container" id="hunt-list-${g.id}" style="display: flex; flex-direction: column; gap: 15px;">
+                        ${buildHuntCardsHTML(g.hunts, g.id)}
+                    </div>
+                </div>
+            `;
+        }
+    }).join('');
+}
+
+// FUNÇÃO AUXILIAR: Desenha os cards horizontais da lista
+function buildHuntCardsHTML(huntsArray, guideId) {
+    if (!huntsArray || huntsArray.length === 0) return '<p style="color:#aaa;">Nenhuma hunt cadastrada.</p>';
+    
+    return huntsArray.map(hunt => `
+        <div class="hunt-horizontal-card" onclick="openHuntModal('${guideId}', '${hunt.id}')" style="display: flex; background: #ffffff; border: 2px solid #111; border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
+            <div style="width: 120px; background: #34495e; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative;">
+                <img src="${hunt.mapImage}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;" onerror="this.style.display='none'">
+                <span style="position: absolute; color: #fff; font-weight: 900; font-size: 1.2rem; text-shadow: 2px 2px 0 #000;">LV ${hunt.minLevel}</span>
+            </div>
+            <div style="padding: 12px; flex: 1;">
+                <h4 style="margin: 0 0 5px 0; color: #111; font-size: 1.1rem; text-transform: uppercase;">${hunt.title}</h4>
+                <p style="margin: 0 0 8px 0; color: #555; font-size: 0.85rem; line-height: 1.3;">${hunt.desc}</p>
+                <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+                    ${hunt.tags.map(t => `<span style="background: #3498db; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; border: 1px solid #111;">${t.label}</span>`).join('')}
+                </div>
+            </div>
         </div>
     `).join('');
 }
@@ -2183,24 +2226,60 @@ window.openTutorial = (articleId) => {
 };
 
 // ==========================================
-// NOVA LÓGICA: CONSTRUIR E ABRIR MODAL DE HUNT
+// FILTRO DE LEVEL DAS HUNTS
 // ==========================================
-window.openHuntModal = (hunt) => {
+window.filterHunts = (levelValue, guideId) => {
+    const guide = guiasData.find(g => g.id === guideId);
+    if (!guide || !guide.hunts) return;
+
+    const level = parseInt(levelValue);
+    const container = document.getElementById(`hunt-list-${guideId}`);
+    
+    // Se o input estiver vazio, mostra todas
+    if (isNaN(level)) {
+        container.innerHTML = buildHuntCardsHTML(guide.hunts, guideId);
+        return;
+    }
+
+    // Filtra as hunts onde o level do jogador é MAIOR ou IGUAL ao mínimo da hunt
+    const huntsPermitidas = guide.hunts.filter(h => level >= h.minLevel);
+    const huntsBloqueadas = guide.hunts.filter(h => level < h.minLevel);
+
+    // Renderiza primeiro as permitidas (normais) e depois as bloqueadas (mais apagadas)
+    let finalHTML = buildHuntCardsHTML(huntsPermitidas, guideId);
+    
+    if (huntsBloqueadas.length > 0) {
+        finalHTML += `<h4 style="color:#e74c3c; margin-top: 15px; margin-bottom: 5px; text-transform:uppercase;">Nível Insuficiente:</h4>`;
+        finalHTML += `<div style="opacity: 0.5; pointer-events: none; filter: grayscale(100%);">` + buildHuntCardsHTML(huntsBloqueadas, guideId) + `</div>`;
+    }
+
+    container.innerHTML = finalHTML;
+};
+
+// ==========================================
+// ABRIR O MODAL VERMELHO DA HUNT ESPECÍFICA
+// ==========================================
+window.openHuntModal = (guideId, huntId) => {
+    const guide = guiasData.find(g => g.id === guideId);
+    if (!guide || !guide.hunts) return;
+    
+    const hunt = guide.hunts.find(h => h.id === huntId);
+    if (!hunt) return;
+
     // 1. Monta as Tags
     const tagsHTML = hunt.tags ? hunt.tags.map(t => 
         `<span class="bonus-badge hunt-tooltip" data-tooltip="${t.tooltip}" style="background: #34495e; color: #fff; margin-right: 5px; cursor: help;">${t.label}</span>`
     ).join('') : '';
 
-    // 2. Monta as imagens dos Pokémons puxando direto do seu banco principal
+    // 2. Monta as imagens dos Pokémons
     const pokesHTML = hunt.pokemons ? hunt.pokemons.map(pokeName => {
         const pokeObj = pokemonData.find(p => p.name.toLowerCase() === pokeName.toLowerCase());
         const imgSrc = pokeObj ? pokeObj.image : 'https://dummyimage.com/64x64/333/fff.png&text=?';
-        // Se o pokemon existir no banco, clicar na carinha dele abre o modal dele!
         const clickEvent = pokeObj ? `onclick="openModal('${pokeObj.id}')" style="cursor:pointer;"` : '';
-        return `<img src="${imgSrc}" ${clickEvent} title="${pokeName.toUpperCase()}" class="hunt-poke-img" style="width: 50px; height: 50px; object-fit: contain; background: rgba(0,0,0,0.05); border-radius: 50%; padding: 2px;">`;
+        return `<img src="${imgSrc}" ${clickEvent} title="${pokeName.toUpperCase()}" style="width: 50px; height: 50px; object-fit: contain; background: rgba(0,0,0,0.05); border-radius: 50%; padding: 2px;">`;
     }).join('') : '<p style="color:#aaa;">Nenhum monstro registrado.</p>';
 
-    // 3. Monta as pílulas de Requisitos (HM/Itens)
+    // 3. Monta as pílulas de Requisitos
     const reqHTML = hunt.requisitos ? hunt.requisitos.map(r => 
         `<span style="background: #e74c3c; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; display: inline-block; margin-top: 4px;">${r.toUpperCase()}</span>`
     ).join('') : '';
@@ -2254,7 +2333,6 @@ window.openHuntModal = (hunt) => {
         </div>
     `;
 
-    // Mostra o Modal finalizado na tela
     document.getElementById('pokemon-modal').classList.remove('hidden');
 };
 
