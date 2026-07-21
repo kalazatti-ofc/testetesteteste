@@ -284,14 +284,14 @@ async function fetchData() {
     }
 }
 
-// NOVA FUNÇÃO: DESENHAR OS GUIAS (WIKI)
+// NOVA FUNÇÃO: DESENHAR OS GUIAS (WIKI E HUNTS)
 function renderGuias(guias) {
     const grid = document.getElementById('tutorials-grid');
     const articleContainer = document.getElementById('tutorial-articles-container');
 
     if (!grid || !articleContainer) return;
 
-    // Renderiza os cartões (Grid inicial)
+    // Renderiza os cartões (Grid inicial) - Funciona para ambos os tipos (Hunts e Wikis)
     grid.innerHTML = guias.map(g => `
         <div class="tut-card" onclick="openTutorial('${g.id}')">
             <img src="${g.thumb}" alt="${g.title}" class="tut-thumb" onerror="this.src='https://dummyimage.com/200x110/3498db/fff.png&text=Guia'">
@@ -300,8 +300,8 @@ function renderGuias(guias) {
         </div>
     `).join('');
 
-    // Renderiza o corpo dos artigos completos de forma oculta
-    articleContainer.innerHTML = guias.map(g => `
+    // Renderiza o corpo dos artigos completos de forma oculta (SOMENTE SE FOR WIKI)
+    articleContainer.innerHTML = guias.filter(g => g.type === 'wiki').map(g => `
         <div class="article-content-block" id="article-${g.id}" style="display: none;">
             ${g.content.join('\n')}
         </div>
@@ -2159,20 +2159,103 @@ window.closeVipModal = () => {
 };
 
 // ==========================================
-// SISTEMA DE TUTORIAIS E GUIAS (WIKI)
+// SISTEMA DE TUTORIAIS E GUIAS (WIKI E HUNTS)
 // ==========================================
 window.openTutorial = (articleId) => {
-    document.getElementById('tutorials-grid').style.display = 'none';
-    document.getElementById('tutorial-article-view').style.display = 'block';
-    
-    // Esconde todos os textos e mostra só o que foi clicado
-    document.querySelectorAll('.article-content-block').forEach(el => el.style.display = 'none');
-    
-    const targetArticle = document.getElementById('article-' + articleId);
-    if(targetArticle) targetArticle.style.display = 'block';
-    
-    // Joga o scroll do painel principal para cima
-    document.getElementById('tutorials-module').scrollTop = 0;
+    const guideInfo = guiasData.find(g => g.id === articleId);
+    if (!guideInfo) return;
+
+    if (guideInfo.type === 'hunt') {
+        // Se for uma Rota de Caça, abre a interface vermelha de Modal
+        openHuntModal(guideInfo);
+    } else {
+        // Se for Tutorial de Texto (Wiki), abre na própria tela branca
+        document.getElementById('tutorials-grid').style.display = 'none';
+        document.getElementById('tutorial-article-view').style.display = 'block';
+        
+        document.querySelectorAll('.article-content-block').forEach(el => el.style.display = 'none');
+        
+        const targetArticle = document.getElementById('article-' + articleId);
+        if(targetArticle) targetArticle.style.display = 'block';
+        
+        document.getElementById('tutorials-module').scrollTop = 0;
+    }
+};
+
+// ==========================================
+// NOVA LÓGICA: CONSTRUIR E ABRIR MODAL DE HUNT
+// ==========================================
+window.openHuntModal = (hunt) => {
+    // 1. Monta as Tags
+    const tagsHTML = hunt.tags ? hunt.tags.map(t => 
+        `<span class="bonus-badge hunt-tooltip" data-tooltip="${t.tooltip}" style="background: #34495e; color: #fff; margin-right: 5px; cursor: help;">${t.label}</span>`
+    ).join('') : '';
+
+    // 2. Monta as imagens dos Pokémons puxando direto do seu banco principal
+    const pokesHTML = hunt.pokemons ? hunt.pokemons.map(pokeName => {
+        const pokeObj = pokemonData.find(p => p.name.toLowerCase() === pokeName.toLowerCase());
+        const imgSrc = pokeObj ? pokeObj.image : 'https://dummyimage.com/64x64/333/fff.png&text=?';
+        // Se o pokemon existir no banco, clicar na carinha dele abre o modal dele!
+        const clickEvent = pokeObj ? `onclick="openModal('${pokeObj.id}')" style="cursor:pointer;"` : '';
+        return `<img src="${imgSrc}" ${clickEvent} title="${pokeName.toUpperCase()}" class="hunt-poke-img" style="width: 50px; height: 50px; object-fit: contain; background: rgba(0,0,0,0.05); border-radius: 50%; padding: 2px;">`;
+    }).join('') : '<p style="color:#aaa;">Nenhum monstro registrado.</p>';
+
+    // 3. Monta as pílulas de Requisitos (HM/Itens)
+    const reqHTML = hunt.requisitos ? hunt.requisitos.map(r => 
+        `<span style="background: #e74c3c; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; display: inline-block; margin-top: 4px;">${r.toUpperCase()}</span>`
+    ).join('') : '';
+
+    // 4. Injeta os dados dentro da "Carcaça" Vermelha original
+    document.getElementById('modal-body').innerHTML = `
+        <div class="modal-pokedex-view">
+            <div class="modal-left-wing">
+                <div class="screen-border" style="position: relative;">
+                    <div class="main-screen main-screen-stacked">
+                        <div class="stacked-container" style="padding: 20px;">
+                            <h2 class="poke-name-stacked" style="font-size: 1.4rem; margin-top: 10px; line-height: 1.1;">${hunt.title}</h2>
+                            <div class="modal-gen-bar stacked-gen-bar" style="background: #e67e22; color: #fff;">NÍVEL RECOMENDADO: ${hunt.minLevel}+</div>
+                            <div style="margin-top: 12px;">${tagsHTML}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="location-module" style="background: #fff; border: 2px solid #111; padding: 15px; border-radius: 8px; margin-top: 10px; box-shadow: inset 0 0 0 2px #e0e0e0;">
+                    <h4 class="label-tech" style="margin-bottom: 10px;">MONSTROS NO LOCAL</h4>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+                        ${pokesHTML}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-right-wing">
+                <div class="data-module" style="margin-bottom: 10px;">
+                    <h4 class="label-tech">ROTA DE ACESSO E REQUISITOS</h4>
+                    <p style="font-size: 0.9rem; color: #333; margin-top: 8px; margin-bottom: 12px; line-height: 1.4; font-family: sans-serif;">${hunt.rotaText}</p>
+                    
+                    ${hunt.rotaCoord ? `
+                        <div class="loc-button" onclick="copyLoc('${hunt.rotaCoord}', this, event)" style="margin-bottom: 10px;">
+                            <span class="loc-text">${hunt.rotaCoord}</span>
+                            <div class="loc-actions">
+                                <span class="loc-icon copy-icon" title="Copiar Coordenada">📋</span>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <div style="margin-top: 10px; border-top: 2px dashed rgba(0,0,0,0.1); padding-top: 8px;">
+                        <strong style="font-size: 0.75rem; color: #666;">ITENS / HMs NECESSÁRIOS:</strong><br>
+                        ${reqHTML || '<span style="color:#aaa; font-size: 0.8rem;">Nenhum</span>'}
+                    </div>
+                </div>
+                
+                <div class="data-module" style="margin-bottom: 10px; padding: 0; overflow: hidden; border: 2px solid #111; border-radius: 8px; background: #2c3e50;">
+                    <h4 class="label-tech" style="border-bottom: 2px solid #111; margin: 0; border-radius: 0;">MAPA DA ÁREA</h4>
+                    <img src="${hunt.mapImage}" onerror="this.src='https://dummyimage.com/400x250/2c3e50/fff.png&text=MAPA+N%C3%83O+ENCONTRADO'" style="width: 100%; height: auto; display: block;">
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Mostra o Modal finalizado na tela
+    document.getElementById('pokemon-modal').classList.remove('hidden');
 };
 
 window.closeTutorial = () => {
