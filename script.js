@@ -2309,39 +2309,46 @@ window.openHuntModal = (guideId, huntId) => {
         `<span class="bonus-badge hunt-tooltip" data-tooltip="${t.tooltip}" style="background: rgba(0,0,0,0.8); border: 1px solid #ffcb05; color: #ffcb05; margin: 2px; cursor: help; font-size: 0.65rem;">${t.label}</span>`
     ).join('') : '';
 
-    // 2. Monta as miniaturas interativas dos Pokémons
-    const pokesHTML = hunt.pokemons ? hunt.pokemons.map(pokeName => {
+    // 2. Monta os MINI CARDS dos Pokémons
+    const pokesHTML = hunt.pokemons && hunt.pokemons.length > 0 ? hunt.pokemons.map(pokeName => {
         const pokeObj = pokemonData.find(p => p.name.toLowerCase() === pokeName.toLowerCase());
         const imgSrc = pokeObj ? pokeObj.image : 'https://dummyimage.com/64x64/333/fff.png&text=?';
-        const clickEvent = pokeObj ? `onclick="openModal('${pokeObj.id}')" style="cursor:pointer;"` : '';
+        const clickEvent = pokeObj ? `onclick="openModal('${pokeObj.id}')"` : '';
+        const pName = pokeObj ? pokeObj.name : pokeName.toUpperCase();
         
         return `
-            <div class="mini-dropper-card" ${clickEvent} style="width: 50px; height: 50px; padding: 2px; margin: 3px; background: #f8f9fa; border: 2px solid #ddd; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, border-color 0.2s;" onmouseover="this.style.transform='scale(1.1)'; this.style.borderColor='#3498db';" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#ddd';">
-                <img src="${imgSrc}" title="${pokeName.toUpperCase()}" style="width: 100%; height: 100%; object-fit: contain;">
+            <div class="hunt-mini-card" ${clickEvent} style="display: flex; align-items: center; background: #f1f2f6; border: 2px solid #ced6e0; border-radius: 6px; padding: 4px 8px; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.borderColor='#3498db'; this.style.transform='scale(1.02)';" onmouseout="this.style.borderColor='#ced6e0'; this.style.transform='scale(1)';">
+                <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <img src="${imgSrc}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                </div>
+                <span style="font-size: 0.75rem; font-weight: 900; margin-left: 8px; color: #2f3542; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${pName}</span>
             </div>
         `;
-    }).join('') : '<p style="color:#aaa;">Nenhum monstro registrado.</p>';
+    }).join('') : '<p style="color:#aaa; font-size: 0.8rem; grid-column: span 2;">Nenhum monstro registrado.</p>';
 
-    // 3. Monta o Loot Específico (CORRIGIDO SEM CONFLITO DE SINTAXE)
+    // 3. Monta os MINI CARDS dos Loots (Drops)
     let lootSectionHTML = '';
     if (hunt.loot && Array.isArray(hunt.loot) && hunt.loot.length > 0) {
         
         const lootItems = hunt.loot.map(item => {
             let safeImgName = item.toLowerCase().replace(/[^a-z0-9]/g, '-');
-            // Usando aspas simples para o fallback evitar o conflito do template literal
             const fallbackJS = "this.onerror=null; this.src='img/loots/" + safeImgName + ".png'; this.onerror=function(){this.src='https://dummyimage.com/24x24/dcdde1/2c3e50.png&text=?';};";
             
             return `
-                <div class="loot-icon-item loot-tooltip" data-tooltip="${item}" onclick="searchByLoot('${item}', event)">
-                    <img src="img/loots/${safeImgName}.gif" alt="${item}" onerror="${fallbackJS}">
+                <div class="hunt-mini-card" onclick="searchByLoot('${item}', event)" style="display: flex; align-items: center; background: #f1f2f6; border: 2px solid #ced6e0; border-radius: 6px; padding: 4px 8px; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.borderColor='#e1b12c'; this.style.transform='scale(1.02)';" onmouseout="this.style.borderColor='#ced6e0'; this.style.transform='scale(1)';">
+                    <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <img src="img/loots/${safeImgName}.gif" alt="${item}" onerror="${fallbackJS}" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+                    </div>
+                    <span style="font-size: 0.75rem; font-weight: 900; margin-left: 8px; color: #2f3542; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.toUpperCase()}</span>
                 </div>
             `;
         }).join('');
 
         lootSectionHTML = `
             <div style="margin-top: 15px; border-top: 2px dashed rgba(0,0,0,0.1); padding-top: 10px;">
-                <h4 class="label-tech" style="margin-bottom: 8px; text-align: left;">LOOTS EM DESTAQUE</h4>
-                <div class="loot-icons-container" style="justify-content: center;">
+                <h4 class="label-tech" style="margin-bottom: 10px; text-align: left;">LOOTS EM DESTAQUE</h4>
+                <!-- GRADE DUPLA PARA OS DROPS -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
                     ${lootItems}
                 </div>
             </div>
@@ -2374,10 +2381,12 @@ window.openHuntModal = (guideId, huntId) => {
                     </div>
                 </div>
                 
-                <!-- MONSTROS E LOOTS -->
+                <!-- MONSTROS E LOOTS (AGORA COM GRID E MINI CARDS) -->
                 <div class="location-module" style="background: #fff; border: 2px solid #111; padding: 15px; border-radius: 8px; box-shadow: inset 0 0 0 2px #e0e0e0; flex: 1; overflow-y: auto;">
                     <h4 class="label-tech" style="margin-bottom: 10px;">MONSTROS NO LOCAL</h4>
-                    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                    
+                    <!-- GRADE DUPLA PARA OS POKÉMONS -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
                         ${pokesHTML}
                     </div>
                     
