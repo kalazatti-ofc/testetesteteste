@@ -2323,7 +2323,7 @@ window.openHuntModal = (guideId, huntId) => {
         `;
     }).join('') : '<p style="color:#666; font-size: 0.8rem;">Nenhum monstro.</p>';
 
-    // 3. Sistema Automático de Drops (AGORA 100% BLINDADO)
+    // 3. Sistema Automático de Drops
     let allDrops = new Set();
     
     if (hunt.pokemons) {
@@ -2398,7 +2398,6 @@ window.openHuntModal = (guideId, huntId) => {
         <div class="modal-pokedex-view">
             <div class="modal-left-wing" style="display: flex; flex-direction: column;">
                 
-                <!-- TELA AUMENTADA UM POUQUINHO (De 100px para 135px) -->
                 <div class="screen-border" style="margin-bottom: 15px; flex-shrink: 0;">
                     <div class="main-screen" style="height: 135px; padding: 0; overflow: hidden; position: relative;">
                         
@@ -2416,7 +2415,6 @@ window.openHuntModal = (guideId, huntId) => {
                     </div>
                 </div>
                 
-                <!-- ÁREA DOS POKÉMONS E DROPS -->
                 <div style="flex: 1; overflow-y: auto; padding-right: 4px;">
                     
                     <div class="data-module">
@@ -2426,7 +2424,6 @@ window.openHuntModal = (guideId, huntId) => {
                         </div>
                     </div>
                     
-                    <!-- CAIXA 2: LOOTS DA ÁREA -->
                     ${lootSectionHTML}
                 </div>
                 
@@ -2434,7 +2431,7 @@ window.openHuntModal = (guideId, huntId) => {
             
             <div class="modal-right-wing" style="display: flex; flex-direction: column;">
                 
-                <!-- MAPA ESTILO RADAR (AGORA NO TOPO) -->
+                <!-- MAPA ESTILO RADAR (NO TOPO) -->
                 <div class="radar-module" style="flex: 1; min-height: 180px; display: flex; flex-direction: column; margin-bottom: 15px;">
                     <h4 class="label-tech" style="margin-bottom: 0; border-bottom: none; border-radius: 6px 6px 0 0;">MAPA DA ÁREA</h4>
                     <div class="radar-display" id="radar-screen" style="flex: 1; border-radius: 0 0 6px 6px; position: relative; overflow: hidden; background: #000;">
@@ -2451,18 +2448,18 @@ window.openHuntModal = (guideId, huntId) => {
                     </div>
                 </div>
 
-                <!-- ROTA E COORDENADA (AGORA EMBAIXO) -->
+                <!-- ROTA E COORDENADA (ATUALIZADO COM O ESTILO DA IMAGE_00BC17) -->
                 <div class="data-module" style="flex-shrink: 0;">
                     <h4 class="label-tech" style="margin-bottom: 10px;">ROTA DE ACESSO</h4>
                     
                     <p style="font-size: 0.85rem; color: #444; margin-bottom: 15px; line-height: 1.5; font-weight: 500;">${hunt.rotaText}</p>
                     
                     ${hunt.rotaCoord ? `
-                        <div class="loc-button" onclick="copyLoc('${hunt.rotaCoord}', this, event)">
-                            <span class="loc-text">${hunt.rotaCoord}</span>
-                            <div class="loc-actions">
-                                <span class="loc-icon copy-icon" title="Copiar Coordenada">📋</span>
-                                <span class="loc-icon">🗺️</span>
+                        <div class="location-btn" onclick="copyLoc('${hunt.rotaCoord}', this, event)" style="background: #111412; border: 2px solid #000; border-radius: 8px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; box-shadow: 0 4px 0 #0a0a0a; margin-top: 10px; transition: all 0.1s;" onmousedown="this.style.transform='translateY(4px)'; this.style.boxShadow='none';" onmouseup="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 0 #0a0a0a';" onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 0 #0a0a0a';">
+                            <span class="loc-name" style="color: #fff; font-family: monospace; font-size: 0.9rem; font-weight: bold; text-shadow: 1px 1px 0 #000;">${hunt.rotaCoord}</span>
+                            <div class="loc-actions" style="display: flex; gap: 10px;">
+                                <span class="loc-icon copy-icon" title="Copiar Coordenada" style="font-size: 1.2rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.8));">📋</span>
+                                <span class="loc-icon" title="Ver Mapa" style="font-size: 1.2rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.8));">🗺️</span>
                             </div>
                         </div>
                     ` : ''}
