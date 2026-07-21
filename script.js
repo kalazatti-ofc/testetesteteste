@@ -2330,20 +2330,16 @@ window.openHuntModal = (guideId, huntId) => {
         hunt.pokemons.forEach(pokeName => {
             const pokeObj = pokemonData.find(p => p.name.toLowerCase() === pokeName.toLowerCase());
             if (pokeObj) {
-                // Tenta procurar a propriedade "drops" ou "loot" dentro do Pokémon
                 let pokeLoot = pokeObj.drops || pokeObj.loot; 
                 if (pokeLoot) {
                     if (Array.isArray(pokeLoot)) {
                         pokeLoot.forEach(drop => {
-                            // Se for objeto, extrai o nome, senão pega a string direto
                             const itemName = typeof drop === 'object' ? (drop.item || drop.name || drop.id) : drop;
                             if (itemName) allDrops.add(itemName.toString().trim());
                         });
                     } else if (typeof pokeLoot === 'object') {
-                        // Caso seja um formato de chave/valor ex: {"Punch Stone": 10}
                         Object.keys(pokeLoot).forEach(key => allDrops.add(key.trim()));
                     } else if (typeof pokeLoot === 'string' && pokeLoot.trim() !== '') {
-                        // CORREÇÃO: Lê o formato antigo onde o loot é um texto separado por vírgulas
                         pokeLoot.split(',').forEach(item => allDrops.add(item.trim()));
                     }
                 }
@@ -2351,7 +2347,7 @@ window.openHuntModal = (guideId, huntId) => {
         });
     }
 
-    // Fallback de segurança: Se os Pokémons não tiverem drops, puxa o que você preencheu direto na Hunt.
+    // Fallback de segurança
     if (allDrops.size === 0 && hunt.loot) {
         if (Array.isArray(hunt.loot)) {
             hunt.loot.forEach(item => allDrops.add(item));
@@ -2384,7 +2380,6 @@ window.openHuntModal = (guideId, huntId) => {
             </div>
         `;
     } else {
-        // Exibe um aviso para você saber que a janela abriu, mas o banco de dados não retornou nenhum drop.
         lootSectionHTML = `
             <div class="data-module" style="margin-top: 15px;">
                 <h4 class="label-tech" style="margin-bottom: 10px;">TABELA DE DROP DA ÁREA</h4>
@@ -2439,8 +2434,25 @@ window.openHuntModal = (guideId, huntId) => {
             
             <div class="modal-right-wing" style="display: flex; flex-direction: column;">
                 
-                <!-- ROTA E COORDENADA -->
-                <div class="data-module" style="margin-bottom: 15px; flex-shrink: 0;">
+                <!-- MAPA ESTILO RADAR (AGORA NO TOPO) -->
+                <div class="radar-module" style="flex: 1; min-height: 180px; display: flex; flex-direction: column; margin-bottom: 15px;">
+                    <h4 class="label-tech" style="margin-bottom: 0; border-bottom: none; border-radius: 6px 6px 0 0;">MAPA DA ÁREA</h4>
+                    <div class="radar-display" id="radar-screen" style="flex: 1; border-radius: 0 0 6px 6px; position: relative; overflow: hidden; background: #000;">
+                        <img src="${hunt.mapImage}" class="map-img" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;" onerror="this.src='https://dummyimage.com/400x250/2c3e50/fff.png&text=MAPA+INDISPON%C3%8DVEL'">
+                        <div class="radar-grid"></div>
+                        <div class="radar-beam"></div>
+                        <div class="map-overlay"></div>
+                        
+                        <div class="sat-hud">
+                            <div class="sat-hud-line rec">● REC</div>
+                            <div class="sat-hud-line">LOC: HUNT</div>
+                            <div class="sat-hud-line" style="color:#ffd700;">${hunt.title.toUpperCase()}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROTA E COORDENADA (AGORA EMBAIXO) -->
+                <div class="data-module" style="flex-shrink: 0;">
                     <h4 class="label-tech" style="margin-bottom: 10px;">ROTA DE ACESSO</h4>
                     
                     <p style="font-size: 0.85rem; color: #444; margin-bottom: 15px; line-height: 1.5; font-weight: 500;">${hunt.rotaText}</p>
@@ -2458,23 +2470,6 @@ window.openHuntModal = (guideId, huntId) => {
                     <div style="margin-top: 15px; padding-top: 10px; border-top: 2px dashed rgba(0,0,0,0.1);">
                         <strong style="color: #222; font-size: 0.75rem;">REQUISITOS:</strong><br>
                         ${reqHTML || '<span style="color:#999; font-size: 0.8rem; display: inline-block; margin-top: 8px;">Nenhum</span>'}
-                    </div>
-                </div>
-                
-                <!-- MAPA ESTILO RADAR -->
-                <div class="radar-module" style="flex: 1; min-height: 180px; display: flex; flex-direction: column;">
-                    <h4 class="label-tech" style="margin-bottom: 0; border-bottom: none; border-radius: 6px 6px 0 0;">MAPA DA ÁREA</h4>
-                    <div class="radar-display" id="radar-screen" style="flex: 1; border-radius: 0 0 6px 6px; position: relative; overflow: hidden; background: #000;">
-                        <img src="${hunt.mapImage}" class="map-img" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;" onerror="this.src='https://dummyimage.com/400x250/2c3e50/fff.png&text=MAPA+INDISPON%C3%8DVEL'">
-                        <div class="radar-grid"></div>
-                        <div class="radar-beam"></div>
-                        <div class="map-overlay"></div>
-                        
-                        <div class="sat-hud">
-                            <div class="sat-hud-line rec">● REC</div>
-                            <div class="sat-hud-line">LOC: HUNT</div>
-                            <div class="sat-hud-line" style="color:#ffd700;">${hunt.title.toUpperCase()}</div>
-                        </div>
                     </div>
                 </div>
                 
