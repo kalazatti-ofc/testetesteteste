@@ -2455,10 +2455,10 @@ window.openHuntModal = (guideId, huntId) => {
                     <p style="font-size: 0.85rem; color: #444; margin-bottom: 15px; line-height: 1.5; font-weight: 500;">${hunt.rotaText}</p>
                     
                     ${hunt.rotaCoord ? `
-                        <div class="loc-button" onclick="copyLoc('${hunt.rotaCoord}', this, event)" style="margin-top: 10px;">
+                        <div class="loc-button" style="margin-top: 10px;">
                             <span class="loc-text">${hunt.rotaCoord}</span>
                             <div class="loc-actions">
-                                <span class="loc-icon copy-icon" title="Copiar Coordenada">📋</span>
+                                <span class="loc-icon copy-icon" title="Copiar Coordenada" onclick="copyLoc('${hunt.rotaCoord}', this, event)">📋</span>
                                 <span class="loc-icon" title="Ver Mapa">🗺️</span>
                             </div>
                         </div>
