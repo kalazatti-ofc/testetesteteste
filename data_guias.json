@@ -89,13 +89,13 @@
         "desc": "Ótimo local para iniciantes uparem rápido e farmar",
         "minLevel": 10,
         "tags": [
-          {"label": "Foco: EXP", "tooltip": "Muitos monstros juntos."}
+          {"label": "Foco: EXP", "tooltip": "Muitos monstros juntos."},
           {"label": "Drops: Punch Stone / TMs", "tooltip": "Adicionar ao Autoloot."}
         ],
         "pokemons": ["machamp", "primeape", "hitmonlee", "hitmonchan", "poliwrath"],
         "requisitos": ["VIP"],
         "mapImage": "img/guias/mapa-mtmoon.png",
-        "rotaText": "Saia da cidade de Pewter pela direita e atravesse a Rota 3.",
+        "rotaText": "Saia da cidade de Singer pela direita e suba ate achar o buraco da entrada.",
         "rotaCoord": "x: 1045, y: 620, z: 7"
       },
       {
