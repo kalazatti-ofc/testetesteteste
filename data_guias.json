@@ -2,7 +2,7 @@
   {
     "id": "guia-up-evs",
     "type": "wiki",
-    "thumb": "img/capa-evs.png",
+    "thumb": "img/guias/capa-evs.png",
     "title": "Como Upar EVs Rápido!",
     "desc": "Tudo sobre EVs! Como funciona o UP e muito mais.",
     "content": [
@@ -79,20 +79,21 @@
   {
     "id": "guia-up-farm",
     "type": "hunt_system",
-    "thumb": "https://dummyimage.com/200x110/e74c3c/fff.png&text=UP+e+FARM",
+    "thumb": "img/guias/guia-up-farms.png",
     "title": "Guia de UP e Farm",
     "desc": "As melhores rotas e locais recomendados pela comunidade.",
     "hunts": [
       {
         "id": "hunt-mt-moon",
-        "title": "Mt. Moon - Térreo",
-        "desc": "Ótimo local para iniciantes uparem rápido e farmarem itens básicos.",
-        "minLevel": 20,
+        "title": "Covil dos Lutadores - Singer",
+        "desc": "Ótimo local para iniciantes uparem rápido e farmar",
+        "minLevel": 10,
         "tags": [
           {"label": "Foco: EXP", "tooltip": "Muitos monstros juntos."}
+          {"label": "Drops: Punch Stone / TMs", "tooltip": "Adicionar ao Autoloot."}
         ],
-        "pokemons": ["zubat", "geodude", "paras"],
-        "requisitos": ["Nenhum"],
+        "pokemons": ["machamp", "primeape", "hitmonlee", "hitmonchan", "poliwrath"],
+        "requisitos": ["VIP"],
         "mapImage": "img/guias/mapa-mtmoon.png",
         "rotaText": "Saia da cidade de Pewter pela direita e atravesse a Rota 3.",
         "rotaCoord": "x: 1045, y: 620, z: 7"
