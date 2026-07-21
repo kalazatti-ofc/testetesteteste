@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(tutModule) tutModule.style.display = 'none'; if(mapSidebar) mapSidebar.style.display = 'block'; 
                 mapContainer.style.display = 'flex'; initMapViewer(); 
             } else if (activeCategory === 'guias') {
-                gridContainer.style.display = 'none'; searchModule.style.display = 'none'; filtersModule.style.display = 'none';
+                gridContainer.style.display = 'none'; searchModule.style.display = 'block'; filtersModule.style.display = 'none';
                 if(npcWrapper) npcWrapper.style.display = 'none';
                 mapContainer.style.display = 'none'; if(mapSidebar) mapSidebar.style.display = 'none'; 
                 if(tutModule) { tutModule.style.display = 'block'; closeTutorial(); }
@@ -355,9 +355,9 @@ function renderGuias(guias) {
                     </div>
                     
                     <!-- CAIXA DE BUSCA (LEVEL) -->
-                    <div style="background: #2c3e50; border: 2px solid #111; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
+                    <div style="background: #4a4a4a; border: 2px solid #111; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
                         <label style="display: block; color: #ffcb05; font-weight: bold; margin-bottom: 8px; font-size: 0.9rem;">FILTRAR POR SEU LEVEL:</label>
-                        <input type="number" id="hunt-level-input" placeholder="Ex: 50" style="width: 100%; padding: 10px; border-radius: 4px; border: 2px solid #111; font-size: 1rem; background: #fff; color: #111;" oninput="filterHunts(this.value, '${g.id}')">
+                        <input type="number" id="hunt-level-input" placeholder="Pesquise por Level, Drop ou Pokemon/ID" style="width: 100%; padding: 10px; border-radius: 4px; border: 2px solid #111; font-size: 1rem; background: #fff; color: #111;" oninput="filterHunts(this.value, '${g.id}')">
                     </div>
 
                     <!-- LISTA DE HUNTS -->
@@ -465,16 +465,22 @@ function setupToggles() {
 function applyFilters() {
     const search = document.getElementById('search-input').value.toLowerCase().trim();
     
+    // INTERCEPTADOR: MODO GUIAS
+    if (activeCategory === 'guias') {
+        if (typeof searchGuias === 'function') {
+            searchGuias(search);
+        }
+        return;
+    }
+
     // INTERCEPTADOR: MODO NPCs
     if (activeCategory === 'npcs') {
         let filteredNPCs = npcData || [];
         
-        // NOVO: Aplica o filtro de categoria de pílula
         if (activeNpcFilter !== 'all') {
             filteredNPCs = filteredNPCs.filter(n => n.tags && n.tags.some(t => t.toLowerCase() === activeNpcFilter));
         }
 
-        // Filtro da Barra de Pesquisa de Texto
         if (search !== '') {
             filteredNPCs = filteredNPCs.filter(n => 
                 n.nome.toLowerCase().includes(search) || 
@@ -483,14 +489,13 @@ function applyFilters() {
         }
         
         renderNPCs(filteredNPCs);
-        return; // Interrompe aqui para não renderizar Pokémons
+        return;
     }
 
     // INTERCEPTADOR: MODO ITENS/LOOT
     if (activeCategory === 'drops' || activeCategory === 'tms' || searchMode === 'loot') {
         let filteredItems = itemData || [];
-        
-        // Separa os TMs do resto dos drops
+
         if (activeCategory === 'tms') {
             filteredItems = filteredItems.filter(i => i.name.toUpperCase().startsWith("TM "));
         } else if (activeCategory === 'drops') {
@@ -502,15 +507,13 @@ function applyFilters() {
         }
         
         renderItems(filteredItems);
-        return; // Interrompe a função aqui para não renderizar Pokémons!
+        return; 
     }
 
     let filtered = pokemonData.filter(p => {
-        // ... (continua igual o resto da sua função applyFilters)
         const pCat = p.category || 'normal';
         if (pCat !== activeCategory) return false;
 
-        // NOVO: SISTEMA DE BUSCA DUPLA (NOME vs LOOT)
         let mSearch = false;
         if (search === '') {
             mSearch = true;
@@ -518,7 +521,6 @@ function applyFilters() {
             mSearch = p.name.toLowerCase().includes(search) || p.id.toString() === search;
         } else if (searchMode === 'loot') {
             if (p.loot) {
-                // NOVA LÓGICA: Verifica se é Array. Se sim, busca nos itens. Se não, busca como texto normal.
                 mSearch = Array.isArray(p.loot) 
                     ? p.loot.some(item => item.toLowerCase().includes(search)) 
                     : p.loot.toLowerCase().includes(search);
@@ -528,7 +530,7 @@ function applyFilters() {
         const mGen = activeGenFilter === 'all' || (p.generation && p.generation.toString().toLowerCase() === activeGenFilter.toLowerCase());
         const mType = activeTypeFilter === 'all' || p.types.includes(activeTypeFilter);
         
-        const isCaught = caughtPokemon.includes(p.id.toString()); // MÁGICA 2
+        const isCaught = caughtPokemon.includes(p.id.toString());
         let mCatch = true;
         if (activeCatchFilter === 'caught') mCatch = isCaught;
         if (activeCatchFilter === 'uncaught') mCatch = !isCaught;
@@ -537,8 +539,7 @@ function applyFilters() {
 
         return mSearch && mGen && mType && mCatch && mMeta;
     });
-    
-    // NOVO: SISTEMA DE ORDENAÇÃO DE STATUS (DO MAIOR PARA O MENOR)
+
     if (activeMetaFilter !== 'all') {
         filtered.sort((a, b) => {
             const sA = a.stats || {};
@@ -546,9 +547,8 @@ function applyFilters() {
             
             if (activeMetaFilter === 'atk') return (sB.atk || 0) - (sA.atk || 0);
             if (activeMetaFilter === 'spatk') return (sB.spatk || 0) - (sA.spatk || 0);
-            if (activeMetaFilter === 'speed') return (sB.spd || 0) - (sA.spd || 0); // Nota: No JSON a velocidade está salva como "spd"
+            if (activeMetaFilter === 'speed') return (sB.spd || 0) - (sA.spd || 0); 
             if (activeMetaFilter === 'tank') {
-                // Cálculo de Tank considerando a soma das defesas física e especial
                 const totalTankA = (sA.def || 0) + (sA.spdef || 0);
                 const totalTankB = (sB.def || 0) + (sB.spdef || 0);
                 return totalTankB - totalTankA;
@@ -559,9 +559,7 @@ function applyFilters() {
     
     currentVisibleList = filtered;
     
-    // DECISÃO DE RENDERIZAÇÃO: POKÉMON VS INVENTÁRIO
     if (searchMode === 'loot' && itemData.length > 0) {
-        // Se estiver no modo Loot, filtramos o banco de Itens pelo nome
         let filteredItems = itemData;
         if (search !== '') {
             filteredItems = itemData.filter(i => i.name.toLowerCase().includes(search));
@@ -2541,4 +2539,23 @@ window.toggleMarketTab = (tab, event) => {
     event.target.classList.add('active');
     const targetList = container.querySelector(`#market-list-${tab}`);
     if(targetList) targetList.style.display = 'block';
+};
+
+// ==========================================
+// FILTRO DE BUSCA PARA A TELA DE GUIAS
+// ==========================================
+window.searchGuias = (termo) => {
+    const textoBuscado = termo.toLowerCase();
+    const cards = document.querySelectorAll('#tutorials-grid .tut-card');
+    
+    cards.forEach(card => {
+        const title = card.querySelector('.tut-title').textContent.toLowerCase();
+        const desc = card.querySelector('.tut-desc').textContent.toLowerCase();
+        
+        if (title.includes(textoBuscado) || desc.includes(textoBuscado)) {
+            card.style.display = ''; // Mostra o cartão
+        } else {
+            card.style.display = 'none'; // Esconde o cartão
+        }
+    });
 };
