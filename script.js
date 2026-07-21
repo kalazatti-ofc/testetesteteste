@@ -2306,7 +2306,7 @@ window.openHuntModal = (guideId, huntId) => {
 
     // 1. Monta as Tags 
     const tagsHTML = hunt.tags ? hunt.tags.map(t => 
-        `<span class="hunt-tooltip" data-tooltip="${t.tooltip}" style="background: #222; border: 2px solid #ffcb05; color: #ffcb05; padding: 4px 6px; font-size: 0.55rem; font-family: 'Press Start 2P', monospace; border-radius: 4px; cursor: help;">${t.label}</span>`
+        `<span class="bonus-badge hunt-tooltip" data-tooltip="${t.tooltip}" style="background: #222; border: 1px solid #ffcb05; color: #ffcb05; padding: 4px 6px; font-size: 0.6rem; border-radius: 4px; cursor: help;">${t.label}</span>`
     ).join('') : '';
 
     // 2. Monta as MINIATURAS dos Pokémons
@@ -2321,7 +2321,7 @@ window.openHuntModal = (guideId, huntId) => {
                 <img src="${imgSrc}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
             </div>
         `;
-    }).join('') : '<p style="color:#666; font-size: 0.8rem; font-family: sans-serif;">Nenhum monstro.</p>';
+    }).join('') : '<p style="color:#666; font-size: 0.8rem;">Nenhum monstro.</p>';
 
     // 3. Sistema Automático de Drops 
     let allDrops = new Set();
@@ -2354,9 +2354,9 @@ window.openHuntModal = (guideId, huntId) => {
         }).join('');
 
         lootSectionHTML = `
-            <div class="data-module" style="background: #f1f2f6; border: 3px solid #222; border-radius: 12px; padding: 15px; margin-top: 15px;">
-                <h4 style="font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: #222; margin: 0 0 10px 0;">TABELA DE DROP DA ÁREA</h4>
-                <div style="border-top: 2px dashed #b2bec3; margin-bottom: 12px;"></div>
+            <div class="data-module" style="margin-top: 15px;">
+                <!-- Usando a classe nativa label-tech para a fonte e linha tracejada corretas -->
+                <h4 class="label-tech" style="margin-bottom: 10px;">TABELA DE DROP DA ÁREA</h4>
                 <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start;">
                     ${lootItems}
                 </div>
@@ -2366,25 +2366,27 @@ window.openHuntModal = (guideId, huntId) => {
 
     // 4. Monta as pílulas de Requisitos
     const reqHTML = hunt.requisitos ? hunt.requisitos.map(r => 
-        `<span style="background: #e74c3c; color: #fff; padding: 4px 6px; border: 2px solid #222; border-radius: 4px; font-size: 0.65rem; font-family: 'Press Start 2P', monospace; margin-right: 5px; display: inline-block; margin-top: 4px;">${r.toUpperCase()}</span>`
+        `<span style="background: #e74c3c; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; display: inline-block; margin-top: 4px;">${r.toUpperCase()}</span>`
     ).join('') : '';
 
-    // 5. Injeta os dados reconstruídos no Modal (Com o padrão visual estrito)
+    // 5. Injeta os dados reconstruídos no Modal (Totalmente dependente do CSS nativo)
     document.getElementById('modal-body').innerHTML = `
         <div class="modal-pokedex-view">
             <div class="modal-left-wing" style="display: flex; flex-direction: column;">
                 
-                <!-- TELA COMPACTA (Agora com o "Chassi" padrão da Pokédex) -->
-                <div class="screen-border" style="background: #f1f2f6; border: 3px solid #222; border-radius: 16px; padding: 12px; margin-bottom: 15px; flex-shrink: 0;">
-                    <div style="height: 100px; position: relative; border-radius: 8px; overflow: hidden; border: 3px solid #222; background: #000;">
+                <!-- TELA COMPACTA (Classes originais: screen-border e main-screen) -->
+                <div class="screen-border" style="margin-bottom: 15px; flex-shrink: 0;">
+                    <div class="main-screen" style="height: 100px; padding: 0; overflow: hidden; position: relative;">
                         
+                        <!-- Imagem e Película de fundo -->
                         <div style="background: url('${hunt.mapImage}') center/cover; width: 100%; height: 100%; position: absolute; top:0; left:0;"></div>
                         <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.65); z-index: 1;"></div>
                         
+                        <!-- Conteúdo Centralizado -->
                         <div style="position: relative; z-index: 2; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 5px;">
-                            <h2 style="font-family: 'Press Start 2P', monospace; font-size: 0.85rem; margin: 0 0 10px 0; color: #fff; text-shadow: 2px 2px 0 #000; text-align: center; line-height: 1.3;">${hunt.title}</h2>
+                            <h2 class="poke-name-stacked" style="font-size: 1.1rem; margin: 0 0 10px 0; color: #fff; text-shadow: 2px 2px 0 #000; text-align: center; line-height: 1.2;">${hunt.title}</h2>
                             <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-                                <span style="background: #e67e22; color: #fff; border: 2px solid #ffcb05; padding: 4px 6px; font-size: 0.55rem; font-family: 'Press Start 2P', monospace; border-radius: 4px;">LVL: ${hunt.minLevel}+</span>
+                                <span class="modal-gen-bar stacked-gen-bar" style="background: #e67e22; color: #fff; padding: 4px 6px; font-size: 0.6rem; border-radius: 4px;">LVL: ${hunt.minLevel}+</span>
                                 ${tagsHTML}
                             </div>
                         </div>
@@ -2395,10 +2397,9 @@ window.openHuntModal = (guideId, huntId) => {
                 <!-- ÁREA DOS POKÉMONS E DROPS -->
                 <div style="flex: 1; overflow-y: auto; padding-right: 4px;">
                     
-                    <!-- CAIXA 1: MONSTROS NO LOCAL (Padrão Tabela de Drop) -->
-                    <div class="data-module" style="background: #f1f2f6; border: 3px solid #222; border-radius: 12px; padding: 15px;">
-                        <h4 style="font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: #222; margin: 0 0 10px 0;">MONSTROS NO LOCAL</h4>
-                        <div style="border-top: 2px dashed #b2bec3; margin-bottom: 12px;"></div>
+                    <!-- CAIXA 1: MONSTROS NO LOCAL (Classe nativa data-module) -->
+                    <div class="data-module">
+                        <h4 class="label-tech" style="margin-bottom: 10px;">MONSTROS NO LOCAL</h4>
                         
                         <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start;">
                             ${pokesHTML}
@@ -2413,12 +2414,11 @@ window.openHuntModal = (guideId, huntId) => {
             
             <div class="modal-right-wing" style="display: flex; flex-direction: column;">
                 
-                <!-- ROTA E COORDENADA (Padrão de módulos da direita) -->
-                <div class="data-module" style="background: #f1f2f6; border: 3px solid #222; border-radius: 12px; padding: 15px; margin-bottom: 15px; flex-shrink: 0;">
-                    <h4 style="font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: #222; margin: 0 0 10px 0;">ROTA DE ACESSO</h4>
-                    <div style="border-top: 2px dashed #b2bec3; margin-bottom: 12px;"></div>
+                <!-- ROTA E COORDENADA -->
+                <div class="data-module" style="margin-bottom: 15px; flex-shrink: 0;">
+                    <h4 class="label-tech" style="margin-bottom: 10px;">ROTA DE ACESSO</h4>
                     
-                    <p style="font-size: 0.85rem; color: #444; margin-bottom: 15px; line-height: 1.5; font-family: sans-serif; font-weight: 500;">${hunt.rotaText}</p>
+                    <p style="font-size: 0.85rem; color: #444; margin-bottom: 15px; line-height: 1.5; font-weight: 500;">${hunt.rotaText}</p>
                     
                     ${hunt.rotaCoord ? `
                         <div class="loc-button" onclick="copyLoc('${hunt.rotaCoord}', this, event)">
@@ -2430,15 +2430,16 @@ window.openHuntModal = (guideId, huntId) => {
                         </div>
                     ` : ''}
                     
-                    <div style="margin-top: 15px; padding-top: 10px;">
-                        <strong style="color: #222; font-family: 'Press Start 2P', monospace; font-size: 0.55rem;">REQUISITOS:</strong><br>
-                        ${reqHTML || '<span style="color:#999; font-size: 0.8rem; font-family: sans-serif; display: inline-block; margin-top: 8px;">Nenhum</span>'}
+                    <div style="margin-top: 15px; padding-top: 10px; border-top: 2px dashed rgba(0,0,0,0.1);">
+                        <strong style="color: #222; font-size: 0.75rem;">REQUISITOS:</strong><br>
+                        ${reqHTML || '<span style="color:#999; font-size: 0.8rem; display: inline-block; margin-top: 8px;">Nenhum</span>'}
                     </div>
                 </div>
                 
-                <!-- MAPA ESTILO RADAR -->
-                <div class="radar-module" style="flex: 1; min-height: 180px; display: flex; flex-direction: column; border: 3px solid #222; border-radius: 12px; overflow: hidden; padding: 4px; background: #f1f2f6;">
-                    <div class="radar-display" id="radar-screen" style="flex: 1; position: relative; overflow: hidden; background: #000; border-radius: 6px; border: 2px solid #555;">
+                <!-- MAPA ESTILO RADAR (Livre de inline css pesado) -->
+                <div class="radar-module" style="flex: 1; min-height: 180px; display: flex; flex-direction: column;">
+                    <h4 class="label-tech" style="margin-bottom: 0; border-bottom: none; border-radius: 6px 6px 0 0;">MAPA DA ÁREA</h4>
+                    <div class="radar-display" id="radar-screen" style="flex: 1; border-radius: 0 0 6px 6px; position: relative; overflow: hidden; background: #000;">
                         <img src="${hunt.mapImage}" class="map-img" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;" onerror="this.src='https://dummyimage.com/400x250/2c3e50/fff.png&text=MAPA+INDISPON%C3%8DVEL'">
                         <div class="radar-grid"></div>
                         <div class="radar-beam"></div>
