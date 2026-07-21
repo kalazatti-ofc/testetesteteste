@@ -2455,15 +2455,15 @@ window.openHuntModal = (guideId, huntId) => {
                     <p style="font-size: 0.85rem; color: #444; margin-bottom: 15px; line-height: 1.5; font-weight: 500;">${hunt.rotaText}</p>
                     
                     ${hunt.rotaCoord ? `
-                        <div class="location-btn" onclick="copyLoc('${hunt.rotaCoord}', this, event)" style="background: #111412; border: 2px solid #000; border-radius: 8px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; box-shadow: 0 4px 0 #0a0a0a; margin-top: 10px; transition: all 0.1s;" onmousedown="this.style.transform='translateY(4px)'; this.style.boxShadow='none';" onmouseup="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 0 #0a0a0a';" onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 0 #0a0a0a';">
-                            <span class="loc-name" style="color: #fff; font-family: monospace; font-size: 0.9rem; font-weight: bold; text-shadow: 1px 1px 0 #000;">${hunt.rotaCoord}</span>
-                            <div class="loc-actions" style="display: flex; gap: 10px;">
-                                <span class="loc-icon copy-icon" title="Copiar Coordenada" style="font-size: 1.2rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.8));">📋</span>
-                                <span class="loc-icon" title="Ver Mapa" style="font-size: 1.2rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.8));">🗺️</span>
+                        <div class="loc-button" onclick="copyLoc('${hunt.rotaCoord}', this, event)" style="margin-top: 10px;">
+                            <span class="loc-text">${hunt.rotaCoord}</span>
+                            <div class="loc-actions">
+                                <span class="loc-icon copy-icon" title="Copiar Coordenada">📋</span>
+                                <span class="loc-icon" title="Ver Mapa">🗺️</span>
                             </div>
                         </div>
                     ` : ''}
-                    
+
                     <div style="margin-top: 15px; padding-top: 10px; border-top: 2px dashed rgba(0,0,0,0.1);">
                         <strong style="color: #222; font-size: 0.75rem;">REQUISITOS:</strong><br>
                         ${reqHTML || '<span style="color:#999; font-size: 0.8rem; display: inline-block; margin-top: 8px;">Nenhum</span>'}
