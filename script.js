@@ -291,6 +291,40 @@ function renderGuias(guias) {
 
     if (!grid || !articleContainer) return;
 
+    // Injeta os estilos do Hover dos cards caso não existam na página
+    if (!document.getElementById('hunt-custom-styles')) {
+        document.head.insertAdjacentHTML('beforeend', `
+            <style id="hunt-custom-styles">
+                .hunt-card-hover {
+                    display: flex;
+                    background: #ffffff;
+                    border: 2px solid #111;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    cursor: pointer;
+                    transition: all 0.2s ease-in-out;
+                    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+                    margin-bottom: 10px;
+                }
+                .hunt-card-hover:hover {
+                    transform: translateY(-4px);
+                    border-color: #ffcb05;
+                    box-shadow: 0 6px 15px rgba(255, 203, 5, 0.4);
+                }
+                .hunt-card-img-box {
+                    width: 120px;
+                    background: #2c3e50;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    position: relative;
+                    border-right: 2px solid #111;
+                }
+            </style>
+        `);
+    }
+
     // 1. Renderiza os cartões quadrados do menu principal
     grid.innerHTML = guias.map(g => `
         <div class="tut-card" onclick="openTutorial('${g.id}')">
@@ -311,17 +345,24 @@ function renderGuias(guias) {
         } else if (g.type === 'hunt_system') {
             return `
                 <div class="article-content-block hunt-system-block" id="article-${g.id}" style="display: none; padding: 15px;">
-                    <div style="background: rgba(255, 203, 5, 0.1); border-left: 4px solid #ffcb05; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
-                        <h3 style="margin: 0 0 5px 0; color: #ffcb05; font-size: 1.2rem; text-shadow: 1px 1px 0 #000;">GUIA DE UP & FARM</h3>
-                        <p style="margin: 0; font-size: 0.9rem; color: #fff;">As rotas abaixo são apenas <b>recomendações da comunidade</b> e não representam uma regra absoluta do jogo. Explore o mapa e descubra seus próprios locais favoritos!</p>
+                    
+                    <!-- NOVO CABEÇALHO (Estética do Guia de EVs) -->
+                    <h2 class="guide-main-title" style="text-align: center; text-transform: uppercase;">${g.title}</h2>
+                    <hr style="border: none; border-top: 4px dashed #333; margin: 10px 0 20px 0;">
+                    
+                    <!-- BLOCO AZUL CLARO DE DESCRIÇÃO -->
+                    <div style="background: #e3f2fd; border: 2px solid #90caf9; padding: 15px; margin-bottom: 25px; border-radius: 8px; color: #111; display: flex; align-items: center; box-shadow: 2px 2px 0 rgba(0,0,0,0.05);">
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">As rotas abaixo são apenas <b>recomendações da comunidade</b> e não representam uma regra absoluta do jogo. Explore o mapa e descubra seus próprios locais favoritos!</p>
                     </div>
                     
+                    <!-- CAIXA DE BUSCA (LEVEL) -->
                     <div style="background: #2c3e50; border: 2px solid #111; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
                         <label style="display: block; color: #ffcb05; font-weight: bold; margin-bottom: 8px; font-size: 0.9rem;">FILTRAR POR SEU LEVEL:</label>
                         <input type="number" id="hunt-level-input" placeholder="Ex: 50" style="width: 100%; padding: 10px; border-radius: 4px; border: 2px solid #111; font-size: 1rem; background: #fff; color: #111;" oninput="filterHunts(this.value, '${g.id}')">
                     </div>
 
-                    <div class="hunt-cards-container" id="hunt-list-${g.id}" style="display: flex; flex-direction: column; gap: 15px;">
+                    <!-- LISTA DE HUNTS -->
+                    <div class="hunt-cards-container" id="hunt-list-${g.id}" style="display: flex; flex-direction: column; gap: 5px;">
                         ${buildHuntCardsHTML(g.hunts, g.id)}
                     </div>
                 </div>
@@ -335,16 +376,16 @@ function buildHuntCardsHTML(huntsArray, guideId) {
     if (!huntsArray || huntsArray.length === 0) return '<p style="color:#aaa;">Nenhuma hunt cadastrada.</p>';
     
     return huntsArray.map(hunt => `
-        <div class="hunt-horizontal-card" onclick="openHuntModal('${guideId}', '${hunt.id}')" style="display: flex; background: #ffffff; border: 2px solid #111; border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
-            <div style="width: 120px; background: #34495e; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative;">
-                <img src="${hunt.mapImage}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;" onerror="this.style.display='none'">
-                <span style="position: absolute; color: #fff; font-weight: 900; font-size: 1.2rem; text-shadow: 2px 2px 0 #000;">LV ${hunt.minLevel}</span>
+        <div class="hunt-card-hover" onclick="openHuntModal('${guideId}', '${hunt.id}')">
+            <div class="hunt-card-img-box">
+                <img src="${hunt.mapImage}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;" onerror="this.style.display='none'">
+                <span style="position: absolute; color: #fff; font-weight: 900; font-size: 1.2rem; text-shadow: 2px 2px 0 #000, -1px -1px 0 #111, 1px -1px 0 #111, -1px 1px 0 #111, 1px 1px 0 #111;">LV ${hunt.minLevel}</span>
             </div>
-            <div style="padding: 12px; flex: 1;">
-                <h4 style="margin: 0 0 5px 0; color: #111; font-size: 1.1rem; text-transform: uppercase;">${hunt.title}</h4>
-                <p style="margin: 0 0 8px 0; color: #555; font-size: 0.85rem; line-height: 1.3;">${hunt.desc}</p>
+            <div style="padding: 15px; flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                <h4 style="margin: 0 0 5px 0; color: #111; font-size: 1.1rem; text-transform: uppercase; font-weight: bold;">${hunt.title}</h4>
+                <p style="margin: 0 0 10px 0; color: #444; font-size: 0.85rem; line-height: 1.3;">${hunt.desc}</p>
                 <div style="display: flex; gap: 5px; flex-wrap: wrap;">
-                    ${hunt.tags.map(t => `<span style="background: #3498db; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; border: 1px solid #111;">${t.label}</span>`).join('')}
+                    ${hunt.tags.map(t => `<span style="background: #3498db; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; border: 1px solid #111;">${t.label}</span>`).join('')}
                 </div>
             </div>
         </div>
