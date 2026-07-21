@@ -346,9 +346,8 @@ function renderGuias(guias) {
             return `
                 <div class="article-content-block hunt-system-block" id="article-${g.id}" style="display: none; padding: 15px;">
                     
-                    <!-- NOVO CABEÇALHO (Estética do Guia de EVs) -->
-                    <h2 class="guide-main-title" style="text-align: center; text-transform: uppercase;">${g.title}</h2>
-                    <hr style="border: none; border-top: 4px dashed #333; margin: 10px 0 20px 0;">
+                    <!-- NOVO CABEÇALHO (Apenas o título, pois a classe já tem o tracejado) -->
+                    <h2 class="guide-main-title" style="text-align: center; text-transform: uppercase; margin-bottom: 20px;">${g.title}</h2>
                     
                     <!-- BLOCO AZUL CLARO DE DESCRIÇÃO -->
                     <div style="background: #e3f2fd; border: 2px solid #90caf9; padding: 15px; margin-bottom: 25px; border-radius: 8px; color: #111; display: flex; align-items: center; box-shadow: 2px 2px 0 rgba(0,0,0,0.05);">
