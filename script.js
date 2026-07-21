@@ -2323,7 +2323,7 @@ window.openHuntModal = (guideId, huntId) => {
         `;
     }).join('') : '<p style="color:#666; font-size: 0.8rem;">Nenhum monstro.</p>';
 
-    // 3. Sistema Automático de Drops (AGORA BLINDADO PARA LER QUALQUER FORMATO NO JSON)
+    // 3. Sistema Automático de Drops (AGORA 100% BLINDADO)
     let allDrops = new Set();
     
     if (hunt.pokemons) {
@@ -2342,15 +2342,22 @@ window.openHuntModal = (guideId, huntId) => {
                     } else if (typeof pokeLoot === 'object') {
                         // Caso seja um formato de chave/valor ex: {"Punch Stone": 10}
                         Object.keys(pokeLoot).forEach(key => allDrops.add(key.trim()));
+                    } else if (typeof pokeLoot === 'string' && pokeLoot.trim() !== '') {
+                        // CORREÇÃO: Lê o formato antigo onde o loot é um texto separado por vírgulas
+                        pokeLoot.split(',').forEach(item => allDrops.add(item.trim()));
                     }
                 }
             }
         });
     }
 
-    // Fallback de segurança: Se os Pokémons não tiverem drops, puxa o que você preencheu na Hunt.
-    if (allDrops.size === 0 && hunt.loot && Array.isArray(hunt.loot)) {
-        hunt.loot.forEach(item => allDrops.add(item));
+    // Fallback de segurança: Se os Pokémons não tiverem drops, puxa o que você preencheu direto na Hunt.
+    if (allDrops.size === 0 && hunt.loot) {
+        if (Array.isArray(hunt.loot)) {
+            hunt.loot.forEach(item => allDrops.add(item));
+        } else if (typeof hunt.loot === 'string') {
+            hunt.loot.split(',').forEach(item => allDrops.add(item.trim()));
+        }
     }
 
     const uniqueDrops = Array.from(allDrops);
@@ -2404,7 +2411,6 @@ window.openHuntModal = (guideId, huntId) => {
                         <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.65); z-index: 1;"></div>
                         
                         <div style="position: relative; z-index: 2; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 5px;">
-                            <!-- Fonte levemente maior para melhor leitura -->
                             <h2 class="poke-name-stacked" style="font-size: 1.25rem; margin: 0 0 12px 0; color: #fff; text-shadow: 2px 2px 0 #000; text-align: center; line-height: 1.2;">${hunt.title}</h2>
                             <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
                                 <span class="modal-gen-bar stacked-gen-bar" style="background: #e67e22; color: #fff; padding: 4px 6px; font-size: 0.6rem; border-radius: 4px;">LVL: ${hunt.minLevel}+</span>
