@@ -84,13 +84,13 @@
     "desc": "As melhores rotas e locais recomendados pela comunidade.",
     "hunts": [
       {
-        "id": "hunt-mt-moon",
+        "id": "hunt-lutadores-singer",
         "title": "Covil dos Lutadores - Singer",
-        "desc": "Ótimo local para iniciantes uparem rápido e farmar HDs",
+        "desc": "Ótimo local para iniciantes uparem rápido e farmarem HDs",
         "minLevel": 10,
         "tags": [
           {"label": "EXP", "tooltip": "Muitos monstros juntos."},
-          {"label": "LOOT: Stones / TMs", "tooltip": "Adicionar ao Autoloot."}
+          {"label": "LOOT", "tooltip": "Adicionar Punch Stone ao Autoloot."}
         ],
         "pokemons": ["machamp", "primeape", "hitmonlee", "hitmonchan", "poliwrath"],
         "requisitos": ["VIP"],
