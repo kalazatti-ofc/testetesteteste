@@ -77,19 +77,41 @@
     ]
   },
   {
-    "id": "hunt-mt-moon-terreo",
-    "type": "hunt",
-    "thumb": "img/guias/thumb-mtmoon.png",
-    "title": "Mt. Moon - Térreo",
-    "desc": "Ótimo local para iniciantes uparem rápido e farmarem itens básicos.",
-    "minLevel": 20,
-    "tags": [
-      {"label": "Foco: EXP", "tooltip": "Muitos monstros juntos."}
-    ],
-    "pokemons": ["zubat", "geodude", "paras"],
-    "requisitos": ["Nenhum"],
-    "mapImage": "img/guias/mapa-mtmoon.png",
-    "rotaText": "Saia da cidade de Pewter pela direita e atravesse a Rota 3.",
-    "rotaCoord": "x: 1045, y: 620, z: 7"
+    "id": "guia-up-farm",
+    "type": "hunt_system",
+    "thumb": "https://dummyimage.com/200x110/e74c3c/fff.png&text=UP+e+FARM",
+    "title": "Guia de UP e Farm",
+    "desc": "As melhores rotas e locais recomendados pela comunidade.",
+    "hunts": [
+      {
+        "id": "hunt-mt-moon",
+        "title": "Mt. Moon - Térreo",
+        "desc": "Ótimo local para iniciantes uparem rápido e farmarem itens básicos.",
+        "minLevel": 20,
+        "tags": [
+          {"label": "Foco: EXP", "tooltip": "Muitos monstros juntos."}
+        ],
+        "pokemons": ["zubat", "geodude", "paras"],
+        "requisitos": ["Nenhum"],
+        "mapImage": "img/guias/mapa-mtmoon.png",
+        "rotaText": "Saia da cidade de Pewter pela direita e atravesse a Rota 3.",
+        "rotaCoord": "x: 1045, y: 620, z: 7"
+      },
+      {
+        "id": "hunt-seafoam",
+        "title": "Seafoam Islands - -2",
+        "desc": "Caverna de gelo focada em alto lucro (Loot) e captura.",
+        "minLevel": 60,
+        "tags": [
+          {"label": "Foco: LOOT", "tooltip": "Alta chance de dropar Water Stones e Ice Stones."},
+          {"label": "Requer: SURF", "tooltip": "Necessário para atravessar os rios."}
+        ],
+        "pokemons": ["seel", "dewgong", "slowpoke", "shellder"],
+        "requisitos": ["Surf", "Rope"],
+        "mapImage": "img/guias/mapa-seafoam.png",
+        "rotaText": "Vá para Cinnabar, surfe para a direita (Rota 20) até encontrar a ilha dupla.",
+        "rotaCoord": "x: 1850, y: 2100, z: 5"
+      }
+    ]
   }
 ]
