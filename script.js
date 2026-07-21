@@ -1677,6 +1677,44 @@ window.openModal = (id) => {
         `;
     }
 
+    // 5. Monta a seção de Rotas (Suportando Coordenada Única ou Passo-a-Passo)
+    let rotasHTML = '';
+    if (hunt.passos && hunt.passos.length > 0) {
+        const stepsHTML = hunt.passos.map(passo => `
+            <div class="loc-step" onclick="updateRadar('${passo}', this, event)">
+                <span class="loc-text">${passo}</span>
+                <div class="loc-actions">
+                    <span class="loc-icon copy-icon" title="Copiar Passo" onclick="copyLoc('${passo}', this, event)">📋</span>
+                    <span class="loc-icon">📍</span>
+                </div>
+            </div>
+        `).join('');
+
+        rotasHTML = `
+            <div class="loc-accordion">
+                <div class="loc-button accordion-toggle" onclick="toggleAccordion(this, event, '')">
+                    <span class="loc-text">VER PASSOS DA ROTA</span>
+                    <div class="loc-actions">
+                        <span class="loc-icon expand-arrow" title="Ver Rota">▼</span>
+                    </div>
+                </div>
+                <div class="loc-steps-container hidden-steps">
+                    ${stepsHTML}
+                </div>
+            </div>
+        `;
+    } else if (hunt.rotaCoord) {
+        rotasHTML = `
+            <div class="loc-button" onclick="updateRadar('${hunt.rotaCoord}', this, event)" style="margin-top: 10px;">
+                <span class="loc-text">${hunt.rotaCoord}</span>
+                <div class="loc-actions">
+                    <span class="loc-icon copy-icon" title="Copiar Coordenada" onclick="copyLoc('${hunt.rotaCoord}', this, event)">📋</span>
+                    <span class="loc-icon" title="Ver Mapa">🗺️</span>
+                </div>
+            </div>
+        `;
+    }
+
     document.getElementById('modal-body').innerHTML = `
         <div class="modal-pokedex-view">
             <div class="modal-left-wing">
@@ -2433,36 +2471,28 @@ window.openHuntModal = (guideId, huntId) => {
                 
                 <!-- MAPA ESTILO RADAR (NO TOPO) -->
                 <div class="radar-module" style="flex: 1; min-height: 180px; display: flex; flex-direction: column; margin-bottom: 15px;">
-                    <h4 class="label-tech" style="margin-bottom: 0; border-bottom: none; border-radius: 6px 6px 0 0;">MAPA DA ÁREA</h4>
+                    <h4 class="label-tech" style="margin-bottom: 0; border-radius: 6px 6px 0 0;">MAPA DA ÁREA</h4>
                     <div class="radar-display" id="radar-screen" style="flex: 1; border-radius: 0 0 6px 6px; position: relative; overflow: hidden; background: #000;">
-                        <img src="${hunt.mapImage}" class="map-img" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;" onerror="this.src='https://dummyimage.com/400x250/2c3e50/fff.png&text=MAPA+INDISPON%C3%8DVEL'">
-                        <div class="radar-grid"></div>
-                        <div class="radar-beam"></div>
-                        <div class="map-overlay"></div>
-                        
-                        <div class="sat-hud">
-                            <div class="sat-hud-line rec">● REC</div>
-                            <div class="sat-hud-line">LOC: HUNT</div>
-                            <div class="sat-hud-line" style="color:#ffd700;">${hunt.title.toUpperCase()}</div>
-                        </div>
+                        <div class="radar-grid"></div><div class="radar-beam"></div>
+                        <p id="radar-label">RASTREANDO...</p>
                     </div>
                 </div>
 
-                <!-- ROTA E COORDENADA (ATUALIZADO COM O ESTILO DA IMAGE_00BC17) -->
+                <!-- ROTA E COORDENADA -->
                 <div class="data-module" style="flex-shrink: 0;">
                     <h4 class="label-tech" style="margin-bottom: 10px;">ROTA DE ACESSO</h4>
                     
                     <p style="font-size: 0.85rem; color: #444; margin-bottom: 15px; line-height: 1.5; font-weight: 500;">${hunt.rotaText}</p>
                     
-                    ${hunt.rotaCoord ? `
-                        <div class="loc-button" style="margin-top: 10px;">
-                            <span class="loc-text">${hunt.rotaCoord}</span>
-                            <div class="loc-actions">
-                                <span class="loc-icon copy-icon" title="Copiar Coordenada" onclick="copyLoc('${hunt.rotaCoord}', this, event)">📋</span>
-                                <span class="loc-icon" title="Ver Mapa">🗺️</span>
-                            </div>
-                        </div>
-                    ` : ''}
+                    ${rotasHTML}
+                    
+                    <div style="margin-top: 15px; padding-top: 10px; border-top: 2px dashed rgba(0,0,0,0.1);">
+                        <strong style="color: #222; font-size: 0.75rem;">REQUISITOS:</strong><br>
+                        ${reqHTML || '<span style="color:#999; font-size: 0.8rem; display: inline-block; margin-top: 8px;">Nenhum</span>'}
+                    </div>
+                </div>
+                
+            </div>
 
                     <div style="margin-top: 15px; padding-top: 10px; border-top: 2px dashed rgba(0,0,0,0.1);">
                         <strong style="color: #222; font-size: 0.75rem;">REQUISITOS:</strong><br>
@@ -2475,6 +2505,12 @@ window.openHuntModal = (guideId, huntId) => {
     `;
 
     document.getElementById('pokemon-modal').classList.remove('hidden');
+
+    // Força o carregamento do mapa no radar da hunt clicando no primeiro passo/coordenada
+    setTimeout(() => {
+        const firstLoc = document.querySelector('.modal-right-wing .loc-button:not(.accordion-toggle), .modal-right-wing .loc-step');
+        if(firstLoc) firstLoc.click();
+    }, 100);
 };
 
 window.closeTutorial = () => {
