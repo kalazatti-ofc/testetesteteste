@@ -1677,44 +1677,6 @@ window.openModal = (id) => {
         `;
     }
 
-    // 5. Monta a seção de Rotas (Suportando Coordenada Única ou Passo-a-Passo)
-    let rotasHTML = '';
-    if (hunt.passos && hunt.passos.length > 0) {
-        const stepsHTML = hunt.passos.map(passo => `
-            <div class="loc-step" onclick="updateRadar('${passo}', this, event)">
-                <span class="loc-text">${passo}</span>
-                <div class="loc-actions">
-                    <span class="loc-icon copy-icon" title="Copiar Passo" onclick="copyLoc('${passo}', this, event)">📋</span>
-                    <span class="loc-icon">📍</span>
-                </div>
-            </div>
-        `).join('');
-
-        rotasHTML = `
-            <div class="loc-accordion">
-                <div class="loc-button accordion-toggle" onclick="toggleAccordion(this, event, '')">
-                    <span class="loc-text">VER PASSOS DA ROTA</span>
-                    <div class="loc-actions">
-                        <span class="loc-icon expand-arrow" title="Ver Rota">▼</span>
-                    </div>
-                </div>
-                <div class="loc-steps-container hidden-steps">
-                    ${stepsHTML}
-                </div>
-            </div>
-        `;
-    } else if (hunt.rotaCoord) {
-        rotasHTML = `
-            <div class="loc-button" onclick="updateRadar('${hunt.rotaCoord}', this, event)" style="margin-top: 10px;">
-                <span class="loc-text">${hunt.rotaCoord}</span>
-                <div class="loc-actions">
-                    <span class="loc-icon copy-icon" title="Copiar Coordenada" onclick="copyLoc('${hunt.rotaCoord}', this, event)">📋</span>
-                    <span class="loc-icon" title="Ver Mapa">🗺️</span>
-                </div>
-            </div>
-        `;
-    }
-
     document.getElementById('modal-body').innerHTML = `
         <div class="modal-pokedex-view">
             <div class="modal-left-wing">
@@ -2431,7 +2393,45 @@ window.openHuntModal = (guideId, huntId) => {
         `<span style="background: #e74c3c; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; display: inline-block; margin-top: 4px;">${r.toUpperCase()}</span>`
     ).join('') : '';
 
-    // 5. Injeta os dados reconstruídos no Modal
+    // 5. Monta a seção de Rotas (Suportando Coordenada Única ou Passo-a-Passo)
+    let rotasHTML = '';
+    if (hunt.passos && hunt.passos.length > 0) {
+        const stepsHTML = hunt.passos.map(passo => `
+            <div class="loc-step" onclick="updateRadar('${passo}', this, event)">
+                <span class="loc-text">${passo}</span>
+                <div class="loc-actions">
+                    <span class="loc-icon copy-icon" title="Copiar Passo" onclick="copyLoc('${passo}', this, event)">📋</span>
+                    <span class="loc-icon">📍</span>
+                </div>
+            </div>
+        `).join('');
+
+        rotasHTML = `
+            <div class="loc-accordion">
+                <div class="loc-button accordion-toggle" onclick="toggleAccordion(this, event, '')">
+                    <span class="loc-text">VER PASSOS DA ROTA</span>
+                    <div class="loc-actions">
+                        <span class="loc-icon expand-arrow" title="Ver Rota">▼</span>
+                    </div>
+                </div>
+                <div class="loc-steps-container hidden-steps">
+                    ${stepsHTML}
+                </div>
+            </div>
+        `;
+    } else if (hunt.rotaCoord) {
+        rotasHTML = `
+            <div class="loc-button" onclick="updateRadar('${hunt.rotaCoord}', this, event)" style="margin-top: 10px;">
+                <span class="loc-text">${hunt.rotaCoord}</span>
+                <div class="loc-actions">
+                    <span class="loc-icon copy-icon" title="Copiar Coordenada" onclick="copyLoc('${hunt.rotaCoord}', this, event)">📋</span>
+                    <span class="loc-icon" title="Ver Mapa">🗺️</span>
+                </div>
+            </div>
+        `;
+    }
+
+    // 6. Injeta os dados reconstruídos no Modal
     document.getElementById('modal-body').innerHTML = `
         <div class="modal-pokedex-view">
             <div class="modal-left-wing" style="display: flex; flex-direction: column;">
@@ -2486,14 +2486,6 @@ window.openHuntModal = (guideId, huntId) => {
                     
                     ${rotasHTML}
                     
-                    <div style="margin-top: 15px; padding-top: 10px; border-top: 2px dashed rgba(0,0,0,0.1);">
-                        <strong style="color: #222; font-size: 0.75rem;">REQUISITOS:</strong><br>
-                        ${reqHTML || '<span style="color:#999; font-size: 0.8rem; display: inline-block; margin-top: 8px;">Nenhum</span>'}
-                    </div>
-                </div>
-                
-            </div>
-
                     <div style="margin-top: 15px; padding-top: 10px; border-top: 2px dashed rgba(0,0,0,0.1);">
                         <strong style="color: #222; font-size: 0.75rem;">REQUISITOS:</strong><br>
                         ${reqHTML || '<span style="color:#999; font-size: 0.8rem; display: inline-block; margin-top: 8px;">Nenhum</span>'}
