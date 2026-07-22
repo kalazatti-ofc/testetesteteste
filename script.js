@@ -375,18 +375,23 @@ function buildHuntCardsHTML(huntsArray, guideId) {
     if (!huntsArray || huntsArray.length === 0) return '<p style="color:#aaa;">Nenhuma hunt cadastrada.</p>';
     
     return huntsArray.map(hunt => `
-        <div class="hunt-card-hover" onclick="openHuntModal('${guideId}', '${hunt.id}')">
-            <div class="hunt-card-img-box">
-                <img src="${hunt.mapImage}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;" onerror="this.style.display='none'">
-                <span style="position: absolute; color: #fff; font-weight: 900; font-size: 1.2rem; text-shadow: 2px 2px 0 #000, -1px -1px 0 #111, 1px -1px 0 #111, -1px 1px 0 #111, 1px 1px 0 #111;">LV ${hunt.minLevel}</span>
+        <div class="hunt-card-wrapper" onclick="openHuntModal('${guideId}', '${hunt.id}')">
+            
+            <!-- 1. MINIATURA DO MAPA -->
+            <div class="hunt-card-image" style="background: url('${hunt.mapImage}') center/cover;">
+                <div class="lvl-badge">LVL ${hunt.minLevel}</div>
             </div>
-            <div style="padding: 15px; flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                <h4 style="margin: 0 0 5px 0; color: #111; font-size: 1.1rem; text-transform: uppercase; font-weight: bold;">${hunt.title}</h4>
-                <p style="margin: 0 0 10px 0; color: #444; font-size: 0.85rem; line-height: 1.3;">${hunt.desc}</p>
-                <div style="display: flex; gap: 5px; flex-wrap: wrap;">
-                    ${hunt.tags.map(t => `<span style="background: #3498db; color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; border: 1px solid #111;">${t.label}</span>`).join('')}
+
+            <!-- 2. CORPO DO CARD -->
+            <div class="hunt-card-info">
+                <h3>${hunt.title}</h3>
+                <p>${hunt.desc}</p>
+                
+                <div class="hunt-tags-container">
+                    ${hunt.tags.map(t => `<span class="hunt-tag">${t.label}</span>`).join('')}
                 </div>
             </div>
+
         </div>
     `).join('');
 }
