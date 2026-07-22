@@ -95,7 +95,7 @@
         "pokemons": ["magikarp", "krabby", "poliwag", "horsea", "goldeen", "tentacool"],
         "requisitos": ["Vara de Pesca"],
         "mapImage": "img/guias/mapa-guia-up-farms-pescaria.png",
-        "rotaText": "Em qualquer local que tenha água.",
+        "rotaText": "Você consegue pescar em qualquer local que tenha água. Conforme seu level de pesca aumenta, você consegue pescar pokemons melhores e mais fortes, se tornando uma ótima alternativa de UP e Farm de HDs a longo prazo.",
         "rotaCoord": "Em qualquer local que tenha água."
       },
       {
