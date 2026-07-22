@@ -154,8 +154,8 @@
         "desc": "Local liberado somente após realizar a quest TV Câmera.",
         "minLevel": 250,
         "tags": [
-          {"label": "EXP", "tooltip": "Alta chance de TMs do tipo Steel e Enigma Stone."},
-          {"label": "CATCH", "tooltip": "Metang é bom para vender no market e para players."}
+          {"label": "EXP", "tooltip": "Alta chance de TMs e Stones."},
+          {"label": "CATCH", "tooltip": "Muitos pokemons para capturar e revender."},
           {"label": "LOOT", "tooltip": "Garra do Scizor para a Eternal Quest. Muitas Stones, TMs e Pokemons"}
         ],
         "pokemons": ["metagross"],
