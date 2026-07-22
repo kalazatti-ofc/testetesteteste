@@ -5,6 +5,7 @@
     "thumb": "img/guias/capa-evs.png",
     "title": "Como Upar EVs Rápido!",
     "desc": "Tudo sobre EVs! Como funciona o UP e muito mais.",
+    "keywords": ["ev", "evs", "up", "stats", "status", "hyper"],
     "content": [
       "<h2 class='guide-main-title'>COMO UPAR EVs CORRETAMENTE</h2>",
       "<div class='guide-section-box intro-box' style='display: flex; align-items: center; gap: 15px;'>",
@@ -172,6 +173,7 @@
     "thumb": "img/guias/capa-eternal-dark.png",
     "title": "Guia Eternal Dark Quest",
     "desc": "Tudo sobre Pokémons Dark, Farm de Souls e a Quest Eternal.",
+    "keywords": ["soul", "souls", "alma", "almas", "john soul", "doug soul", "enfeitiçar", "siking", "dark", "pokemon dark"],
     "content": [
       "<h2 class='guide-main-title'>ETERNAL DARK QUEST</h2>",
       "<div class='guide-section-box'>",
