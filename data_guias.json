@@ -84,6 +84,21 @@
     "desc": "As melhores rotas e locais recomendados pela comunidade.",
     "hunts": [
       {
+        "id": "hunt-pescaria",
+        "title": "Pescaria",
+        "desc": "Gratuito, e consegue consiliar com o farm de HDs.",
+        "minLevel": 1,
+        "tags": [
+          {"label": "EXP", "tooltip": "Muitos monstros juntos."},
+          {"label": "LOOT", "tooltip": "Ative o AutoCatch em todos os pokemons."}
+        ],
+        "pokemons": ["magikarp", "krabby", "poliwag", "horsea", "goldeen", "tentacool"],
+        "requisitos": ["Vara de Pesca"],
+        "mapImage": "img/guias/mapa-guia-up-farms-pescaria.png",
+        "rotaText": "Em qualquer local que tenha água.",
+        "rotaCoord": "Em qualquer local que tenha água."
+      },
+      {
         "id": "hunt-lutadores-singer",
         "title": "Covil dos Lutadores - Singer",
         "desc": "Ótimo local para iniciantes uparem rápido e farmarem HDs",
