@@ -3000,3 +3000,126 @@ body.dark-mode .type-multiplier {
     visibility: visible;
     transform: translateX(-50%) translateY(-3px); /* Efeito de subir de leve */
 }
+
+/* =========================================
+   CARDS DE HUNTS E GUIAS (ESTILO RETRÔ)
+========================================= */
+.hunt-card-wrapper {
+    display: flex; 
+    gap: 2px; 
+    margin-bottom: 20px; 
+    cursor: pointer;
+    transition: transform 0.2s;
+    will-change: transform;
+}
+
+.hunt-card-wrapper:hover {
+    transform: translateY(-2px) translateX(-2px);
+}
+
+.hunt-card-wrapper:hover .hunt-card-image,
+.hunt-card-wrapper:hover .hunt-card-info {
+    box-shadow: 5px 5px 0 var(--dex-border);
+}
+
+/* 1. MINIATURA DO MAPA */
+.hunt-card-image {
+    position: relative;
+    width: 110px;
+    flex-shrink: 0;
+    border: 3px solid var(--dex-border);
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 var(--dex-border);
+    transition: box-shadow 0.2s;
+}
+
+/* Plaquinha de Level Clássica de RPG */
+.lvl-badge {
+    position: absolute;
+    bottom: -10px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e67e22;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace; /* Usando a fonte do seu projeto */
+    font-size: 0.5rem;
+    padding: 4px 8px;
+    border: 2px solid var(--dex-border);
+    border-radius: 4px;
+    box-shadow: 2px 2px 0 var(--dex-border);
+    white-space: nowrap;
+    z-index: 2;
+}
+
+/* 2. CORPO DO CARD (DADOS E TEXTURA) */
+.hunt-card-info {
+    flex: 1;
+    border: 3px solid var(--dex-border);
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 var(--dex-border);
+    background-color: var(--screen-bg);
+    /* Efeito Textura Scanlines de GameBoy / TV de Tubo */
+    background-image: repeating-linear-gradient(
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.05) 2px,
+        rgba(0, 0, 0, 0.05) 4px
+    );
+    padding: 12px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: box-shadow 0.2s, background-color 0.3s ease;
+}
+
+.hunt-card-info h3 {
+    margin: 0 0 5px 0; 
+    font-size: 1.05rem; 
+    color: var(--dex-border); 
+    text-transform: uppercase; 
+    font-weight: 900;
+}
+
+.hunt-card-info p {
+    margin: 0 0 12px 0; 
+    font-size: 0.8rem; 
+    color: #555; 
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+/* Container e Tags do Card */
+.hunt-tags-container {
+    display: flex; 
+    gap: 8px; 
+    flex-wrap: wrap;
+}
+
+.hunt-tag {
+    background: #3498db; 
+    color: #fff; 
+    border: 2px solid var(--dex-border); 
+    border-radius: 4px; 
+    padding: 2px 6px; 
+    font-family: monospace;
+    font-size: 0.65rem; 
+    font-weight: 900; 
+    box-shadow: 2px 2px 0 var(--dex-border);
+    text-transform: uppercase;
+}
+
+/* Suporte ao Modo Escuro nativo do seu CSS */
+body.dark-mode .hunt-card-info { background-color: #2a2a2c; }
+body.dark-mode .hunt-card-info p { color: #aaa; }
+body.dark-mode .hunt-card-info h3 { color: #f0f0f0; }
+body.dark-mode .hunt-card-image, 
+body.dark-mode .hunt-card-info,
+body.dark-mode .lvl-badge,
+body.dark-mode .hunt-tag {
+    border-color: #111;
+    box-shadow: 3px 3px 0 #000;
+}
+body.dark-mode .hunt-card-wrapper:hover .hunt-card-image,
+body.dark-mode .hunt-card-wrapper:hover .hunt-card-info {
+    box-shadow: 5px 5px 0 #000;
+}
