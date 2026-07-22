@@ -92,7 +92,7 @@
           {"label": "EXP", "tooltip": "Muitos monstros juntos."},
           {"label": "LOOT", "tooltip": "Ative o AutoCatch em todos os pokemons."}
         ],
-        "pokemons": ["magikarp", "krabby", "poliwag", "horsea", "goldeen", "tentacool", "shellder", "kingler", "seaking", "seadra", "gyarados", "kingdra", "lapras", "squirtle", "wartortle", "blastoise", "dewgong", "cloyster", "carvanha", "vaporeon", "mudkip", "mashtomp", "swampert", "tentacruel", ],
+        "pokemons": ["magikarp", "krabby", "poliwag", "horsea", "goldeen", "tentacool", "shellder", "kingler", "seaking", "seadra", "gyarados", "kingdra", "lapras", "squirtle", "wartortle", "blastoise", "dewgong", "cloyster", "carvanha", "vaporeon", "mudkip", "mashtomp", "swampert", "tentacruel"],
         "requisitos": ["Vara de Pesca"],
         "mapImage": "img/guias/mapa-guia-up-farms-pescaria.png",
         "rotaText": "Você consegue pescar em qualquer local que tenha água. Conforme seu level de pesca aumenta, você consegue pescar pokemons melhores e mais fortes, se tornando uma ótima alternativa de UP e Farm de HDs a longo prazo.",
