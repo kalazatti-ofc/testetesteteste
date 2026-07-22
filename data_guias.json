@@ -147,6 +147,23 @@
           "3. Clique nos livros (X 791 / Y 1328 / Z 9)",
           "4. Entre na Porta (X 750 / Y 1306 / Z 10)"
         ]
+      },
+      {
+        "id": "hunt-tv-camera",
+        "title": "TV Camêra - Orre",
+        "desc": "Local liberado somente após realizar a quest TV Câmera.",
+        "minLevel": 250,
+        "tags": [
+          {"label": "EXP", "tooltip": "Alta chance de TMs do tipo Steel e Enigma Stone."},
+          {"label": "CATCH", "tooltip": "Metang é bom para vender no market e para players."}
+          {"label": "LOOT", "tooltip": "Garra do Scizor para a Eternal Quest. Muitas Stones, TMs e Pokemons"}
+        ],
+        "pokemons": ["metagross"],
+        "requisitos": ["Quest TV Câmera."],
+        "mapImage": "img/guias/mapa-tv-camera.png",
+        "rotaText": "principal local para drop da Garra do Scizor para a Eternal Quest.",
+        "rotaCoord": "TV Camêra (Orre) (X 2559 / Y 1350 / Z 7)"
+        ]
       }
     ]
   }
