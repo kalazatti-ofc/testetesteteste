@@ -1938,7 +1938,7 @@
         "locations": [
             "Cerulean (X 861 / Y 845 / Z 6)",
             {
-                "local": "Singer (X 1679 / Y 975 / Z 7)",
+                "local": "Singer (X 1679 / Y 975 / Z 9)",
                 "nota": "📌  Entre no Buraco"
             }
         ],
@@ -1966,7 +1966,7 @@
         },
         "locations": [
             {
-                "local": "Singer (X 1679 / Y 975 / Z )",
+                "local": "Singer (X 1679 / Y 975 / Z 9)",
                 "nota": "📌  Entre no Buraco"
             },
             "Cherrygrove (X 1128 / Y 511 / Z 6)"
@@ -1997,7 +1997,7 @@
         },
         "locations": [
             {
-                "local": "Singer (X 1679 / Y 975 / Z )",
+                "local": "Singer (X 1679 / Y 975 / Z 9)",
                 "nota": "📌  Entre no Buraco"
             }
         ],
@@ -3120,7 +3120,7 @@
         },
         "locations": [
             {
-                "local": "Singer (X 1679 / Y 975 / Z 7)",
+                "local": "Singer (X 1679 / Y 975 / Z 9)",
                 "nota": "📌   Entre no buraco"
             }
         ],
@@ -3149,7 +3149,7 @@
         },
         "locations": [
             {
-                "local": "Singer (X 1679 / Y 975 / Z 7)",
+                "local": "Singer (X 1679 / Y 975 / Z 9)",
                 "nota": "📌   Entre no buraco"
             }
         ],
@@ -6705,7 +6705,7 @@
         },
         "locations": [
             {
-                "local": "Singer (X 1679 / Y 975 / Z 7)",
+                "local": "Singer (X 1679 / Y 975 / Z 9)",
                 "nota": "📌 Entre no buraco"
             }
         ],
@@ -6732,7 +6732,7 @@
         },
         "locations": [
             {
-                "local": "Singer (X 1679 / Y 975 / Z 7)",
+                "local": "Singer (X 1679 / Y 975 / Z 9)",
                 "nota": "📌 Entre no buraco"
             }
         ],
