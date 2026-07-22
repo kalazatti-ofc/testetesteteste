@@ -326,13 +326,18 @@ function renderGuias(guias) {
     }
 
     // 1. Renderiza os cartões quadrados do menu principal
-    grid.innerHTML = guias.map(g => `
-        <div class="tut-card" onclick="openTutorial('${g.id}')">
+    grid.innerHTML = guias.map(g => {
+        // Transforma o array de palavras-chave do JSON em um texto contínuo para o HTML
+        const tagsOcultas = g.keywords ? g.keywords.join(' ').toLowerCase() : '';
+        
+        return `
+        <div class="tut-card" onclick="openTutorial('${g.id}')" data-keywords="${tagsOcultas}">
             <img src="${g.thumb}" alt="${g.title}" class="tut-thumb" onerror="this.src='https://dummyimage.com/200x110/3498db/fff.png&text=Guia'">
             <h3 class="tut-title">${g.title}</h3>
             <p class="tut-desc">${g.desc}</p>
         </div>
-    `).join('');
+        `;
+    }).join('');
 
     // 2. Renderiza o interior de cada guia (Texto ou Sistema de Hunts)
     articleContainer.innerHTML = guias.map(g => {
@@ -2688,7 +2693,11 @@ window.searchGuias = (termo) => {
         const title = card.querySelector('.tut-title').textContent.toLowerCase();
         const desc = card.querySelector('.tut-desc').textContent.toLowerCase();
         
-        if (title.includes(textoBuscado) || desc.includes(textoBuscado)) {
+        // Puxa as palavras-chave ocultas que injetamos na renderização
+        const keywords = card.getAttribute('data-keywords') || ""; 
+        
+        // Agora verifica Título, Descrição OU Palavras-chave
+        if (title.includes(textoBuscado) || desc.includes(textoBuscado) || keywords.includes(textoBuscado)) {
             card.style.display = ''; // Mostra o cartão
         } else {
             card.style.display = 'none'; // Esconde o cartão
